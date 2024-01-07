@@ -1,77 +1,52 @@
 import axios from "axios";
-import { ReactElement, useState } from "react";
+import { ReactElement } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import z from "zod";
+
+const CreateCharitySchema = z.object({
+  category: z.string().min(1, { message: "Category is required." }),
+  name: z.string().min(1, { message: "Name is required." }),
+  logoUrl: z.string().min(1, { message: "Logo URL is required." }),
+  description: z.string().min(1, { message: "Description is required." }),
+});
+
+type CreateCharitySchemaType = z.infer<typeof CreateCharitySchema>;
 
 export default function CreateCharityForm(): ReactElement {
-  const [charityForm, setCharityForm] = useState({
-    category: "",
-    name: "",
-    logoUrl: "",
-    description: "",
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CreateCharitySchemaType>({
+    resolver: zodResolver(CreateCharitySchema),
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { target } = e;
-    const { name, value } = target;
-
-    setCharityForm({
-      ...charityForm,
-      [name]: value,
-    });
-  };
-
-  async function createCharity() {
+  const handleCreateCharity = handleSubmit(async (data) => {
     try {
       await axios.post(
         `${process.env.REACT_APP_API_URL}/api/charities/create`,
-        charityForm
+        data
       );
     } catch (error) {
       console.error(error);
     }
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    createCharity();
-  };
+  });
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleCreateCharity}>
       <label htmlFor="name">Name</label>
-      <input
-        type="text"
-        name="name"
-        value={charityForm.name}
-        onChange={handleChange}
-        required
-      />
+      <input {...register("name")} type="text" name="name" />
+      {errors.name?.message && <p>{errors.name.message}</p>}
       <label htmlFor="description">Description</label>
-      <input
-        type="text"
-        name="description"
-        value={charityForm.description}
-        onChange={handleChange}
-        required
-      />
+      <input {...register("description")} type="text" name="description" />
+      {errors.description?.message && <p>{errors.description.message}</p>}
       <label htmlFor="logoUrl">Logo URL</label>
-      <input
-        type="url"
-        name="logoUrl"
-        value={charityForm.logoUrl}
-        onChange={handleChange}
-        required
-      />
-
+      <input {...register("logoUrl")} type="url" name="logoUrl" />
+      {errors.logoUrl?.message && <p>{errors.logoUrl.message}</p>}
       <label htmlFor="category">Category</label>
-      <input
-        type="text"
-        name="category"
-        value={charityForm.category}
-        onChange={handleChange}
-        required
-      />
+      <input {...register("category")} type="text" name="category" />
+      {errors.category?.message && <p>{errors.category.message}</p>}
       <button type="submit">Create Charity</button>
     </form>
   );
