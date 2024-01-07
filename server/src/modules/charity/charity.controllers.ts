@@ -11,3 +11,19 @@ export async function getCharities(_req: Request, res: Response) {
     console.error(error);
   }
 }
+
+export async function getCharityById(req: Request, res: Response) {
+  const {
+    params: { id },
+  } = req;
+
+  try {
+    const charity = await prismaClient.charity.findUnique({
+      where: { id },
+    });
+
+    res.json(charity);
+  } catch (error) {
+    console.error(error);
+  }
+}
