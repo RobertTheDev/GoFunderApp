@@ -1,5 +1,5 @@
 import prismaClient from "../../utils/prisma/prismaClient";
-import { Request, Response } from "express";
+import e, { Request, Response } from "express";
 import { ReasonPhrases, StatusCodes, getReasonPhrase } from "http-status-codes";
 import redisClient from "../../utils/redis/redisClient";
 
@@ -24,13 +24,25 @@ export async function createCharity(req: Request, res: Response) {
 // Gets all charities from the prisma database.
 export async function getCharities(_req: Request, res: Response) {
   try {
-    const charities = await prismaClient.charity.findMany();
+    const cachedCharities = await redisClient.get("charities");
 
-    res.status(StatusCodes.OK).json({
-      reason: ReasonPhrases.OK,
-      message: "Successfully found charities.",
-      data: charities,
-    });
+    if (cachedCharities) {
+      res.status(StatusCodes.OK).json({
+        reason: ReasonPhrases.OK,
+        message: "Successfully found charity from cache.",
+        data: JSON.parse(cachedCharities),
+      });
+    } else {
+      const charities = await prismaClient.charity.findMany();
+
+      await redisClient.set("charities", JSON.stringify(charities));
+
+      res.status(StatusCodes.OK).json({
+        reason: ReasonPhrases.OK,
+        message: "Successfully found charities.",
+        data: charities,
+      });
+    }
   } catch (error) {
     console.error(error);
 
