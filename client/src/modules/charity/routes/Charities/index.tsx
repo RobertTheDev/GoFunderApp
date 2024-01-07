@@ -1,7 +1,7 @@
 import { useEffect, useState, ReactElement } from "react";
 import axios from "axios";
-import CharityCard from "../../../components/charity/CharityCard";
-import ICharity from "../../../interfaces/Charity";
+import CharityCard from "../../components/CharityCard";
+import ICharity from "../../../../interfaces/Charity";
 
 function Charities(): ReactElement {
   const [charities, setCharities] = useState<ICharity[]>([]);

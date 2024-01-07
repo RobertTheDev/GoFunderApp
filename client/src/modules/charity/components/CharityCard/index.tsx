@@ -1,4 +1,4 @@
-import ICharity from "../../interfaces/Charity";
+import ICharity from "../../../../interfaces/Charity";
 import { ReactElement } from "react";
 
 export default function CharityCard(charity: ICharity): ReactElement {
