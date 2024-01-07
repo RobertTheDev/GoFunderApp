@@ -7,7 +7,8 @@
     "dev": "tsx watch app.ts",
     "format:check": "npx prettier . --check",
     "format:fix": "npx prettier . --write",
-    "lint": "eslint \"./**/*.ts\" --quiet"
+    "lint": "eslint \"./**/*.ts\" --quiet",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@prisma/client": "^5.7.1",
@@ -28,6 +29,7 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-n": "^16.6.1",
     "eslint-plugin-promise": "^6.1.1",
+    "husky": "^8.0.3",
     "prettier": "^3.1.1",
     "prisma": "^5.7.1",
     "tsx": "^4.7.0",
