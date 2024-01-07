@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ICharity from "../../../../interfaces/Charity";
 import axios from "axios";
+import Seo from "../../../seo/components/Seo";
 
 export default function CharityRoute() {
   const { id } = useParams();
@@ -31,6 +32,7 @@ export default function CharityRoute() {
     <div>
       {charity ? (
         <div>
+          <Seo title={charity.name} />
           <Link to={"update"}>Update Charity</Link>
           <Link to={"delete"}>Delete Charity</Link>
           <p>{charity.name}</p>
@@ -39,6 +41,7 @@ export default function CharityRoute() {
         </div>
       ) : (
         <div>
+          <Seo title="No Charity Found" />
           <p>No charity found</p>
         </div>
       )}
