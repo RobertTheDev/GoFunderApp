@@ -1,6 +1,7 @@
 import prismaClient from "../../utils/prisma/prismaClient";
 import { Request, Response } from "express";
 import { ReasonPhrases, StatusCodes, getReasonPhrase } from "http-status-codes";
+import redisClient from "../../utils/redis/redisClient";
 
 export async function createCharity(req: Request, res: Response) {
   const { body } = req;
@@ -45,22 +46,35 @@ export async function getCharityById(req: Request, res: Response) {
   } = req;
 
   try {
-    const charity = await prismaClient.charity.findUnique({
-      where: { id },
-    });
+    const cachedCharity = await redisClient.get(id);
 
-    if (!charity) {
-      res.status(StatusCodes.NOT_FOUND).json({
-        reason: ReasonPhrases.NOT_FOUND,
-        message: "Could not find charity with that id",
-        data: null,
+    if (cachedCharity) {
+      res.status(StatusCodes.OK).json({
+        reason: ReasonPhrases.OK,
+        message: "Successfully found charity from cache.",
+        data: JSON.parse(cachedCharity),
+      });
+    } else {
+      const charity = await prismaClient.charity.findUnique({
+        where: { id },
+      });
+
+      if (!charity) {
+        res.status(StatusCodes.NOT_FOUND).json({
+          reason: ReasonPhrases.NOT_FOUND,
+          message: "Could not find charity with that id",
+          data: null,
+        });
+      }
+
+      await redisClient.set(id, JSON.stringify(charity));
+
+      res.status(StatusCodes.OK).json({
+        reason: ReasonPhrases.OK,
+        message: "Successfully found charity from database.",
+        data: charity,
       });
     }
-    res.status(StatusCodes.OK).json({
-      reason: ReasonPhrases.OK,
-      message: "Successfully found charity.",
-      data: charity,
-    });
   } catch (error) {
     console.error(error);
 
