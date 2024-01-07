@@ -41,3 +41,37 @@ export async function getCharityById(req: Request, res: Response) {
     console.error(error);
   }
 }
+
+export async function updateCharityById(req: Request, res: Response) {
+  const {
+    body,
+    params: { id },
+  } = req;
+
+  try {
+    const updatedCharity = await prismaClient.charity.update({
+      data: body,
+      where: { id },
+    });
+
+    res.json(updatedCharity);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function deleteCharityById(req: Request, res: Response) {
+  const {
+    params: { id },
+  } = req;
+
+  try {
+    await prismaClient.charity.delete({
+      where: { id },
+    });
+
+    res.json({});
+  } catch (error) {
+    console.error(error);
+  }
+}
