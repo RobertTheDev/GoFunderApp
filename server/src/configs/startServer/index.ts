@@ -3,6 +3,7 @@ import express from "express";
 import type { RequestHandler } from "express";
 import cors from "cors";
 import appRouter from "../../routes/index.js";
+import helmet from "helmet";
 
 // This handler runs the express server when called.
 
@@ -18,6 +19,9 @@ export default function startServer(): void {
       methods: ["GET", "DELETE", "POST", "PUT"],
     }),
   );
+
+  // Set up helmet.
+  app.use(helmet());
 
   // Get the server port from dotenv.
   const serverPort = process.env.SERVER_PORT;
