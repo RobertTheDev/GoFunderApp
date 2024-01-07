@@ -7,7 +7,12 @@ const app = express();
 app.use(express.json());
 
 // Set up cors.
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "DELETE", "POST", "PUT"],
+  })
+);
 
 // Get the server port from dotenv.
 const serverPort = process.env.PORT;
