@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, ReactElement } from "react";
 import axios from "axios";
+import CharityCard from "./components/charity/CharityCard";
+import ICharity from "./interfaces/Charity";
 
-function App() {
-  const [charities, setCharities] = useState<{ name: string }[]>([]);
+function App(): ReactElement {
+  const [charities, setCharities] = useState<ICharity[]>([]);
 
-  async function getCharities() {
+  async function getCharities(): Promise<void> {
     try {
       const charities = await axios.get(
-        `${process.env.REACT_APP_API_URL}/charities`
+        `${process.env.REACT_APP_API_URL}/api/charities`
       );
 
       setCharities(charities.data);
@@ -22,7 +24,9 @@ function App() {
 
   return (
     <div>
-      <p>{JSON.stringify(charities)}</p>
+      {charities.map((charity) => {
+        return <CharityCard {...charity} key={charity.id} />;
+      })}
     </div>
   );
 }
