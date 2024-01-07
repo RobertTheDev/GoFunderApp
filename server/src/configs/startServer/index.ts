@@ -4,6 +4,7 @@ import type { RequestHandler } from "express";
 import cors from "cors";
 import appRouter from "../../routes/index.js";
 import helmet from "helmet";
+import compression from "compression";
 
 // This handler runs the express server when called.
 
@@ -12,6 +13,12 @@ export default function startServer(): void {
   const app = express();
   app.use(express.json());
 
+  // Set up helmet.
+  app.use(helmet());
+
+  // Set up compression.
+  app.use(compression());
+
   // Set up cors.
   app.use(
     cors({
@@ -19,9 +26,6 @@ export default function startServer(): void {
       methods: ["GET", "DELETE", "POST", "PUT"],
     }),
   );
-
-  // Set up helmet.
-  app.use(helmet());
 
   // Get the server port from dotenv.
   const serverPort = process.env.SERVER_PORT;
