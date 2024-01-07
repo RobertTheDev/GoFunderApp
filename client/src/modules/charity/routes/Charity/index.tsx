@@ -1,50 +1,35 @@
-import { useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ICharity from "../../../../interfaces/Charity";
 import axios from "axios";
 import Seo from "../../../seo/components/Seo";
+import { useQuery } from "@tanstack/react-query";
+import { ReactElement } from "react";
 
-export default function CharityRoute() {
+export default function CharityRoute(): ReactElement {
   const { id } = useParams();
 
-  const [charity, setCharity] = useState<ICharity | null>(null);
+  const { isPending, error, data } = useQuery<ICharity | null>({
+    queryKey: ["getCharityData"],
+    queryFn: async () =>
+      await axios
+        .get(`${process.env.REACT_APP_API_URL}/api/charities/${id}`)
+        .then((res) => res.data.data),
+  });
 
-  const getCharity = useCallback(
-    async function () {
-      try {
-        const charity = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/charities/${id}`
-        );
+  if (isPending) return <p>Loading...</p>;
 
-        setCharity(charity.data.data);
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    [id]
-  );
+  if (error) return <p>An error has occurred: + {error.message}</p>;
 
-  useEffect(() => {
-    getCharity();
-  }, [getCharity]);
+  if (!data) return <p>No charity found.</p>;
 
   return (
     <div>
-      {charity ? (
-        <div>
-          <Seo title={charity.name} />
-          <Link to={"update"}>Update Charity</Link>
-          <Link to={"delete"}>Delete Charity</Link>
-          <p>{charity.name}</p>
-          <p>{charity.description}</p>
-          <img src={charity.logoUrl} alt={charity.name} />
-        </div>
-      ) : (
-        <div>
-          <Seo title="No Charity Found" />
-          <p>No charity found</p>
-        </div>
-      )}
+      <Seo title={data.name} />
+      <Link to={"update"}>Update Charity</Link>
+      <Link to={"delete"}>Delete Charity</Link>
+      <p>{data.name}</p>
+      <p>{data.description}</p>
+      <img src={data.logoUrl} alt={data.name} />
     </div>
   );
 }
