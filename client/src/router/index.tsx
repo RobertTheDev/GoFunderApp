@@ -16,6 +16,10 @@ const router = createBrowserRouter([
         element: <CharitiesRoute />,
       },
       {
+        path: "/*",
+        element: <p>Not found</p>,
+      },
+      {
         path: "/charities/:id",
         element: <CharityRoute />,
       },
