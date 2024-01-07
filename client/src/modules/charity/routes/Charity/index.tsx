@@ -15,7 +15,7 @@ export default function CharityRoute() {
           `${process.env.REACT_APP_API_URL}/api/charities/${id}`
         );
 
-        setCharity(charity.data);
+        setCharity(charity.data.data);
       } catch (error) {
         console.error(error);
       }

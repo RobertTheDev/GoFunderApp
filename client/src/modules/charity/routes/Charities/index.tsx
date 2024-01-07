@@ -12,7 +12,7 @@ export default function CharitiesRoute(): ReactElement {
         `${process.env.REACT_APP_API_URL}/api/charities`
       );
 
-      setCharities(charities.data);
+      setCharities(charities.data.data);
     } catch (error) {
       console.error(error);
     }
