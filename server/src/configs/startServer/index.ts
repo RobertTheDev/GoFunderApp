@@ -19,7 +19,7 @@ export default function startServer() {
   );
 
   // Get the server port from dotenv.
-  const serverPort = process.env.PORT;
+  const serverPort = process.env.SERVER_PORT;
 
   // Sets up the app router.
   app.use("/api", appRouter);
