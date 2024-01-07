@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ICharity from "../../../../interfaces/Charity";
 import axios from "axios";
 
@@ -31,6 +31,8 @@ export default function CharityRoute() {
     <div>
       {charity ? (
         <div>
+          <Link to={"update"}>Update Charity</Link>
+          <Link to={"delete"}>Delete Charity</Link>
           <p>{charity.name}</p>
           <p>{charity.description}</p>
           <img src={charity.logoUrl} alt={charity.name} />
