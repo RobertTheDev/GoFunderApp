@@ -14,6 +14,6 @@ redisClient.on("end", () => {
   console.log("Redis client connection closed");
 });
 
-redisClient.connect();
+await redisClient.connect();
 
 export default redisClient;

@@ -1,9 +1,13 @@
-import prismaClient from "../../utils/prisma/prismaClient";
-import e, { Request, Response } from "express";
+import prismaClient from "../../utils/prisma/prismaClient.js";
+import type { Request, Response } from "express";
 import { ReasonPhrases, StatusCodes, getReasonPhrase } from "http-status-codes";
-import redisClient from "../../utils/redis/redisClient";
+import redisClient from "../../utils/redis/redisClient.js";
+import type { Charity } from "@prisma/client";
 
-export async function createCharity(req: Request, res: Response) {
+export async function createCharity(
+  req: Request,
+  res: Response,
+): Promise<void> {
   const { body } = req;
 
   try {
@@ -22,11 +26,14 @@ export async function createCharity(req: Request, res: Response) {
 }
 
 // Gets all charities from the prisma database.
-export async function getCharities(_req: Request, res: Response) {
+export async function getCharities(
+  _req: Request,
+  res: Response,
+): Promise<void> {
   try {
-    const cachedCharities = await redisClient.get("charities");
+    const cachedCharities: string | null = await redisClient.get("charities");
 
-    if (cachedCharities) {
+    if (cachedCharities !== null) {
       res.status(StatusCodes.OK).json({
         reason: ReasonPhrases.OK,
         message: "Successfully found charity from cache.",
@@ -52,26 +59,29 @@ export async function getCharities(_req: Request, res: Response) {
   }
 }
 
-export async function getCharityById(req: Request, res: Response) {
+export async function getCharityById(
+  req: Request,
+  res: Response,
+): Promise<void> {
   const {
     params: { id },
   } = req;
 
   try {
-    const cachedCharity = await redisClient.get(id);
+    const cachedCharity: string | null = await redisClient.get(id);
 
-    if (cachedCharity) {
+    if (cachedCharity !== null) {
       res.status(StatusCodes.OK).json({
         reason: ReasonPhrases.OK,
         message: "Successfully found charity from cache.",
         data: JSON.parse(cachedCharity),
       });
     } else {
-      const charity = await prismaClient.charity.findUnique({
+      const charity: Charity | null = await prismaClient.charity.findUnique({
         where: { id },
       });
 
-      if (!charity) {
+      if (charity === null) {
         res.status(StatusCodes.NOT_FOUND).json({
           reason: ReasonPhrases.NOT_FOUND,
           message: "Could not find charity with that id",
@@ -96,7 +106,10 @@ export async function getCharityById(req: Request, res: Response) {
   }
 }
 
-export async function updateCharityById(req: Request, res: Response) {
+export async function updateCharityById(
+  req: Request,
+  res: Response,
+): Promise<void> {
   const {
     body,
     params: { id },
@@ -122,7 +135,10 @@ export async function updateCharityById(req: Request, res: Response) {
   }
 }
 
-export async function deleteCharityById(req: Request, res: Response) {
+export async function deleteCharityById(
+  req: Request,
+  res: Response,
+): Promise<void> {
   const {
     params: { id },
   } = req;
