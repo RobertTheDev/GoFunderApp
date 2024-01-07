@@ -35,7 +35,7 @@ export async function getCharities(_req: Request, res: Response) {
     } else {
       const charities = await prismaClient.charity.findMany();
 
-      await redisClient.set("charities", JSON.stringify(charities));
+      await redisClient.set("charities", JSON.stringify(charities), { EX: 10 });
 
       res.status(StatusCodes.OK).json({
         reason: ReasonPhrases.OK,
@@ -79,7 +79,7 @@ export async function getCharityById(req: Request, res: Response) {
         });
       }
 
-      await redisClient.set(id, JSON.stringify(charity));
+      await redisClient.set(id, JSON.stringify(charity), { EX: 10 });
 
       res.status(StatusCodes.OK).json({
         reason: ReasonPhrases.OK,
