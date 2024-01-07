@@ -3,7 +3,7 @@ import axios from "axios";
 import CharityCard from "../../components/CharityCard";
 import ICharity from "../../../../interfaces/Charity";
 
-function Charities(): ReactElement {
+export default function CharitiesRoute(): ReactElement {
   const [charities, setCharities] = useState<ICharity[]>([]);
 
   async function getCharities(): Promise<void> {
@@ -30,5 +30,3 @@ function Charities(): ReactElement {
     </div>
   );
 }
-
-export default Charities;

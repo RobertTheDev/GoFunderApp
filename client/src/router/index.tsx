@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import Charities from "../modules/charity/routes/Charities";
 import PageLayout from "../modules/layout/components/PageLayout";
+import CharitiesRoute from "../modules/charity/routes/Charities";
+import CharityRoute from "../modules/charity/routes/Charity";
 
 const router = createBrowserRouter([
   {
@@ -9,7 +10,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Charities />,
+        element: <CharitiesRoute />,
+      },
+      {
+        path: "/charities/:id",
+        element: <CharityRoute />,
       },
     ],
   },

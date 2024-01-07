@@ -1,7 +1,11 @@
-export default function Charity() {
+import { useParams } from "react-router-dom";
+
+export default function CharityRoute() {
+  const { id } = useParams();
+
   return (
     <div>
-      <p>Charity</p>
+      <p>Charity {id}</p>
     </div>
   );
 }
