@@ -6,6 +6,7 @@ import appRouter from '../../routes/index.js'
 import helmet from 'helmet'
 import compression from 'compression'
 import winstonLogger from 'src/utils/winston/winstonLogger.js'
+import cookieParser from 'cookie-parser'
 
 // This handler runs the express server when called.
 
@@ -19,6 +20,9 @@ export default function startServer(): void {
 
   // Set up compression.
   app.use(compression())
+
+  // Set up cookie parser.
+  app.use(cookieParser())
 
   // Set up cors.
   app.use(
