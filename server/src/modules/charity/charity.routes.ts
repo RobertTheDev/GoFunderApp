@@ -12,10 +12,10 @@ import { Router } from 'express'
 const charityRouter = Router()
 
 // Defines the charity routes.
-charityRouter.delete('/:id/delete', deleteCharityById as RequestHandler)
+charityRouter.delete('/:id', deleteCharityById as RequestHandler)
 charityRouter.get('/', getCharities as RequestHandler)
 charityRouter.get('/:id', getCharityById as RequestHandler)
 charityRouter.post('/create', createCharity as RequestHandler)
-charityRouter.put('/:id/update', updateCharityById as RequestHandler)
+charityRouter.put('/:id', updateCharityById as RequestHandler)
 
 export default charityRouter
