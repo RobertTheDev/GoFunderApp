@@ -7,6 +7,7 @@ import helmet from 'helmet'
 import compression from 'compression'
 import winstonLogger from 'src/utils/winston/winstonLogger.js'
 import cookieParser from 'cookie-parser'
+import rateLimiter from 'src/utils/limiter/rateLimiter.js'
 
 // This handler runs the express server when called.
 
@@ -31,6 +32,8 @@ export default function startServer(): void {
       methods: ['GET', 'DELETE', 'POST', 'PUT'],
     }),
   )
+
+  app.use(rateLimiter)
 
   // Get the server port from dotenv.
   const serverPort = process.env.SERVER_PORT
