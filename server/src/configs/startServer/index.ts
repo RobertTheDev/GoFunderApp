@@ -5,6 +5,7 @@ import cors from 'cors'
 import appRouter from '../../routes/index.js'
 import helmet from 'helmet'
 import compression from 'compression'
+import winstonLogger from 'src/utils/winston/winstonLogger.js'
 
 // This handler runs the express server when called.
 
@@ -35,6 +36,6 @@ export default function startServer(): void {
 
   // Run the server port.
   app.listen(serverPort, () => {
-    console.log(`App is running on ${serverPort}.`)
+    winstonLogger.info(`App is running on ${serverPort}.`)
   })
 }
