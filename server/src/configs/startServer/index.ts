@@ -27,10 +27,6 @@ export default function startServer(): void {
     }),
   )
 
-  app.get('/ho', (req, res) => {
-    res.send({ m: 'ho' })
-  })
-
   // Get the server port from dotenv.
   const serverPort = process.env.SERVER_PORT
 
