@@ -1,11 +1,10 @@
-import { Router } from "express";
-import type { RequestHandler } from "express";
-import charityRouter from "../modules/charity/charity.routes.js";
+import { Router } from 'express'
+import charityRouter from '../modules/charity/charity.routes.js'
 
 // Sets up the apps routers with the modulised routers.
-const appRouter = Router();
+const appRouter = Router()
 
 // Defines app routes.
-appRouter.use("/charities", charityRouter as RequestHandler);
+appRouter.use('/charities', charityRouter)
 
-export default appRouter;
+export default appRouter

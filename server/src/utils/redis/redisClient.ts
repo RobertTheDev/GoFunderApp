@@ -1,19 +1,19 @@
-import { createClient } from "redis";
+import { createClient } from 'redis'
 
 /* Pulls the Redis URL from .env */
-const redisUrl = process.env.REDIS_URL;
+const redisUrl = String(process.env.REDIS_URL)
 
 /* Create and open the Redis Client */
-const redisClient = createClient({ url: redisUrl });
+const redisClient = createClient({ url: redisUrl })
 
-redisClient.on("error", (err) => {
-  console.error(`Redis client error: ${err}`);
-});
+redisClient.on('error', err => {
+  console.error(`Redis client error: ${err}`)
+})
 
-redisClient.on("end", () => {
-  console.log("Redis client connection closed");
-});
+redisClient.on('end', () => {
+  console.log('Redis client connection closed')
+})
 
-await redisClient.connect();
+await redisClient.connect()
 
-export default redisClient;
+export default redisClient
