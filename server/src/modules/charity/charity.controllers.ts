@@ -1,8 +1,13 @@
-import prismaClient from '../../utils/prisma/prismaClient.js'
 import type { Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes, getReasonPhrase } from 'http-status-codes'
-import redisClient from '../../utils/redis/redisClient.js'
 import type { Charity } from '@prisma/client'
+import { CharityService } from './charity.service.js'
+import winstonLogger from 'src/utils/winston/winstonLogger.js'
+import { CacheService } from 'src/services/cache/cache.service.js'
+import { cacheTtlOneDay } from 'src/configs/cacheTtl/index.js'
+
+const charityService = new CharityService()
+const cacheService = new CacheService()
 
 export async function createCharity(
   req: Request,
@@ -11,13 +16,17 @@ export async function createCharity(
   const { body } = req
 
   try {
-    const charity = await prismaClient.charity.create({
-      data: body,
+    const charity = await charityService.createCharity(body)
+
+    await cacheService.set({
+      key: charity.id,
+      value: charity,
+      expiry: cacheTtlOneDay,
     })
 
     res.status(StatusCodes.CREATED).json(charity)
   } catch (error) {
-    console.error(error)
+    winstonLogger.error(error)
 
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       error: getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR),
@@ -31,27 +40,33 @@ export async function getCharities(
   res: Response,
 ): Promise<void> {
   try {
-    const cachedCharities: string | null = await redisClient.get('charities')
+    const cachedCharities = await cacheService.get('charities')
 
     if (cachedCharities !== null) {
       res.status(StatusCodes.OK).json({
         reason: ReasonPhrases.OK,
-        message: 'Successfully found charity from cache.',
-        data: JSON.parse(cachedCharities),
-      })
-    } else {
-      const charities = await prismaClient.charity.findMany()
-
-      await redisClient.set('charities', JSON.stringify(charities), { EX: 10 })
-
-      res.status(StatusCodes.OK).json({
-        reason: ReasonPhrases.OK,
-        message: 'Successfully found charities.',
-        data: charities,
+        message: 'Successfully found charities from cache.',
+        data: cachedCharities,
       })
     }
+
+    const charities = await charityService.findCharities({})
+
+    if (charities.length > 0) {
+      await cacheService.set({
+        key: 'charities',
+        value: charities,
+        expiry: cacheTtlOneDay,
+      })
+    }
+
+    res.status(StatusCodes.OK).json({
+      reason: ReasonPhrases.OK,
+      message: 'Successfully found charities.',
+      data: charities,
+    })
   } catch (error) {
-    console.error(error)
+    winstonLogger.error(error)
 
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       error: getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR),
@@ -68,45 +83,39 @@ export async function getCharityById(
   } = req
 
   try {
-    if (id == null) {
-      res.status(StatusCodes.BAD_REQUEST).json({
-        reason: ReasonPhrases.BAD_REQUEST,
-        message: 'No id was provided.',
-        data: null,
+    const cachedCharity = await cacheService.get(id)
+
+    if (cachedCharity !== null) {
+      res.status(StatusCodes.OK).json({
+        reason: ReasonPhrases.OK,
+        message: 'Successfully found charity from database.',
+        data: cachedCharity,
       })
-    } else {
-      const cachedCharity: string | null = await redisClient.get(id)
-
-      if (cachedCharity !== null) {
-        res.status(StatusCodes.OK).json({
-          reason: ReasonPhrases.OK,
-          message: 'Successfully found charity from cache.',
-          data: JSON.parse(cachedCharity),
-        })
-      } else {
-        const charity: Charity | null = await prismaClient.charity.findUnique({
-          where: { id },
-        })
-
-        if (charity === null) {
-          res.status(StatusCodes.NOT_FOUND).json({
-            reason: ReasonPhrases.NOT_FOUND,
-            message: 'Could not find charity with that id',
-            data: null,
-          })
-        }
-
-        await redisClient.set(id, JSON.stringify(charity), { EX: 10 })
-
-        res.status(StatusCodes.OK).json({
-          reason: ReasonPhrases.OK,
-          message: 'Successfully found charity from database.',
-          data: charity,
-        })
-      }
     }
+
+    const charity: Charity | null = await charityService.findCharity({ id })
+
+    if (charity !== null) {
+      await cacheService.set({
+        key: charity.id,
+        value: charity,
+        expiry: cacheTtlOneDay,
+      })
+
+      res.status(StatusCodes.OK).json({
+        reason: ReasonPhrases.OK,
+        message: 'Successfully found charity from database.',
+        data: charity,
+      })
+    }
+
+    res.status(StatusCodes.NOT_FOUND).json({
+      reason: ReasonPhrases.NOT_FOUND,
+      message: 'Charity not found.',
+      data: null,
+    })
   } catch (error) {
-    console.error(error)
+    winstonLogger.error(error)
 
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       error: getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR),
@@ -124,26 +133,24 @@ export async function updateCharityById(
   } = req
 
   try {
-    if (id == null) {
-      res.status(StatusCodes.BAD_REQUEST).json({
-        reason: ReasonPhrases.BAD_REQUEST,
-        message: 'No id was provided.',
-        data: null,
-      })
-    } else {
-      const updatedCharity = await prismaClient.charity.update({
-        data: body,
-        where: { id },
-      })
+    const updatedCharity = await charityService.updateCharity({
+      data: body,
+      where: { id },
+    })
 
-      res.status(StatusCodes.OK).json({
-        reason: ReasonPhrases.OK,
-        message: 'Successfully updated charity.',
-        data: updatedCharity,
-      })
-    }
+    await cacheService.set({
+      key: updatedCharity.id,
+      value: updatedCharity,
+      expiry: cacheTtlOneDay,
+    })
+
+    res.status(StatusCodes.OK).json({
+      reason: ReasonPhrases.OK,
+      message: 'Successfully updated charity.',
+      data: updatedCharity,
+    })
   } catch (error) {
-    console.error(error)
+    winstonLogger.error(error)
 
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       error: getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR),
@@ -160,25 +167,19 @@ export async function deleteCharityById(
   } = req
 
   try {
-    if (id == null) {
-      res.status(StatusCodes.BAD_REQUEST).json({
-        reason: ReasonPhrases.BAD_REQUEST,
-        message: 'No id was provided.',
-        data: null,
-      })
-    } else {
-      await prismaClient.charity.delete({
-        where: { id },
-      })
+    await charityService.deleteCharity({
+      id,
+    })
 
-      res.status(StatusCodes.OK).json({
-        reason: ReasonPhrases.OK,
-        message: 'Successfully deleted charity.',
-        data: null,
-      })
-    }
+    await cacheService.delete(id)
+
+    res.status(StatusCodes.OK).json({
+      reason: ReasonPhrases.OK,
+      message: 'Successfully deleted charity.',
+      data: null,
+    })
   } catch (error) {
-    console.error(error)
+    winstonLogger.error(error)
 
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       error: getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR),
