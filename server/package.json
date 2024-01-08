@@ -4,14 +4,17 @@
   "main": "app.ts",
   "type": "module",
   "scripts": {
-    "build": "npx tsc",
-    "devo": "tsx watch src/app.ts",
-    "dev": "nodemon src/app.ts",
+    "dev": "tsx watch src/app.ts",
     "format:check": "npx prettier . --check",
     "format:fix": "npx prettier . --write",
-    "lint": "eslint \"./**/*.ts\" --quiet",
+    "lint": "eslint --ext .ts src",
+    "lint:fix": "eslint --ext .ts src --fix",
     "prepare": "husky install",
-    "start": "node dist/src/app.js"
+    "build": "swc src --out-dir dist",
+    "devo": "nodemon --watch src --ext ts",
+    "devi": "nodemon --watch src --ext ts --exec 'npm run build && npm start'",
+    "start": "node dist/app.js",
+    "clean": "rm -rf dist"
   },
   "dependencies": {
     "@prisma/client": "^5.7.1",
@@ -26,6 +29,8 @@
     "winston": "3.11.0"
   },
   "devDependencies": {
+    "@swc/cli": "0.1.63",
+    "@swc/core": "1.3.102",
     "@types/compression": "^1.7.5",
     "@types/cookie-parser": "1.4.6",
     "@types/cors": "^2.8.17",
@@ -33,6 +38,7 @@
     "@types/node": "^20.10.7",
     "@typescript-eslint/eslint-plugin": "^6.18.0",
     "@typescript-eslint/parser": "^6.18.0",
+    "chokidar": "3.5.3",
     "concurrently": "8.2.2",
     "dotenv": "^16.3.1",
     "eslint": "^8.56.0",
