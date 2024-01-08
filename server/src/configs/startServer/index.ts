@@ -5,8 +5,9 @@ import cors from 'cors'
 import appRouter from '../../routes/index.js'
 import helmet from 'helmet'
 import compression from 'compression'
-import winstonLogger from 'src/utils/winston/winstonLogger.js'
+import winstonLogger from '../../utils/winston/winstonLogger.js'
 import cookieParser from 'cookie-parser'
+import { createServer } from 'http'
 // import rateLimiter from 'src/utils/limiter/rateLimiter.js'
 
 // This handler runs the express server when called.
@@ -43,8 +44,10 @@ app.use('/api', appRouter as RequestHandler)
 
 // Run the server port.
 export default function startServer(): void {
+  const server = createServer(app)
+
   try {
-    app.listen(serverPort, () => {
+    server.listen(serverPort, () => {
       winstonLogger.info(`App is running on ${serverPort}.`)
     })
   } catch (error) {
