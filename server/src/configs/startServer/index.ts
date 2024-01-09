@@ -11,6 +11,8 @@ import cookieParser from 'cookie-parser'
 import { createServer } from 'http'
 import morganMiddleware from '../../middlewares/morgan/morgan.middleware.js'
 import session from 'express-session'
+import RedisStore from 'connect-redis'
+import redisClient from 'src/utils/redis/redisClient.js'
 // import rateLimiter from 'src/utils/limiter/rateLimiter.js'
 
 // This handler runs the express server when called.
@@ -36,19 +38,26 @@ app.use(
   }),
 )
 
-const sess = {
+// Initialize store.
+const redisStore = new RedisStore({
+  client: redisClient,
+  prefix: 'myapp:',
+})
+
+const sessionConfig = {
+  store: redisStore,
   secret: String(process.env.SESSION_SECRET),
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: { secure: false },
 }
 
 if (app.get('env') === 'production') {
   app.set('trust proxy', 1) // trust first proxy
-  sess.cookie.secure = true // serve secure cookies
+  sessionConfig.cookie.secure = true // serve secure cookies
 }
 
-app.use(session(sess))
+app.use(session(sessionConfig))
 
 app.use(morganMiddleware)
 
