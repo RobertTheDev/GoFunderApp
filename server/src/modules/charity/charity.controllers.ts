@@ -2,9 +2,9 @@ import type { Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes, getReasonPhrase } from 'http-status-codes'
 import type { Charity } from '@prisma/client'
 import { CharityService } from './charity.service.js'
-import winstonLogger from 'src/utils/winston/winstonLogger.js'
-import { CacheService } from 'src/services/cache/cache.service.js'
-import { cacheTtlOneDay } from 'src/configs/cacheTtl/index.js'
+import winstonLogger from '../../utils/winston/winstonLogger.js'
+import { CacheService } from '../../services/cache/cache.service.js'
+import { cacheTtlOneDay } from '../../configs/cacheTtl/index.js'
 
 const charityService = new CharityService()
 const cacheService = new CacheService()
@@ -38,12 +38,12 @@ export async function createCharity(
 export async function getCharities(
   _req: Request,
   res: Response,
-): Promise<void> {
+): Promise<Response<any, Record<string, any>>> {
   try {
     const cachedCharities = await cacheService.get('charities')
 
     if (cachedCharities !== null) {
-      res.status(StatusCodes.OK).json({
+      return res.status(StatusCodes.OK).json({
         reason: ReasonPhrases.OK,
         message: 'Successfully found charities from cache.',
         data: cachedCharities,
@@ -60,7 +60,7 @@ export async function getCharities(
       })
     }
 
-    res.status(StatusCodes.OK).json({
+    return res.status(StatusCodes.OK).json({
       reason: ReasonPhrases.OK,
       message: 'Successfully found charities.',
       data: charities,
@@ -68,7 +68,7 @@ export async function getCharities(
   } catch (error) {
     winstonLogger.error(error)
 
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       error: getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR),
     })
   }
