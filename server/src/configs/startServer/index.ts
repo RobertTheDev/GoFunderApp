@@ -1,6 +1,7 @@
 import 'dotenv/config'
-import express from 'express'
+
 import type { RequestHandler } from 'express'
+import express from 'express'
 import cors from 'cors'
 import appRouter from '../../routes/index.js'
 import helmet from 'helmet'
@@ -8,6 +9,7 @@ import compression from 'compression'
 import winstonLogger from '../../utils/winston/winstonLogger.js'
 import cookieParser from 'cookie-parser'
 import { createServer } from 'http'
+import morganMiddleware from '../../middlewares/morgan/morgan.middleware.js'
 // import rateLimiter from 'src/utils/limiter/rateLimiter.js'
 
 // This handler runs the express server when called.
@@ -32,6 +34,16 @@ app.use(
     methods: ['GET', 'DELETE', 'POST', 'PUT'],
   }),
 )
+
+app.use(morganMiddleware)
+
+app.get('/api/status', (_req, res) => {
+  winstonLogger.info('Checking the API status: Everything is OK')
+  res.status(200).send({
+    status: 'UP',
+    message: 'The API is up and running!',
+  })
+})
 
 // Sets up rate limiting.
 // app.use(rateLimiter)
