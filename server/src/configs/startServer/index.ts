@@ -10,6 +10,7 @@ import winstonLogger from '../../utils/winston/winstonLogger.js'
 import cookieParser from 'cookie-parser'
 import { createServer } from 'http'
 import morganMiddleware from '../../middlewares/morgan/morgan.middleware.js'
+import session from 'express-session'
 // import rateLimiter from 'src/utils/limiter/rateLimiter.js'
 
 // This handler runs the express server when called.
@@ -34,6 +35,20 @@ app.use(
     methods: ['GET', 'DELETE', 'POST', 'PUT'],
   }),
 )
+
+const sess = {
+  secret: String(process.env.SESSION_SECRET),
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false },
+}
+
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1) // trust first proxy
+  sess.cookie.secure = true // serve secure cookies
+}
+
+app.use(session(sess))
 
 app.use(morganMiddleware)
 
