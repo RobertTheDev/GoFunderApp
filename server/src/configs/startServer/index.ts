@@ -13,6 +13,7 @@ import morganMiddleware from '../../middlewares/morgan/morgan.middleware.js'
 import session from 'express-session'
 import RedisStore from 'connect-redis'
 import redisClient from 'src/utils/redis/redisClient.js'
+import path from 'path'
 // import rateLimiter from 'src/utils/limiter/rateLimiter.js'
 
 // This handler runs the express server when called.
@@ -28,7 +29,11 @@ app.use(helmet())
 app.use(compression())
 
 // Set up cookie parser.
-app.use(cookieParser())
+app.use(
+  cookieParser({
+    s,
+  }),
+)
 
 // Set up cors.
 app.use(
@@ -37,6 +42,12 @@ app.use(
     methods: ['GET', 'DELETE', 'POST', 'PUT'],
   }),
 )
+
+const filename = new URL(import.meta.url).pathname
+const dirname = path.dirname(filename)
+
+app.use(express.static(path.join(dirname, 'public')))
+app.use('/uploads', express.static('uploads'))
 
 // Initialize store.
 const redisStore = new RedisStore({
