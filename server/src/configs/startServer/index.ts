@@ -29,11 +29,7 @@ app.use(helmet())
 app.use(compression())
 
 // Set up cookie parser.
-app.use(
-  cookieParser({
-    s,
-  }),
-)
+app.use(cookieParser())
 
 // Set up cors.
 app.use(
