@@ -1,12 +1,27 @@
-import bcrypt from 'bcrypt'
+import argon2 from 'argon2'
+import crypto from 'crypto'
 
-export async function comparePassword(
-  inputPassword: string,
-  correctPassword: string,
+const pepper = process.env.PASSWORD_PEPPER
+
+function generateSalt(): Buffer {
+  return crypto.randomBytes(32)
+}
+
+export async function verifyPassword(
+  password: string,
+  hashedPassword: string,
 ): Promise<boolean> {
-  return await bcrypt.compare(inputPassword, correctPassword)
+  const passwordWithPepper = password + pepper
+
+  return await argon2.verify(hashedPassword, passwordWithPepper)
 }
 
 export async function hashPassword(password: string): Promise<string> {
-  return await bcrypt.hash(password, Number(process.env.SALT_ROUNDS))
+  const salt = generateSalt()
+
+  const passwordWithPepper = password + pepper
+
+  const hashedPassword = await argon2.hash(passwordWithPepper, { salt })
+
+  return hashedPassword
 }
