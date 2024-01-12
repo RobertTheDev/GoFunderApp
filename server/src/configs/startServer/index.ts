@@ -11,9 +11,8 @@ import cookieParser from 'cookie-parser'
 import { createServer } from 'http'
 import morganMiddleware from '../../middlewares/morgan/morgan.middleware.js'
 import session from 'express-session'
-import RedisStore from 'connect-redis'
-import redisClient from 'src/utils/redis/redisClient.js'
 import path from 'path'
+import sessionConfig from '../session/sessionOptions.js'
 // import rateLimiter from 'src/utils/limiter/rateLimiter.js'
 
 // This handler runs the express server when called.
@@ -44,20 +43,6 @@ const dirname = path.dirname(filename)
 
 app.use(express.static(path.join(dirname, 'public')))
 app.use('/uploads', express.static('uploads'))
-
-// Initialize store.
-const redisStore = new RedisStore({
-  client: redisClient,
-  prefix: 'myapp:',
-})
-
-const sessionConfig = {
-  store: redisStore,
-  secret: String(process.env.SESSION_SECRET),
-  resave: false,
-  saveUninitialized: false,
-  cookie: { secure: false },
-}
 
 if (app.get('env') === 'production') {
   app.set('trust proxy', 1) // trust first proxy
