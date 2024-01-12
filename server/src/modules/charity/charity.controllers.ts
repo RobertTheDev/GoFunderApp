@@ -8,7 +8,7 @@ import { cacheTtlOneDay } from '../../configs/cacheTtl/index.js'
 import {
   createCharitySchema,
   updateCharitySchema,
-} from '../../models/Charity.js'
+} from './charity.validators.js'
 
 const charityService = new CharityService()
 const cacheService = new CacheService()

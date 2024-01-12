@@ -4,9 +4,10 @@ import {
   hashPassword,
   verifyPassword,
 } from '../../../../configs/passwordManagement'
-import { changePasswordSchema } from '../../../../models/Auth'
+
 import prismaClient from '../../../../utils/prisma/prismaClient'
 import winstonLogger from '../../../../utils/winston/winstonLogger'
+import changePasswordSchema from '../validators/changePassword.schema'
 
 export async function changePassword(
   req: Request,

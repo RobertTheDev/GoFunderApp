@@ -3,8 +3,11 @@ import winstonLogger from '../../../utils/winston/winstonLogger'
 import type { Request, Response } from 'express'
 import prismaClient from 'src/utils/prisma/prismaClient'
 import genereateId from 'src/configs/idGenerator'
-import { sendMagicLinkSchema, verifyMagicLinkSchema } from 'src/models/Auth'
 import { tenMinuteExpiryDateTime } from 'src/configs/expiryManagement/dateExpiryManagement'
+import {
+  sendMagicLinkSchema,
+  verifyMagicLinkSchema,
+} from './magicLink.validators'
 
 export async function sendMagicLink(
   req: Request,

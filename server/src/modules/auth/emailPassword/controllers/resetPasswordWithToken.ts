@@ -1,9 +1,9 @@
 import type { Request, Response } from 'express'
 import { StatusCodes, ReasonPhrases } from 'http-status-codes'
-import { resetPasswordSchema } from '../../../../models/Auth'
 import prismaClient from '../../../../utils/prisma/prismaClient'
 import winstonLogger from '../../../../utils/winston/winstonLogger'
 import { hashPassword } from '../../../../configs/passwordManagement'
+import resetPasswordSchema from '../validators/resetPassword.schema'
 
 export async function resetPasswordWithToken(
   req: Request,

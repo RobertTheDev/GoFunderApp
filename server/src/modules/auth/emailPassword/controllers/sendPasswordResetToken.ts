@@ -1,8 +1,8 @@
 import type { Request, Response } from 'express'
 import { StatusCodes, ReasonPhrases } from 'http-status-codes'
-import { sendPasswordResetSchema } from '../../../../models/Auth'
 import prismaClient from '../../../../utils/prisma/prismaClient'
 import winstonLogger from '../../../../utils/winston/winstonLogger'
+import sendPasswordResetSchema from '../validators/sendPasswordReset.schema'
 
 export async function sendPasswordResetToken(
   req: Request,
