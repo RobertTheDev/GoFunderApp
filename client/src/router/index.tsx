@@ -5,6 +5,8 @@ import CharityRoute from "../modules/charity/routes/Charity";
 import CreateCharityRoute from "../modules/charity/routes/CreateCharity";
 import UpdateCharityRoute from "../modules/charity/routes/UpdateCharity";
 import DeleteCharityRoute from "../modules/charity/routes/DeleteCharity";
+import UsersRoute from "../modules/user/routes/Users";
+import UserRoute from "../modules/user/routes/User";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
       {
         path: "/charities/create-charity",
         element: <CreateCharityRoute />,
+      },
+      {
+        path: "/users",
+        element: <UsersRoute />,
+      },
+      {
+        path: "/users/:id",
+        element: <UserRoute />,
       },
     ],
   },
