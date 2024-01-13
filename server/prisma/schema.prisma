@@ -21,6 +21,7 @@ model Charity {
   fundraisers      Fundraiser[] // List of fundraisers owned by the charity.
   logo             String? // URL to the charity's logo image (optional).
   name             String // Charity's name.
+  slug             String?           @unique // Unique slug url for the charity.
 
   @@map("charities")
 }
@@ -80,6 +81,7 @@ model Fundraiser {
   headline         String? // Headline of the fundraiser.
   image            String? // URL to the image associated with the fundraiser.
   savedFundraisers SavedFundraiser[] // List of saved fundraisers.
+  slug             String?           @unique // Unique slug url for the fundraiser.
   target           Int // Fundraising target amount.
   totalDonations   Int               @default(0) @map("total_donations") // Total number of donations received.
   totalRaised      Int               @default(0) @map("total_raised") // Total amount raised.
