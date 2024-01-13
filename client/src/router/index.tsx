@@ -10,6 +10,7 @@ import UserRoute from "../modules/user/routes/User";
 import ProfileRoute from "../modules/auth/routes/Profile";
 import PasswordSignInForm from "../modules/auth/components/PasswordSignIn";
 import PasswordSignUpForm from "../modules/auth/components/PasswordSignUp";
+import SignInMenu from "../modules/auth/components/SignInMenu";
 
 const router = createBrowserRouter([
   {
@@ -18,12 +19,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: (
-          <div>
-            <PasswordSignInForm />
-            <PasswordSignUpForm />
-          </div>
-        ),
+        element: <PasswordSignInForm />,
       },
       {
         path: "/*",
