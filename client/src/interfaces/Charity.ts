@@ -1,6 +1,6 @@
 export default interface ICharity {
   id: string;
   description: string;
-  logoUrl: string;
+  logo: string;
   name: string;
 }
