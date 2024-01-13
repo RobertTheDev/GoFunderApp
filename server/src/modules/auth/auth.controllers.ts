@@ -9,7 +9,7 @@ export async function getAuthenticatedUser(
   try {
     const { user } = req.session
 
-    res.send({ user })
+    res.send({ data: user })
   } catch (error) {
     winstonLogger.error(error)
 
