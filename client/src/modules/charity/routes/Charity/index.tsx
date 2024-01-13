@@ -29,7 +29,7 @@ export default function CharityRoute(): ReactElement {
       <Link to={"delete"}>Delete Charity</Link>
       <p>{data.name}</p>
       <p>{data.description}</p>
-      <img src={data.logoUrl} alt={data.name} />
+      <img src={data.logo} alt={data.name} />
     </div>
   );
 }

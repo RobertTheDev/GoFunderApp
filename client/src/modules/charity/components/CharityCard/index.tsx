@@ -8,7 +8,7 @@ export default function CharityCard(charity: ICharity): ReactElement {
       <div>
         <img
           style={{ height: 400, width: 400 }}
-          src={charity.logoUrl}
+          src={charity.logo}
           alt={charity.name}
         />
         <p>{charity.name}</p>
