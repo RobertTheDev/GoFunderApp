@@ -53,10 +53,12 @@ export async function getCharities(
     const cachedCharities = await cacheService.get('charities')
 
     if (cachedCharities !== null) {
+      const data = JSON.parse(cachedCharities)
+
       return res.status(StatusCodes.OK).json({
         reason: ReasonPhrases.OK,
         message: 'Successfully found charities from cache.',
-        data: cachedCharities,
+        data,
       })
     }
 
@@ -87,7 +89,7 @@ export async function getCharities(
 export async function getCharityById(
   req: Request,
   res: Response,
-): Promise<void> {
+): Promise<Response<any>> {
   const {
     params: { id },
   } = req
@@ -97,36 +99,38 @@ export async function getCharityById(
       const cachedCharity = await cacheService.get(id)
 
       if (cachedCharity !== null) {
-        res.status(StatusCodes.OK).json({
+        const data = JSON.parse(cachedCharity)
+
+        return res.status(StatusCodes.OK).json({
           reason: ReasonPhrases.OK,
-          message: 'Successfully found charity from database.',
-          data: cachedCharity,
+          message: 'Successfully found charity from cache.',
+          data,
         })
       }
 
       const charity: Charity | null = await charityService.findCharity({ id })
 
-      if (charity !== null) {
-        await cacheService.set({
-          key: charity.id,
-          value: charity,
-          expiry: cacheTtlOneDay,
-        })
-
-        res.status(StatusCodes.OK).json({
-          reason: ReasonPhrases.OK,
-          message: 'Successfully found charity from database.',
-          data: charity,
+      if (charity === null) {
+        return res.status(StatusCodes.NOT_FOUND).json({
+          reason: ReasonPhrases.NOT_FOUND,
+          message: 'Charity not found.',
+          data: null,
         })
       }
 
-      res.status(StatusCodes.NOT_FOUND).json({
-        reason: ReasonPhrases.NOT_FOUND,
-        message: 'Charity not found.',
-        data: null,
+      await cacheService.set({
+        key: charity.id,
+        value: charity,
+        expiry: cacheTtlOneDay,
+      })
+
+      return res.status(StatusCodes.OK).json({
+        reason: ReasonPhrases.OK,
+        message: 'Successfully found charity from database.',
+        data: charity,
       })
     } else {
-      res.status(StatusCodes.BAD_REQUEST).json({
+      return res.status(StatusCodes.BAD_REQUEST).json({
         reason: ReasonPhrases.BAD_REQUEST,
         message: 'Charity not found.',
         data: null,
@@ -135,7 +139,7 @@ export async function getCharityById(
   } catch (error) {
     winstonLogger.error(error)
 
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       error: getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR),
     })
   }
