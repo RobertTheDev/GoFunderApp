@@ -32,7 +32,7 @@ export async function signInWithEmailAndPassword(
 
     if (user === null) {
       return res.status(StatusCodes.NOT_FOUND).json({
-        message: ReasonPhrases.NOT_FOUND,
+        message: 'No user with that email exists.',
         data: null,
       })
     }
