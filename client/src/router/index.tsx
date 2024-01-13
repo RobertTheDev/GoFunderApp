@@ -22,6 +22,10 @@ const router = createBrowserRouter([
         element: <p>Not found</p>,
       },
       {
+        path: "/charities",
+        element: <CharitiesRoute />,
+      },
+      {
         path: "/charities/:id",
         element: <CharityRoute />,
       },
