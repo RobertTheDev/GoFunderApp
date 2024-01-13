@@ -7,6 +7,9 @@ import UpdateCharityRoute from "../modules/charity/routes/UpdateCharity";
 import DeleteCharityRoute from "../modules/charity/routes/DeleteCharity";
 import UsersRoute from "../modules/user/routes/Users";
 import UserRoute from "../modules/user/routes/User";
+import ProfileRoute from "../modules/auth/routes/Profile";
+import PasswordSignInForm from "../modules/auth/components/PasswordSignIn";
+import PasswordSignUpForm from "../modules/auth/components/PasswordSignUp";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +18,12 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <CharitiesRoute />,
+        element: (
+          <div>
+            <PasswordSignInForm />
+            <PasswordSignUpForm />
+          </div>
+        ),
       },
       {
         path: "/*",
@@ -48,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/users/:id",
         element: <UserRoute />,
+      },
+      {
+        path: "/profile",
+        element: <ProfileRoute />,
       },
     ],
   },
