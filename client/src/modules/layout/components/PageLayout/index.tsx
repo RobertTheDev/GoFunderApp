@@ -2,15 +2,30 @@ import { ReactElement } from "react";
 import Footer from "../Footer";
 import Header from "../Header";
 import { Outlet } from "react-router-dom";
+import styled from "styled-components";
 
 export default function PageLayout(): ReactElement {
   return (
-    <div>
+    <PageLayoutContainer>
       <Header />
-      <main>
+      <PageMainContainer>
         <Outlet />
-      </main>
+      </PageMainContainer>
       <Footer />
-    </div>
+    </PageLayoutContainer>
   );
 }
+
+const PageLayoutContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+`;
+
+const PageMainContainer = styled.main`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+`;
