@@ -11,6 +11,8 @@ import ProfileRoute from "../modules/auth/routes/Profile";
 import PasswordSignInForm from "../modules/auth/components/PasswordSignIn";
 import PasswordSignUpForm from "../modules/auth/components/PasswordSignUp";
 import SignInMenu from "../modules/auth/components/SignInMenu";
+import GithubPage from "../modules/auth/routes/Github";
+import GithubCallback from "../modules/auth/routes/GithubCallback";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +58,14 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <ProfileRoute />,
+      },
+      {
+        path: "/github",
+        element: <GithubPage />,
+      },
+      {
+        path: "/auth/github/callback",
+        element: <GithubCallback />,
       },
     ],
   },
