@@ -21,10 +21,17 @@ export default function GithubPage(): ReactElement {
       >
         Amazon
       </a>
+
+      <a
+        href={`https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${process.env.REACT_APP_X_CLIENT_ID}&redirect_uri=http://localhost:3000/auth/callback/twitter&scope=tweet.read%20users.read%20offline.access&state=state&code_challenge=challenge&code_challenge_method=plain`}
+      >
+        X
+      </a>
+      <a
+        href={`https://www.facebook.com/v18.0/dialog/oauth?client_id=939909000888499&redirect_uri=http://localhost:3000/auth/facebook/callback`}
+      >
+        Facebook
+      </a>
     </div>
   );
-
-  // Client ID:amzn1.application-oa2-client.c6fefb9253df403f871ac057ffe385c0
-
-  // Client Secret:amzn1.oa2-cs.v1.f0f9858bf8401fb3b1fb61fd029957a89fcca1d1a2096b28c844054982646a37
 }

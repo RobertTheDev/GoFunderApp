@@ -143,3 +143,30 @@ export async function signInWithAmazon(
     return res.json('Error')
   }
 }
+
+export async function signInWithFacebook(
+  req: Request,
+  res: Response,
+): Promise<Response<any>> {
+  try {
+    const { code } = req.params
+
+    const { data } = await axios.post<{
+      access_token: string
+      token_type: string
+      expires_in: number
+    }>(
+      `https://graph.facebook.com/v18.0/oauth/access_token?client_id=${process.env.FACEBOOK_CLIENT_ID}&redirect_uri=http://localhost:3000/auth/facebook/callback&client_secret=${process.env.FACEBOOK_CLIENT_SECRET}&code=${code}`,
+    )
+
+    const { data: user } = await axios.get(
+      `https://graph.facebook.com/me?fields=name,gender,location,picture,email&access_token=${data.access_token}`,
+    )
+
+    return res.json({ data: user })
+  } catch (error) {
+    winstonLogger.error(error)
+
+    return res.json('Error')
+  }
+}

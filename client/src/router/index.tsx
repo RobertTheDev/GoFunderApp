@@ -9,12 +9,11 @@ import UsersRoute from "../modules/user/routes/Users";
 import UserRoute from "../modules/user/routes/User";
 import ProfileRoute from "../modules/auth/routes/Profile";
 import PasswordSignInForm from "../modules/auth/components/PasswordSignIn";
-import PasswordSignUpForm from "../modules/auth/components/PasswordSignUp";
-import SignInMenu from "../modules/auth/components/SignInMenu";
 import GithubPage from "../modules/auth/routes/Github";
 import GithubCallback from "../modules/auth/routes/GithubCallback";
 import GoogleCallback from "../modules/auth/routes/GoogleCallback";
 import AmazonCallback from "../modules/auth/routes/AmazonCallback";
+import FacebookCallback from "../modules/auth/routes/FacebookCallback";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: "/github",
         element: <GithubPage />,
+      },
+      {
+        path: "/auth/facebook/callback",
+        element: <FacebookCallback />,
       },
       {
         path: "/auth/github/callback",
