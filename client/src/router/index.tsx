@@ -13,6 +13,7 @@ import PasswordSignUpForm from "../modules/auth/components/PasswordSignUp";
 import SignInMenu from "../modules/auth/components/SignInMenu";
 import GithubPage from "../modules/auth/routes/Github";
 import GithubCallback from "../modules/auth/routes/GithubCallback";
+import GoogleCallback from "../modules/auth/routes/GoogleCallback";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: "/auth/github/callback",
         element: <GithubCallback />,
+      },
+      {
+        path: "/auth/google/callback",
+        element: <GoogleCallback />,
       },
     ],
   },

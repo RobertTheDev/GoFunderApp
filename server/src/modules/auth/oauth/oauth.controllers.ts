@@ -73,3 +73,36 @@ export async function signInWithGithub(
     return res.json('Error')
   }
 }
+
+interface IGoogleUser {
+  sub: string
+  name: string
+  given_name: string
+  picture: string | null
+  locale: string
+}
+
+export async function signInWithGoogle(
+  req: Request,
+  res: Response,
+): Promise<Response<any>> {
+  try {
+    const { accessToken } = req.params
+
+    const { data: user } = await axios.get<IGoogleUser>(
+      `https://www.googleapis.com/oauth2/v3/userinfo`,
+      {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        },
+      },
+    )
+
+    return res.json({ data: user })
+  } catch (error) {
+    winstonLogger.error(error)
+
+    return res.json('Error')
+  }
+}
