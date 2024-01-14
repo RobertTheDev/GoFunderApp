@@ -14,6 +14,7 @@ import SignInMenu from "../modules/auth/components/SignInMenu";
 import GithubPage from "../modules/auth/routes/Github";
 import GithubCallback from "../modules/auth/routes/GithubCallback";
 import GoogleCallback from "../modules/auth/routes/GoogleCallback";
+import AmazonCallback from "../modules/auth/routes/AmazonCallback";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <ProfileRoute />,
+      },
+      {
+        path: "/auth/amazon/callback",
+        element: <AmazonCallback />,
       },
       {
         path: "/github",

@@ -106,3 +106,40 @@ export async function signInWithGoogle(
     return res.json('Error')
   }
 }
+
+interface AccesTokenResponse {
+  access_token: string
+  refresh_token: string
+  token_type: string
+  expires_in: number
+}
+
+interface IAmazonUser {
+  user_id: string
+  email: string
+  name: string
+  postal_code: string
+}
+
+export async function signInWithAmazon(
+  req: Request,
+  res: Response,
+): Promise<Response<any>> {
+  try {
+    const { code } = req.params
+
+    const { data } = await axios.post<AccesTokenResponse>(
+      `https://api.amazon.co.uk/auth/o2/token?grant_type=authorization_code&code=${code}&client_secret=${process.env.AMAZON_CLIENT_SECRET}&client_id=${process.env.AMAZON_CLIENT_ID}&redirect_uri=http://localhost:3000/auth/amazon/callback`,
+    )
+
+    const { data: user } = await axios.get<IAmazonUser>(
+      `https://api.amazon.com/user/profile?access_token=${data.access_token}`,
+    )
+
+    return res.json({ data: user })
+  } catch (error) {
+    winstonLogger.error(error)
+
+    return res.json('Error')
+  }
+}
