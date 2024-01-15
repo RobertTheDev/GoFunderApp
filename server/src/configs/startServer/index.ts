@@ -1,5 +1,5 @@
 import 'dotenv/config'
-
+import 'express-async-errors'
 import type { RequestHandler } from 'express'
 import express from 'express'
 import cors from 'cors'
@@ -13,6 +13,7 @@ import morganMiddleware from '../../middlewares/morgan/morgan.middleware.js'
 import session from 'express-session'
 import path from 'path'
 import sessionConfig from '../session/sessionOptions.js'
+import errorHandler from '../../middlewares/errorHandler/errorHandler.middleware.js'
 // import rateLimiter from 'src/utils/limiter/rateLimiter.js'
 
 // This handler runs the express server when called.
@@ -70,6 +71,8 @@ const serverPort = process.env.SERVER_PORT
 
 // Sets up the app router.
 app.use('/api', appRouter as RequestHandler)
+
+app.use(errorHandler)
 
 // Run the server port.
 export default function startServer(): void {
