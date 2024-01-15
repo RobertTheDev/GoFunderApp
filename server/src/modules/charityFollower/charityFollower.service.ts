@@ -5,10 +5,10 @@ export class CharityFollowerService {
   private readonly prisma = new PrismaClient()
 
   async findCharityFollower(
-    charityFollowerWhereUniqueInput: Prisma.CharityFollowerWhereUniqueInput,
+    charityFollowerWhereInput: Prisma.CharityFollowerWhereInput,
   ): Promise<CharityFollower | null> {
-    return await this.prisma.charityFollower.findUnique({
-      where: charityFollowerWhereUniqueInput,
+    return await this.prisma.charityFollower.findFirst({
+      where: charityFollowerWhereInput,
     })
   }
 
@@ -29,11 +29,15 @@ export class CharityFollowerService {
     })
   }
 
-  async createCharityFollower(
-    data: Prisma.CharityFollowerCreateInput,
-  ): Promise<CharityFollower> {
+  async createCharityFollower({
+    charityId,
+    userId,
+  }: {
+    charityId: string
+    userId: string
+  }): Promise<CharityFollower> {
     return await this.prisma.charityFollower.create({
-      data,
+      data: { userId, charityId },
     })
   }
 
