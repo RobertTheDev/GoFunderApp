@@ -12,7 +12,7 @@ export class DonationService {
     orderBy?: Prisma.DonationOrderByWithRelationInput
   }): Promise<Donation[]> {
     const { skip, take, cursor, where, orderBy } = params
-    return this.prisma.donation.findMany({
+    return await this.prisma.donation.findMany({
       skip,
       take,
       cursor,
@@ -22,7 +22,7 @@ export class DonationService {
   }
 
   async createDonation(data: Prisma.DonationCreateInput): Promise<Donation> {
-    return this.prisma.donation.create({
+    return await this.prisma.donation.create({
       data,
     })
   }
@@ -32,7 +32,7 @@ export class DonationService {
     data: Prisma.DonationUpdateInput
   }): Promise<Donation> {
     const { data, where } = params
-    return this.prisma.donation.update({
+    return await this.prisma.donation.update({
       data,
       where,
     })
@@ -41,7 +41,7 @@ export class DonationService {
   async deleteDonation(
     where: Prisma.DonationWhereUniqueInput,
   ): Promise<Donation> {
-    return this.prisma.donation.delete({
+    return await this.prisma.donation.delete({
       where,
     })
   }
