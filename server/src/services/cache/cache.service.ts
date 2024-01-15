@@ -1,3 +1,4 @@
+import { cacheTtlOneDay } from 'src/configs/cacheTtl'
 import redisClient from 'src/utils/redis/redisClient'
 
 export class CacheService {
@@ -15,6 +16,12 @@ export class CacheService {
     const { key, value, expiry } = params
 
     return await this.cache.set(key, JSON.stringify(value), { EX: expiry })
+  }
+
+  async setForOneDay(key: string, value: any): Promise<string | null> {
+    return await this.cache.set(key, JSON.stringify(value), {
+      EX: cacheTtlOneDay,
+    })
   }
 
   async delete(key: string): Promise<number> {
