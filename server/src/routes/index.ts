@@ -11,7 +11,7 @@ import uploadRouter from '../modules/upload/upload.routes.js'
 import userRouter from '../modules/user/user.routes.js'
 
 // Sets up the apps routers with the modulised routers.
-const appRouter = Router()
+const appRouter: Router = Router()
 
 // Defines app routes.
 appRouter.use('/auth', authRouter)

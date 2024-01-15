@@ -8,7 +8,7 @@ import otpRouter from './otp/otp.routes'
 import oauthRouter from './oauth/oauth.routes'
 
 // Sets up the charity router.
-const authRouter = Router()
+const authRouter: Router = Router()
 
 // Defines the charity routes.
 authRouter.get('/user', getAuthenticatedUser as RequestHandler)

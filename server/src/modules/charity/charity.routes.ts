@@ -7,7 +7,7 @@ import { getCharityById } from './controllers/getCharityById.js'
 import { updateCharityById } from './controllers/updateCharityById.js'
 
 // Sets up the charity router.
-const charityRouter = Router()
+const charityRouter: Router = Router()
 
 // Defines the charity routes.
 charityRouter.delete('/:id', deleteCharityById as RequestHandler)
