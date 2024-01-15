@@ -78,10 +78,11 @@ model Fundraiser {
   defaultCurrency  String            @default("GBP") @map("default_currency") // Default currency for the fundraiser.
   description      String? // Story or description of the fundraiser.
   donations        Donation[] // List of donations for the fundraiser.
-  headline         String? // Headline of the fundraiser.
-  image            String? // URL to the image associated with the fundraiser.
+  headline         String // Headline of the fundraiser.
+  image            String // URL to the image associated with the fundraiser.
+  name             String
   savedFundraisers SavedFundraiser[] // List of saved fundraisers.
-  slug             String?           @unique // Unique slug url for the fundraiser.
+  slug             String            @unique @default(cuid()) // Unique slug url for the fundraiser.
   target           Int // Fundraising target amount.
   totalDonations   Int               @default(0) @map("total_donations") // Total number of donations received.
   totalRaised      Int               @default(0) @map("total_raised") // Total amount raised.
@@ -117,12 +118,11 @@ model User {
   donations             Donation[] // List of donations made by the user.
   email                 String?           @unique // User's email address (unique).
   emailVerified         DateTime?         @map("email_verified") // Date and time when the user's email was verified (optional).
-  firstName             String?           @map("first_name") // User's first name.
   fundraisers           Fundraiser[] // List of fundraisers owned by the user.
   image                 String? // URL to the user's profile image (optional).
-  lastName              String?           @map("last_name") // User's last name.
   mfaSecret             String?           @map("mfa_secret") // Secret key for TOTP or mobile verification.
   mfaType               String?           @map("mfa_type") // MFA type chosen by the user ("TOTP" or "Mobile").
+  name                  String // User's name.
   password              String? // Hashed password for authentication. (optional)
   phoneNumber           String?           @unique @map("phone_number") // User's phone number (unique).
   phoneNumberVerified   DateTime?         @map("phone_number_verified") // Date and time when the user's phone number was verified (optional).
