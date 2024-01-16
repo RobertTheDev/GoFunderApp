@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import type { Charity } from '@prisma/client'
-import { CharityService } from '../charity.service.js'
-import { CacheService } from '../../../services/cache/cache.service.js'
-import type ResponseBody from '../../../interfaces/ResponseBody.js'
+import { CacheService } from '../../services/cache/cache.service.js'
+import type ResponseBody from '../../interfaces/ResponseBody.js'
+import { CharityService } from '../charity/charity.service.js'
 
 export async function getCharityOwnersByUserId(
   req: Request,
