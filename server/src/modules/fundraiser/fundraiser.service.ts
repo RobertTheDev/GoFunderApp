@@ -1,4 +1,4 @@
-import type { Prisma } from '@prisma/client'
+import type { Fundraiser, Prisma } from '@prisma/client'
 import { PrismaClient } from '@prisma/client'
 
 export class FundraiserService {
@@ -11,6 +11,7 @@ export class FundraiserService {
     id: string
     createdAt: Date
     category: string
+    charityId: string | null
     deadlineDate: Date | null
     defaultCurrency: string
     headline: string
@@ -20,12 +21,14 @@ export class FundraiserService {
     target: number
     totalDonations: number
     totalRaised: number
+    userId: string | null
   } | null> {
     return await this.prisma.fundraiser.findUnique({
       where: fundraiserWhereUniqueInput,
       select: {
         id: true,
         charity: true,
+        charityId: true,
         createdAt: true,
         category: true,
         deadlineDate: true,
@@ -66,6 +69,7 @@ export class FundraiserService {
             totalCharitesOwned: true,
           },
         },
+        userId: true,
       },
     })
   }
@@ -114,6 +118,33 @@ export class FundraiserService {
         totalDonations: true,
         totalRaised: true,
       },
+    })
+  }
+
+  async createFundraiser(
+    data: Prisma.FundraiserCreateInput,
+  ): Promise<Fundraiser> {
+    return await this.prisma.fundraiser.create({
+      data,
+    })
+  }
+
+  async updateFundraiser(params: {
+    where: Prisma.FundraiserWhereUniqueInput
+    data: Prisma.FundraiserUpdateInput
+  }): Promise<Fundraiser> {
+    const { data, where } = params
+    return await this.prisma.fundraiser.update({
+      data,
+      where,
+    })
+  }
+
+  async deleteFundraiser(
+    where: Prisma.FundraiserWhereUniqueInput,
+  ): Promise<Fundraiser> {
+    return await this.prisma.fundraiser.delete({
+      where,
     })
   }
 }
