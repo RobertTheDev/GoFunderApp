@@ -13,7 +13,7 @@ import session from 'express-session'
 import path from 'path'
 import sessionConfig from '../session/sessionOptions.js'
 import errorHandler from '../../middlewares/errorHandler/errorHandler.middleware.js'
-// import rateLimiter from 'src/utils/limiter/rateLimiter.js'
+// import rateLimiter from '../../utils/limiter/rateLimiter.js'
 
 // This handler runs the express server when called.
 
