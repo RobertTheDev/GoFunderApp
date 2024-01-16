@@ -1,7 +1,6 @@
 import { nanoid } from 'nanoid'
 
+// Generates a unique ID using nanoid.
 export default function genereateId(): string {
-  const id = nanoid()
-
-  return id
+  return nanoid()
 }

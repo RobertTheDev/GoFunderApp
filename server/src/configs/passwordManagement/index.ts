@@ -3,25 +3,15 @@ import crypto from 'crypto'
 
 const pepper = process.env.PASSWORD_PEPPER
 
-function generateSalt(): Buffer {
-  return crypto.randomBytes(32)
-}
-
 export async function verifyPassword(
   password: string,
   hashedPassword: string,
 ): Promise<boolean> {
-  const passwordWithPepper = password + pepper
-
-  return await argon2.verify(hashedPassword, passwordWithPepper)
+  return await argon2.verify(hashedPassword, password + pepper)
 }
 
 export async function hashPassword(password: string): Promise<string> {
-  const salt = generateSalt()
+  const salt: Buffer = crypto.randomBytes(32)
 
-  const passwordWithPepper = password + pepper
-
-  const hashedPassword = await argon2.hash(passwordWithPepper, { salt })
-
-  return hashedPassword
+  return await argon2.hash(password + pepper, { salt })
 }

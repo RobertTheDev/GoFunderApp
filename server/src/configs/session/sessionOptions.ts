@@ -2,7 +2,7 @@ import type { SessionOptions } from 'express-session'
 import redisClient from '../../utils/redis/redisClient'
 import RedisStore from 'connect-redis'
 
-const redisSessionStore = new RedisStore({
+const redisSessionStore: RedisStore = new RedisStore({
   client: redisClient,
   prefix: 'myapp:',
   ttl: 604800,
