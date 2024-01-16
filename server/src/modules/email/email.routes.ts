@@ -1,11 +1,16 @@
 import type { RequestHandler } from 'express'
 import { Router } from 'express'
-import { sendEmail } from './email.controllers'
+import sendPasswordReset from './controllers/sendPasswordReset'
+import { sendEmailVerification } from '../auth/emailPassword/controllers/sendEmailVerificationToken'
 
 // Sets up the email router.
 const emailRouter = Router()
 
 // Defines the email routes.
-emailRouter.post('/send', sendEmail as RequestHandler)
+emailRouter.post(
+  '/send-email-verification',
+  sendEmailVerification as RequestHandler,
+)
+emailRouter.post('/send-password-reset', sendPasswordReset as RequestHandler)
 
 export default emailRouter
