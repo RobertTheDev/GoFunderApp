@@ -1,5 +1,5 @@
-import multer from 'multer'
+import multer, { type Multer } from 'multer'
 
-const multerUpload = multer({ dest: 'uploads/' })
+const multerUpload: Multer = multer({ dest: 'uploads/' })
 
 export default multerUpload

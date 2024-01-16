@@ -1,4 +1,10 @@
-import { createLogger, transports, format, addColors } from 'winston'
+import {
+  createLogger,
+  transports,
+  format,
+  addColors,
+  type Logger,
+} from 'winston'
 
 const { combine, timestamp, printf, colorize, errors } = format
 
@@ -70,7 +76,7 @@ const logTransports = [
 
 // Create the logger instance that has to be exported
 // and used to log messages.
-const winstonLogger = createLogger({
+const winstonLogger: Logger = createLogger({
   exitOnError: false,
   levels: logLevels,
   level: logLevel(),

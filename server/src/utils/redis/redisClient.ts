@@ -1,10 +1,10 @@
-import { createClient } from 'redis'
+import { type RedisClientType, createClient } from 'redis'
 
 /* Pulls the Redis URL from .env */
-const redisUrl = String(process.env.REDIS_URL)
+const redisUrl: string = String(process.env.REDIS_URL)
 
 /* Create and open the Redis Client */
-const redisClient = createClient({ url: redisUrl })
+const redisClient: RedisClientType = createClient({ url: redisUrl })
 
 redisClient.on('error', err => {
   console.error(`Redis client error: ${err}`)

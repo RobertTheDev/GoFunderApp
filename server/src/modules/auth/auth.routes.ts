@@ -13,7 +13,7 @@ const authRouter: Router = Router()
 // Defines the charity routes.
 authRouter.get('/user', getAuthenticatedUser as RequestHandler)
 authRouter.post('/sign-out', signOut as RequestHandler)
-
+// Configures auth module routers.
 authRouter.use('/', emailPasswordRouter)
 authRouter.use('/magic-link', magicLinkRouter)
 authRouter.use('/oauth', oauthRouter)

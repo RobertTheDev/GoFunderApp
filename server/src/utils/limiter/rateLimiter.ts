@@ -1,6 +1,6 @@
-import rateLimit from 'express-rate-limit'
+import rateLimit, { type RateLimitRequestHandler } from 'express-rate-limit'
 
-const rateLimiter = rateLimit({
+const rateLimiter: RateLimitRequestHandler = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 2, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
