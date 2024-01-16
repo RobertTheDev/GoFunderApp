@@ -1,21 +1,15 @@
 import type { RequestHandler } from 'express'
 import { Router } from 'express'
 import { ensureUserIsAuthenticated } from '../auth/auth.middlewares'
-import {
-  createDonation,
-  getDonationById,
-  getDonations,
-  getDonationsByCurrentUser,
-  getDonationsByFundraiserId,
-  getDonationsByUserId,
-} from './donation.controllers'
+import { getDonationsByFundraiserId } from './controllers/getDonationsByFundraiserId'
+import { getDonationsByUserId } from './controllers/getDonationsByUserId'
+import { getDonationsByCurrentUser } from './controllers/getDonationsByCurrentUser'
+import { createDonation } from './controllers/createDonation'
 
 // Sets up the donation router.
 const donationRouter = Router()
 
 // Defines the donation routes.
-donationRouter.get('/', getDonations as RequestHandler)
-donationRouter.get('/:id', getDonationById as RequestHandler)
 donationRouter.get(
   '/fundraiser/:id',
   getDonationsByFundraiserId as RequestHandler,
