@@ -12,6 +12,14 @@ export class CharityOwnerService {
     })
   }
 
+  async findCharityOwnerByInput(
+    charityOwnerWhereInput: Prisma.CharityOwnerWhereInput,
+  ): Promise<CharityOwner | null> {
+    return await this.prisma.charityOwner.findFirst({
+      where: charityOwnerWhereInput,
+    })
+  }
+
   async findCharityOwners(params: {
     skip?: number
     take?: number
