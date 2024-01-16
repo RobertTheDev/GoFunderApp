@@ -1,6 +1,6 @@
 import { type RequestHandler, Router } from 'express'
-import { getUserSavedFundraisers } from './controllers/getUserSavedFundraisers'
-import { saveFundraiser } from './controllers/saveFundraiser'
+import { getUserSavedFundraisers } from './controllers/getUserSavedFundraisers.js'
+import { saveFundraiser } from './controllers/saveFundraiser.js'
 
 const savedFundraiserRouter: Router = Router()
 

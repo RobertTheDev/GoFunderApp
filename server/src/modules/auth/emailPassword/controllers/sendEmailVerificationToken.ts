@@ -1,9 +1,9 @@
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
-import winstonLogger from '../../../../utils/winston/winstonLogger'
+import winstonLogger from '../../../../utils/winston/winstonLogger.js'
 import type { Request, Response } from 'express'
-import prismaClient from 'src/utils/prisma/prismaClient'
-import genereateId from 'src/configs/idGenerator'
-import { tenMinuteExpiryDateTime } from 'src/configs/expiryManagement/dateExpiryManagement'
+import prismaClient from '../../../../utils/prisma/prismaClient.js'
+import genereateId from '../../../../configs/idGenerator/index.js'
+import { tenMinuteExpiryDateTime } from '../../../../configs/expiryManagement/dateExpiryManagement.js'
 
 export async function sendEmailVerification(
   req: Request,

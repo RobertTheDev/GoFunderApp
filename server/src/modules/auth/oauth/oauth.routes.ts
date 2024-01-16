@@ -4,7 +4,7 @@ import {
   signInWithFacebook,
   signInWithGithub,
   signInWithGoogle,
-} from './oauth.controllers'
+} from './oauth.controllers.js'
 
 const oauthRouter = Router()
 

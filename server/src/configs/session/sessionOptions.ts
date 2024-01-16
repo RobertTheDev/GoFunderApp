@@ -1,5 +1,5 @@
 import type { SessionOptions } from 'express-session'
-import redisClient from '../../utils/redis/redisClient'
+import redisClient from '../../utils/redis/redisClient.js'
 import RedisStore from 'connect-redis'
 
 const redisSessionStore: RedisStore = new RedisStore({

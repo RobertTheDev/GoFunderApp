@@ -1,12 +1,12 @@
 import { type RequestHandler, Router } from 'express'
-import { signInWithEmailAndPassword } from './controllers/signInWithEmailAndPassword'
-import { signUpWithEmailAndPassword } from './controllers/signUpWithEmailAndPassword'
-import { verifyEmailWithToken } from './controllers/verifyEmailWithToken'
-import { sendEmailVerification } from './controllers/sendEmailVerificationToken'
+import { signInWithEmailAndPassword } from './controllers/signInWithEmailAndPassword.js'
+import { signUpWithEmailAndPassword } from './controllers/signUpWithEmailAndPassword.js'
+import { verifyEmailWithToken } from './controllers/verifyEmailWithToken.js'
+import { sendEmailVerification } from './controllers/sendEmailVerificationToken.js'
 import {
   ensureUserIsAuthenticated,
   ensureUserIsNotAuthenticated,
-} from '../auth.middlewares'
+} from '../auth.middlewares.js'
 
 const emailPasswordRouter = Router()
 

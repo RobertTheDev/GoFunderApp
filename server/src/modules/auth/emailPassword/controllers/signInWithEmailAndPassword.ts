@@ -1,9 +1,9 @@
 import type { Request, Response } from 'express'
 import { StatusCodes, ReasonPhrases } from 'http-status-codes'
-import { verifyPassword } from '../../../../configs/passwordManagement'
-import prismaClient from '../../../../utils/prisma/prismaClient'
-import winstonLogger from '../../../../utils/winston/winstonLogger'
-import signInWithEmailAndPasswordSchema from '../validators/signInWithEmailAndPassword.schema'
+import { verifyPassword } from '../../../../configs/passwordManagement/index.js'
+import prismaClient from '../../../../utils/prisma/prismaClient.js'
+import winstonLogger from '../../../../utils/winston/winstonLogger.js'
+import signInWithEmailAndPasswordSchema from '../validators/signInWithEmailAndPassword.schema.js'
 
 export async function signInWithEmailAndPassword(
   req: Request,

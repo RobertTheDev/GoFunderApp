@@ -1,6 +1,9 @@
 import type { RequestHandler } from 'express'
 import { Router } from 'express'
-import { getAllFundraisers, getFundraiserById } from './fundraiser.controllers'
+import {
+  getAllFundraisers,
+  getFundraiserById,
+} from './fundraiser.controllers.js'
 
 // Sets up the fundraiser router.
 const fundraiserRouter = Router()

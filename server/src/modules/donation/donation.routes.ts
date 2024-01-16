@@ -1,10 +1,10 @@
 import type { RequestHandler } from 'express'
 import { Router } from 'express'
-import { ensureUserIsAuthenticated } from '../auth/auth.middlewares'
-import { getDonationsByFundraiserId } from './controllers/getDonationsByFundraiserId'
-import { getDonationsByUserId } from './controllers/getDonationsByUserId'
-import { getDonationsByCurrentUser } from './controllers/getDonationsByCurrentUser'
-import { createDonation } from './controllers/createDonation'
+import { ensureUserIsAuthenticated } from '../auth/auth.middlewares.js'
+import { getDonationsByFundraiserId } from './controllers/getDonationsByFundraiserId.js'
+import { getDonationsByUserId } from './controllers/getDonationsByUserId.js'
+import { getDonationsByCurrentUser } from './controllers/getDonationsByCurrentUser.js'
+import { createDonation } from './controllers/createDonation.js'
 
 // Sets up the donation router.
 const donationRouter = Router()

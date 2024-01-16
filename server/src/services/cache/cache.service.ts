@@ -1,4 +1,4 @@
-import redisClient from 'src/utils/redis/redisClient'
+import redisClient from '../../utils/redis/redisClient.js'
 
 export class CacheService {
   private readonly cache = redisClient

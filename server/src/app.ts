@@ -1,4 +1,4 @@
-import startServer from './configs/startServer/index.js'
+import startServer from './configs/startServer'
 
 // Runs the express server.
 startServer()

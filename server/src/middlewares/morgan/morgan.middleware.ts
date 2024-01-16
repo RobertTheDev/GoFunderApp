@@ -8,7 +8,7 @@
 // )
 
 import morgan from 'morgan'
-import winstonLogger from '../../utils/winston/winstonLogger'
+import winstonLogger from '../../utils/winston/winstonLogger.js'
 
 const stream = {
   // Use the http severity

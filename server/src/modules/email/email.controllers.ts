@@ -1,6 +1,6 @@
 import sgMail from '@sendgrid/mail'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
-import winstonLogger from '../../utils/winston/winstonLogger'
+import winstonLogger from '../../utils/winston/winstonLogger.js'
 import type { Request, Response } from 'express'
 
 sgMail.setApiKey(String(process.env.SENDGRID_API_KEY))

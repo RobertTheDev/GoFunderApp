@@ -1,7 +1,7 @@
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
-import winstonLogger from '../../../../utils/winston/winstonLogger'
+import winstonLogger from '../../../../utils/winston/winstonLogger.js'
 import type { Request, Response } from 'express'
-import prismaClient from 'src/utils/prisma/prismaClient'
+import prismaClient from '../../../../utils/prisma/prismaClient.js'
 
 export async function verifyEmailWithToken(
   req: Request,

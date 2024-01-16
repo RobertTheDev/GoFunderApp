@@ -3,11 +3,11 @@ import { StatusCodes, ReasonPhrases } from 'http-status-codes'
 import {
   hashPassword,
   verifyPassword,
-} from '../../../../configs/passwordManagement'
+} from '../../../../configs/passwordManagement/index.js'
 
-import prismaClient from '../../../../utils/prisma/prismaClient'
-import winstonLogger from '../../../../utils/winston/winstonLogger'
-import changePasswordSchema from '../validators/changePassword.schema'
+import prismaClient from '../../../../utils/prisma/prismaClient.js'
+import winstonLogger from '../../../../utils/winston/winstonLogger.js'
+import changePasswordSchema from '../validators/changePassword.schema.js'
 
 export async function changePassword(
   req: Request,

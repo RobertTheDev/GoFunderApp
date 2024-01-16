@@ -1,8 +1,11 @@
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
-import winstonLogger from 'src/utils/winston/winstonLogger'
+import winstonLogger from '../../../utils/winston/winstonLogger.js'
 import type { Request, Response } from 'express'
-import { generateMfaToken, verifyMfaToken } from 'src/configs/mfaHandlers'
-import { generateOtpSchema, verifyOtpSchema } from './otp.validators'
+import {
+  generateMfaToken,
+  verifyMfaToken,
+} from '../../../configs/mfaHandlers/index.js'
+import { generateOtpSchema, verifyOtpSchema } from './otp.validators.js'
 
 export async function generateOtpToken(
   req: Request,

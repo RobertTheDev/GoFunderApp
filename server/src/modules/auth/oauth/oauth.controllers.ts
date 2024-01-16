@@ -1,6 +1,6 @@
 import axios from 'axios'
 import type { Request, Response } from 'express'
-import winstonLogger from 'src/utils/winston/winstonLogger'
+import winstonLogger from '../../../utils/winston/winstonLogger.js'
 
 interface IGithubUser {
   login: string

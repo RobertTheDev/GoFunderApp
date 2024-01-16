@@ -1,6 +1,6 @@
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import twoFactor from 'node-2fa'
-import winstonLogger from 'src/utils/winston/winstonLogger'
+import winstonLogger from '../../../utils/winston/winstonLogger.js'
 import type { Request, Response } from 'express'
 
 export async function generateTotpSecret(

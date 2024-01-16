@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express'
 import { getReasonPhrase } from 'http-status-codes'
-import winstonLogger from 'src/utils/winston/winstonLogger'
+import winstonLogger from '../../utils/winston/winstonLogger.js'
 
 const errorHandler = (
   error: any,

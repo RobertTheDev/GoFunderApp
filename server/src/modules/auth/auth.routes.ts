@@ -1,11 +1,11 @@
 import type { RequestHandler } from 'express'
 import { Router } from 'express'
-import { getAuthenticatedUser, signOut } from './auth.controllers'
-import emailPasswordRouter from './emailPassword/emailPassword.routes'
-import magicLinkRouter from './magicLink/magicLink.routes'
-import totpRouter from './totp/totp.routes'
-import otpRouter from './otp/otp.routes'
-import oauthRouter from './oauth/oauth.routes'
+import { getAuthenticatedUser, signOut } from './auth.controllers.js'
+import emailPasswordRouter from './emailPassword/emailPassword.routes.js'
+import magicLinkRouter from './magicLink/magicLink.routes.js'
+import totpRouter from './totp/totp.routes.js'
+import otpRouter from './otp/otp.routes.js'
+import oauthRouter from './oauth/oauth.routes.js'
 
 // Sets up the charity router.
 const authRouter: Router = Router()

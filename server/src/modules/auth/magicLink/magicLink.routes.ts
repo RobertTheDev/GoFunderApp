@@ -1,6 +1,6 @@
 import { type RequestHandler, Router } from 'express'
-import { sendMagicLink, verifyMagicLink } from './magicLink.controllers'
-import { ensureUserIsNotAuthenticated } from '../auth.middlewares'
+import { sendMagicLink, verifyMagicLink } from './magicLink.controllers.js'
+import { ensureUserIsNotAuthenticated } from '../auth.middlewares.js'
 
 const magicLinkRouter = Router()
 
