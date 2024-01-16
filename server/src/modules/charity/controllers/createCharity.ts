@@ -4,18 +4,33 @@ import { CharityService } from '../charity.service.js'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { createCharitySchema } from '../validators/createCharity.schema.js'
+import { CharityOwnerService } from 'src/modules/charityOwner/charityOwner.service.js'
+
+// This handler creates a charity and charity owner with the current user in session.
 
 export async function createCharity(
   req: Request,
   res: Response<ResponseBody>,
   next: NextFunction,
-): Promise<void> {
-  const { body } = req
+): Promise<any> {
+  const { body, session } = req
+  const { user } = session
 
   const charityService = new CharityService()
+  const charityOwnerService = new CharityOwnerService()
   const cacheService = new CacheService()
 
   try {
+    // If no user is in session return an error.
+    if (user == null) {
+      return res.status(StatusCodes.BAD_REQUEST).json({
+        success: false,
+        status: ReasonPhrases.BAD_REQUEST,
+        message: 'You must be signed in to perform this action.',
+        data: null,
+      })
+    }
+
     // Validate the request body using the validation schema.
     const validation = await createCharitySchema.safeParseAsync(body)
 
@@ -27,11 +42,17 @@ export async function createCharity(
     // Create a charity with validated data.
     const createdCharity = await charityService.createCharity(validation.data)
 
+    // Create a charity owner with the current user and created charity.
+    await charityOwnerService.createCharityOwner({
+      charityId: createdCharity.id,
+      userId: user.id,
+    })
+
     // Cache the created charity for one day.
     await cacheService.setForOneDay(createdCharity.id, createdCharity)
 
     // Return the created charity and success message.
-    res.status(StatusCodes.CREATED).json({
+    return res.status(StatusCodes.CREATED).json({
       success: true,
       status: ReasonPhrases.CREATED,
       message: 'Successfully created charity.',
