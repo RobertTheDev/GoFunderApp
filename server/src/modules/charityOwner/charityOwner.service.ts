@@ -29,11 +29,18 @@ export class CharityOwnerService {
     })
   }
 
-  async createCharityOwner(
-    data: Prisma.CharityOwnerCreateInput,
-  ): Promise<CharityOwner> {
+  async createCharityOwner({
+    charityId,
+    userId,
+  }: {
+    charityId: string
+    userId: string
+  }): Promise<CharityOwner> {
     return await this.prisma.charityOwner.create({
-      data,
+      data: {
+        charityId,
+        userId,
+      },
     })
   }
 
@@ -41,6 +48,14 @@ export class CharityOwnerService {
     where: Prisma.CharityOwnerWhereUniqueInput,
   ): Promise<CharityOwner> {
     return await this.prisma.charityOwner.delete({
+      where,
+    })
+  }
+
+  async deleteCharityOwnersByInput(
+    where: Prisma.CharityOwnerWhereInput,
+  ): Promise<Prisma.BatchPayload> {
+    return await this.prisma.charityOwner.deleteMany({
       where,
     })
   }
