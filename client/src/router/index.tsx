@@ -14,6 +14,8 @@ import GithubCallback from "../modules/auth/routes/GithubCallback";
 import GoogleCallback from "../modules/auth/routes/GoogleCallback";
 import AmazonCallback from "../modules/auth/routes/AmazonCallback";
 import FacebookCallback from "../modules/auth/routes/FacebookCallback";
+import TotpRoute from "../modules/auth/routes/Totp";
+import SignUpRoute from "../modules/auth/routes/SignUp";
 
 const router = createBrowserRouter([
   {
@@ -79,6 +81,14 @@ const router = createBrowserRouter([
       {
         path: "/auth/google/callback",
         element: <GoogleCallback />,
+      },
+      {
+        path: "/sign-up",
+        element: <SignUpRoute />,
+      },
+      {
+        path: "/totp",
+        element: <TotpRoute />,
       },
     ],
   },
