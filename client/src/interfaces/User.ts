@@ -6,11 +6,10 @@ export default interface IUser {
   defaultCurrency: string;
   email: string;
   emailVerified: Date | null;
-  firstName: string;
   image: string | null;
-  lastName: string;
   mfaSecret: string | null;
   mfaType: string | null;
+  name: string;
   password: string | null;
   phoneNumber: string | null;
   phoneNumberVerified: string | null;
