@@ -27,12 +27,10 @@ export default function UsersRoute(): ReactElement {
             <div>
               <img
                 src={user.image ? user.image : ""}
-                alt={user.firstName}
+                alt={user.name}
                 style={{ height: 200, width: 200 }}
               />
-              <p>
-                {user.firstName} {user.lastName}
-              </p>
+              <p>{user.name}</p>
             </div>
           </Link>
         );

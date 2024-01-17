@@ -24,11 +24,9 @@ export default function UserRoute(): ReactElement {
 
   return (
     <div>
-      <Seo title={`${data.firstName} ${data.lastName}`} />
+      <Seo title={`${data.name}`} />
 
-      <p>
-        {data.firstName} {data.lastName}
-      </p>
+      <p>{data.name}</p>
 
       <img
         style={{
