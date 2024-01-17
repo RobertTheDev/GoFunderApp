@@ -1,23 +1,26 @@
-import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import winstonLogger from '../../../../utils/winston/winstonLogger.js'
-import type { Request, Response } from 'express'
+import type { NextFunction, Request, Response } from 'express'
 import prismaClient from '../../../../utils/prisma/prismaClient.js'
 import genereateId from '../../../../configs/idGenerator/index.js'
 import { tenMinuteExpiryDateTime } from '../../../../configs/expiryManagement/dateExpiryManagement.js'
+import type ResponseBody from '../../../../interfaces/ResponseBody.js'
+import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 
 export async function sendEmailVerification(
   req: Request,
-  res: Response,
-): Promise<Response<any>> {
+  res: Response<ResponseBody>,
+  next: NextFunction,
+): Promise<void> {
   const { session } = req
+  const { user } = session
 
   try {
+    if (user == null) {
+      throw new Error('You are not signed in to perform this action.')
+    }
     // STEP 2: Check user is not already verified.
-    if (session.user?.emailVerified !== null) {
-      return res.status(StatusCodes.BAD_REQUEST).send({
-        error: 'Your email is already verified.',
-        data: null,
-      })
+    if (user.emailVerified !== null) {
+      throw new Error('Your email is already verified.')
     }
 
     // STEP 3: Create the verification request.
@@ -35,15 +38,13 @@ export async function sendEmailVerification(
     winstonLogger.info(`Token: ${generatedToken}.`)
 
     // STEP 5: Return success message.
-    return res.json({
+    res.status(StatusCodes.OK).json({
+      success: true,
+      status: ReasonPhrases.OK,
       message: 'Successfully sent email verification.',
-      token: generatedToken,
+      data: null,
     })
   } catch (error) {
-    winstonLogger.error(error)
-
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
-      error: ReasonPhrases.INTERNAL_SERVER_ERROR,
-    })
+    next(error)
   }
 }

@@ -1,10 +1,8 @@
 import { type RequestHandler, Router } from 'express'
-import {
-  signInWithAmazon,
-  signInWithFacebook,
-  signInWithGithub,
-  signInWithGoogle,
-} from './oauth.controllers.js'
+import { signInWithAmazon } from './controllers/amazonOauth'
+import { signInWithFacebook } from './controllers/facebookOauth'
+import { signInWithGithub } from './controllers/githubOauth'
+import { signInWithGoogle } from './controllers/googleOauth'
 
 const oauthRouter = Router()
 

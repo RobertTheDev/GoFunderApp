@@ -1,56 +1,57 @@
-import type { Request, Response } from 'express'
+import type { NextFunction, Request, Response } from 'express'
 import { StatusCodes, ReasonPhrases } from 'http-status-codes'
 import {
   hashPassword,
   verifyPassword,
 } from '../../../../configs/passwordManagement/index.js'
-
 import prismaClient from '../../../../utils/prisma/prismaClient.js'
-import winstonLogger from '../../../../utils/winston/winstonLogger.js'
 import changePasswordSchema from '../validators/changePassword.schema.js'
+import type ResponseBody from '../../../../interfaces/ResponseBody.js'
 
 export async function changePassword(
   req: Request,
-  res: Response,
-): Promise<Response<any>> {
-  const { body } = req
+  res: Response<ResponseBody>,
+  next: NextFunction,
+): Promise<void> {
+  const { body, session } = req
+  const { user } = session
 
   try {
+    if (user == null) {
+      throw new Error('You are not signed in to perform this action.')
+    }
     // STEP 1: Validate the request body.
     const validation = await changePasswordSchema.safeParseAsync(body)
 
     if (!validation.success) {
-      return res.status(StatusCodes.BAD_REQUEST).send({
-        error: validation.error.issues[0]?.message,
-        data: null,
-      })
+      throw new Error(validation.error.issues[0]?.message)
     }
 
     // STEP 2: Find the user.
-    const user = await prismaClient.user.findUnique({
+    const findUser = await prismaClient.user.findUnique({
       where: {
         email: validation.data.email,
       },
     })
 
-    if (user === null) {
-      return res.status(StatusCodes.NOT_FOUND).json({
-        message: ReasonPhrases.NOT_FOUND,
-        data: null,
-      })
+    if (findUser == null) {
+      throw new Error('No user was found with that email.')
+    }
+
+    if (findUser.password == null) {
+      throw new Error(
+        'Your account was not set up to use email and password. Please try magic link authentication instead.',
+      )
     }
 
     // STEP 3: Check current password is correct.
     const isPasswordCorrect = await verifyPassword(
       validation.data.currentPasword,
-      String(user.password),
+      findUser.password,
     )
 
     if (!isPasswordCorrect) {
-      return res.status(StatusCodes.BAD_REQUEST).json({
-        message: 'Password is incorrect.',
-        data: null,
-      })
+      throw new Error('Password is incorrect.')
     }
 
     // STEP 4: Hash the new password.
@@ -67,15 +68,13 @@ export async function changePassword(
     })
 
     // STEP 6: Return success message.
-    return res.status(StatusCodes.OK).json({
-      message: ReasonPhrases.OK,
+    res.status(StatusCodes.OK).json({
+      success: true,
+      status: ReasonPhrases.OK,
+      message: 'Password successfully changed.',
       data: updatedUser,
     })
   } catch (error) {
-    winstonLogger.error(error)
-
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
-      error: ReasonPhrases.INTERNAL_SERVER_ERROR,
-    })
+    next(error)
   }
 }

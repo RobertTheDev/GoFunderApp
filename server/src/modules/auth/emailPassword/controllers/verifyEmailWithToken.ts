@@ -1,12 +1,13 @@
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
-import winstonLogger from '../../../../utils/winston/winstonLogger.js'
-import type { Request, Response } from 'express'
+import type { NextFunction, Request, Response } from 'express'
 import prismaClient from '../../../../utils/prisma/prismaClient.js'
+import type ResponseBody from '../../../../interfaces/ResponseBody.js'
 
 export async function verifyEmailWithToken(
   req: Request,
-  res: Response,
-): Promise<Response<any>> {
+  res: Response<ResponseBody>,
+  next: NextFunction,
+): Promise<void> {
   const {
     body: { email, token },
   } = req
@@ -19,9 +20,7 @@ export async function verifyEmailWithToken(
       })
 
     if (findVerificationRequest === null) {
-      return res.status(StatusCodes.UNAUTHORIZED).send({
-        message: 'Verification token is invalid.',
-      })
+      throw new Error('Verification token is invalid.')
     }
 
     await prismaClient.verificationRequest.delete({ where: { token } })
@@ -35,15 +34,13 @@ export async function verifyEmailWithToken(
       },
     })
 
-    return res.status(StatusCodes.OK).send({
-      message: ReasonPhrases.OK,
+    res.status(StatusCodes.OK).send({
+      success: true,
+      status: ReasonPhrases.OK,
+      message: 'Successfully verified email address.',
       data,
     })
   } catch (error) {
-    winstonLogger.error(error)
-
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
-      error: ReasonPhrases.INTERNAL_SERVER_ERROR,
-    })
+    next(error)
   }
 }

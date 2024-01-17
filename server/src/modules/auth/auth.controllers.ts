@@ -1,38 +1,50 @@
-import type { Request, Response } from 'express'
+import type { NextFunction, Request, Response } from 'express'
+import type ResponseBody from '../../interfaces/ResponseBody.js'
 import { StatusCodes, ReasonPhrases } from 'http-status-codes'
-import winstonLogger from '../../utils/winston/winstonLogger.js'
 
 export async function getAuthenticatedUser(
   req: Request,
-  res: Response,
+  res: Response<ResponseBody>,
+  next: NextFunction,
 ): Promise<void> {
+  const { session } = req
+  const { user } = session
+
   try {
-    const { user } = req.session
+    if (user == null) {
+      throw new Error('You are not signed in to perform this action.')
+    }
 
-    res.send({ data: user })
-  } catch (error) {
-    winstonLogger.error(error)
-
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
-      error: ReasonPhrases.INTERNAL_SERVER_ERROR,
+    res.status(StatusCodes.OK).json({
+      success: true,
+      status: ReasonPhrases.OK,
+      message: 'Successfully found authenticated user.',
+      data: user,
     })
+  } catch (error: unknown) {
+    next(error)
   }
 }
 
-export async function signOut(req: Request, res: Response): Promise<void> {
+export async function signOut(
+  req: Request,
+  res: Response<ResponseBody>,
+  next: NextFunction,
+): Promise<void> {
   try {
-    req.session.destroy((err: any) => {
+    req.session.destroy((err: unknown) => {
       if (err !== undefined && err !== null) {
-        res.status(400).send('Unable to log out')
-      } else {
-        res.send('Logout successful')
+        throw new Error('There was an error trying to sign out.')
       }
-    })
-  } catch (error) {
-    winstonLogger.error(error)
 
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
-      error: ReasonPhrases.INTERNAL_SERVER_ERROR,
+      res.status(StatusCodes.OK).json({
+        success: true,
+        status: ReasonPhrases.OK,
+        message: 'Successfully signed out.',
+        data: null,
+      })
     })
+  } catch (error: unknown) {
+    next(error)
   }
 }

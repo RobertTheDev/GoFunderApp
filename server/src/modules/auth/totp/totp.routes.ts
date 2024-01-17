@@ -1,9 +1,10 @@
 import { type RequestHandler, Router } from 'express'
-import { generateTotpSecret, verifyTotpToken } from './totp.controllers.js'
+import { generateTotpSecret } from './controllers/generateTotpSecret'
+import { verifyTotpCode } from './controllers/verifyTotpCode'
 
 const totpRouter = Router()
 
-totpRouter.post('/get-secret', generateTotpSecret as RequestHandler)
-totpRouter.post('/verify-token', verifyTotpToken as RequestHandler)
+totpRouter.get('/generate-secret', generateTotpSecret as RequestHandler)
+totpRouter.post('/verify-code', verifyTotpCode as RequestHandler)
 
 export default totpRouter
