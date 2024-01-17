@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import router from "./router";
 import { HelmetProvider } from "react-helmet-async";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import AuthProvider from "./modules/auth/contexts/AuthContext";
 
 const queryClient = new QueryClient();
 
@@ -15,9 +16,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <HelmetProvider>
-        <RouterProvider router={router} />
-      </HelmetProvider>
+      <AuthProvider>
+        <HelmetProvider>
+          <RouterProvider router={router} />
+        </HelmetProvider>
+      </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );
