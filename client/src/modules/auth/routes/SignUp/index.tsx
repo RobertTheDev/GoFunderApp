@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import PasswordSignUpForm from "../../components/PasswordSignUp";
+import PasswordSignUpForm from "../../components/password/PasswordSignUpForm";
 
 export default function SignUpRoute(): ReactElement {
   return (

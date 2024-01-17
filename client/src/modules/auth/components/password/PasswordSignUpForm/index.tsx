@@ -3,13 +3,11 @@ import usePasswordSignUp from "./usePasswordSignUp";
 import styles from "./styles.module.css";
 
 export default function PasswordSignUpForm(): ReactElement {
-  const { errors, handlePasswordSignUp, errorMessage, register } =
+  const { errors, handlePasswordSignUp, message, register } =
     usePasswordSignUp();
 
   return (
-    <div data-testid="password-sign-up-form">
-      <p>Hello World</p>
-
+    <div>
       <form className={styles.formContainer} onSubmit={handlePasswordSignUp}>
         <label htmlFor="email">Email</label>
         <input {...register("email")} type="email" name="email" />
@@ -23,7 +21,7 @@ export default function PasswordSignUpForm(): ReactElement {
         <input {...register("password")} type="password" name="password" />
         {errors.password?.message && <p>{errors.password.message}</p>}
 
-        <p>{errorMessage}</p>
+        {message && <p>{message.content}</p>}
 
         <button type="submit">Sign Up</button>
       </form>

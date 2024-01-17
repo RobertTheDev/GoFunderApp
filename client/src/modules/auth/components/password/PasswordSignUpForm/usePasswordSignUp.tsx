@@ -16,7 +16,10 @@ const usePasswordSignUp = () => {
     resolver: zodResolver(passwordSignUpSchema),
   });
 
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [message, setMessage] = useState<{
+    type: string;
+    content: string;
+  } | null>(null);
 
   const passwordSignUp = async (data: PasswordSignUpSchemaType) => {
     try {
@@ -28,11 +31,11 @@ const usePasswordSignUp = () => {
         }
       );
 
-      setErrorMessage(signUp.data.message);
+      setMessage({ type: "success", content: signUp.data.message });
 
       return signUp;
     } catch (error: any) {
-      setErrorMessage(error.response.data.message);
+      setMessage({ type: "error", content: error.response.data.message });
     }
   };
 
@@ -41,7 +44,7 @@ const usePasswordSignUp = () => {
   return {
     errors,
     handlePasswordSignUp,
-    errorMessage,
+    message,
     register,
   };
 };
