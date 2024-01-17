@@ -8,14 +8,11 @@ import DeleteCharityRoute from "../modules/charity/routes/DeleteCharity";
 import UsersRoute from "../modules/user/routes/Users";
 import UserRoute from "../modules/user/routes/User";
 import ProfileRoute from "../modules/auth/routes/Profile";
-import PasswordSignInForm from "../modules/auth/components/PasswordSignIn";
-import GithubPage from "../modules/auth/routes/Github";
 import GithubCallback from "../modules/auth/routes/GithubCallback";
 import GoogleCallback from "../modules/auth/routes/GoogleCallback";
 import AmazonCallback from "../modules/auth/routes/AmazonCallback";
 import FacebookCallback from "../modules/auth/routes/FacebookCallback";
-import TotpRoute from "../modules/auth/routes/Totp";
-import SignUpRoute from "../modules/auth/routes/SignUp";
+import PasswordSignUpForm from "../modules/auth/components/password/PasswordSignUpForm";
 
 const router = createBrowserRouter([
   {
@@ -23,12 +20,12 @@ const router = createBrowserRouter([
     element: <PageLayout />,
     children: [
       {
-        path: "/",
-        element: <PasswordSignInForm />,
-      },
-      {
         path: "/*",
         element: <p>Not found</p>,
+      },
+      {
+        path: "/sign-up",
+        element: <PasswordSignUpForm />,
       },
       {
         path: "/charities",
@@ -66,10 +63,7 @@ const router = createBrowserRouter([
         path: "/auth/amazon/callback",
         element: <AmazonCallback />,
       },
-      {
-        path: "/github",
-        element: <GithubPage />,
-      },
+
       {
         path: "/auth/facebook/callback",
         element: <FacebookCallback />,
@@ -81,14 +75,6 @@ const router = createBrowserRouter([
       {
         path: "/auth/google/callback",
         element: <GoogleCallback />,
-      },
-      {
-        path: "/sign-up",
-        element: <SignUpRoute />,
-      },
-      {
-        path: "/totp",
-        element: <TotpRoute />,
       },
     ],
   },
