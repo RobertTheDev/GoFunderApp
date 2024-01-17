@@ -6,15 +6,21 @@ export default function PasswordSignInForm(): ReactElement {
     usePasswordSignInForm();
 
   return (
-    <form onSubmit={handleSignIn}>
-      <label htmlFor="email">Email</label>
-      <input {...register("email")} type="email" name="email" />
-      {errors.email?.message && <p>{errors.email.message}</p>}
-      <label htmlFor="password">Password</label>
-      <input {...register("password")} type="password" name="password" />
-      {errors.password?.message && <p>{errors.password.message}</p>}
-      {errorMessage && <p>{errorMessage}</p>}
-      <button type="submit">Sign In</button>
-    </form>
+    <div>
+      <p>Password</p>
+
+      <img src="data:image/png;base64,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" />
+
+      <form onSubmit={handleSignIn}>
+        <label htmlFor="email">Email</label>
+        <input {...register("email")} type="email" name="email" />
+        {errors.email?.message && <p>{errors.email.message}</p>}
+        <label htmlFor="password">Password</label>
+        <input {...register("password")} type="password" name="password" />
+        {errors.password?.message && <p>{errors.password.message}</p>}
+        {errorMessage && <p>{errorMessage}</p>}
+        <button type="submit">Sign In</button>
+      </form>
+    </div>
   );
 }
