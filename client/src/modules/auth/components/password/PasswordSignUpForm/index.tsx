@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import usePasswordSignUp from "./usePasswordSignUp";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 export default function PasswordSignUpForm(): ReactElement {
   const { errors, handlePasswordSignUp, message, register } =
