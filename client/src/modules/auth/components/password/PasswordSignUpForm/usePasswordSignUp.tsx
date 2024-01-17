@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -6,6 +5,7 @@ import {
   PasswordSignUpSchemaType,
   passwordSignUpSchema,
 } from "./passwordSignUp.schema";
+import { passwordSignUpUser } from "../../../service/auth.service";
 
 const usePasswordSignUp = () => {
   const {
@@ -23,13 +23,7 @@ const usePasswordSignUp = () => {
 
   const passwordSignUp = async (data: PasswordSignUpSchemaType) => {
     try {
-      const signUp = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/auth/sign-up`,
-        data,
-        {
-          withCredentials: true,
-        }
-      );
+      const signUp = await passwordSignUpUser(data);
 
       setMessage({ type: "success", content: signUp.data.message });
 
