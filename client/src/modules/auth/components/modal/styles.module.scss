@@ -1,0 +1,16 @@
+.modalWrapper {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.modalContainer {
+  background-color: white;
+  height: 440px;
+  width: 440px;
+}
