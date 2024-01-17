@@ -1,10 +1,14 @@
-import { ReactElement } from "react";
+import { ReactElement, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { AuthContext } from "../../../auth/contexts/AuthContext";
 
 export default function Header(): ReactElement {
+  const { user } = useContext(AuthContext);
+
   return (
     <StyledHeaderContainer>
+      {user ? <p>{user.email}</p> : <p>No</p>}
       <Link to={"/"}>Home</Link>
       <Link to={"/charities/create-charity"}>Create Charity</Link>
     </StyledHeaderContainer>
