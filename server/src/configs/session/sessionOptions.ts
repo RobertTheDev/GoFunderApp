@@ -16,9 +16,8 @@ declare module 'express-session' {
       updatedAt: Date
       email: string | null
       emailVerified: Date | null
-      firstName: string | null
+      name: string | null
       image: string | null
-      lastName: string | null
     }
   }
 }
