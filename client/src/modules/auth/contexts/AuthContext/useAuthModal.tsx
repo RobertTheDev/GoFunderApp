@@ -7,11 +7,14 @@ export default function useAuthModal() {
     formType: null,
   });
 
-  const toggleAuthModal: (formType: string | null) => void = (formType) => {
-    setAuthModal((prevModal: IAuthModal) => ({
-      active: !prevModal.active,
+  const toggleAuthModal: (active: boolean, formType: string | null) => void = (
+    active,
+    formType
+  ) => {
+    setAuthModal({
+      active,
       formType: formType || null,
-    }));
+    });
   };
 
   return { authModal, setAuthModal, toggleAuthModal };
