@@ -1,19 +1,16 @@
 import { Link, useParams } from "react-router-dom";
 import ICharity from "../../../../interfaces/Charity";
-import axios from "axios";
 import Seo from "../../../seo/components/Seo";
 import { useQuery } from "@tanstack/react-query";
 import { ReactElement } from "react";
+import { getCharityById } from "../../service/charity.service";
 
 export default function CharityRoute(): ReactElement {
   const { id } = useParams();
 
   const { isPending, error, data } = useQuery<ICharity | null>({
     queryKey: ["getCharityData"],
-    queryFn: async () =>
-      await axios
-        .get(`${process.env.REACT_APP_API_URL}/api/charities/${id}`)
-        .then((res) => res.data.data),
+    queryFn: () => getCharityById(id),
   });
 
   if (isPending) return <p>Loading...</p>;
