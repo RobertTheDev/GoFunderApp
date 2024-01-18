@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import usePasswordSignInForm from "./usePasswordSignInForm";
+import OauthButtons from "../../oauth/OauthButtons";
 
 export default function PasswordSignInForm(): ReactElement {
   const { register, handleSignIn, errors, errorMessage } =
@@ -14,6 +15,7 @@ export default function PasswordSignInForm(): ReactElement {
       <input {...register("password")} type="password" name="password" />
       {errors.password?.message && <p>{errors.password.message}</p>}
       {errorMessage && <p>{errorMessage}</p>}
+      <OauthButtons />
       <button type="submit">Sign In</button>
     </form>
   );
