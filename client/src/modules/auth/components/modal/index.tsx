@@ -2,14 +2,18 @@ import { ReactElement, useContext, useRef } from "react";
 import styles from "./styles.module.scss";
 import { AuthContext } from "../../contexts/AuthContext/context";
 import { useOnClickOutside } from "usehooks-ts";
+import PasswordSignInForm from "../password/PasswordSignIn";
+import PasswordSignUpForm from "../password/PasswordSignUpForm";
+import TotpSetupForm from "../totp/TotpSetupForm";
+import PasswordSendResetForm from "../password/PasswordSendResetForm";
 
 export default function AuthModal(): ReactElement {
-  const { toggleAuthModal } = useContext(AuthContext);
+  const { authModal, toggleAuthModal } = useContext(AuthContext);
 
   const authModalRef = useRef<HTMLDivElement>(null);
 
   const handleToggleAuthModal: () => void = () => {
-    toggleAuthModal(null);
+    toggleAuthModal(!authModal.active, null);
   };
 
   useOnClickOutside(authModalRef, handleToggleAuthModal);
@@ -21,6 +25,16 @@ export default function AuthModal(): ReactElement {
         <button type="button" onClick={handleToggleAuthModal}>
           Close
         </button>
+        <button type="button" onClick={() => toggleAuthModal(true, "signIn")}>
+          Sign In
+        </button>
+        <button type="button" onClick={() => toggleAuthModal(true, "signUp")}>
+          Sign Up
+        </button>
+        {authModal.formType === "signIn" && <PasswordSignInForm />}
+        {authModal.formType === "signUp" && <PasswordSignUpForm />}
+        {authModal.formType === "setUpTotp" && <TotpSetupForm />}
+        {authModal.formType === "forgotPassword" && <PasswordSendResetForm />}
       </div>
     </div>
   );
