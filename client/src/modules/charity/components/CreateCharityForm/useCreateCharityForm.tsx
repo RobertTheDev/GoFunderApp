@@ -1,9 +1,10 @@
-import axios from "axios";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import CreateCharitySchema, {
+import createCharitySchema, {
   CreateCharitySchemaType,
-} from "./createCharity.schema";
+} from "../../validators/createCharity.schema";
+import { createCharity } from "../../service/charity.service";
 
 const useCreateCharityForm = () => {
   const {
@@ -11,24 +12,33 @@ const useCreateCharityForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<CreateCharitySchemaType>({
-    resolver: zodResolver(CreateCharitySchema),
+    resolver: zodResolver(createCharitySchema),
   });
 
-  const handleCreateCharity = handleSubmit(async (data) => {
+  const [message, setMessage] = useState<{
+    type: string;
+    content: string;
+  } | null>(null);
+
+  const handlecreateCharity = async (data: CreateCharitySchemaType) => {
     try {
-      await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/charities/create`,
-        data
-      );
-    } catch (error) {
-      console.error(error);
+      const createdCharity = await createCharity(data);
+
+      setMessage({ type: "success", content: createdCharity.data.message });
+
+      return createdCharity;
+    } catch (error: any) {
+      setMessage({ type: "error", content: error.response.data.message });
     }
-  });
+  };
+
+  const handleCreateCharity = handleSubmit(handlecreateCharity);
 
   return {
-    register,
-    handleCreateCharity,
     errors,
+    handleCreateCharity,
+    message,
+    register,
   };
 };
 
