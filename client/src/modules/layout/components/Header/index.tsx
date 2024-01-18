@@ -13,7 +13,10 @@ export default function Header(): ReactElement {
       </button>
       {user ? <p>{user.email}</p> : <p>No</p>}
       <Link to={"/"}>Home</Link>
-      <Link to={"/charities/create-charity"}>Create Charity</Link>
+
+      <Link to={"/charities"}>Charities</Link>
+      <Link to={"/fundraisers"}>Fundraisers</Link>
+      <Link to={"/profile"}>Profile</Link>
     </StyledHeaderContainer>
   );
 }
