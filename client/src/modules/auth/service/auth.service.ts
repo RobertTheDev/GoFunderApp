@@ -18,3 +18,13 @@ export async function passwordSignUpUser(
     }
   );
 }
+
+export async function getAuthenticatedUser() {
+  const user = await axios.get(
+    `${process.env.REACT_APP_API_URL}/api/auth/user`,
+    {
+      withCredentials: true,
+    }
+  );
+  return user.data.data;
+}
