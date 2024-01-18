@@ -1,29 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.scss";
-import { RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
-import router from "./router";
-import { HelmetProvider } from "react-helmet-async";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import AuthProvider from "./modules/auth/contexts/AuthContext";
-import AuthModal from "./modules/auth/components/modal";
-
-const queryClient = new QueryClient();
+import App from "./App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <HelmetProvider>
-          <AuthModal />
-          <RouterProvider router={router} />
-        </HelmetProvider>
-      </AuthProvider>
-    </QueryClientProvider>
+    <App />
   </React.StrictMode>
 );
 
