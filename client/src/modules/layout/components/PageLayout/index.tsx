@@ -1,14 +1,19 @@
-import { ReactElement } from "react";
+import { ReactElement, useContext } from "react";
 import Footer from "../Footer";
 import Header from "../Header";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
+import AuthModal from "../../../auth/components/modal";
+import { AuthContext } from "../../../auth/contexts/AuthContext/context";
 
 export default function PageLayout(): ReactElement {
+  const { authModal } = useContext(AuthContext);
+
   return (
     <PageLayoutContainer>
       <Header />
       <PageMainContainer>
+        {authModal.active && <AuthModal />}
         <Outlet />
       </PageMainContainer>
       <Footer />
