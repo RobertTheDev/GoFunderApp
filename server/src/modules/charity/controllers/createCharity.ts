@@ -22,7 +22,7 @@ export async function createCharity(
 
   try {
     // If no user is in session return an error.
-    if (user == null) {
+    if (user == null || user === undefined) {
       return res.status(StatusCodes.BAD_REQUEST).json({
         success: false,
         status: ReasonPhrases.BAD_REQUEST,
