@@ -1,17 +1,14 @@
 import { ReactElement } from "react";
-import axios from "axios";
 import CharityCard from "../../components/CharityCard";
 import ICharity from "../../../../interfaces/Charity";
 import Seo from "../../../seo/components/Seo";
 import { useQuery } from "@tanstack/react-query";
+import { getCharities } from "../../service/charity.service";
 
 export default function CharitiesRoute(): ReactElement {
   const { isPending, error, data } = useQuery<ICharity[]>({
     queryKey: ["getCharitiesData"],
-    queryFn: async () =>
-      await axios
-        .get(`${process.env.REACT_APP_API_URL}/api/charities`)
-        .then((res) => res.data.data),
+    queryFn: getCharities,
   });
 
   if (isPending) return <p>Loading...</p>;
