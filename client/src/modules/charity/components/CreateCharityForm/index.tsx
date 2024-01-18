@@ -2,7 +2,8 @@ import { ReactElement } from "react";
 import useCreateCharityForm from "./useCreateCharityForm";
 
 export default function CreateCharityForm(): ReactElement {
-  const { register, errors, handleCreateCharity } = useCreateCharityForm();
+  const { register, errors, handleCreateCharity, message } =
+    useCreateCharityForm();
   return (
     <form onSubmit={handleCreateCharity}>
       <label htmlFor="name">Name</label>
@@ -17,6 +18,7 @@ export default function CreateCharityForm(): ReactElement {
       <label htmlFor="category">Category</label>
       <input {...register("category")} type="text" name="category" />
       {errors.category?.message && <p>{errors.category.message}</p>}
+      {message && <p>{message.content}</p>}
       <button type="submit">Create Charity</button>
     </form>
   );
