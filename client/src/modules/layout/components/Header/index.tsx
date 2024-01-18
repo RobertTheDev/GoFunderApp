@@ -4,11 +4,13 @@ import styled from "styled-components";
 import { AuthContext } from "../../../auth/contexts/AuthContext/context";
 
 export default function Header(): ReactElement {
-  const { toggleAuthModal, user } = useContext(AuthContext);
+  const { authModal, toggleAuthModal, user } = useContext(AuthContext);
 
   return (
     <StyledHeaderContainer>
-      <button onClick={() => toggleAuthModal("d")}>Open</button>
+      <button onClick={() => toggleAuthModal(!authModal.active, "signIn")}>
+        Open
+      </button>
       {user ? <p>{user.email}</p> : <p>No</p>}
       <Link to={"/"}>Home</Link>
       <Link to={"/charities/create-charity"}>Create Charity</Link>
