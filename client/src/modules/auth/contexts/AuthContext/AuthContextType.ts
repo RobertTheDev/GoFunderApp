@@ -10,5 +10,5 @@ export type AuthContextType = {
   error: Error | null;
   user: IUser | null | undefined;
   authModal: IAuthModal;
-  toggleAuthModal: (formType: string | null) => void;
+  toggleAuthModal: (active: boolean, formType: string | null) => void;
 };
