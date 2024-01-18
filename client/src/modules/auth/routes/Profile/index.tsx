@@ -19,6 +19,8 @@ export default function ProfileRoute(): ReactElement {
       );
 
       navigate("/");
+
+      window.location.reload();
     } catch (error: any) {
       console.error("Sign-out error:", error);
     }
