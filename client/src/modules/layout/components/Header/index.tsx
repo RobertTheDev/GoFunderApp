@@ -4,19 +4,30 @@ import styles from "./styles.module.scss";
 import { AuthContext } from "../../../auth/contexts/AuthContext/context";
 
 export default function Header(): ReactElement {
-  const { authModal, toggleAuthModal, user } = useContext(AuthContext);
+  const { authModal, toggleAuthModal } = useContext(AuthContext);
 
   return (
     <div className={styles.headerContainer}>
-      <button onClick={() => toggleAuthModal(!authModal.active, "signIn")}>
-        Open
-      </button>
-      {user ? <p>{user.email}</p> : <p>No</p>}
-      <Link to={"/"}>Home</Link>
+      <div className={styles.headerLeft}>
+        <Link to={"/"} className={styles.headerLogo}>
+          GoFunder
+        </Link>
 
-      <Link to={"/charities"}>Charities</Link>
-      <Link to={"/fundraisers"}>Fundraisers</Link>
-      <Link to={"/profile"}>Profile</Link>
+        <Link to={"/home"}>Home</Link>
+        <Link to={"/charities"}>Charities</Link>
+        <Link to={"/fundraisers"}>Fundraisers</Link>
+        {/* <Link to={"/profile"}>Profile</Link> */}
+      </div>
+      <div className={styles.headerRight}>
+        <button type="button">Start Fundraising</button>
+
+        <button
+          type="button"
+          onClick={() => toggleAuthModal(!authModal.active, "signIn")}
+        >
+          Sign In
+        </button>
+      </div>
     </div>
   );
 }
