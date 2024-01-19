@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import styles from "./styles.module.scss";
+import { FaFacebook, FaInstagram, FaTiktok, FaXTwitter } from "react-icons/fa6";
 
 const footerLinks = [
   { url: "/privacy-policy", name: "Privacy Policy" },
@@ -20,7 +21,12 @@ export default function Footer(): ReactElement {
           );
         })}
       </div>
-      <div></div>
+      <div>
+        <FaFacebook />
+        <FaInstagram />
+        <FaTiktok />
+        <FaXTwitter />
+      </div>
     </footer>
   );
 }
