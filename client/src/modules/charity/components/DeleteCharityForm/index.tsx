@@ -1,22 +1,15 @@
-import axios from "axios";
 import { ReactElement } from "react";
-import { useParams } from "react-router-dom";
+import useDeleteCharityForm from "./useDeleteCharityForm";
 
 export default function DeleteCharityForm(): ReactElement {
-  const { id } = useParams();
-
-  async function handleDeleteCharity() {
-    await axios.delete(
-      `${process.env.REACT_APP_API_URL}/api/charities/${id}/delete`
-    );
-  }
-
+  const { handledeleteCharity, message } = useDeleteCharityForm();
   return (
     <div>
       <p>Delete Charity Form</p>
-      <button type="button" onClick={handleDeleteCharity}>
+      <button type="button" onClick={handledeleteCharity}>
         Delete
       </button>
+      <p>{message?.content}</p>
     </div>
   );
 }

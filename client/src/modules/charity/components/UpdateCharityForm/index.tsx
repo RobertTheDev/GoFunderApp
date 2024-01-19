@@ -1,80 +1,24 @@
-import axios from "axios";
-import { ReactElement, useState } from "react";
-import { useParams } from "react-router-dom";
+import { ReactElement } from "react";
+import useUpdateCharityForm from "./useUpdateCharityForm";
 
 export default function UpdateCharityForm(): ReactElement {
-  const [updateCharityForm, setUpdateCharityForm] = useState({
-    category: "",
-    name: "",
-    logoUrl: "",
-    description: "",
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { target } = e;
-    const { name, value } = target;
-
-    setUpdateCharityForm({
-      ...updateCharityForm,
-      [name]: value,
-    });
-  };
-
-  const { id } = useParams();
-
-  async function updateCharity() {
-    try {
-      await axios.put(
-        `${process.env.REACT_APP_API_URL}/api/charities/${id}/update`,
-        updateCharityForm
-      );
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    updateCharity();
-  };
-
+  const { register, errors, handleUpdateCharity, message } =
+    useUpdateCharityForm();
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleUpdateCharity}>
       <label htmlFor="name">Name</label>
-      <input
-        type="text"
-        name="name"
-        value={updateCharityForm.name}
-        onChange={handleChange}
-        required
-      />
+      <input {...register("name")} type="text" name="name" />
+      {errors.name?.message && <p>{errors.name.message}</p>}
       <label htmlFor="description">Description</label>
-      <input
-        type="text"
-        name="description"
-        value={updateCharityForm.description}
-        onChange={handleChange}
-        required
-      />
-      <label htmlFor="logoUrl">Logo URL</label>
-      <input
-        type="url"
-        name="logoUrl"
-        value={updateCharityForm.logoUrl}
-        onChange={handleChange}
-        required
-      />
-
+      <input {...register("description")} type="text" name="description" />
+      {errors.description?.message && <p>{errors.description.message}</p>}
+      <label htmlFor="logo">Logo URL</label>
+      <input {...register("logo")} type="url" name="logo" />
+      {errors.logo?.message && <p>{errors.logo.message}</p>}
       <label htmlFor="category">Category</label>
-      <input
-        type="text"
-        name="category"
-        value={updateCharityForm.category}
-        onChange={handleChange}
-        required
-      />
+      <input {...register("category")} type="text" name="category" />
+      {errors.category?.message && <p>{errors.category.message}</p>}
+      {message && <p>{message.content}</p>}
       <button type="submit">Update Charity</button>
     </form>
   );
