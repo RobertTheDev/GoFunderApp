@@ -5,6 +5,7 @@ import UserRoute from "../modules/user/routes/User";
 import ProfileRoute from "../modules/auth/routes/Profile";
 import authRouter from "../modules/auth/router";
 import charityRouter from "../modules/charity/routes/charity.routes";
+import HomePage from "../modules/home/pages/HomePage";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
         path: "/*",
         element: <p>Not found</p>,
       },
-
+      { path: "/", element: <HomePage /> },
       {
         path: "/users",
         element: <UsersRoute />,
