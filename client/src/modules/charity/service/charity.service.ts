@@ -1,81 +1,48 @@
 import axios, { AxiosResponse } from "axios";
 import ICharity from "../../../interfaces/Charity";
 import { CreateCharitySchemaType } from "../validators/createCharity.schema";
+import { UpdateCharitySchemaType } from "../validators/updateCharity.schema";
+import ApiResponse from "../../../interfaces/ApiResponse";
 
-interface ApiResponse {
-  success: boolean;
-  status: string;
-  data: ICharity;
-  message: string;
+interface CharityApiResponse extends ApiResponse {
+  data: ICharity | null;
 }
+
+interface CharitiesApiResponse extends ApiResponse {
+  data: ICharity[];
+}
+
+axios.defaults.withCredentials = true;
+
+const charityApiUrl: string = `${process.env.REACT_APP_API_URL}/charities`;
 
 export async function createCharity(
   data: CreateCharitySchemaType
-): Promise<AxiosResponse<ApiResponse>> {
-  return await axios.post(
-    `${process.env.REACT_APP_API_URL}/api/charities/create`,
-    data,
-    {
-      withCredentials: true,
-    }
-  );
+): Promise<AxiosResponse<CharityApiResponse>> {
+  return await axios.post(`${charityApiUrl}/create`, data);
 }
 
 export async function deleteCharityById(
-  charityId: string | undefined
-): Promise<ICharity | null> {
-  if (!charityId) {
-    return null;
-  }
-
-  const charity = await axios.delete(
-    `${process.env.REACT_APP_API_URL}/api/charities/${charityId}`
-  );
-
-  if (!charity) {
-    return null;
-  }
-
-  return charity.data.data;
+  charityId: string
+): Promise<AxiosResponse<CharityApiResponse>> {
+  return await axios.delete(`${charityApiUrl}/${charityId}`);
 }
 
-export async function getCharities(): Promise<ICharity[]> {
-  const charities = await axios.get(
-    `${process.env.REACT_APP_API_URL}/api/charities`
-  );
-
-  return charities.data.data;
+export async function getCharities(): Promise<
+  AxiosResponse<CharitiesApiResponse>
+> {
+  return await axios.get(`${charityApiUrl}`);
 }
 
 export async function getCharityById(
-  charityId: string | undefined
-): Promise<ICharity | null> {
-  if (!charityId) {
-    return null;
-  }
-
-  const charity = await axios.get(
-    `${process.env.REACT_APP_API_URL}/api/charities/${charityId}`
-  );
-
-  if (!charity) {
-    return null;
-  }
-
-  return charity.data.data;
+  charityId: string
+): Promise<AxiosResponse<CharityApiResponse>> {
+  return await axios.get(`${charityApiUrl}/${charityId}`);
 }
 
 export async function updateCharityById(
-  id: string,
-  data: any
-): Promise<ICharity> {
-  const updatedCharity = await axios.put(
-    `${process.env.REACT_APP_API_URL}/api/charities/${id}/update`,
-    data,
-    {
-      withCredentials: true,
-    }
-  );
-
-  return updatedCharity.data.data;
+  charityId: string,
+  data: UpdateCharitySchemaType
+): Promise<AxiosResponse<CharityApiResponse>> {
+  return await axios.put(`${charityApiUrl}/${charityId}`, data);
 }
