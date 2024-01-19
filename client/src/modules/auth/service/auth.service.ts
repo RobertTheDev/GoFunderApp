@@ -1,15 +1,14 @@
 import axios, { AxiosResponse } from "axios";
+import ApiResponse from "../../../interfaces/ApiResponse";
+import IUser from "../../../interfaces/User";
 
-interface ApiResponse {
-  success: boolean;
-  status: string;
-  data: any;
-  message: string;
+interface UserApiResponse extends ApiResponse {
+  data: IUser;
 }
 
 export async function passwordSignUpUser(
   data: any
-): Promise<AxiosResponse<ApiResponse>> {
+): Promise<AxiosResponse<UserApiResponse>> {
   return await axios.post(
     `${process.env.REACT_APP_API_URL}/api/auth/sign-up`,
     data,
