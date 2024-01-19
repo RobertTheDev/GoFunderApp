@@ -13,9 +13,9 @@ export default function Header(): ReactElement {
           GoFunder
         </Link>
 
-        <Link to={"/home"}>Home</Link>
-        <Link to={"/charities"}>Charities</Link>
-        <Link to={"/fundraisers"}>Fundraisers</Link>
+        <Link to={"/"}>Home</Link>
+        <Link to={"/charities"}>Find Charities</Link>
+        <Link to={"/fundraisers"}>Find Fundraisers</Link>
         {/* <Link to={"/profile"}>Profile</Link> */}
       </div>
       <div className={styles.headerRight}>
