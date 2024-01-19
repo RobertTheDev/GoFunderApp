@@ -1,12 +1,11 @@
 import { ReactElement } from "react";
 import CharityCard from "../../components/CharityCard";
-import ICharity from "../../../../interfaces/Charity";
 import Seo from "../../../seo/components/Seo";
 import { useQuery } from "@tanstack/react-query";
 import { getCharities } from "../../service/charity.service";
 
 export default function CharitiesRoute(): ReactElement {
-  const { isPending, error, data } = useQuery<ICharity[]>({
+  const { isPending, error, data } = useQuery({
     queryKey: ["getCharitiesData"],
     queryFn: getCharities,
   });
@@ -18,7 +17,7 @@ export default function CharitiesRoute(): ReactElement {
   return (
     <div>
       <Seo title="Charities" />
-      {data.map((charity) => {
+      {data.data.data.map((charity) => {
         return <CharityCard {...charity} key={charity.id} />;
       })}
     </div>
