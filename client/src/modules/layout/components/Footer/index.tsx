@@ -1,20 +1,10 @@
 import { ReactElement } from "react";
-import styled from "styled-components";
+import styles from "./styles.module.scss";
 
 export default function Footer(): ReactElement {
   return (
-    <StyledFooterContainer>
+    <footer className={styles.footerContainer}>
       <p>Footer</p>
-    </StyledFooterContainer>
+    </footer>
   );
 }
-
-const StyledFooterContainer = styled.footer`
-  align-items: center;
-  background-color: whitesmoke;
-  box-sizing: border-box;
-  display: flex;
-  height: 60px;
-  padding: 32px;
-  width: 100%;
-`;

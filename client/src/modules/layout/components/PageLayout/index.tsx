@@ -2,7 +2,7 @@ import { ReactElement, useContext } from "react";
 import Footer from "../Footer";
 import Header from "../Header";
 import { Outlet } from "react-router-dom";
-import styled from "styled-components";
+import styles from "./styles.module.scss";
 import AuthModal from "../../../auth/components/modal";
 import { AuthContext } from "../../../auth/contexts/AuthContext/context";
 
@@ -10,27 +10,13 @@ export default function PageLayout(): ReactElement {
   const { authModal } = useContext(AuthContext);
 
   return (
-    <PageLayoutContainer>
+    <div className={styles.pageLayoutContainer}>
       <Header />
-      <PageMainContainer>
+      <main className={styles.pageMainContainer}>
         {authModal.active && <AuthModal />}
         <Outlet />
-      </PageMainContainer>
+      </main>
       <Footer />
-    </PageLayoutContainer>
+    </div>
   );
 }
-
-const PageLayoutContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  width: 100%;
-`;
-
-const PageMainContainer = styled.main`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  width: 100%;
-`;
