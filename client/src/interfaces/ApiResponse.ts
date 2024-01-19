@@ -1,5 +1,7 @@
-export default interface ApiResponse {
+import { AxiosResponse } from "axios";
+
+export default interface ApiResponse extends AxiosResponse {
   success: boolean;
-  status: string;
+  status: number;
   message: string;
 }
