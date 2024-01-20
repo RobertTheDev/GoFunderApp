@@ -5,7 +5,7 @@ import { ReactElement } from "react";
 import IUser from "../../../../interfaces/User";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 
-export default function ProfileRoute(): ReactElement {
+export default function ProfilePage(): ReactElement {
   const navigate: NavigateFunction = useNavigate();
 
   const { isPending, error, data } = useQuery<IUser | null>({

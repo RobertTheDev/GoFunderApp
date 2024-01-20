@@ -2,17 +2,17 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 
-export default function GithubCallback() {
+export default function FacebookCallbackPage() {
   const [searchParams] = useSearchParams();
 
-  const githubCode = searchParams.get("code");
+  const facebookCode = searchParams.get("code");
 
   const { isPending, error, data } = useQuery({
-    queryKey: ["getGithubUserData"],
+    queryKey: ["getFacebookUserData"],
     queryFn: async () =>
       await axios
         .get(
-          `${process.env.REACT_APP_API_URL}/api/auth/oauth/github/${githubCode}`
+          `${process.env.REACT_APP_API_URL}/api/auth/oauth/facebook/${facebookCode}`
         )
         .then((res) => res.data.data),
   });
@@ -23,7 +23,7 @@ export default function GithubCallback() {
 
   return (
     <div>
-      <p>Github Callback</p>
+      <p>Facebook Callback</p>
       <p>{JSON.stringify(data)}</p>
     </div>
   );

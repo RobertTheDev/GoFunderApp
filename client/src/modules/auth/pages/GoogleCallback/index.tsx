@@ -1,18 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useSearchParams } from "react-router-dom";
+import { ReactElement } from "react";
 
-export default function AmazonCallback() {
-  const [searchParams] = useSearchParams();
-
-  const amazonCode = searchParams.get("code");
+export default function GoogleCallbackPage(): ReactElement {
+  const hashParams = new URLSearchParams(window.location.hash.substring(1));
+  const accessToken = hashParams.get("access_token");
 
   const { isPending, error, data } = useQuery({
-    queryKey: ["getAmazonUserData"],
+    queryKey: ["getGoogleUserData"],
     queryFn: async () =>
       await axios
         .get(
-          `${process.env.REACT_APP_API_URL}/api/auth/oauth/amazon/${amazonCode}`
+          `${process.env.REACT_APP_API_URL}/api/auth/oauth/google/${accessToken}`
         )
         .then((res) => res.data.data),
   });
@@ -23,7 +22,7 @@ export default function AmazonCallback() {
 
   return (
     <div>
-      <p>Amazon Callback</p>
+      <p>Google Callback</p>
       <p>{JSON.stringify(data)}</p>
     </div>
   );

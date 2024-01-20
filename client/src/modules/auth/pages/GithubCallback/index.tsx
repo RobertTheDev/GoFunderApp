@@ -1,17 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { ReactElement } from "react";
+import { useSearchParams } from "react-router-dom";
 
-export default function GoogleCallback(): ReactElement {
-  const hashParams = new URLSearchParams(window.location.hash.substring(1));
-  const accessToken = hashParams.get("access_token");
+export default function GithubCallbackPage() {
+  const [searchParams] = useSearchParams();
+
+  const githubCode = searchParams.get("code");
 
   const { isPending, error, data } = useQuery({
-    queryKey: ["getGoogleUserData"],
+    queryKey: ["getGithubUserData"],
     queryFn: async () =>
       await axios
         .get(
-          `${process.env.REACT_APP_API_URL}/api/auth/oauth/google/${accessToken}`
+          `${process.env.REACT_APP_API_URL}/api/auth/oauth/github/${githubCode}`
         )
         .then((res) => res.data.data),
   });
@@ -22,7 +23,7 @@ export default function GoogleCallback(): ReactElement {
 
   return (
     <div>
-      <p>Google Callback</p>
+      <p>Github Callback</p>
       <p>{JSON.stringify(data)}</p>
     </div>
   );
