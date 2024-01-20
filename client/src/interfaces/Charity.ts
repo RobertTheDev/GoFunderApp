@@ -11,7 +11,7 @@ export default interface ICharity {
   charityOwners: ICharityOwner[];
   description: string | null;
   fundraisers: IFundraiser[];
-  logo: string | null;
+  logo: string;
   name: string;
-  slug: string | null;
+  slug: string;
 }
