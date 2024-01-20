@@ -19,9 +19,9 @@ model Charity {
   charityOwners    CharityOwner[] // List of owners for the charity.
   description      String? // Charity's description (optional).
   fundraisers      Fundraiser[] // List of fundraisers owned by the charity.
-  logo             String? // URL to the charity's logo image (optional).
+  logo             String // URL to the charity's logo image (optional).
   name             String // Charity's name.
-  slug             String?           @unique // Unique slug url for the charity.
+  slug             String            @unique @default(cuid()) // Unique slug url for the charity.
 
   @@map("charities")
 }
@@ -131,6 +131,7 @@ model User {
   totalDonationsAmount  Int               @default(0) @map("total_donations_amount") // Total amount donated by the user.
   totalDonationsMade    Int               @default(0) @map("total_donations_made") // Total number of donations made by the user.
   totalFundraisersOwned Int               @default(0) @map("total_fundraisers_owned") // Total number of fundraisers owned by the user.
+  username              String            @default(cuid())
 
   @@map("users")
 }
