@@ -26,4 +26,5 @@ export default interface IUser {
   totalDonationsAmount: number;
   totalDonationsMade: number;
   totalFundraisersOwned: number;
+  username: string;
 }
