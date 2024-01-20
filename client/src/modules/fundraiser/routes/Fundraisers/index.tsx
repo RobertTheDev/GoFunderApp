@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import Seo from "../../../seo/components/Seo";
+import Seo from "../../../common/Seo";
 import { useQuery } from "@tanstack/react-query";
 import { getFundraisers } from "../../service/fundraiser.service";
 import FundraiserCard from "../../components/FundraiserCard";

@@ -1,5 +1,5 @@
 import axios from "axios";
-import Seo from "../../../seo/components/Seo";
+import Seo from "../../../common/Seo";
 import { useQuery } from "@tanstack/react-query";
 import { ReactElement } from "react";
 import IUser from "../../../../interfaces/User";

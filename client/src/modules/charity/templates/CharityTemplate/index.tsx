@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import ICharity from "../../../../interfaces/Charity";
 import { Link } from "react-router-dom";
-import Seo from "../../../seo/components/Seo";
+import Seo from "../../../common/Seo";
 
 export default function CharityTemplate({
   charity,

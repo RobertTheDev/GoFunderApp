@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import axios from "axios";
-import Seo from "../../../seo/components/Seo";
+import Seo from "../../../common/Seo";
 import { useQuery } from "@tanstack/react-query";
 import IUser from "../../../../interfaces/User";
 import { Link } from "react-router-dom";

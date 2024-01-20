@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import Seo from "../../../seo/components/Seo";
+import Seo from "../../../common/Seo";
 import { useQuery } from "@tanstack/react-query";
 import { getFundraiserById } from "../../service/fundraiser.service";
 import { useParams } from "react-router-dom";

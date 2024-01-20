@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import CreateCharityForm from "../../components/CreateCharityForm";
-import Seo from "../../../seo/components/Seo";
+import Seo from "../../../common/Seo";
 
 export default function CreateCharityRoute(): ReactElement {
   return (
