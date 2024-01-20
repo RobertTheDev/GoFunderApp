@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   VerifyTotpCodeSchema,
   VerifyTotpCodeSchemaType,
-} from "./verifyTotpCode.schema";
+} from "../../../validators/verifyTotpCode.schema";
 
 const useTotpSetupForm = () => {
   const {

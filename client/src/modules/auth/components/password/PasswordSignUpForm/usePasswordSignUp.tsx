@@ -4,8 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   PasswordSignUpSchemaType,
   passwordSignUpSchema,
-} from "./passwordSignUp.schema";
-import { passwordSignUpUser } from "../../../service/auth.service";
+} from "../../../validators/passwordSignUp.schema";
+import { signUpWithPassword } from "../../../service/auth.service";
 
 const usePasswordSignUp = () => {
   const {
@@ -23,7 +23,7 @@ const usePasswordSignUp = () => {
 
   const passwordSignUp = async (data: PasswordSignUpSchemaType) => {
     try {
-      const signUp = await passwordSignUpUser(data);
+      const signUp = await signUpWithPassword(data);
 
       setMessage({ type: "success", content: signUp.data.message });
 
