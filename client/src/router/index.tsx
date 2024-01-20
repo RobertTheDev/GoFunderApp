@@ -7,6 +7,7 @@ import HomePage from "../modules/home/pages/HomePage";
 import infoRouter from "../modules/info/routes/info.routes";
 import fundraiserRouter from "../modules/fundraiser/routes/fundraiser.routes";
 import userRouter from "../modules/user/routes/user.routes";
+import savedFundraiserRouter from "../modules/savedFundraiser/routes/savedFundraiser.routes";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
       ...charityRouter,
       ...fundraiserRouter,
       ...infoRouter,
+      ...savedFundraiserRouter,
       ...userRouter,
       {
         path: "/*",
