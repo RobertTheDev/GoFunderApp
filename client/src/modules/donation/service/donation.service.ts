@@ -4,35 +4,35 @@ import {
   DonationApiResponse,
   DonationsApiResponse,
 } from "../../../interfaces/Donation";
-import api from "../../../utils/api";
+import axios from "axios";
 
 const donationApiUrl: string = `${process.env.REACT_APP_API_URL}/donations`;
 
 export async function createdonation(
   data: CreateDonationSchemaType
 ): Promise<DonationApiResponse> {
-  return await api.post(`${donationApiUrl}/create`, data);
+  return await axios.post(`${donationApiUrl}/create`, data);
 }
 
 export async function deleteDonationById(
   donationId: string
 ): Promise<DonationApiResponse> {
-  return await api.delete(`${donationApiUrl}/${donationId}`);
+  return await axios.delete(`${donationApiUrl}/${donationId}`);
 }
 
 export async function getDonations(): Promise<DonationsApiResponse> {
-  return await api.get(`${donationApiUrl}`);
+  return await axios.get(`${donationApiUrl}`);
 }
 
 export async function getDonationById(
   donationId: string
 ): Promise<DonationApiResponse> {
-  return await api.get(`${donationApiUrl}/${donationId}`);
+  return await axios.get(`${donationApiUrl}/${donationId}`);
 }
 
 export async function updateDonationById(
   donationId: string,
   data: UpdateDonationSchemaType
 ): Promise<DonationApiResponse> {
-  return await api.put(`${donationApiUrl}/${donationId}`, data);
+  return await axios.put(`${donationApiUrl}/${donationId}`, data);
 }
