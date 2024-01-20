@@ -5,7 +5,7 @@ import { ReactElement } from "react";
 import { getCharityById } from "../../service/charity.service";
 import CharityTemplate from "../../templates/CharityTemplate";
 
-export default function CharityRoute(): ReactElement {
+export default function CharityPage(): ReactElement {
   const { id } = useParams();
 
   const { isPending, error, data } = useQuery({

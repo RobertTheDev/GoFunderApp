@@ -1,29 +1,29 @@
-import CharitiesRoute from "../views/Charities";
-import CharityRoute from "../views/Charity";
-import CreateCharityRoute from "../views/CreateCharity";
-import DeleteCharityRoute from "../views/DeleteCharity";
-import UpdateCharityRoute from "../views/UpdateCharity";
+import CharitiesPage from "../pages/Charities";
+import CharityPage from "../pages/Charity";
+import CreateCharityPage from "../pages/CreateCharity";
+import DeleteCharityPage from "../pages/DeleteCharity";
+import UpdateCharityPage from "../pages/UpdateCharity";
 
 const charityRouter = [
   {
     path: "/charities",
-    element: <CharitiesRoute />,
+    element: <CharitiesPage />,
   },
   {
     path: "/charities/:id",
-    element: <CharityRoute />,
+    element: <CharityPage />,
   },
   {
     path: "/charities/:id/delete",
-    element: <DeleteCharityRoute />,
+    element: <DeleteCharityPage />,
   },
   {
     path: "/charities/:id/update",
-    element: <UpdateCharityRoute />,
+    element: <UpdateCharityPage />,
   },
   {
     path: "/charities/create-charity",
-    element: <CreateCharityRoute />,
+    element: <CreateCharityPage />,
   },
 ];
 

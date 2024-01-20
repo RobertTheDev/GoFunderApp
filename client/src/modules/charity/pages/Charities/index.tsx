@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getCharities } from "../../service/charity.service";
 import styles from "./styles.module.scss";
 
-export default function CharitiesRoute(): ReactElement {
+export default function CharitiesPage(): ReactElement {
   const { isPending, error, data } = useQuery({
     queryKey: ["getCharitiesData"],
     queryFn: getCharities,
