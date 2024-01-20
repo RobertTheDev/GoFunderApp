@@ -5,7 +5,7 @@ import { getFundraisers } from "../../service/fundraiser.service";
 import FundraiserCard from "../../components/FundraiserCard";
 import styles from "./styles.module.scss";
 
-export default function FundraisersRoute(): ReactElement {
+export default function FundraisersPage(): ReactElement {
   const { isPending, error, data } = useQuery({
     queryKey: ["getFundraisersData"],
     queryFn: getFundraisers,

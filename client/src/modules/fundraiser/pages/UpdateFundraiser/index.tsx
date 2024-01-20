@@ -1,10 +1,10 @@
 import { ReactElement } from "react";
 import UpdateFundraiserForm from "../../components/UpdateFundraiserForm";
 
-export default function UpdateFundraiser(): ReactElement {
+export default function UpdateFundraiserPage(): ReactElement {
   return (
     <div>
-      <p>Delete Fundraiser</p>
+      <p>Update Fundraiser</p>
       <UpdateFundraiserForm />
     </div>
   );

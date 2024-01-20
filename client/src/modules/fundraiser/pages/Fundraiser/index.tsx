@@ -5,7 +5,7 @@ import { getFundraiserById } from "../../service/fundraiser.service";
 import { useParams } from "react-router-dom";
 import FundraiserTemplate from "../../templates/FundraiserTemplate";
 
-export default function Fundraiser(): ReactElement {
+export default function FundraiserPage(): ReactElement {
   const { id } = useParams();
 
   const { isPending, error, data } = useQuery({
