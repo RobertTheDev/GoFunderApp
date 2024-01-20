@@ -1,19 +1,19 @@
-import AboutView from "../views/About";
-import PrivacyPolicyView from "../views/PrivacyPolicy";
-import TermsAndConditionsView from "../views/TermsAndConditions";
+import AboutPage from "../pages/About";
+import PrivacyPolicyPage from "../pages/PrivacyPolicy";
+import TermsAndConditionsPage from "../pages/TermsAndConditions";
 
 const infoRouter = [
   {
     path: "/about",
-    element: <AboutView />,
+    element: <AboutPage />,
   },
   {
     path: "/privacy-policy",
-    element: <PrivacyPolicyView />,
+    element: <PrivacyPolicyPage />,
   },
   {
     path: "/terms-and-conditions",
-    element: <TermsAndConditionsView />,
+    element: <TermsAndConditionsPage />,
   },
 ];
 

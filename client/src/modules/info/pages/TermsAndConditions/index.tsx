@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 
-export default function TermsAndConditionsView(): ReactElement {
+export default function TermsAndConditionsPage(): ReactElement {
   return (
     <div>
       <p>Terms</p>
