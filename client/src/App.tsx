@@ -9,12 +9,12 @@ export default function App(): ReactElement {
   const queryClient: QueryClient = new QueryClient();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <HelmetProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <RouterProvider router={router} />
         </AuthProvider>
-      </HelmetProvider>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   );
 }
