@@ -47,6 +47,12 @@ export async function getFundraiserById(
   return await axios.get(`${fundraiserApiUrl}/${fundraiserId}`);
 }
 
+export async function getFundraisersByCategory(
+  fundraiserCategory: string
+): Promise<AxiosResponse<FundraisersApiResponse>> {
+  return await axios.get(`${fundraiserApiUrl}/category/${fundraiserCategory}`);
+}
+
 export async function updateFundraiserById(
   fundraiserId: string,
   data: UpdateFundraiserSchemaType
