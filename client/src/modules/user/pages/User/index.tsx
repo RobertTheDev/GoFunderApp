@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ReactElement } from "react";
 import IUser from "../../../../interfaces/User";
 
-export default function UserRoute(): ReactElement {
+export default function UserPage(): ReactElement {
   const { id } = useParams();
 
   const { isPending, error, data } = useQuery<IUser | null>({

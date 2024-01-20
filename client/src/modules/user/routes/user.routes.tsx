@@ -1,14 +1,9 @@
-import UserRoute from "./User";
-import UsersRoute from "./Users";
+import UserPage from "../pages/User";
 
 const userRouter = [
   {
-    path: "/users",
-    element: <UsersRoute />,
-  },
-  {
     path: "/users/:id",
-    element: <UserRoute />,
+    element: <UserPage />,
   },
 ];
 
