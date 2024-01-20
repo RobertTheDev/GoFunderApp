@@ -1,31 +1,37 @@
 import { ReactElement } from "react";
 import styles from "./styles.module.scss";
-import { FaFacebook, FaInstagram, FaTiktok, FaXTwitter } from "react-icons/fa6";
-
-const footerLinks = [
-  { url: "/privacy-policy", name: "Privacy Policy" },
-  { url: "/terms-and-conditions", name: "Terms and Conditions" },
-  { url: "/about", name: "About" },
-];
+import { Link } from "react-router-dom";
+import footerLinks from "./footerLinks";
+import socialLinks from "./socialLinks";
 
 export default function Footer(): ReactElement {
   return (
     <footer className={styles.footerContainer}>
-      <div>©{new Date().getFullYear()} GoFunder</div>
-      <div>
+      <div className={styles.footerLeft}>
+        ©{new Date().getFullYear()} GoFunder
+      </div>
+      <div className={styles.footerCenter}>
         {footerLinks.map((footerLink) => {
           return (
-            <a key={footerLink.url} href={footerLink.url}>
+            <Link key={footerLink.id} to={footerLink.url}>
               {footerLink.name}
-            </a>
+            </Link>
           );
         })}
       </div>
-      <div>
-        <FaFacebook />
-        <FaInstagram />
-        <FaTiktok />
-        <FaXTwitter />
+      <div className={styles.footerRight}>
+        {socialLinks.map((socialLink) => {
+          return (
+            <a
+              href={socialLink.url}
+              key={socialLink.id}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {socialLink.icon}
+            </a>
+          );
+        })}
       </div>
     </footer>
   );
