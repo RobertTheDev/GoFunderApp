@@ -1,14 +1,17 @@
+import ICharity from "./Charity";
 import IDonation from "./Donation";
+import IUser from "./User";
 
 export default interface IFundraiser {
   id: string;
   createdAt: Date;
-  updatedAt: Date | null;
+  updatedAt: Date;
   category: string;
-  charityId: string;
-  deadlineDate: Date;
+  charity: ICharity | null;
+  charityId: string | null;
+  deadlineDate: Date | null;
   defaultCurrency: string;
-  description: string;
+  description: string | null;
   donations: IDonation[];
   headline: string;
   image: string;
@@ -17,5 +20,6 @@ export default interface IFundraiser {
   target: number;
   totalDonations: number;
   totalRaised: number;
-  userId: string;
+  user: IUser | null;
+  userId: string | null;
 }
