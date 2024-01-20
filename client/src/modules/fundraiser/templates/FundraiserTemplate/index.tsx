@@ -16,7 +16,9 @@ export default function FundraiserTemplate({
       <p>{fundraiser.category}</p>
       <img src={fundraiser.image} alt={fundraiser.name} />
       <p>{new Date(fundraiser.createdAt).getDate()}</p>
-      <p>{new Date(fundraiser.deadlineDate).getDate()}</p>
+      {fundraiser.deadlineDate && (
+        <p>{new Date(fundraiser.deadlineDate).getDate()}</p>
+      )}
       <p>{fundraiser.description}</p>
       <p>{fundraiser.headline}</p>
       <p>{fundraiser.target}</p>
@@ -27,14 +29,6 @@ export default function FundraiserTemplate({
         return (
           <div key={donation.amount}>
             <p>{donation.amount}</p>
-            <div>
-              {donation.user.image ? (
-                <img src={donation.user.image} alt={donation.user.name} />
-              ) : (
-                <p>No image</p>
-              )}
-              <p>{donation.user.name}</p>
-            </div>
           </div>
         );
       })}

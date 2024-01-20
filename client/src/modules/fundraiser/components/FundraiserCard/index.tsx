@@ -13,10 +13,14 @@ export default function FundraiserCard(fundraiser: IFundraiser): ReactElement {
         alt="ddd"
       />
       <p>{fundraiser.name}</p>
-      <p>
-        Closes on{" "}
-        {format(new Date(fundraiser.deadlineDate).getDate(), "d MMMM yyyy")}
-      </p>
+
+      {fundraiser.deadlineDate && (
+        <p>
+          Closes at
+          {format(new Date(fundraiser.deadlineDate).getDate(), "d MMMM yyyy")}
+        </p>
+      )}
+
       <p>
         Created on{" "}
         {format(new Date(fundraiser.createdAt).getDate(), "d MMMM yyyy")}
