@@ -9,6 +9,9 @@ export class CharityService {
   ): Promise<Charity | null> {
     return await this.prisma.charity.findUnique({
       where: charityWhereUniqueInput,
+      include: {
+        fundraisers: true,
+      },
     })
   }
 

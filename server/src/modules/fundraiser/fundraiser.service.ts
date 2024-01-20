@@ -110,6 +110,7 @@ export class FundraiserService {
         category: true,
         deadlineDate: true,
         defaultCurrency: true,
+        donations: true,
         headline: true,
         image: true,
         name: true,
