@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { deleteCharityOwnersByInput } from '../../../features/charityOwner/charityOwner.service.js'
+import { deleteCharityOwnersByInput } from '../../charityOwner/services/charityOwner.service.js'
 import { deleteCharity } from '../services/charity.service.js'
 
 // The handler deletes a charity and its owners.

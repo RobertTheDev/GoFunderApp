@@ -3,7 +3,7 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { CharityService } from '../../charity/services/charity.service.js'
-import { CharityOwnerService } from '../../charityOwner/charityOwner.service.js'
+import { CharityOwnerService } from '../../charityOwner/services/charityOwner.service.js'
 import createCharityFundraiserSchema from '../validators/createCharityFundraiser.schema.js'
 import { createFundraiser } from '../services/fundraiser.service.js'
 
