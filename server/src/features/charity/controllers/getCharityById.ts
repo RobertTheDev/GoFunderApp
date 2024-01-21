@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import type { Charity } from '@prisma/client'
-import { CharityService } from '../charity.service.js'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
+import { findCharity } from '../charity.service.js'
 
 export async function getCharityById(
   req: Request,
@@ -14,7 +14,6 @@ export async function getCharityById(
 
   const { id } = params
 
-  const charityService = new CharityService()
   const cacheService = new CacheService()
 
   try {
@@ -35,7 +34,7 @@ export async function getCharityById(
       })
     }
 
-    const charity: Charity | null = await charityService.findCharity({ id })
+    const charity: Charity | null = await findCharity({ id })
 
     if (charity === null) {
       return res.status(StatusCodes.NOT_FOUND).json({

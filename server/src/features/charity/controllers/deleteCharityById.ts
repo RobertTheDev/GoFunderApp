@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
-import { CharityService } from '../charity.service.js'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { deleteCharityOwnersByInput } from '../../../features/charityOwner/charityOwner.service.js'
+import { deleteCharity } from '../charity.service.js'
 
 // The handler deletes a charity and its owners.
 
@@ -16,7 +16,6 @@ export async function deleteCharityById(
   const { id } = params
   const { user } = session
 
-  const charityService = new CharityService()
   const cacheService = new CacheService()
 
   try {
@@ -36,7 +35,7 @@ export async function deleteCharityById(
     }
 
     // Delete the charity from the database.
-    await charityService.deleteCharity({
+    await deleteCharity({
       id,
     })
 

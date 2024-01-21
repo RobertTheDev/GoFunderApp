@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
-import { CharityService } from '../charity.service.js'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { updateCharitySchema } from '../validators/updateCharity.schema.js'
+import { updateCharity } from '../charity.service.js'
 
 export async function updateCharityById(
   req: Request,
@@ -15,7 +15,6 @@ export async function updateCharityById(
     params: { id },
   } = req
 
-  const charityService = new CharityService()
   const cacheService = new CacheService()
 
   try {
@@ -24,7 +23,7 @@ export async function updateCharityById(
     if (!validation.success) {
       throw new Error(validation.error.issues[0]?.message)
     }
-    const updatedCharity = await charityService.updateCharity({
+    const updatedCharity = await updateCharity({
       data: validation.data,
       where: { id },
     })

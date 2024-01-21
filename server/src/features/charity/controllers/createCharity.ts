@@ -1,14 +1,14 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
-import { CharityService } from '../charity.service.js'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { createCharitySchema } from '../validators/createCharity.schema.js'
 import { createCharityOwner } from '../../../features/charityOwner/charityOwner.service.js'
+import { createCharity } from '../charity.service.js'
 
 // This handler creates a charity and charity owner with the current user in session.
 
-export async function createCharity(
+export async function createCharityHandler(
   req: Request,
   res: Response<ResponseBody>,
   next: NextFunction,
@@ -16,7 +16,6 @@ export async function createCharity(
   const { body, session } = req
   const { user } = session
 
-  const charityService = new CharityService()
   const cacheService = new CacheService()
 
   try {
@@ -39,7 +38,7 @@ export async function createCharity(
     }
 
     // Create a charity with validated data.
-    const createdCharity = await charityService.createCharity(validation.data)
+    const createdCharity = await createCharity(validation.data)
 
     // Create a charity owner with the current user and created charity.
     await createCharityOwner({
