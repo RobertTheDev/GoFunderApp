@@ -3,8 +3,8 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { FundraiserService } from '../fundraiser.service.js'
-import { CharityService } from '../../../modules/charity/charity.service.js'
-import { CharityOwnerService } from '../../../modules/charityOwner/charityOwner.service.js'
+import { CharityService } from '../../charity/charity.service.js'
+import { CharityOwnerService } from '../../charityOwner/charityOwner.service.js'
 import createCharityFundraiserSchema from '../validators/createCharityFundraiser.schema.js'
 
 // This handler creates a fundraiser with a charity id.

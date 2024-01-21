@@ -3,7 +3,7 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { CharityService } from '../charity.service.js'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { CharityOwnerService } from '../../../modules/charityOwner/charityOwner.service.js'
+import { CharityOwnerService } from '../../charityOwner/charityOwner.service.js'
 
 // The handler deletes a charity and its owners.
 
