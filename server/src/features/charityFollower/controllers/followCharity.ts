@@ -1,8 +1,12 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { CharityFollowerService } from '../charityFollower.service.js'
 import { createCharityFollowerSchema } from '../charityFollower.validators.js'
+import {
+  createCharityFollower,
+  deleteCharityFollower,
+  findCharityFollower,
+} from '../charityFollower.service.js'
 
 // This handler searches for a followed charity and either
 // creates or deletes one by user and charity id.
@@ -16,9 +20,6 @@ export async function followCharity(
   const { params, session } = req
   const { charityId: id } = params
   const { user } = session
-
-  // Use the charity follower service to get handlers.
-  const charityFollowerService = new CharityFollowerService()
 
   try {
     // If no user is in session return an error.
@@ -46,16 +47,14 @@ export async function followCharity(
     const { charityId, userId } = validation.data
 
     // Find a followed charity with validated data.
-    const findFollowedCharity =
-      await charityFollowerService.findCharityFollower({ charityId, userId })
+    const findFollowedCharity = await findCharityFollower({ charityId, userId })
 
     // If followed charity does not exist then create it.
     if (findFollowedCharity === null) {
-      const followedCharity =
-        await charityFollowerService.createCharityFollower({
-          charityId,
-          userId,
-        })
+      const followedCharity = await createCharityFollower({
+        charityId,
+        userId,
+      })
 
       // Return the followed charity and return success message.
       return res.status(StatusCodes.CREATED).json({
@@ -67,7 +66,7 @@ export async function followCharity(
     }
 
     // If there is a followed charity then delete it.
-    await charityFollowerService.deleteCharityFollower({
+    await deleteCharityFollower({
       id: findFollowedCharity.id,
     })
 

@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
-import { CharityFollowerService } from '../charityFollower.service.js'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
+import { findCharityFollowers } from '../charityFollower.service.js'
 
 // Gets all followed charities by the current user from the prisma database.
 export async function getUserFollowedCharities(
@@ -10,8 +10,6 @@ export async function getUserFollowedCharities(
   res: Response<ResponseBody>,
   next: NextFunction,
 ): Promise<any> {
-  // Access handlers from the charity follower service.
-  const charityFollowerService = new CharityFollowerService()
   // Access handlers from the cache service.
   const cacheService = new CacheService()
 
@@ -47,13 +45,11 @@ export async function getUserFollowedCharities(
     }
 
     // If no cached charities are found then query the database.
-    const followedCharities = await charityFollowerService.findCharityFollowers(
-      {
-        where: {
-          userId: user.id,
-        },
+    const followedCharities = await findCharityFollowers({
+      where: {
+        userId: user.id,
       },
-    )
+    })
 
     // If followed charities are found then save them to cache.
     if (followedCharities.length > 0) {
