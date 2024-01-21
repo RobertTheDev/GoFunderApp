@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { createSavedFundraiserSchema } from '../savedFundraiser.validators.js'
+import { createSavedFundraiserSchema } from '../validators/createSavedFundraiser.schema.js'
 import {
   createSavedFundraiser,
   deleteSavedFundraiser,
