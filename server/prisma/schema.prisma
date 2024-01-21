@@ -112,6 +112,7 @@ model User {
   createdAt             DateTime          @default(now()) @map("created_at") // Date and time when the user was created.
   updatedAt             DateTime          @updatedAt @map("updated_at") // Date and time when the user was last updated.
   annonymous            Boolean           @default(false) // Indicates whether the user is anonymous.
+  accounts              Account[]
   charitiesFollowed     CharityFollower[] // List of charities followed by the user.
   charitiesOwned        CharityOwner[] // List of charities owned by the user.
   defaultCurrency       String            @default("GBP") @map("default_currency") // Default currency for the user.
@@ -127,6 +128,7 @@ model User {
   phoneNumber           String?           @unique @map("phone_number") // User's phone number (unique).
   phoneNumberVerified   DateTime?         @map("phone_number_verified") // Date and time when the user's phone number was verified (optional).
   savedFundraisers      SavedFundraiser[] // List of fundraisers saved by the user.
+  sessions              Session[]
   totalCharitesOwned    Int               @default(0) @map("total_charities_owned") // Total number of charities owned by the user.
   totalDonationsAmount  Int               @default(0) @map("total_donations_amount") // Total amount donated by the user.
   totalDonationsMade    Int               @default(0) @map("total_donations_made") // Total number of donations made by the user.
@@ -148,32 +150,32 @@ model VerificationRequest {
   @@map("verification_requests")
 }
 
-// model Account {
-//   id                 String    @id @default(cuid())
-//   createdAt          DateTime  @default(now()) @map("created_at")
-//   updatedAt          DateTime  @updatedAt @map("updated_at")
-//   accessToken        String?   @map("access_token") // Access token for the account (optional).
-//   accessTokenExpires DateTime? // Expiry date and time for the access token (optional).
-//   providerAccountId  String    @map("provider_account_id") // Unique identifier for the account on the provider side.
-//   providerId         String    @map("provider_id") // Identifier from the authentication provider.
-//   providerType       String    @map("provider_type") // Type of authentication provider (e.g., "email", "google", etc.).
-//   refreshToken       String?   @map("refresh_token") // Refresh token for the account (optional).
-//   user               User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-//   userId             String    @map("user_id") // Foreign key referencing the `id` field in the `User` model, indicating which user the account belongs to.
+model Account {
+  id                 String    @id @default(cuid())
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime  @updatedAt @map("updated_at")
+  accessToken        String?   @map("access_token") // Access token for the account (optional).
+  accessTokenExpires DateTime? // Expiry date and time for the access token (optional).
+  providerAccountId  String    @map("provider_account_id") // Unique identifier for the account on the provider side.
+  providerId         String    @map("provider_id") // Identifier from the authentication provider.
+  providerType       String    @map("provider_type") // Type of authentication provider (e.g., "email", "google", etc.).
+  refreshToken       String?   @map("refresh_token") // Refresh token for the account (optional).
+  user               User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId             String    @map("user_id") // Foreign key referencing the `id` field in the `User` model, indicating which user the account belongs to.
 
-//   @@unique([providerId, providerAccountId])
-//   @@map("accounts")
-// }
+  @@unique([providerId, providerAccountId])
+  @@map("accounts")
+}
 
-// model Session {
-//   id           String   @id @default(cuid())
-//   createdAt    DateTime @default(now()) @map("created_at")
-//   updatedAt    DateTime @updatedAt @map("updated_at")
-//   accessToken  String   @unique // Unique access token for the session. 
-//   expires      DateTime // Expiry date and time for the session.
-//   sessionToken String   @unique @map("session_token") // Unique token for the session.
-//   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-//   userId       String   @map("user_id") // Foreign key referencing the `id` field in the `User` model, indicating which user the session belongs to.
+model Session {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  accessToken  String   @unique // Unique access token for the session. 
+  expires      DateTime // Expiry date and time for the session.
+  sessionToken String   @unique @map("session_token") // Unique token for the session.
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String   @map("user_id") // Foreign key referencing the `id` field in the `User` model, indicating which user the session belongs to.
 
-//   @@map("sessions")
-// }
+  @@map("sessions")
+}
