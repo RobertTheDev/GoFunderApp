@@ -4,7 +4,7 @@ import type {
   IAmazonUser,
   IGithubUser,
   IGoogleUser,
-} from '../oauth.models'
+} from '../models/oauth.models'
 
 export async function signInWithAmazon(code: string): Promise<IAmazonUser> {
   const { data } = await axios.post<AccessTokenResponse>(
