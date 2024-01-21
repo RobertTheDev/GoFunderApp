@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'express'
 import { Router } from 'express'
-import { ensureUserIsAuthenticated } from '../../auth/auth.middlewares.js'
+import { ensureUserIsAuthenticated } from '../../auth/middlewares/auth.middlewares.js'
 import { getDonationsByFundraiserId } from '../controllers/getDonationsByFundraiserId.js'
 import { getDonationsByUserId } from '../controllers/getDonationsByUserId.js'
 import { getDonationsByCurrentUser } from '../controllers/getDonationsByCurrentUser.js'

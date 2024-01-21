@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express'
-import type ResponseBody from '../../interfaces/ResponseBody.js'
+import type ResponseBody from '../../../interfaces/ResponseBody.js'
 
 export async function ensureUserIsAuthenticated(
   req: Request,
