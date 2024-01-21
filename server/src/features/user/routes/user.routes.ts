@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'express'
 import { Router } from 'express'
-import { getAllUsers } from './controllers/getAllUsers'
-import { getUserById } from './controllers/getUserById'
+import { getAllUsers } from '../controllers/getAllUsers'
+import { getUserById } from '../controllers/getUserById'
 
 // Sets up the user router.
 const userRouter = Router()

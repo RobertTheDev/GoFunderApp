@@ -1,10 +1,10 @@
 import type { RequestHandler } from 'express'
 import { Router } from 'express'
-import { createCharityHandler } from './controllers/createCharity.js'
-import { deleteCharityById } from './controllers/deleteCharityById.js'
-import { getCharities } from './controllers/getCharities.js'
-import { getCharityBySlug } from './controllers/getCharityBySlug.js'
-import { updateCharityById } from './controllers/updateCharityById.js'
+import { createCharityHandler } from '../controllers/createCharity.js'
+import { deleteCharityById } from '../controllers/deleteCharityById.js'
+import { getCharities } from '../controllers/getCharities.js'
+import { getCharityBySlug } from '../controllers/getCharityBySlug.js'
+import { updateCharityById } from '../controllers/updateCharityById.js'
 
 // Sets up the charity router.
 const charityRouter: Router = Router()

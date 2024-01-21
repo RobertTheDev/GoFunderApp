@@ -3,8 +3,8 @@ import { Router } from 'express'
 import {
   getAllFundraisers,
   getFundraiserById,
-} from './fundraiser.controllers.js'
-import { getFundraisersByCategory } from './controllers/getFundraisersByCategory.js'
+} from '../fundraiser.controllers.js'
+import { getFundraisersByCategory } from '../controllers/getFundraisersByCategory.js'
 
 // Sets up the fundraiser router.
 const fundraiserRouter = Router()

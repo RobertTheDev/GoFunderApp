@@ -1,8 +1,8 @@
 import { type RequestHandler, Router } from 'express'
-import signInWithAmazonHandler from './controllers/amazonOauth'
-import signInWithFacebookHandler from './controllers/facebookOauth'
-import signInWithGithubHandler from './controllers/githubOauth'
-import signInWithGoogleHandler from './controllers/googleOauth'
+import signInWithAmazonHandler from '../controllers/amazonOauth'
+import signInWithFacebookHandler from '../controllers/facebookOauth'
+import signInWithGithubHandler from '../controllers/githubOauth'
+import signInWithGoogleHandler from '../controllers/googleOauth'
 
 const oauthRouter = Router()
 

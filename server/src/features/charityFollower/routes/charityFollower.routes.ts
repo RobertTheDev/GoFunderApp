@@ -1,6 +1,6 @@
 import { type RequestHandler, Router } from 'express'
-import { followCharity } from './controllers/followCharity.js'
-import { getUserFollowedCharities } from './controllers/getUserFollowedCharities.js'
+import { followCharity } from '../controllers/followCharity.js'
+import { getUserFollowedCharities } from '../controllers/getUserFollowedCharities.js'
 
 const charityFollowerRouter: Router = Router()
 
