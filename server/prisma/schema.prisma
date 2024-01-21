@@ -168,14 +168,13 @@ model Account {
 }
 
 model Session {
-  id           String   @id @default(cuid())
-  createdAt    DateTime @default(now()) @map("created_at")
-  updatedAt    DateTime @updatedAt @map("updated_at")
-  accessToken  String   @unique // Unique access token for the session. 
-  expires      DateTime // Expiry date and time for the session.
-  sessionToken String   @unique @map("session_token") // Unique token for the session.
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId       String   @map("user_id") // Foreign key referencing the `id` field in the `User` model, indicating which user the session belongs to.
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  expires   DateTime // Expiry date and time for the session.
+  sessionId String   @unique @map("session_id") // Unique token for the session.
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String   @map("user_id") // Foreign key referencing the `id` field in the `User` model, indicating which user the session belongs to.
 
   @@map("sessions")
 }
