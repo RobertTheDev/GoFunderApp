@@ -1,33 +1,32 @@
-import axios from 'axios'
 import type { NextFunction, Request, Response } from 'express'
 import type ResponseBody from '../../../../interfaces/ResponseBody'
 import { ReasonPhrases } from 'http-status-codes'
+import { signInWithFacebook } from '../oauth.service'
 
-export async function signInWithFacebook(
+export default async function signInWithFacebookHandler(
   req: Request,
   res: Response<ResponseBody>,
   next: NextFunction,
 ): Promise<void> {
-  const { code } = req.params
+  const { params, session } = req
+  const { code } = params
+  const { user } = session
 
   try {
-    const { data } = await axios.post<{
-      access_token: string
-      token_type: string
-      expires_in: number
-    }>(
-      `https://graph.facebook.com/v18.0/oauth/access_token?client_id=${process.env.FACEBOOK_CLIENT_ID}&redirect_uri=http://localhost:3000/auth/facebook/callback&client_secret=${process.env.FACEBOOK_CLIENT_SECRET}&code=${code}`,
-    )
+    if (user != null) {
+      throw new Error('You are already signed in.')
+    }
+    if (code == null || code === undefined) {
+      throw new Error('No  code was provided.')
+    }
 
-    const { data: user } = await axios.get(
-      `https://graph.facebook.com/me?fields=name,gender,location,picture,email&access_token=${data.access_token}`,
-    )
+    const authenticatedUser = await signInWithFacebook(code)
 
     res.json({
       success: true,
       status: ReasonPhrases.OK,
       message: 'Successfully authenticated user with facebook.',
-      data: user,
+      data: authenticatedUser,
     })
   } catch (error) {
     next(error)

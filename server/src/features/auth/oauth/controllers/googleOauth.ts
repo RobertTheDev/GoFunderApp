@@ -1,38 +1,31 @@
-import axios from 'axios'
 import type { NextFunction, Request, Response } from 'express'
 import type ResponseBody from '../../../../interfaces/ResponseBody'
 import { ReasonPhrases } from 'http-status-codes'
+import { signInWithGoogle } from '../oauth.service'
 
-interface IGoogleUser {
-  sub: string
-  name: string
-  given_name: string
-  picture: string | null
-  locale: string
-}
-
-export async function signInWithGoogle(
+export default async function signInWithGoogleHandler(
   req: Request,
   res: Response<ResponseBody>,
   next: NextFunction,
 ): Promise<void> {
-  const { code } = req.params
+  const { params, session } = req
+  const { code } = params
+  const { user } = session
   try {
-    const { data: user } = await axios.get<IGoogleUser>(
-      `https://www.googleapis.com/oauth2/v3/userinfo`,
-      {
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${code}`,
-        },
-      },
-    )
+    if (user != null) {
+      throw new Error('You are already signed in.')
+    }
+    if (code == null || code === undefined) {
+      throw new Error('No  code was provided.')
+    }
+
+    const authenticatedUser = await signInWithGoogle(code)
 
     res.json({
       success: true,
       status: ReasonPhrases.OK,
       message: 'Successfully authenticated user with google.',
-      data: user,
+      data: authenticatedUser,
     })
   } catch (error) {
     next(error)

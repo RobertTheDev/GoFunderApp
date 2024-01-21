@@ -3,7 +3,7 @@ import type ResponseBody from '../../../../interfaces/ResponseBody'
 import { ReasonPhrases } from 'http-status-codes'
 import { signInWithAmazon } from '../oauth.service'
 
-export async function signInWithAmazonHandler(
+export default async function signInWithAmazonHandler(
   req: Request,
   res: Response<ResponseBody>,
   next: NextFunction,
