@@ -4,38 +4,36 @@ import type { Charity } from '@prisma/client'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { findCharity } from '../services/charity.service.js'
 import {
-  getCachedCharity,
-  setCachedCharity,
+  getCachedCharityBySlug,
+  setCachedCharityBySlug,
 } from '../services/charityCache.service.js'
 
-export async function getCharityById(
+export async function getCharityBySlug(
   req: Request,
   res: Response<ResponseBody>,
   next: NextFunction,
 ): Promise<any> {
   const { params } = req
 
-  const { id } = params
+  const { slug } = params
 
   try {
-    if (id === undefined) {
-      throw new Error('No charity ID was provided.')
+    if (slug === undefined) {
+      throw new Error('No slug was provided.')
     }
 
-    const cachedCharity = await getCachedCharity(id)
+    const cachedCharity = await getCachedCharityBySlug(slug)
 
     if (cachedCharity !== null) {
-      const data = JSON.parse(cachedCharity)
-
       return res.status(StatusCodes.OK).json({
         success: true,
         status: ReasonPhrases.OK,
         message: 'Successfully found charity from cache.',
-        data,
+        data: cachedCharity,
       })
     }
 
-    const charity: Charity | null = await findCharity({ id })
+    const charity: Charity | null = await findCharity({ slug })
 
     if (charity === null) {
       return res.status(StatusCodes.NOT_FOUND).json({
@@ -46,7 +44,7 @@ export async function getCharityById(
       })
     }
 
-    await setCachedCharity(charity.id, charity)
+    await setCachedCharityBySlug(slug, charity)
 
     return res.status(StatusCodes.OK).json({
       success: true,
