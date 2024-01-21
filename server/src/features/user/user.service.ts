@@ -3,6 +3,10 @@ import { type Prisma, PrismaClient } from '@prisma/client'
 export class UserService {
   private readonly prisma = new PrismaClient()
 
+  async countUserByUniqueField(username: string): Promise<number> {
+    return await this.prisma.user.count({ where: { username } })
+  }
+
   // Returns a user from prisma database.
   async findUser(userWhereUniqueInput: Prisma.UserWhereUniqueInput): Promise<{
     id: string
