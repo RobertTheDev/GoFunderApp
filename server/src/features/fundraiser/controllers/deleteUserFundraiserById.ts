@@ -2,7 +2,10 @@ import type { Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes, getReasonPhrase } from 'http-status-codes'
 import winstonLogger from '../../../utils/winston/winstonLogger.js'
 import updateFundraiserSchema from '../validators/updateFundraiser.schema.js'
-import { deleteFundraiser, findFundraiser } from '../fundraiser.service.js'
+import {
+  deleteFundraiser,
+  findFundraiser,
+} from '../services/fundraiser.service.js'
 
 export async function deleteUserFundraiserById(
   req: Request,

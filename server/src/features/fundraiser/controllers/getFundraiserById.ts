@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { findFundraiser } from '../fundraiser.service.js'
+import { findFundraiser } from '../services/fundraiser.service.js'
 
 // Gets fundraiser by id from the cache or prisma database.
 export async function getFundraiserById(

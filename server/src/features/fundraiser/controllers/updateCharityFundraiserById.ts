@@ -2,7 +2,10 @@ import type { Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes, getReasonPhrase } from 'http-status-codes'
 import winstonLogger from '../../../utils/winston/winstonLogger.js'
 import updateFundraiserSchema from '../validators/updateFundraiser.schema.js'
-import { findFundraiser, updateFundraiser } from '../fundraiser.service.js'
+import {
+  findFundraiser,
+  updateFundraiser,
+} from '../services/fundraiser.service.js'
 
 export async function updateCharityFundraiserById(
   req: Request,

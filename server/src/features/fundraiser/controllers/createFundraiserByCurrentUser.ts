@@ -3,7 +3,7 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import createUserFundraiserSchema from '../validators/createUserFundraiser.schema.js'
-import { createFundraiser } from '../fundraiser.service.js'
+import { createFundraiser } from '../services/fundraiser.service.js'
 
 // This handler creates a fundraiser with the current user in session.
 

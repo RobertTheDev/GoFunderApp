@@ -2,7 +2,10 @@ import type { Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import winstonLogger from '../../utils/winston/winstonLogger.js'
 import type ResponseBody from '../../interfaces/ResponseBody.js'
-import { findFundraiser, findFundraisers } from './fundraiser.service.js'
+import {
+  findFundraiser,
+  findFundraisers,
+} from './services/fundraiser.service.js'
 
 // Gets all users from the prisma database.
 export async function getAllFundraisers(

@@ -1,5 +1,5 @@
 import type { Fundraiser, Prisma } from '@prisma/client'
-import prismaClient from '../../utils/prisma/prismaClient'
+import prismaClient from '../../../utils/prisma/prismaClient'
 
 // Returns a fundraiser from prisma database.
 export async function findFundraiser(
