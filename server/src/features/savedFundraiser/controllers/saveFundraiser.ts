@@ -6,7 +6,7 @@ import {
   createSavedFundraiser,
   deleteSavedFundraiser,
   findSavedFundraiser,
-} from '../savedFundraiser.service.js'
+} from '../services/savedFundraiser.service.js'
 
 // This handler searches for a saved fundraiser and either
 // creates or deletes one by user and fundraiser id.
