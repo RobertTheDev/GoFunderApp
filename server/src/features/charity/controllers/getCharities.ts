@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { findCharities } from '../charity.service.js'
+import { findCharities } from '../services/charity.service.js'
 
 // Gets all charities from the prisma database.
 export async function getCharities(

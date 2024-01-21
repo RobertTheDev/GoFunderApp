@@ -4,7 +4,7 @@ import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { createCharitySchema } from '../validators/createCharity.schema.js'
 import { createCharityOwner } from '../../../features/charityOwner/charityOwner.service.js'
-import { createCharity } from '../charity.service.js'
+import { createCharity } from '../services/charity.service.js'
 
 // This handler creates a charity and charity owner with the current user in session.
 

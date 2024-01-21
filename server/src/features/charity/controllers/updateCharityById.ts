@@ -3,7 +3,7 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { updateCharitySchema } from '../validators/updateCharity.schema.js'
-import { updateCharity } from '../charity.service.js'
+import { updateCharity } from '../services/charity.service.js'
 
 export async function updateCharityById(
   req: Request,

@@ -3,7 +3,7 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import type { Charity } from '@prisma/client'
 import { CacheService } from '../../services/cache/cache.service.js'
 import type ResponseBody from '../../interfaces/ResponseBody.js'
-import { CharityService } from '../charity/charity.service.js'
+import { CharityService } from '../charity/services/charity.service.js'
 
 export async function getCharityOwnersByUserId(
   req: Request,
