@@ -1,8 +1,12 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { SavedFundraiserService } from '../savedFundraiser.service.js'
 import { createSavedFundraiserSchema } from '../savedFundraiser.validators.js'
+import {
+  createSavedFundraiser,
+  deleteSavedFundraiser,
+  findSavedFundraiser,
+} from '../savedFundraiser.service.js'
 
 // This handler searches for a saved fundraiser and either
 // creates or deletes one by user and fundraiser id.
@@ -16,9 +20,6 @@ export async function saveFundraiser(
   const { params, session } = req
   const { fundraiserId: id } = params
   const { user } = session
-
-  // Use the saved fundraiser service to get handlers.
-  const savedFundraiserService = new SavedFundraiserService()
 
   try {
     // If no user is in session return an error.
@@ -46,16 +47,14 @@ export async function saveFundraiser(
     const { fundraiserId, userId } = validation.data
 
     // Find a saved fundraiser with validated data.
-    const findSavedFundraiser =
-      await savedFundraiserService.findSavedFundraiser({ fundraiserId, userId })
+    const savedFundraiser = await findSavedFundraiser({ fundraiserId, userId })
 
     // If saved fundraiser does not exist then create it.
-    if (findSavedFundraiser === null) {
-      const followedCharity =
-        await savedFundraiserService.createSavedFundraiser({
-          fundraiserId,
-          userId,
-        })
+    if (savedFundraiser === null) {
+      const followedCharity = await createSavedFundraiser({
+        fundraiserId,
+        userId,
+      })
 
       // Return the saved fundraiser and return success message.
       return res.status(StatusCodes.CREATED).json({
@@ -67,8 +66,8 @@ export async function saveFundraiser(
     }
 
     // If there is a saved fundraiser then delete it.
-    await savedFundraiserService.deleteSavedFundraiser({
-      id: findSavedFundraiser.id,
+    await deleteSavedFundraiser({
+      id: savedFundraiser.id,
     })
 
     // Return success message.

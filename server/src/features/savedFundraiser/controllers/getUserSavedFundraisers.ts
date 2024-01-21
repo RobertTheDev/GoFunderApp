@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { SavedFundraiserService } from '../savedFundraiser.service.js'
+import { findSavedFundraisers } from '../savedFundraiser.service.js'
 
 // Gets all saved fundraisers by the current user from the prisma database.
 export async function getUserSavedFundraisers(
@@ -10,8 +10,6 @@ export async function getUserSavedFundraisers(
   res: Response<ResponseBody>,
   next: NextFunction,
 ): Promise<any> {
-  // Access handlers from the saved fundraiser service.
-  const savedFundraiserService = new SavedFundraiserService()
   // Access handlers from the cache service.
   const cacheService = new CacheService()
 
@@ -47,7 +45,7 @@ export async function getUserSavedFundraisers(
     }
 
     // If no cached saved fundraisers are found then query the database.
-    const savedFundraisers = await savedFundraiserService.findSavedFundraisers({
+    const savedFundraisers = await findSavedFundraisers({
       where: {
         userId: user.id,
       },
