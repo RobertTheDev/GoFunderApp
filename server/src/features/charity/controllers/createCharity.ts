@@ -4,7 +4,7 @@ import { CharityService } from '../charity.service.js'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { createCharitySchema } from '../validators/createCharity.schema.js'
-import { CharityOwnerService } from '../../charityOwner/charityOwner.service.js'
+import { createCharityOwner } from '../../../features/charityOwner/charityOwner.service.js'
 
 // This handler creates a charity and charity owner with the current user in session.
 
@@ -17,7 +17,6 @@ export async function createCharity(
   const { user } = session
 
   const charityService = new CharityService()
-  const charityOwnerService = new CharityOwnerService()
   const cacheService = new CacheService()
 
   try {
@@ -43,7 +42,7 @@ export async function createCharity(
     const createdCharity = await charityService.createCharity(validation.data)
 
     // Create a charity owner with the current user and created charity.
-    await charityOwnerService.createCharityOwner({
+    await createCharityOwner({
       charityId: createdCharity.id,
       userId: user.id,
     })

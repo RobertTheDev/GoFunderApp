@@ -3,7 +3,7 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { CharityService } from '../charity.service.js'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { CharityOwnerService } from '../../charityOwner/charityOwner.service.js'
+import { deleteCharityOwnersByInput } from '../../../features/charityOwner/charityOwner.service.js'
 
 // The handler deletes a charity and its owners.
 
@@ -17,7 +17,6 @@ export async function deleteCharityById(
   const { user } = session
 
   const charityService = new CharityService()
-  const charityOwnerService = new CharityOwnerService()
   const cacheService = new CacheService()
 
   try {
@@ -42,7 +41,7 @@ export async function deleteCharityById(
     })
 
     // Delete the charity owners from the database.
-    await charityOwnerService.deleteCharityOwnersByInput({ id })
+    await deleteCharityOwnersByInput({ id })
 
     // Delete the charity from cache.
     await cacheService.delete(id)
