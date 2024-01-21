@@ -6,7 +6,7 @@ import {
   createCharityFollower,
   deleteCharityFollower,
   findCharityFollower,
-} from '../charityFollower.service.js'
+} from '../services/charityFollower.service.js'
 
 // This handler searches for a followed charity and either
 // creates or deletes one by user and charity id.

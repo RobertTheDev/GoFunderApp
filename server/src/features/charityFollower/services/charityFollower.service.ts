@@ -1,5 +1,5 @@
 import type { CharityFollower, Prisma } from '@prisma/client'
-import prismaClient from '../../utils/prisma/prismaClient'
+import prismaClient from '../../../utils/prisma/prismaClient'
 
 export async function findCharityFollower(
   charityFollowerWhereInput: Prisma.CharityFollowerWhereInput,

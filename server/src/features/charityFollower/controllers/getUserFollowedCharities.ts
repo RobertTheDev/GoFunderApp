@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { findCharityFollowers } from '../charityFollower.service.js'
+import { findCharityFollowers } from '../services/charityFollower.service.js'
 
 // Gets all followed charities by the current user from the prisma database.
 export async function getUserFollowedCharities(
