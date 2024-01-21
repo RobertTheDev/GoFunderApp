@@ -1,8 +1,11 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
-import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { findCharities } from '../services/charity.service.js'
+import {
+  getCachedCharities,
+  setCachedCharities,
+} from '../services/charityCache.service.js'
 
 // Gets all charities from the prisma database.
 export async function getCharities(
@@ -10,26 +13,22 @@ export async function getCharities(
   res: Response<ResponseBody>,
   next: NextFunction,
 ): Promise<any> {
-  const cacheService = new CacheService()
-
   try {
-    const cachedCharities = await cacheService.get('charities')
+    const cachedCharities = await getCachedCharities()
 
     if (cachedCharities !== null) {
-      const data = JSON.parse(cachedCharities)
-
       return res.status(StatusCodes.OK).json({
         success: true,
         status: ReasonPhrases.OK,
         message: 'Successfully found charities from cache.',
-        data,
+        data: cachedCharities,
       })
     }
 
     const charities = await findCharities({})
 
     if (charities.length > 0) {
-      await cacheService.setForOneDay('charities', charities)
+      await setCachedCharities(charities)
     }
 
     return res.status(StatusCodes.OK).json({

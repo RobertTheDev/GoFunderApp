@@ -1,10 +1,10 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
-import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { createCharitySchema } from '../validators/createCharity.schema.js'
 import { createCharityOwner } from '../../charityOwner/services/charityOwner.service.js'
 import { createCharity } from '../services/charity.service.js'
+import { setCachedCharityBySlug } from '../services/charityCache.service.js'
 
 // This handler creates a charity and charity owner with the current user in session.
 
@@ -15,8 +15,6 @@ export async function createCharityHandler(
 ): Promise<any> {
   const { body, session } = req
   const { user } = session
-
-  const cacheService = new CacheService()
 
   try {
     // If no user is in session return an error.
@@ -47,7 +45,7 @@ export async function createCharityHandler(
     })
 
     // Cache the created charity for one day.
-    await cacheService.setForOneDay(createdCharity.id, createdCharity)
+    await setCachedCharityBySlug(createdCharity.slug, createdCharity)
 
     // Return the created charity and success message.
     return res.status(StatusCodes.CREATED).json({

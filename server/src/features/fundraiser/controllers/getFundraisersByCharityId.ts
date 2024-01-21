@@ -1,8 +1,11 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
-import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { findFundraisers } from '../services/fundraiser.service.js'
+import {
+  getCachedFundraisersByCharityId,
+  setCachedFundraisersByCharityId,
+} from '../services/fundraiserCache.service.js'
 
 // Gets all fundraisers by charity ID from the cache or prisma database.
 export async function getFundraisersByUserId(
@@ -13,19 +16,19 @@ export async function getFundraisersByUserId(
   const { params } = req
   const { charityId } = params
 
-  const cacheService = new CacheService()
-
   try {
-    const cachedFundraisers = await cacheService.get(`fundraisers-${charityId}`)
+    if (charityId == null || charityId === undefined) {
+      throw new Error('Charity ID is required.')
+    }
+
+    const cachedFundraisers = await getCachedFundraisersByCharityId(charityId)
 
     if (cachedFundraisers !== null) {
-      const data = JSON.parse(cachedFundraisers)
-
       return res.status(StatusCodes.OK).json({
         success: true,
         status: ReasonPhrases.OK,
         message: 'Successfully found fundraisers from cache.',
-        data,
+        data: cachedFundraisers,
       })
     }
 
@@ -34,10 +37,7 @@ export async function getFundraisersByUserId(
     })
 
     if (fundraisers.length > 0) {
-      await cacheService.setForTenMinutes(
-        `fundraisers-${charityId}`,
-        fundraisers,
-      )
+      await setCachedFundraisersByCharityId(charityId, fundraisers)
     }
 
     return res.status(StatusCodes.OK).json({

@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
-import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { updateCharitySchema } from '../validators/updateCharity.schema.js'
 import { updateCharity } from '../services/charity.service.js'
+import { setCachedCharityBySlug } from '../services/charityCache.service.js'
 
 export async function updateCharityById(
   req: Request,
@@ -14,8 +14,6 @@ export async function updateCharityById(
     body,
     params: { id },
   } = req
-
-  const cacheService = new CacheService()
 
   try {
     const validation = await updateCharitySchema.safeParseAsync(body)
@@ -28,7 +26,7 @@ export async function updateCharityById(
       where: { id },
     })
 
-    await cacheService.setForOneDay(updatedCharity.id, updatedCharity)
+    await setCachedCharityBySlug(updatedCharity.slug, updatedCharity)
 
     return res.status(StatusCodes.OK).json({
       success: true,

@@ -1,8 +1,11 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
-import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { findSavedFundraisers } from '../services/savedFundraiser.service.js'
+import {
+  getCachedFundraisersSavedByUserId,
+  setCachedFundraisersSavedByUserId,
+} from '../services/savedFundraiserCache.service.js'
 
 // Gets all saved fundraisers by the current user from the prisma database.
 export async function getUserSavedFundraisers(
@@ -10,9 +13,6 @@ export async function getUserSavedFundraisers(
   res: Response<ResponseBody>,
   next: NextFunction,
 ): Promise<any> {
-  // Access handlers from the cache service.
-  const cacheService = new CacheService()
-
   // Get user from session.
   const { session } = req
   const { user } = session
@@ -29,18 +29,16 @@ export async function getUserSavedFundraisers(
     }
 
     // Get and return the saved fundraisers from the cache.
-    const cachedSavedFundraisers = await cacheService.get(
-      `${user.id}:saved-fundraisers`,
+    const cachedSavedFundraisers = await getCachedFundraisersSavedByUserId(
+      user.id,
     )
 
     if (cachedSavedFundraisers !== null) {
-      const data = JSON.parse(cachedSavedFundraisers)
-
       return res.status(StatusCodes.OK).json({
         success: true,
         status: ReasonPhrases.OK,
         message: 'Successfully found saved fundraisers from cache.',
-        data,
+        data: cachedSavedFundraisers,
       })
     }
 
@@ -53,10 +51,7 @@ export async function getUserSavedFundraisers(
 
     // If saved fundraisers are found then save them to cache.
     if (savedFundraisers.length > 0) {
-      await cacheService.setForTenMinutes(
-        `${user.id}:saved-fundraisers`,
-        savedFundraisers,
-      )
+      await setCachedFundraisersSavedByUserId(user.id, savedFundraisers)
     }
 
     // Return a success message.

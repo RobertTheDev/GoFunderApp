@@ -1,8 +1,11 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
-import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { findCharityFollowers } from '../services/charityFollower.service.js'
+import {
+  getCachedCharitiesFollowedByUserId,
+  setCachedCharitiesFollowedByUserId,
+} from '../services/charityFollowerCache.service.js'
 
 // Gets all followed charities by the current user from the prisma database.
 export async function getUserFollowedCharities(
@@ -10,9 +13,6 @@ export async function getUserFollowedCharities(
   res: Response<ResponseBody>,
   next: NextFunction,
 ): Promise<any> {
-  // Access handlers from the cache service.
-  const cacheService = new CacheService()
-
   // Get user from session.
   const { session } = req
   const { user } = session
@@ -29,18 +29,16 @@ export async function getUserFollowedCharities(
     }
 
     // Get and return the followed charities from the cache.
-    const cachedFollowedCharities = await cacheService.get(
-      `${user.id}:followed-charities`,
+    const cachedFollowedCharities = await getCachedCharitiesFollowedByUserId(
+      user.id,
     )
 
     if (cachedFollowedCharities !== null) {
-      const data = JSON.parse(cachedFollowedCharities)
-
       return res.status(StatusCodes.OK).json({
         success: true,
         status: ReasonPhrases.OK,
         message: 'Successfully found followed charities from cache.',
-        data,
+        data: cachedFollowedCharities,
       })
     }
 
@@ -53,10 +51,7 @@ export async function getUserFollowedCharities(
 
     // If followed charities are found then save them to cache.
     if (followedCharities.length > 0) {
-      await cacheService.setForTenMinutes(
-        `${user.id}:followed-charities`,
-        followedCharities,
-      )
+      await setCachedCharitiesFollowedByUserId(user.id, followedCharities)
     }
 
     // Return a success message.
