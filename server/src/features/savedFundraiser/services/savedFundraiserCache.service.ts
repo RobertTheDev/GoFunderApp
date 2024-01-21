@@ -1,4 +1,4 @@
-import type { CharityFollower } from '@prisma/client'
+import type { SavedFundraiser } from '@prisma/client'
 import redisClient from '../../../utils/redis/redisClient'
 
 export async function deleteCachedFundraisersSavedByUserId(
@@ -9,7 +9,7 @@ export async function deleteCachedFundraisersSavedByUserId(
 
 export async function getCachedFundraisersSavedByUserId(
   userId: string,
-): Promise<CharityFollower[] | null> {
+): Promise<SavedFundraiser[] | null> {
   const cachedSavedFundraisers = await redisClient.get(
     `fundraisers-saved-${userId}`,
   )
@@ -23,7 +23,7 @@ export async function getCachedFundraisersSavedByUserId(
 
 export async function setCachedFundraisersSavedByUserId(
   userId: string,
-  data: CharityFollower[],
+  data: SavedFundraiser[],
 ): Promise<string | null> {
   const cachedSavedFundraisers = JSON.stringify(data)
 

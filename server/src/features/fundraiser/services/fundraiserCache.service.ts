@@ -21,7 +21,7 @@ export async function getCachedFundraiserBySlug(
 
 export async function setCachedFundraiserBySlug(
   slug: string,
-  data: Fundraiser,
+  data: any,
 ): Promise<string | null> {
   const cachedFundraiser = JSON.stringify(data)
 
@@ -48,7 +48,7 @@ export async function getCachedFundraisersByUserId(
 
 export async function setCachedFundraisersByUserId(
   userId: string,
-  data: Fundraiser[],
+  data: any,
 ): Promise<string | null> {
   const cachedFundraisers = JSON.stringify(data)
 
@@ -83,7 +83,7 @@ export async function getCachedFundraisersByCharityId(
 
 export async function setCachedFundraisersByCharityId(
   charityId: string,
-  data: Fundraiser[],
+  data: any,
 ): Promise<string | null> {
   const cachedFundraisers = JSON.stringify(data)
 
@@ -106,12 +106,39 @@ export async function getCachedFundraisers(): Promise<Fundraiser[] | null> {
   return JSON.parse(cachedFundraisers)
 }
 
-export async function setCachedFundraisers(
-  data: Fundraiser[],
-): Promise<string | null> {
+export async function setCachedFundraisers(data: any): Promise<string | null> {
   const cachedFundraisers = JSON.stringify(data)
 
   return await redisClient.set(`cached-fundraisers`, cachedFundraisers, {
     EX: 6000,
   })
+}
+
+export async function getCachedFundraisersByCategory(
+  category: string,
+): Promise<Fundraiser[] | null> {
+  const cachedFundraisers = await redisClient.get(
+    `fundraisers-category-${category}`,
+  )
+
+  if (cachedFundraisers == null) {
+    return null
+  }
+
+  return JSON.parse(cachedFundraisers)
+}
+
+export async function setCachedFundraisersByCategory(
+  category: string,
+  data: any,
+): Promise<string | null> {
+  const cachedFundraisers = JSON.stringify(data)
+
+  return await redisClient.set(
+    `fundraisers-category-${category}`,
+    cachedFundraisers,
+    {
+      EX: 6000,
+    },
+  )
 }
