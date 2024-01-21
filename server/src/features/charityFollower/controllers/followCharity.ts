@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { createCharityFollowerSchema } from '../charityFollower.validators.js'
+import { createCharityFollowerSchema } from '../validators/createCharityFollower.schema.js'
 import {
   createCharityFollower,
   deleteCharityFollower,
