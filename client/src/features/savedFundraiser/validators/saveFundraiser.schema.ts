@@ -1,20 +1,22 @@
 import z from "zod";
 
-export type SaveFundraiserSchemaType = z.infer<typeof saveFundraiserSchema>;
-
+// Schema defines the relevant fields to successfully save a fundraiser.
 const saveFundraiserSchema = z.object({
   fundraiserId: z
     .string({
       invalid_type_error: "Fundraiser ID must be a string.",
       required_error: "Fundraiser ID is required.",
     })
-    .min(1, "Fundraiser ID cannot be empty."),
+    .min(1, "Fundraiser ID is required."),
   userId: z
     .string({
       invalid_type_error: "User ID must be a string.",
       required_error: "User ID is required.",
     })
-    .min(1, "User ID cannot be empty."),
+    .min(1, "User ID is required."),
 });
 
 export default saveFundraiserSchema;
+
+// Infers the schema to be a type to work with TypeScript.
+export type SaveFundraiserSchemaType = z.infer<typeof saveFundraiserSchema>;

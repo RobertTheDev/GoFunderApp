@@ -1,8 +1,7 @@
 import z from "zod";
 
-export type FollowCharitySchemaType = z.infer<typeof followCharitySchema>;
-
-export const followCharitySchema = z.object({
+// Schema defines the relevant fields to successfully follow a charity.
+const followCharitySchema = z.object({
   charityId: z
     .string({
       invalid_type_error: "Charity ID must be of type string.",
@@ -16,3 +15,8 @@ export const followCharitySchema = z.object({
     })
     .min(1, "User ID is required."),
 });
+
+export default followCharitySchema;
+
+// Infers the schema to be a type to work with TypeScript.
+export type FollowCharitySchemaType = z.infer<typeof followCharitySchema>;
