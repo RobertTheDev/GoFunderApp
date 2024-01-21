@@ -1,6 +1,9 @@
 import type { RequestHandler } from 'express'
 import { Router } from 'express'
-import { getAuthenticatedUser, signOut } from '../auth.controllers.js'
+import {
+  getAuthenticatedUser,
+  signOut,
+} from '../controllers/auth.controllers.js'
 import emailPasswordRouter from '../emailPassword/routes/emailPassword.routes.js'
 import totpRouter from '../totp/routes/totp.routes.js'
 import oauthRouter from '../oauth/routes/oauth.routes.js'

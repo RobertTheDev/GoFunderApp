@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'express'
 import { Router } from 'express'
-import { uploadImage } from '../upload.controllers.js'
+import { uploadImage } from '../controllers/upload.controllers.js'
 import multer from 'multer'
 
 const storage = multer.diskStorage({
