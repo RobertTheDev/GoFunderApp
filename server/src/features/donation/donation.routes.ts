@@ -4,7 +4,7 @@ import { ensureUserIsAuthenticated } from '../auth/auth.middlewares.js'
 import { getDonationsByFundraiserId } from './controllers/getDonationsByFundraiserId.js'
 import { getDonationsByUserId } from './controllers/getDonationsByUserId.js'
 import { getDonationsByCurrentUser } from './controllers/getDonationsByCurrentUser.js'
-import { createDonation } from './controllers/createDonation.js'
+import { createDonationHandler } from './controllers/createDonation.js'
 
 // Sets up the donation router.
 const donationRouter = Router()
@@ -20,6 +20,6 @@ donationRouter.get(
   ensureUserIsAuthenticated as RequestHandler,
   getDonationsByCurrentUser as RequestHandler,
 )
-donationRouter.post('/create', createDonation as RequestHandler)
+donationRouter.post('/create', createDonationHandler as RequestHandler)
 
 export default donationRouter

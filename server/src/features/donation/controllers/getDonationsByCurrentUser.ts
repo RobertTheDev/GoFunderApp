@@ -1,9 +1,7 @@
 import type { Request, Response } from 'express'
 import { StatusCodes, getReasonPhrase } from 'http-status-codes'
 import winstonLogger from '../../../utils/winston/winstonLogger.js'
-import { DonationService } from '../donation.service.js'
-
-const donationService = new DonationService()
+import { findDonations } from '../donation.service.js'
 
 export async function getDonationsByCurrentUser(
   req: Request,
@@ -14,7 +12,7 @@ export async function getDonationsByCurrentUser(
   } = req
 
   try {
-    const donations = await donationService.findDonations({
+    const donations = await findDonations({
       where: {
         userId: user?.id,
       },

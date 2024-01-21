@@ -1,10 +1,8 @@
 import type { Request, Response } from 'express'
 import { StatusCodes, getReasonPhrase } from 'http-status-codes'
 import winstonLogger from '../../../utils/winston/winstonLogger.js'
-import { DonationService } from '../donation.service.js'
 import { createDonationSchema } from '../donation.validators.js'
-
-const donationService = new DonationService()
+import { createDonation } from '../donation.service.js'
 
 export async function updateDonationById(
   req: Request,
@@ -16,7 +14,7 @@ export async function updateDonationById(
     const validation = await createDonationSchema.safeParseAsync(body)
 
     if (validation.success) {
-      const donation = await donationService.createDonation(validation.data)
+      const donation = await createDonation(validation.data)
 
       res.status(StatusCodes.CREATED).json(donation)
     } else {
