@@ -5,7 +5,7 @@ import prismaClient from '../../../../utils/prisma/prismaClient.js'
 import type ResponseBody from '../../../../interfaces/ResponseBody.js'
 import signUpWithEmailAndPasswordSchema from '../validators/signUp.schema.js'
 import slugify from 'slugify'
-import { UserService } from 'src/features/user/user.service.js'
+import { countUsersByUsername } from '../../../../features/user/user.service.js'
 
 export default async function signUpWithEmailAndPassword(
   req: Request,
@@ -53,9 +53,7 @@ export default async function signUpWithEmailAndPassword(
 
     let attempt = 0
 
-    const userService = new UserService()
-
-    while ((await userService.countUserByUniqueField(username)) > 0) {
+    while ((await countUsersByUsername(username)) > 0) {
       attempt += 1
       username = username.replace(/\.\d+$/, '') + `.${attempt}`
     }

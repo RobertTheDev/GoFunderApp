@@ -1,11 +1,8 @@
 import type { Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import winstonLogger from '../../utils/winston/winstonLogger.js'
-import { UserService } from './user.service.js'
 import type ResponseBody from '../../interfaces/ResponseBody.js'
-
-// Access the user service to get user handlers.
-const userService = new UserService()
+import { findUser, findUsers } from './user.service.js'
 
 // Gets all users from the prisma database.
 export async function getAllUsers(
@@ -14,7 +11,7 @@ export async function getAllUsers(
 ): Promise<Response<ResponseBody>> {
   try {
     // Fetches all the users from the database.
-    const users = await userService.findUsers({})
+    const users = await findUsers({})
 
     // Return users with sucess response.
     return res.status(StatusCodes.OK).json({
@@ -50,7 +47,7 @@ export async function getUserById(
 
   try {
     // Get user by id from the database.
-    const user = await userService.findUser({ id: userId })
+    const user = await findUser({ id: userId })
 
     // If no user is found log it and return no found response.
     if (user === null) {
