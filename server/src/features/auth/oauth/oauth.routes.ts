@@ -9,6 +9,6 @@ const oauthRouter = Router()
 oauthRouter.get('/amazon/:code', signInWithAmazon as RequestHandler)
 oauthRouter.get('/facebook/:code', signInWithFacebook as RequestHandler)
 oauthRouter.get('/github/:code', signInWithGithub as RequestHandler)
-oauthRouter.get('/google/:accessToken', signInWithGoogle as RequestHandler)
+oauthRouter.get('/google/:code', signInWithGoogle as RequestHandler)
 
 export default oauthRouter

@@ -16,14 +16,14 @@ export async function signInWithGoogle(
   res: Response<ResponseBody>,
   next: NextFunction,
 ): Promise<void> {
-  const { accessToken } = req.params
+  const { code } = req.params
   try {
     const { data: user } = await axios.get<IGoogleUser>(
       `https://www.googleapis.com/oauth2/v3/userinfo`,
       {
         headers: {
           Accept: 'application/json',
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${code}`,
         },
       },
     )
