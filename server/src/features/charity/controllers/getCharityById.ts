@@ -1,9 +1,12 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import type { Charity } from '@prisma/client'
-import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { findCharity } from '../services/charity.service.js'
+import {
+  getCachedCharity,
+  setCachedCharity,
+} from '../services/charityCache.service.js'
 
 export async function getCharityById(
   req: Request,
@@ -14,14 +17,12 @@ export async function getCharityById(
 
   const { id } = params
 
-  const cacheService = new CacheService()
-
   try {
     if (id === undefined) {
       throw new Error('No charity ID was provided.')
     }
 
-    const cachedCharity = await cacheService.get(id)
+    const cachedCharity = await getCachedCharity(id)
 
     if (cachedCharity !== null) {
       const data = JSON.parse(cachedCharity)
@@ -45,7 +46,7 @@ export async function getCharityById(
       })
     }
 
-    await cacheService.setForOneDay(charity.id, charity)
+    await setCachedCharity(charity.id, charity)
 
     return res.status(StatusCodes.OK).json({
       success: true,
