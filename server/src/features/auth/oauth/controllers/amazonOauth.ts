@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from 'express'
 import type ResponseBody from '../../../../interfaces/ResponseBody'
 import { ReasonPhrases } from 'http-status-codes'
-import { signInWithAmazon } from '../oauth.service'
+import { signInWithAmazon } from '../services/oauth.service'
 
 export default async function signInWithAmazonHandler(
   req: Request,
