@@ -2,7 +2,7 @@ import type { Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import winstonLogger from '../../../utils/winston/winstonLogger.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { findUser } from '../user.service.js'
+import { findUser } from '../services/user.service.js'
 
 // Gets a user by its id from the prisma database.
 export async function getUserById(
