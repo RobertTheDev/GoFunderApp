@@ -1,7 +1,7 @@
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import type { NextFunction, Request, Response } from 'express'
-import prismaClient from '../../../../utils/prisma/prismaClient.js'
-import type ResponseBody from '../../../../interfaces/ResponseBody.js'
+import prismaClient from '../../../../../utils/prisma/prismaClient.js'
+import type ResponseBody from '../../../../../interfaces/ResponseBody.js'
 
 export async function verifyEmailWithToken(
   req: Request,

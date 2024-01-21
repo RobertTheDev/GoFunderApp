@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from 'express'
-import type ResponseBody from '../../../../interfaces/ResponseBody'
+import type ResponseBody from '../../../../../interfaces/ResponseBody'
 import { ReasonPhrases } from 'http-status-codes'
-import { signInWithAmazon } from '../services/oauth.service'
+import { signInWithGoogle } from '../services/oauth.service'
 
-export default async function signInWithAmazonHandler(
+export default async function signInWithGoogleHandler(
   req: Request,
   res: Response<ResponseBody>,
   next: NextFunction,
@@ -19,12 +19,12 @@ export default async function signInWithAmazonHandler(
       throw new Error('No  code was provided.')
     }
 
-    const authenticatedUser = await signInWithAmazon(code)
+    const authenticatedUser = await signInWithGoogle(code)
 
     res.json({
       success: true,
       status: ReasonPhrases.OK,
-      message: 'Successfully authenticated user with amazon.',
+      message: 'Successfully authenticated user with google.',
       data: authenticatedUser,
     })
   } catch (error) {

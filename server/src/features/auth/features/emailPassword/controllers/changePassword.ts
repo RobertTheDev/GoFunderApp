@@ -3,10 +3,10 @@ import { StatusCodes, ReasonPhrases } from 'http-status-codes'
 import {
   hashPassword,
   verifyPassword,
-} from '../../../../configs/passwordManagement/index.js'
-import prismaClient from '../../../../utils/prisma/prismaClient.js'
+} from '../../../../../configs/passwordManagement/index.js'
+import prismaClient from '../../../../../utils/prisma/prismaClient.js'
 import changePasswordSchema from '../validators/changePassword.schema.js'
-import type ResponseBody from '../../../../interfaces/ResponseBody.js'
+import type ResponseBody from '../../../../../interfaces/ResponseBody.js'
 
 export async function changePassword(
   req: Request,

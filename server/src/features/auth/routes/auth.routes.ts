@@ -4,9 +4,9 @@ import {
   getAuthenticatedUser,
   signOut,
 } from '../controllers/auth.controllers.js'
-import emailPasswordRouter from '../emailPassword/routes/emailPassword.routes.js'
-import totpRouter from '../totp/routes/totp.routes.js'
-import oauthRouter from '../oauth/routes/oauth.routes.js'
+import emailPasswordRouter from '../features/emailPassword/routes/emailPassword.routes.js'
+import totpRouter from '../features/totp/routes/totp.routes.js'
+import oauthRouter from '../features/oauth/routes/oauth.routes.js'
 
 // Sets up the charity router.
 const authRouter: Router = Router()

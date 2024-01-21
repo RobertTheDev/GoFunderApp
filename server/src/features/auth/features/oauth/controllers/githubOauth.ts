@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express'
-import type ResponseBody from '../../../../interfaces/ResponseBody'
+import type ResponseBody from '../../../../../interfaces/ResponseBody'
 import { ReasonPhrases } from 'http-status-codes'
 import { signInWithGithub } from '../services/oauth.service'
 

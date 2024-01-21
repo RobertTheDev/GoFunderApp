@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from 'express'
 import { StatusCodes, ReasonPhrases } from 'http-status-codes'
-import prismaClient from '../../../../utils/prisma/prismaClient.js'
+import prismaClient from '../../../../../utils/prisma/prismaClient.js'
 import sendPasswordResetSchema from '../validators/sendPasswordReset.schema.js'
-import type ResponseBody from '../../../../interfaces/ResponseBody.js'
+import type ResponseBody from '../../../../../interfaces/ResponseBody.js'
 
 export async function sendPasswordResetToken(
   req: Request,
