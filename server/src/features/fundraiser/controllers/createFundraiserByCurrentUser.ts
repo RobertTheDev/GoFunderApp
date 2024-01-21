@@ -2,8 +2,8 @@ import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { FundraiserService } from '../fundraiser.service.js'
 import createUserFundraiserSchema from '../validators/createUserFundraiser.schema.js'
+import { createFundraiser } from '../fundraiser.service.js'
 
 // This handler creates a fundraiser with the current user in session.
 
@@ -15,7 +15,6 @@ export async function createFundraiserByCurrentUser(
   const { body, session } = req
   const { user } = session
 
-  const fundraiserService = new FundraiserService()
   const cacheService = new CacheService()
 
   try {
@@ -38,9 +37,7 @@ export async function createFundraiserByCurrentUser(
     }
 
     // Create a fundraiser with validated data.
-    const createdFundraiser = await fundraiserService.createFundraiser(
-      validation.data,
-    )
+    const createdFundraiser = await createFundraiser(validation.data)
 
     // Cache the created fundraiser for one day.
     await cacheService.setForOneDay(createdFundraiser.id, createdFundraiser)

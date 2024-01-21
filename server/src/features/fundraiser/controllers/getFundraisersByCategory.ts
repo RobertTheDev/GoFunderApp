@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { FundraiserService } from '../fundraiser.service.js'
+import { findFundraisers } from '../fundraiser.service.js'
 
 // Gets all fundraisers by category from the cache or prisma database.
 export async function getFundraisersByCategory(
@@ -13,7 +13,6 @@ export async function getFundraisersByCategory(
   const { params } = req
   const { category } = params
 
-  const fundraiserService = new FundraiserService()
   const cacheService = new CacheService()
 
   try {
@@ -30,7 +29,7 @@ export async function getFundraisersByCategory(
       })
     }
 
-    const fundraisers = await fundraiserService.findFundraisers({
+    const fundraisers = await findFundraisers({
       where: { category },
     })
 

@@ -2,10 +2,10 @@ import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { FundraiserService } from '../fundraiser.service.js'
 import { CharityService } from '../../charity/charity.service.js'
 import { CharityOwnerService } from '../../charityOwner/charityOwner.service.js'
 import createCharityFundraiserSchema from '../validators/createCharityFundraiser.schema.js'
+import { createFundraiser } from '../fundraiser.service.js'
 
 // This handler creates a fundraiser with a charity id.
 
@@ -19,7 +19,6 @@ export async function createFundraiserByCharityId(
 
   const charityService = new CharityService()
   const charityOwnerService = new CharityOwnerService()
-  const fundraiserService = new FundraiserService()
   const cacheService = new CacheService()
 
   try {
@@ -62,9 +61,7 @@ export async function createFundraiserByCharityId(
     }
 
     // Create a fundraiser with validated data.
-    const createdFundraiser = await fundraiserService.createFundraiser(
-      validation.data,
-    )
+    const createdFundraiser = await createFundraiser(validation.data)
 
     // Cache the created fundraiser for one day.
     await cacheService.setForOneDay(createdFundraiser.id, createdFundraiser)

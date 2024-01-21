@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { FundraiserService } from '../fundraiser.service.js'
+import { findFundraisers } from '../fundraiser.service.js'
 
 // Gets all fundraisers from the prisma database.
 export async function getFundraisers(
@@ -10,7 +10,6 @@ export async function getFundraisers(
   res: Response<ResponseBody>,
   next: NextFunction,
 ): Promise<any> {
-  const fundraiserService = new FundraiserService()
   const cacheService = new CacheService()
 
   try {
@@ -27,7 +26,7 @@ export async function getFundraisers(
       })
     }
 
-    const fundraisers = await fundraiserService.findFundraisers({})
+    const fundraisers = await findFundraisers({})
 
     if (fundraisers.length > 0) {
       await cacheService.setForOneDay('fundraisers', fundraisers)

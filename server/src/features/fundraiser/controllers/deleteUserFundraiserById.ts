@@ -1,8 +1,8 @@
 import type { Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes, getReasonPhrase } from 'http-status-codes'
 import winstonLogger from '../../../utils/winston/winstonLogger.js'
-import { FundraiserService } from '../fundraiser.service.js'
 import updateFundraiserSchema from '../validators/updateFundraiser.schema.js'
+import { deleteFundraiser, findFundraiser } from '../fundraiser.service.js'
 
 export async function deleteUserFundraiserById(
   req: Request,
@@ -11,8 +11,6 @@ export async function deleteUserFundraiserById(
   const { body, params, session } = req
   const { fundraiserId } = params
   const { user } = session
-
-  const fundraiserService = new FundraiserService()
 
   try {
     // If no user is in session return an error.
@@ -31,7 +29,7 @@ export async function deleteUserFundraiserById(
       throw new Error(validation.error.issues[0]?.message)
     }
 
-    const fundraiser = await fundraiserService.findFundraiser({
+    const fundraiser = await findFundraiser({
       id: fundraiserId,
     })
 
@@ -43,7 +41,7 @@ export async function deleteUserFundraiserById(
       throw new Error('Unauthorised. You are not the fundraiser owner.')
     }
 
-    const deletedFundraiser = await fundraiserService.deleteFundraiser({
+    const deletedFundraiser = await deleteFundraiser({
       id: fundraiserId,
     })
 

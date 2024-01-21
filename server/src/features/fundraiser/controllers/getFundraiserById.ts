@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { CacheService } from '../../../services/cache/cache.service.js'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { FundraiserService } from '../fundraiser.service.js'
+import { findFundraiser } from '../fundraiser.service.js'
 
 // Gets fundraiser by id from the cache or prisma database.
 export async function getFundraiserById(
@@ -13,7 +13,6 @@ export async function getFundraiserById(
   const { params } = req
   const { id } = params
 
-  const fundraiserService = new FundraiserService()
   const cacheService = new CacheService()
 
   try {
@@ -30,7 +29,7 @@ export async function getFundraiserById(
       })
     }
 
-    const fundraiser = await fundraiserService.findFundraiser({
+    const fundraiser = await findFundraiser({
       id,
     })
 

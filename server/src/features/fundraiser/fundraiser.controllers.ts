@@ -2,10 +2,7 @@ import type { Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import winstonLogger from '../../utils/winston/winstonLogger.js'
 import type ResponseBody from '../../interfaces/ResponseBody.js'
-import { FundraiserService } from './fundraiser.service.js'
-
-// Access the fundraiser service to get fundraiser handlers.
-const fundraiserService = new FundraiserService()
+import { findFundraiser, findFundraisers } from './fundraiser.service.js'
 
 // Gets all users from the prisma database.
 export async function getAllFundraisers(
@@ -14,7 +11,7 @@ export async function getAllFundraisers(
 ): Promise<Response<ResponseBody>> {
   try {
     // Fetches all the fundraisers from the database.
-    const users = await fundraiserService.findFundraisers({})
+    const users = await findFundraisers({})
 
     // Return fundraisers with success response.
     return res.status(StatusCodes.OK).json({
@@ -50,7 +47,7 @@ export async function getFundraiserById(
 
   try {
     // Get user by id from the database.
-    const user = await fundraiserService.findFundraiser({ id: fundraiserId })
+    const user = await findFundraiser({ id: fundraiserId })
 
     // If no user is found log it and return no found response.
     if (user === null) {
