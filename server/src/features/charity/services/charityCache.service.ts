@@ -11,22 +11,17 @@ export async function getCachedCharities(key: string): Promise<string | null> {
 export async function getCachedCharity(key: string): Promise<string | null> {
   return await redisClient.get(key)
 }
-export async function setCachedCharities(params: {
-  key: string
-  value: any
-  expiry: number
-}): Promise<string | null> {
-  const { key, value, expiry } = params
 
-  return await redisClient.set(key, JSON.stringify(value), { EX: expiry })
+export async function setCachedCharities(
+  key: string,
+  value: any,
+): Promise<string | null> {
+  return await redisClient.set(key, JSON.stringify(value))
 }
 
-export async function setCachedCharity(params: {
-  key: string
-  value: any
-  expiry: number
-}): Promise<string | null> {
-  const { key, value, expiry } = params
-
-  return await redisClient.set(key, JSON.stringify(value), { EX: expiry })
+export async function setCachedCharity(
+  key: string,
+  value: any,
+): Promise<string | null> {
+  return await redisClient.set(key, JSON.stringify(value))
 }
