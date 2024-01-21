@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express'
 import { StatusCodes, getReasonPhrase } from 'http-status-codes'
 import winstonLogger from '../../../utils/winston/winstonLogger.js'
-import { createDonationSchema } from '../donation.validators.js'
+import { createDonationSchema } from '../validators/createDonation.schema.js'
 import { createDonation } from '../donation.service.js'
 
 export async function updateDonationById(
