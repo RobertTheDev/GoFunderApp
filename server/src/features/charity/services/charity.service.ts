@@ -1,5 +1,5 @@
 import type { Charity, Prisma } from '@prisma/client'
-import prismaClient from '../../utils/prisma/prismaClient'
+import prismaClient from '../../../utils/prisma/prismaClient'
 
 export async function findCharity(
   charityWhereUniqueInput: Prisma.CharityWhereUniqueInput,
