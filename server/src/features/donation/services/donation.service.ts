@@ -1,5 +1,5 @@
 import type { Donation, Prisma } from '@prisma/client'
-import prismaClient from '../../utils/prisma/prismaClient'
+import prismaClient from '../../../utils/prisma/prismaClient'
 
 export async function findDonations(params: {
   skip?: number

@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express'
 import { StatusCodes, getReasonPhrase } from 'http-status-codes'
 import winstonLogger from '../../../utils/winston/winstonLogger.js'
-import { findDonations } from '../donation.service.js'
+import { findDonations } from '../services/donation.service.js'
 
 export async function getDonationsByUserId(
   req: Request,
