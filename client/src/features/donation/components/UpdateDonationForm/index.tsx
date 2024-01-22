@@ -1,17 +1,17 @@
 import { ReactElement } from "react";
-import useCreateDonation from "./useCreateDonation";
+import useUpdateDonation from "./useUpdateDonation";
+import { useParams } from "react-router-dom";
 
 export default function CreateDonationForm(): ReactElement {
-  const { errors, handleCreateDonation, message, register } =
-    useCreateDonation();
+  const { id } = useParams();
+
+  const { errors, handleUpdateDonation, message, register } = useUpdateDonation(
+    String(id)
+  );
 
   return (
     <div>
-      <form onSubmit={handleCreateDonation}>
-        <label htmlFor="amount">Amount</label>
-        <input {...register("amount")} type="number" name="amount" />
-        {errors.amount?.message && <p>{errors.amount.message}</p>}
-
+      <form onSubmit={handleUpdateDonation}>
         <label htmlFor="message">Message</label>
         <input {...register("message")} type="text" name="message" />
         {errors.message?.message && <p>{errors.message.message}</p>}
