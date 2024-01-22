@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-
 import { useQuery } from "@tanstack/react-query";
 import { ReactElement } from "react";
 import { getCharityById } from "../../service/charity.service";

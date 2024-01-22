@@ -19,7 +19,7 @@ export default function FundraiserPage(): ReactElement {
 
   return (
     <>
-      <Seo title="Fundraiser" />
+      <Seo title="Fundraiser" description="" />
       <FundraiserTemplate fundraiser={data.data.data} />
     </>
   );

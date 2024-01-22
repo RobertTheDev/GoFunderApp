@@ -14,7 +14,7 @@ export default function CharityTemplate({
 
   return (
     <div>
-      <Seo title={charity.name} />
+      <Seo title={charity.name} description="" />
       <Link to={"update"}>Update Charity</Link>
       <Link to={"delete"}>Delete Charity</Link>
       <p>{charity.name}</p>

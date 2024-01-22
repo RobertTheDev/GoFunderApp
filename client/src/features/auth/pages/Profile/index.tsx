@@ -30,7 +30,7 @@ export default function ProfilePage(): ReactElement {
 
   return (
     <div>
-      <Seo title={"Profile"} />
+      <Seo title={"Profile"} description="" />
 
       <p>{data?.email}</p>
 

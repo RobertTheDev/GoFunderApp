@@ -17,7 +17,7 @@ export default function CharitiesPage(): ReactElement {
 
   return (
     <>
-      <Seo title="Charities" />
+      <Seo title="Charities" description="" />
 
       <div className={styles.cardsContainer}>
         {data.data.data.map((charity) => {

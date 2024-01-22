@@ -24,7 +24,7 @@ export default function UserPage(): ReactElement {
 
   return (
     <div>
-      <Seo title={`${data.name}`} />
+      <Seo title={`${data.name}`} description="" />
 
       <p>{data.name}</p>
 
