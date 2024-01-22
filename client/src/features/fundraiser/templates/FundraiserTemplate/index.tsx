@@ -25,13 +25,6 @@ export default function FundraiserTemplate({
       <p>{fundraiser.totalDonations}</p>
       <p>{fundraiser.totalRaised}</p>
       <h3>Donations</h3>
-      {fundraiser.donations.map((donation) => {
-        return (
-          <div key={donation.amount}>
-            <p>{donation.amount}</p>
-          </div>
-        );
-      })}
     </div>
   );
 }
