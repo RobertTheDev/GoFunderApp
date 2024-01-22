@@ -9,6 +9,7 @@ import savedFundraiserRouter from "../features/savedFundraiser/routes/savedFundr
 import charityFollowerRouter from "../features/charityFollower/routes/charityFollower.routes";
 import charityOwnerRouter from "../features/charityOwner/routes/charityOwner.routes";
 import homeRouter from "../features/home/routes/home";
+import notificationRouter from "../features/notification/routes/notification.routes";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       ...fundraiserRouter,
       ...homeRouter,
       ...infoRouter,
+      ...notificationRouter,
       ...savedFundraiserRouter,
       ...userRouter,
       {
