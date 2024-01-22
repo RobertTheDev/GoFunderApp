@@ -7,6 +7,7 @@ import infoRouter from "../features/info/routes/info.routes";
 import fundraiserRouter from "../features/fundraiser/routes/fundraiser.routes";
 import userRouter from "../features/user/routes/user.routes";
 import savedFundraiserRouter from "../features/savedFundraiser/routes/savedFundraiser.routes";
+import charityFollowerRouter from "../features/charityFollower/routes/charityFollower.routes";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
     element: <PageLayout />,
     children: [
       ...authRouter,
+      ...charityFollowerRouter,
       ...charityRouter,
       ...fundraiserRouter,
       ...infoRouter,
