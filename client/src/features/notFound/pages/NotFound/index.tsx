@@ -1,11 +1,12 @@
 import { ReactElement } from "react";
 import Seo from "../../../common/Seo";
+import NotFoundPageTemplate from "../../templates/NotFoundPageTemplate";
 
 export default function NotFoundPage(): ReactElement {
   return (
-    <div>
+    <>
       <Seo title="404 - Not Found" description="" />
-      <p>Not fOUND</p>
-    </div>
+      <NotFoundPageTemplate />
+    </>
   );
 }
