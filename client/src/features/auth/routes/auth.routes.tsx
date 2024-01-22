@@ -2,7 +2,6 @@ import AmazonCallbackPage from "../pages/AmazonCallback";
 import FacebookCallbackPage from "../pages/FacebookCallback";
 import GithubCallbackPage from "../pages/GithubCallback";
 import GoogleCallbackPage from "../pages/GoogleCallback";
-import ProfilePage from "../pages/Profile";
 
 const authRouter = [
   {
@@ -21,10 +20,6 @@ const authRouter = [
   {
     path: "/auth/google/callback",
     element: <GoogleCallbackPage />,
-  },
-  {
-    path: "/profile",
-    element: <ProfilePage />,
   },
 ];
 
