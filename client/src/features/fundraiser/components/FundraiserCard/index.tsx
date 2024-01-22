@@ -6,7 +6,10 @@ import { format } from "date-fns";
 
 export default function FundraiserCard(fundraiser: IFundraiser): ReactElement {
   return (
-    <Link className={styles.cardContainer} to={`/fundraisers/${fundraiser.id}`}>
+    <Link
+      className={styles.cardContainer}
+      to={`/fundraisers/${fundraiser.slug}`}
+    >
       <img
         className={styles.cardImageContainer}
         src={fundraiser.image}
