@@ -41,10 +41,10 @@ export async function getFundraisers(): Promise<
   return await axios.get(`${fundraiserApiUrl}`);
 }
 
-export async function getFundraiserById(
-  fundraiserId: string
+export async function getFundraiserBySlug(
+  slug: string
 ): Promise<AxiosResponse<FundraiserApiResponse>> {
-  return await axios.get(`${fundraiserApiUrl}/${fundraiserId}`);
+  return await axios.get(`${fundraiserApiUrl}/${slug}`);
 }
 
 export async function getFundraisersByCategory(
