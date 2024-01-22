@@ -1,16 +1,16 @@
 import { ReactElement } from "react";
 import Seo from "../../../common/Seo";
 import { useQuery } from "@tanstack/react-query";
-import { getFundraiserById } from "../../service/fundraiser.service";
+import { getFundraiserBySlug } from "../../service/fundraiser.service";
 import { useParams } from "react-router-dom";
 import FundraiserTemplate from "../../templates/FundraiserTemplate";
 
 export default function FundraiserPage(): ReactElement {
-  const { id } = useParams();
+  const { slug } = useParams();
 
   const { isPending, error, data } = useQuery({
-    queryKey: ["getFundraiserByIdData"],
-    queryFn: () => getFundraiserById(String(id)),
+    queryKey: ["getFundraiserBySlugData"],
+    queryFn: () => getFundraiserBySlug(String(slug)),
   });
 
   if (isPending) return <p>Loading...</p>;
