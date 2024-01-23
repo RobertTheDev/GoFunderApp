@@ -7,7 +7,7 @@ export async function ensureUserIsAuthenticated(
   next: NextFunction,
 ): Promise<void> {
   try {
-    if (req.session.user == null) {
+    if (req.session.user == null || req.session === undefined) {
       throw new Error('You must be signed in to perform this action.')
     }
 
@@ -23,7 +23,7 @@ export async function ensureUserIsNotAuthenticated(
   next: NextFunction,
 ): Promise<void> {
   try {
-    if (req.session.user != null) {
+    if (req.session.user != null || req.session.user !== undefined) {
       throw new Error('You are already signed in.')
     }
 
