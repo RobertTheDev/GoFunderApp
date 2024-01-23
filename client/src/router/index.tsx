@@ -10,6 +10,7 @@ import charityFollowerRouter from "../features/charityFollower/routes/charityFol
 import charityOwnerRouter from "../features/charityOwner/routes/charityOwner.routes";
 import homeRouter from "../features/home/routes/home";
 import notificationRouter from "../features/notification/routes/notification.routes";
+import profileRouter from "../features/profile/routes/profile.routes";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       ...homeRouter,
       ...infoRouter,
       ...notificationRouter,
+      ...profileRouter,
       ...savedFundraiserRouter,
       ...userRouter,
       {
