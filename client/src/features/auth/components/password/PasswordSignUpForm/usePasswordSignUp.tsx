@@ -27,6 +27,8 @@ const usePasswordSignUp = () => {
 
       setMessage({ type: "success", content: signUp.data.message });
 
+      window.location.reload();
+
       return signUp;
     } catch (error: any) {
       setMessage({ type: "error", content: error.response.data.message });
