@@ -4,7 +4,7 @@ import RedisStore from 'connect-redis'
 
 const redisSessionStore: RedisStore = new RedisStore({
   client: redisClient,
-  prefix: 'myapp:',
+  prefix: 'session:',
   ttl: 604800,
 })
 
