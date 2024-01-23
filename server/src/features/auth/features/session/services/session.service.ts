@@ -2,9 +2,9 @@ import type { Prisma, Session } from '@prisma/client'
 import prismaClient from 'src/utils/prisma/prismaClient'
 
 export default async function createSession(
-  data: Prisma.SessionCreateInput,
+  data: Prisma.SessionCreateManyInput,
 ): Promise<Session> {
-  return prismaClient.session.create({
+  return await prismaClient.session.create({
     data,
   })
 }
@@ -12,7 +12,15 @@ export default async function createSession(
 export async function deleteSession(
   where: Prisma.SessionWhereUniqueInput,
 ): Promise<Session> {
-  return prismaClient.session.delete({
+  return await prismaClient.session.delete({
+    where,
+  })
+}
+
+export async function deleteSessions(
+  where: Prisma.SessionWhereInput,
+): Promise<Prisma.BatchPayload> {
+  return await prismaClient.session.deleteMany({
     where,
   })
 }
@@ -20,7 +28,7 @@ export async function deleteSession(
 export async function findSession(
   sessionWhereUniqueInput: Prisma.SessionWhereUniqueInput,
 ): Promise<Session | null> {
-  return prismaClient.session.findUnique({
+  return await prismaClient.session.findUnique({
     where: sessionWhereUniqueInput,
   })
 }
@@ -33,7 +41,7 @@ export async function findSessions(params: {
   orderBy?: Prisma.SessionOrderByWithRelationInput
 }): Promise<Session[]> {
   const { skip, take, cursor, where, orderBy } = params
-  return prismaClient.session.findMany({
+  return await prismaClient.session.findMany({
     skip,
     take,
     cursor,
@@ -47,7 +55,7 @@ export async function updateSession(params: {
   data: Prisma.SessionUpdateInput
 }): Promise<Session> {
   const { data, where } = params
-  return prismaClient.session.update({
+  return await prismaClient.session.update({
     data,
     where,
   })
