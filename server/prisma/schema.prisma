@@ -26,10 +26,8 @@ model FundraiserOwner {
 model Donation {
   id           String      @id @default(cuid()) // Unique identifier for the donation.
   createdAt    DateTime    @default(now()) @map("created_at") // Date and time when the donation was created.
-  deletedAt    DateTime?   @map("deleted_at") // Date and time when the donation was deleted.
   updatedAt    DateTime    @updatedAt @map("updated_at") // Date and time when the donation was last updated.
   amount       Int // Amount of the donation.
-  annonymous   Boolean     @default(false) // Indicates whether the donation is anonymous.
   currency     String      @default("GBP") // Currency of the donation.
   fundraiser   Fundraiser? @relation(fields: [fundraiserId], references: [id]) // Reference to the associated fundraiser.
   fundraiserId String      @map("fundraiser_id") // Foreign key to the fundraiser.
@@ -76,12 +74,11 @@ model SavedFundraiser {
 }
 
 model User {
-  id         String    @id @default(cuid()) // Unique identifier for the user.
-  createdAt  DateTime  @default(now()) @map("created_at") // Date and time when the user was created.
-  updatedAt  DateTime  @updatedAt @map("updated_at") // Date and time when the user was last updated.
-  annonymous Boolean   @default(false) // Indicates whether the user is anonymous.
-  accounts   Account[]
-
+  id                    String            @id @default(cuid()) // Unique identifier for the user.
+  createdAt             DateTime          @default(now()) @map("created_at") // Date and time when the user was created.
+  updatedAt             DateTime          @updatedAt @map("updated_at") // Date and time when the user was last updated.
+  annonymous            Boolean           @default(false) // Indicates whether the user is anonymous.
+  accounts              Account[]
   defaultCurrency       String            @default("GBP") @map("default_currency") // Default currency for the user.
   donations             Donation[] // List of donations made by the user.
   email                 String?           @unique // User's email address (unique).
@@ -92,8 +89,6 @@ model User {
   mfaType               String?           @map("mfa_type") // MFA type chosen by the user ("TOTP" or "Mobile").
   name                  String // User's name.
   password              String? // Hashed password for authentication. (optional)
-  phoneNumber           String?           @unique @map("phone_number") // User's phone number (unique).
-  phoneNumberVerified   DateTime?         @map("phone_number_verified") // Date and time when the user's phone number was verified (optional).
   savedFundraisers      SavedFundraiser[] // List of fundraisers saved by the user.
   sessions              Session[]
   totalCharitesOwned    Int               @default(0) @map("total_charities_owned") // Total number of charities owned by the user.
