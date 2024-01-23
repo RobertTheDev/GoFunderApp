@@ -1,8 +1,9 @@
 import { z } from 'zod'
 
+export type ChangePasswordSchemaType = z.infer<typeof changePasswordSchema>
+
 export const changePasswordSchema = z.object({
-  email: z.string({ required_error: 'Email is required' }),
-  currentPasword: z.string({ required_error: 'Current password is required' }),
+  currentPassword: z.string({ required_error: 'Current password is required' }),
   newPassword: z
     .string({
       invalid_type_error: 'New password must be a string.',
