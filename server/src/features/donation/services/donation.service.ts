@@ -25,22 +25,3 @@ export async function createDonation(
     data,
   })
 }
-
-export async function updateDonation(params: {
-  where: Prisma.DonationWhereUniqueInput
-  data: Prisma.DonationUpdateInput
-}): Promise<Donation> {
-  const { data, where } = params
-  return await prismaClient.donation.update({
-    data,
-    where,
-  })
-}
-
-export async function deleteDonation(
-  where: Prisma.DonationWhereUniqueInput,
-): Promise<Donation> {
-  return await prismaClient.donation.delete({
-    where,
-  })
-}
