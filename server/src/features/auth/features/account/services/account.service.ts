@@ -4,7 +4,7 @@ import prismaClient from 'src/utils/prisma/prismaClient'
 export default async function createAccount(
   data: Prisma.AccountCreateInput,
 ): Promise<Account> {
-  return prismaClient.account.create({
+  return await prismaClient.account.create({
     data,
   })
 }
@@ -12,7 +12,7 @@ export default async function createAccount(
 export async function deleteAccount(
   where: Prisma.AccountWhereUniqueInput,
 ): Promise<Account> {
-  return prismaClient.account.delete({
+  return await prismaClient.account.delete({
     where,
   })
 }
@@ -20,12 +20,12 @@ export async function deleteAccount(
 export async function findAccount(
   accountWhereUniqueInput: Prisma.AccountWhereUniqueInput,
 ): Promise<Account | null> {
-  return prismaClient.account.findUnique({
+  return await prismaClient.account.findUnique({
     where: accountWhereUniqueInput,
   })
 }
 
-export async function findSessions(params: {
+export async function findAccounts(params: {
   skip?: number
   take?: number
   cursor?: Prisma.AccountWhereUniqueInput
@@ -33,7 +33,7 @@ export async function findSessions(params: {
   orderBy?: Prisma.AccountOrderByWithRelationInput
 }): Promise<Account[]> {
   const { skip, take, cursor, where, orderBy } = params
-  return prismaClient.account.findMany({
+  return await prismaClient.account.findMany({
     skip,
     take,
     cursor,
@@ -47,7 +47,7 @@ export async function updateAccount(params: {
   data: Prisma.AccountUpdateInput
 }): Promise<Account> {
   const { data, where } = params
-  return prismaClient.account.update({
+  return await prismaClient.account.update({
     data,
     where,
   })
