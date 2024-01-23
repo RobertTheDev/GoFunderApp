@@ -10,46 +10,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Charity {
-  id               String            @id @default(cuid()) // Unique identifier for the charity.
-  createdAt        DateTime          @default(now()) @map("created_at") // Date and time when the charity was created.
-  updatedAt        DateTime          @updatedAt @map("updated_at") // Date and time when the charity was last updated.
-  category         String // Charity's category.
-  charityFollowers CharityFollower[] // List of followers for the charity.
-  charityOwners    CharityOwner[] // List of owners for the charity.
-  description      String? // Charity's description (optional).
-  fundraisers      Fundraiser[] // List of fundraisers owned by the charity.
-  logo             String // URL to the charity's logo image (optional).
-  name             String // Charity's name.
-  slug             String            @unique @default(cuid()) // Unique slug url for the charity.
+model FundraiserOwner {
+  id           String     @id @default(cuid()) // Unique identifier for the charity owner.
+  createdAt    DateTime   @default(now()) @map("created_at") // Date and time when the charity owner was created.
+  updatedAt    DateTime   @updatedAt @map("updated_at") // Date and time when the charity owner was last updated.
+  fundraiser   Fundraiser @relation(fields: [fundraiserId], references: [id], onDelete: Cascade) // Reference to the associated charity.
+  fundraiserId String     @map("fundraiser_id") // Foreign key to the charity.
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade) // Reference to the associated user.
+  userId       String     @map("user_id") // Foreign key to the user.
 
-  @@map("charities")
-}
-
-model CharityFollower {
-  id        String   @id @default(cuid()) // Unique identifier for the charity follower.
-  createdAt DateTime @default(now()) @map("created_at") // Date and time when the charity follower was created.
-  updatedAt DateTime @updatedAt @map("updated_at") // Date and time when the charity follower was last updated.
-  charity   Charity  @relation(fields: [charityId], references: [id], onDelete: Cascade) // Reference to the associated charity.
-  charityId String // Foreign key to the charity.
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade) // Reference to the associated user.
-  userId    String // Foreign key to the user.
-
-  @@unique([charityId, userId]) // Ensure a user can follow a charity only once.
-  @@map("charity_followers")
-}
-
-model CharityOwner {
-  id        String   @id @default(cuid()) // Unique identifier for the charity owner.
-  createdAt DateTime @default(now()) @map("created_at") // Date and time when the charity owner was created.
-  updatedAt DateTime @updatedAt @map("updated_at") // Date and time when the charity owner was last updated.
-  charity   Charity  @relation(fields: [charityId], references: [id], onDelete: Cascade) // Reference to the associated charity.
-  charityId String   @map("charity_id") // Foreign key to the charity.
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade) // Reference to the associated user.
-  userId    String   @map("user_id") // Foreign key to the user.
-
-  @@unique([charityId, userId]) // Ensure a user can own a charity only once.
-  @@map("charity_owners")
+  @@unique([fundraiserId, userId]) // Ensure a user can own a charity only once.
+  @@map("fundraiser_owners")
 }
 
 model Donation {
@@ -86,10 +57,7 @@ model Fundraiser {
   target           Int // Fundraising target amount.
   totalDonations   Int               @default(0) @map("total_donations") // Total number of donations received.
   totalRaised      Int               @default(0) @map("total_raised") // Total amount raised.
-  charity          Charity?          @relation(fields: [charityId], references: [id]) // Reference to the associated charity.
-  charityId        String? // Foreign key to the charity (Optional).
-  user             User?             @relation(fields: [userId], references: [id]) // Reference to the associated user.
-  userId           String? // Foreign key to the user(Optional).
+  FundraiserOwner  FundraiserOwner[]
 
   @@map("fundraisers")
 }
@@ -108,18 +76,17 @@ model SavedFundraiser {
 }
 
 model User {
-  id                    String            @id @default(cuid()) // Unique identifier for the user.
-  createdAt             DateTime          @default(now()) @map("created_at") // Date and time when the user was created.
-  updatedAt             DateTime          @updatedAt @map("updated_at") // Date and time when the user was last updated.
-  annonymous            Boolean           @default(false) // Indicates whether the user is anonymous.
-  accounts              Account[]
-  charitiesFollowed     CharityFollower[] // List of charities followed by the user.
-  charitiesOwned        CharityOwner[] // List of charities owned by the user.
+  id         String    @id @default(cuid()) // Unique identifier for the user.
+  createdAt  DateTime  @default(now()) @map("created_at") // Date and time when the user was created.
+  updatedAt  DateTime  @updatedAt @map("updated_at") // Date and time when the user was last updated.
+  annonymous Boolean   @default(false) // Indicates whether the user is anonymous.
+  accounts   Account[]
+
   defaultCurrency       String            @default("GBP") @map("default_currency") // Default currency for the user.
   donations             Donation[] // List of donations made by the user.
   email                 String?           @unique // User's email address (unique).
   emailVerified         DateTime?         @map("email_verified") // Date and time when the user's email was verified (optional).
-  fundraisers           Fundraiser[] // List of fundraisers owned by the user.
+  fundraisers           FundraiserOwner[] // List of fundraisers owned by the user.
   image                 String? // URL to the user's profile image (optional).
   mfaSecret             String?           @map("mfa_secret") // Secret key for TOTP or mobile verification.
   mfaType               String?           @map("mfa_type") // MFA type chosen by the user ("TOTP" or "Mobile").
@@ -133,7 +100,7 @@ model User {
   totalDonationsAmount  Int               @default(0) @map("total_donations_amount") // Total amount donated by the user.
   totalDonationsMade    Int               @default(0) @map("total_donations_made") // Total number of donations made by the user.
   totalFundraisersOwned Int               @default(0) @map("total_fundraisers_owned") // Total number of fundraisers owned by the user.
-  username              String            @default(cuid())
+  username              String            @unique @default(cuid())
 
   @@map("users")
 }
@@ -156,14 +123,12 @@ model Account {
   updatedAt          DateTime  @updatedAt @map("updated_at")
   accessToken        String?   @map("access_token") // Access token for the account (optional).
   accessTokenExpires DateTime? // Expiry date and time for the access token (optional).
-  providerAccountId  String    @map("provider_account_id") // Unique identifier for the account on the provider side.
-  providerId         String    @map("provider_id") // Identifier from the authentication provider.
+  providerAccountId  String    @unique @map("provider_account_id") // Unique identifier for the account on the provider side.
   providerType       String    @map("provider_type") // Type of authentication provider (e.g., "email", "google", etc.).
   refreshToken       String?   @map("refresh_token") // Refresh token for the account (optional).
   user               User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId             String    @map("user_id") // Foreign key referencing the `id` field in the `User` model, indicating which user the account belongs to.
 
-  @@unique([providerId, providerAccountId])
   @@map("accounts")
 }
 
