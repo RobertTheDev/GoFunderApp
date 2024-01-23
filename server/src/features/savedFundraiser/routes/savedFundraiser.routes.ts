@@ -1,13 +1,14 @@
 import { type RequestHandler, Router } from 'express'
-import { getUserSavedFundraisers } from '../controllers/getUserSavedFundraisers.js'
-import { saveFundraiser } from '../controllers/saveFundraiser.js'
+import { getUserSavedFundraisersHandler } from '../handlers/getUserSavedFundraisers'
+import { saveFundraiserHandler } from '../handlers/saveFundraiser'
 
 const savedFundraiserRouter: Router = Router()
 
-savedFundraiserRouter.get('/', getUserSavedFundraisers as RequestHandler)
+savedFundraiserRouter.get('/', getUserSavedFundraisersHandler as RequestHandler)
+
 savedFundraiserRouter.post(
   '/save/:fundraiserId',
-  saveFundraiser as RequestHandler,
+  saveFundraiserHandler as RequestHandler,
 )
 
 export default savedFundraiserRouter
