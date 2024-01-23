@@ -10,7 +10,7 @@ export async function deleteCachedUserByUsername(
 export async function getCachedUserByUsername(
   username: string,
 ): Promise<User | null> {
-  const cachedUser = await redisClient.get(`user-${username}`)
+  const cachedUser = await redisClient.get(`user:${username}`)
 
   if (cachedUser == null) {
     return null
@@ -21,9 +21,9 @@ export async function getCachedUserByUsername(
 
 export async function setCachedUserByUsername(
   username: string,
-  data: User,
+  data: any,
 ): Promise<string | null> {
   const cachedUser = JSON.stringify(data)
 
-  return await redisClient.set(`user-${username}`, cachedUser)
+  return await redisClient.set(`user:${username}`, cachedUser)
 }
