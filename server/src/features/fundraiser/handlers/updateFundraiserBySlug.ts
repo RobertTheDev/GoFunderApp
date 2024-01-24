@@ -46,7 +46,7 @@ export async function updateCharityFundraiserBySlugHandler(
     res.status(StatusCodes.OK).json({
       success: true,
       status: ReasonPhrases.OK,
-      message: 'Successfully found fundraisers.',
+      message: 'Successfully updated fundraiser.',
       data: updatedFundraiser,
     })
   } catch (error) {
