@@ -4,13 +4,13 @@ import redisClient from '../../../utils/redis/redisClient'
 export async function deleteCachedFundraiserBySlug(
   slug: string,
 ): Promise<number> {
-  return await redisClient.del(`fundraiser-${slug}`)
+  return await redisClient.del(`fundraiser:${slug}`)
 }
 
 export async function getCachedFundraiserBySlug(
   slug: string,
 ): Promise<Fundraiser | null> {
-  const cachedFundraiser = await redisClient.get(`fundraiser-${slug}`)
+  const cachedFundraiser = await redisClient.get(`fundraiser:${slug}`)
 
   if (cachedFundraiser == null) {
     return null
@@ -25,7 +25,7 @@ export async function setCachedFundraiserBySlug(
 ): Promise<string | null> {
   const cachedFundraiser = JSON.stringify(data)
 
-  return await redisClient.set(`fundraiser-${slug}`, cachedFundraiser)
+  return await redisClient.set(`fundraiser:${slug}`, cachedFundraiser)
 }
 
 export async function deleteCachedFundraisersByUserId(
@@ -117,9 +117,7 @@ export async function setCachedFundraisers(data: any): Promise<string | null> {
 export async function getCachedFundraisersByCategory(
   category: string,
 ): Promise<Fundraiser[] | null> {
-  const cachedFundraisers = await redisClient.get(
-    `fundraisers-category-${category}`,
-  )
+  const cachedFundraisers = await redisClient.get(`fundraisers:${category}`)
 
   if (cachedFundraisers == null) {
     return null
@@ -134,11 +132,7 @@ export async function setCachedFundraisersByCategory(
 ): Promise<string | null> {
   const cachedFundraisers = JSON.stringify(data)
 
-  return await redisClient.set(
-    `fundraisers-category-${category}`,
-    cachedFundraisers,
-    {
-      EX: 6000,
-    },
-  )
+  return await redisClient.set(`fundraisers:${category}`, cachedFundraisers, {
+    EX: 6000,
+  })
 }
