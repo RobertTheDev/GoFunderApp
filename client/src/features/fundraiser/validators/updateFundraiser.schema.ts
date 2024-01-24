@@ -10,10 +10,9 @@ const updateFundraiserSchema = z.object({
     .min(1, "Category cannot be empty.")
     .optional(),
   deadlineDate: z
-    .string({
-      invalid_type_error: "Deadline date must be of type string.",
+    .date({
+      invalid_type_error: "Deadline date must be of type date.",
     })
-    .datetime({ message: "Deadline date must be a valid date format." })
     .optional(),
   description: z
     .string({
