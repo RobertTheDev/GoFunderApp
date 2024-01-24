@@ -1,9 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 import ApiResponse from "../../../interfaces/ApiResponse";
 import IFundraiser from "../../../interfaces/Fundraiser";
-import { CreateCharityFundraiserSchemaType } from "../validators/createCharityFundraiser.schema";
-import { CreateUserFundraiserSchemaType } from "../validators/createUserFundraiser.schema";
 import { UpdateFundraiserSchemaType } from "../validators/updateFundraiser.schema";
+import { CreateFundraiserSchemaType } from "../validators/createFundraiser.schema";
 
 interface FundraiserApiResponse extends ApiResponse {
   data: IFundraiser | null;
@@ -17,16 +16,12 @@ axios.defaults.withCredentials = true;
 
 const fundraiserApiUrl: string = `${process.env.REACT_APP_API_URL}/fundraisers`;
 
-export async function createCharityFundraiser(
-  data: CreateCharityFundraiserSchemaType
+export async function createFundraiser(
+  data: CreateFundraiserSchemaType
 ): Promise<AxiosResponse<FundraiserApiResponse>> {
-  return await axios.post(`${fundraiserApiUrl}/create`, data);
-}
-
-export async function createUserFundraiser(
-  data: CreateUserFundraiserSchemaType
-): Promise<AxiosResponse<FundraiserApiResponse>> {
-  return await axios.post(`${fundraiserApiUrl}/create`, data);
+  return await axios.post(`${fundraiserApiUrl}/create`, data, {
+    withCredentials: true,
+  });
 }
 
 export async function deleteFundraiserById(
@@ -53,9 +48,9 @@ export async function getFundraisersByCategory(
   return await axios.get(`${fundraiserApiUrl}/category/${fundraiserCategory}`);
 }
 
-export async function updateFundraiserById(
-  fundraiserId: string,
+export async function updateFundraiserBySlug(
+  slug: string,
   data: UpdateFundraiserSchemaType
 ): Promise<AxiosResponse<FundraiserApiResponse>> {
-  return await axios.put(`${fundraiserApiUrl}/${fundraiserId}`, data);
+  return await axios.put(`${fundraiserApiUrl}/${slug}`, data);
 }
