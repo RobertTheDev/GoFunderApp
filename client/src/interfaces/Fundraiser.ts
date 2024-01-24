@@ -1,4 +1,3 @@
-import ICharity from "./Charity";
 import IDonation from "./Donation";
 import IUser from "./User";
 
@@ -7,8 +6,6 @@ export default interface IFundraiser {
   createdAt: Date;
   updatedAt: Date;
   category: string;
-  charity: ICharity | null;
-  charityId: string | null;
   deadlineDate: Date | null;
   defaultCurrency: string;
   description: string | null;

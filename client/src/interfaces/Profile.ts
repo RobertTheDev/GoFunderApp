@@ -1,5 +1,3 @@
-import ICharityFollower from "./CharityFollower";
-import ICharityOwner from "./CharityOwner";
 import IDonation from "./Donation";
 import ISavedFundraiser from "./SavedFundraiser";
 
@@ -8,8 +6,6 @@ export default interface IProfile {
   createdAt: Date;
   updatedAt: Date;
   annonymous: boolean;
-  charitiesFollowed: ICharityFollower[];
-  charitiesOwned: ICharityOwner[];
   defaultCurrency: string;
   donations: IDonation[];
   email: string | null;
