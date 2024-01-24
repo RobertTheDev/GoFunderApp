@@ -13,7 +13,7 @@ import { deleteAuthenticatedUserHandler } from '../handlers/deleteAuthenticatedU
 const authRouter: Router = Router()
 
 // Defines the charity routes.
-authRouter.delete(
+authRouter.post(
   '/delete',
   ensureUserIsAuthenticated as RequestHandler,
   deleteAuthenticatedUserHandler as RequestHandler,
