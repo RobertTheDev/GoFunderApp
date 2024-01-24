@@ -6,13 +6,13 @@ import { ReactElement } from "react";
 import IUser from "../../../../interfaces/User";
 
 export default function UserPage(): ReactElement {
-  const { id } = useParams();
+  const { username } = useParams();
 
   const { isPending, error, data } = useQuery<IUser | null>({
     queryKey: ["getUserData"],
     queryFn: async () =>
       await axios
-        .get(`${process.env.REACT_APP_API_URL}/api/users/${id}`)
+        .get(`${process.env.REACT_APP_API_URL}/users/${username}`)
         .then((res) => res.data.data),
   });
 
