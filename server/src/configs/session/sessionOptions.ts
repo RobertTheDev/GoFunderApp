@@ -5,7 +5,7 @@ import RedisStore from 'connect-redis'
 const redisSessionStore: RedisStore = new RedisStore({
   client: redisClient,
   prefix: 'session:',
-  ttl: 604800,
+  ttl: 60 * 60 * 24 * 30,
 })
 
 declare module 'express-session' {
