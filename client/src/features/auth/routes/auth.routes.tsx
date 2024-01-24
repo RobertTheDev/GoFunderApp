@@ -1,4 +1,5 @@
 import AmazonCallbackPage from "../pages/AmazonCallback";
+import ChangePasswordPage from "../pages/ChangePasswordPage";
 import FacebookCallbackPage from "../pages/FacebookCallback";
 import GithubCallbackPage from "../pages/GithubCallback";
 import GoogleCallbackPage from "../pages/GoogleCallback";
@@ -20,6 +21,10 @@ const authRouter = [
   {
     path: "/auth/google/callback",
     element: <GoogleCallbackPage />,
+  },
+  {
+    path: "/change-password",
+    element: <ChangePasswordPage />,
   },
 ];
 
