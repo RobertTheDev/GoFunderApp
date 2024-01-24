@@ -2,7 +2,6 @@ import type { RequestHandler } from 'express'
 import { Router } from 'express'
 import emailPasswordRouter from '../features/emailPassword/routes/emailPassword.routes.js'
 import totpRouter from '../features/totp/routes/totp.routes.js'
-import oauthRouter from '../features/oauth/routes/oauth.routes.js'
 import sessionRouter from '../features/session/routes/session.routes.js'
 import { getAuthenticatedUserHandler } from '../handlers/getAuthenticatedUser.js'
 import { signOutHandler } from '../handlers/signOut.js'
@@ -30,7 +29,6 @@ authRouter.post(
 )
 // Configures auth module routers.
 authRouter.use('/', emailPasswordRouter)
-authRouter.use('/oauth', oauthRouter)
 authRouter.use('/session', sessionRouter)
 authRouter.use('/totp', totpRouter)
 
