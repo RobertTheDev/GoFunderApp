@@ -6,6 +6,7 @@ import { getFundraiserBySlugHandler } from '../handlers/getFundraiserBySlug'
 import { getFundraiserByIdHandler } from '../handlers/getFundraiserById'
 import { createFundraiserHandler } from '../handlers/createFundraiser'
 import { updateCharityFundraiserBySlugHandler } from '../handlers/updateFundraiserBySlug'
+import { getFundraisersByCategoryHandler } from '../handlers/getFundraisersByCategory'
 
 // Sets up the fundraiser router.
 const fundraiserRouter = Router()
@@ -17,6 +18,11 @@ fundraiserRouter.delete(
 )
 
 fundraiserRouter.get('/', getFundraisersHandler as RequestHandler)
+
+fundraiserRouter.get(
+  '/category/:category',
+  getFundraisersByCategoryHandler as RequestHandler,
+)
 
 fundraiserRouter.get('/:slug', getFundraiserBySlugHandler as RequestHandler)
 
