@@ -6,6 +6,7 @@ import PasswordSignInForm from "../password/PasswordSignIn";
 import PasswordSignUpForm from "../password/PasswordSignUpForm";
 import TotpSetupForm from "../totp/TotpSetupForm";
 import PasswordSendResetForm from "../password/PasswordSendResetForm";
+import { FaTimes } from "react-icons/fa";
 
 export default function AuthModal(): ReactElement {
   const { authModal, toggleAuthModal } = useContext(AuthContext);
@@ -20,21 +21,25 @@ export default function AuthModal(): ReactElement {
 
   return (
     <div className={styles.modalWrapper}>
-      <div ref={authModalRef} className={styles.modalContainer}>
-        <p>Auth</p>
-        <button type="button" onClick={handleToggleAuthModal}>
-          Close
-        </button>
-        <button type="button" onClick={() => toggleAuthModal(true, "signIn")}>
-          Sign In
-        </button>
-        <button type="button" onClick={() => toggleAuthModal(true, "signUp")}>
-          Sign Up
-        </button>
-        {authModal.formType === "signIn" && <PasswordSignInForm />}
-        {authModal.formType === "signUp" && <PasswordSignUpForm />}
-        {authModal.formType === "setUpTotp" && <TotpSetupForm />}
-        {authModal.formType === "forgotPassword" && <PasswordSendResetForm />}
+      <div>
+        <div ref={authModalRef} className={styles.modalContainer}>
+          <div className={styles.modalHeader}>
+            <div className={styles.modalHeaderTextContainer}>
+              <p className={styles.modalHeaderText}>Sign In</p>
+            </div>
+            <button
+              type="button"
+              className={styles.modalCloseButton}
+              onClick={handleToggleAuthModal}
+            >
+              <FaTimes />
+            </button>
+          </div>
+          {authModal.formType === "signIn" && <PasswordSignInForm />}
+          {authModal.formType === "signUp" && <PasswordSignUpForm />}
+          {authModal.formType === "setUpTotp" && <TotpSetupForm />}
+          {authModal.formType === "forgotPassword" && <PasswordSendResetForm />}
+        </div>
       </div>
     </div>
   );
