@@ -2,7 +2,13 @@ import { ReactElement, useContext } from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 import { AuthContext } from "../../../auth/contexts/AuthContext/context";
-import { FaRegBell, FaRegHeart, FaRegMoon, FaRegSun } from "react-icons/fa6";
+import {
+  FaRegHeart,
+  FaRegMoon,
+  FaRegSun,
+  
+} from "react-icons/fa6";
+import { PiHandHeartBold } from "react-icons/pi";
 import ProfileMenu from "../ProfileMenu";
 
 export default function Header(): ReactElement {
@@ -16,17 +22,16 @@ export default function Header(): ReactElement {
         </Link>
 
         <Link to={"/"}>Home</Link>
-        <Link to={"/charities"}>Find Charities</Link>
         <Link to={"/fundraisers"}>Find Fundraisers</Link>
         <Link to={"/start-fundraising"}>Start Fundraising</Link>
       </div>
       <div className={styles.headerRight}>
         {user ? (
           <div>
-            <FaRegBell />
             <FaRegHeart />
-            <FaRegSun />
+            <FaRegSun /> 
             <FaRegMoon />
+            <PiHandHeartBold />
             <Link to={"/profile"}>
               <div className={styles.headerAvatarContainer}>
                 {user.image ? (
