@@ -3,6 +3,7 @@ import axios from "axios";
 import { ReactElement } from "react";
 import ISession from "../../../../interfaces/Session";
 import SessionCard from "../../components/SessionCard";
+import Seo from "../../../common/Seo";
 
 export default function SessionsPage(): ReactElement {
   const { isPending, error, data } = useQuery<ISession[] | null>({
@@ -26,10 +27,13 @@ export default function SessionsPage(): ReactElement {
   if (data == null) return <p>No</p>;
 
   return (
-    <div>
-      {data.map((session) => {
-        return <SessionCard key={session.id} session={session} />;
-      })}
-    </div>
+    <>
+      <Seo title="Sessions" description="" />
+      <div>
+        {data.map((session) => {
+          return <SessionCard key={session.id} session={session} />;
+        })}
+      </div>
+    </>
   );
 }
