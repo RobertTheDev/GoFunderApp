@@ -1,4 +1,4 @@
-import DeleteProfilePage from "../pages/DeleteProfilePage";
+import CloseAccountPage from "../pages/CloseAccountPage";
 import SessionsPage from "../pages/SessionsPage";
 
 const settingsRouter = [
@@ -8,7 +8,7 @@ const settingsRouter = [
   },
   {
     path: "settings/close-account",
-    element: <DeleteProfilePage />,
+    element: <CloseAccountPage />,
   },
 ];
 

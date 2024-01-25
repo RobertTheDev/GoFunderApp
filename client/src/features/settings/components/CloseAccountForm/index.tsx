@@ -1,11 +1,12 @@
 import { ReactElement } from "react";
-import useDeleteProfile from "./useDeleteProfile";
+import useCloseAccountForm from "./useCloseAccountForm";
 
-export default function DeleteProfileForm(): ReactElement {
-  const { errors, handleDeleteProfile, message, register } = useDeleteProfile();
+export default function CloseAccountForm(): ReactElement {
+  const { errors, handleCloseAccount, message, register } =
+    useCloseAccountForm();
 
   return (
-    <form onSubmit={handleDeleteProfile}>
+    <form onSubmit={handleCloseAccount}>
       <label htmlFor="confirmDeletion">Confirm Deletion</label>
       <input
         {...register("confirmDeletion")}

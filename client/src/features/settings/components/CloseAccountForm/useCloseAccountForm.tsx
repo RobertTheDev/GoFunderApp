@@ -6,7 +6,7 @@ import deleteProfileSchema, {
 } from "../../validators/deleteProfile.schema";
 import { deleteProfile } from "../../service/settings.service";
 
-const useDeleteProfile = () => {
+const useCloseAccountForm = () => {
   const {
     register,
     handleSubmit,
@@ -34,14 +34,14 @@ const useDeleteProfile = () => {
     }
   };
 
-  const handleDeleteProfile = handleSubmit(deleteProfileHandler);
+  const handleCloseAccount = handleSubmit(deleteProfileHandler);
 
   return {
     errors,
-    handleDeleteProfile,
+    handleCloseAccount,
     message,
     register,
   };
 };
 
-export default useDeleteProfile;
+export default useCloseAccountForm;
