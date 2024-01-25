@@ -19,6 +19,9 @@ donationRouter.get(
 
 donationRouter.get('/user/:id', getDonationsByUserIdHandler as RequestHandler)
 
-donationRouter.post('/create', createDonationHandler as RequestHandler)
+donationRouter.post(
+  '/create/:fundraiserId',
+  createDonationHandler as RequestHandler,
+)
 
 export default donationRouter
