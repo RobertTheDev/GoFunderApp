@@ -5,10 +5,8 @@ import IUser from "./User";
 export default interface IDonation {
   id: string;
   createdAt: Date;
-  deletedAt: Date;
   updatedAt: Date;
   amount: number;
-  annonymous: boolean;
   currency: string;
   fundraiser: IFundraiser | null;
   fundraiserId: string;

@@ -1,3 +1,4 @@
+import ApiResponse from "./ApiResponse";
 import IDonation from "./Donation";
 import ISavedFundraiser from "./SavedFundraiser";
 
@@ -23,4 +24,12 @@ export default interface IProfile {
   totalDonationsMade: number;
   totalFundraisersOwned: number;
   username: string;
+}
+
+export interface ProfileApiResponse extends ApiResponse {
+  data: IProfile | null;
+}
+
+export interface ProfilesApiResponse extends ApiResponse {
+  data: IProfile[];
 }

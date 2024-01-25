@@ -1,5 +1,8 @@
+import ApiResponse from "./ApiResponse";
 import IDonation from "./Donation";
+import IFundraiserOwner from "./FundraiserOwner";
 import ISavedFundraiser from "./SavedFundraiser";
+import ISession from "./Session";
 
 export default interface IUser {
   id: string;
@@ -10,17 +13,25 @@ export default interface IUser {
   donations: IDonation[];
   email: string | null;
   emailVerified: Date | null;
+  ownedFundraisers: IFundraiserOwner[];
   image: string | null;
   mfaSecret: string | null;
   mfaType: string | null;
   name: string;
   password: string | null;
-  phoneNumber: string | null;
-  phoneNumberVerified: string | null;
   savedFundraisers: ISavedFundraiser[];
+  sessions: ISession[];
   totalCharitesOwned: number;
   totalDonationsAmount: number;
   totalDonationsMade: number;
   totalFundraisersOwned: number;
   username: string;
+}
+
+export interface UserApiResponse extends ApiResponse {
+  data: IUser | null;
+}
+
+export interface UsersApiResponse extends ApiResponse {
+  data: IUser[];
 }
