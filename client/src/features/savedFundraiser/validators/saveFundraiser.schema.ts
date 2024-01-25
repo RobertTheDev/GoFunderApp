@@ -8,12 +8,6 @@ const saveFundraiserSchema = z.object({
       required_error: "Fundraiser ID is required.",
     })
     .min(1, "Fundraiser ID is required."),
-  userId: z
-    .string({
-      invalid_type_error: "User ID must be a string.",
-      required_error: "User ID is required.",
-    })
-    .min(1, "User ID is required."),
 });
 
 export default saveFundraiserSchema;
