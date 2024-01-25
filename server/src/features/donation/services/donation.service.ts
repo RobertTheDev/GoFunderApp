@@ -25,3 +25,23 @@ export async function createDonation(
     data,
   })
 }
+
+export async function findDonationsByUser(userId: string): Promise<Donation[]> {
+  return await prismaClient.donation.findMany({
+    where: {
+      userId,
+    },
+    include: { fundraiser: true },
+  })
+}
+
+export async function findDonationsByFundraiser(
+  fundraiserId: string,
+): Promise<Donation[]> {
+  return await prismaClient.donation.findMany({
+    where: {
+      fundraiserId,
+    },
+    include: { user: true },
+  })
+}
