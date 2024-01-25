@@ -2,7 +2,10 @@ import AboutPage from "../pages/AboutPage";
 import PrivacyPolicyPage from "../pages/PrivacyPolicyPage";
 import TermsAndConditionsPage from "../pages/TermsAndConditionsPage";
 
-const infoRouter = [
+const infoRouter: {
+  path: string;
+  element: JSX.Element;
+}[] = [
   {
     path: "/about",
     element: <AboutPage />,

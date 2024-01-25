@@ -4,7 +4,10 @@ import FundraiserPage from "../pages/FundraiserPage";
 import FundraisersPage from "../pages/FundraisersPage";
 import UpdateFundraiserPage from "../pages/UpdateFundraiserPage";
 
-const fundraiserRouter = [
+const fundraiserRouter: {
+  path: string;
+  element: JSX.Element;
+}[] = [
   { path: "/fundraisers", element: <FundraisersPage /> },
   { path: "/fundraisers/:slug", element: <FundraiserPage /> },
   { path: "/fundraisers/:slug/delete", element: <DeleteFundraiserPage /> },

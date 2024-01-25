@@ -1,6 +1,9 @@
 import SavedFundraisersPage from "../pages/SavedFundraisers";
 
-const savedFundraiserRouter = [
+const savedFundraiserRouter: {
+  path: string;
+  element: JSX.Element;
+}[] = [
   {
     path: "/saved-fundraisers",
     element: <SavedFundraisersPage />,
