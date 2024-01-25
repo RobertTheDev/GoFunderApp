@@ -1,6 +1,6 @@
-import AboutPage from "../pages/About";
-import PrivacyPolicyPage from "../pages/PrivacyPolicy";
-import TermsAndConditionsPage from "../pages/TermsAndConditions";
+import AboutPage from "../pages/AboutPage";
+import PrivacyPolicyPage from "../pages/PrivacyPolicyPage";
+import TermsAndConditionsPage from "../pages/TermsAndConditionsPage";
 
 const infoRouter = [
   {
