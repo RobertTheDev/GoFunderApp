@@ -8,19 +8,19 @@ const fundraiserAdminRouter: {
   element: JSX.Element;
 }[] = [
   {
-    path: "/fundraisers/:fundraiserId/close-fundraiser",
+    path: "/fundraisers/:fundraiserId/admin/close-fundraiser",
     element: <CloseFundraiserPage />,
   },
   {
-    path: "/fundraisers/:fundraiserId/fundraiser-admin",
+    path: "/fundraisers/:fundraiserId/admin",
     element: <FundraiserAdminPage />,
   },
   {
-    path: "/fundraisers/:fundraiserId/donations",
+    path: "/fundraisers/:fundraiserId/admin/donations",
     element: <FundraiserDonationsPage />,
   },
   {
-    path: "/fundraisers/:fundraiserId/update",
+    path: "/fundraisers/:fundraiserId/admin/update",
     element: <UpdateFundraiserPage />,
   },
 ];
