@@ -25,6 +25,9 @@ export async function findFundraiserOwners(params: {
     cursor,
     where,
     orderBy,
+    include: {
+      fundraiser: true,
+    },
   })
 }
 
@@ -57,7 +60,7 @@ export async function deleteFundraiserOwner(
 
 export async function deleteFundraiserOwnerByFundraiserId(
   fundraiserId: string,
-): Promise<FundraiserOwner> {
+): Promise<Prisma.BatchPayload> {
   return await prismaClient.fundraiserOwner.deleteMany({
     where: {
       fundraiserId,
