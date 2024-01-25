@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import { Link } from "react-router-dom";
+import styles from "./styles.module.scss";
 
 interface ICategoryLink {
   id: string;
@@ -64,11 +65,13 @@ function CategoryLink(categoryLink: ICategoryLink): ReactElement {
 
 export default function CategoryMenu(): ReactElement {
   return (
-    <div>
+    <div className={styles.menuContainer}>
       <p>Category Menu</p>
-      {categoryLinks.map((categoryLink: ICategoryLink) => {
-        return <CategoryLink {...categoryLink} />;
-      })}
+      <div className={styles.menuLinksContainer}>
+        {categoryLinks.map((categoryLink: ICategoryLink) => {
+          return <CategoryLink {...categoryLink} />;
+        })}
+      </div>
     </div>
   );
 }
