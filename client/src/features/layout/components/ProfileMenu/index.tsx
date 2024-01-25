@@ -1,9 +1,9 @@
-import { ReactElement } from "react";
+import { ForwardedRef, forwardRef } from "react";
 import styles from "./styles.module.scss";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
-export default function ProfileMenu(): ReactElement {
+const ProfileMenu = forwardRef((_props, ref: ForwardedRef<HTMLDivElement>) => {
   async function signOut(): Promise<void> {
     try {
       await axios.post(
@@ -33,11 +33,13 @@ export default function ProfileMenu(): ReactElement {
   });
 
   return (
-    <div className={styles.profileMenuContainer}>
+    <div className={styles.profileMenuContainer} ref={ref}>
       <p>Profile</p>
       <button type="button" onClick={() => mutation.mutate()}>
         Sign Out
       </button>
     </div>
   );
-}
+});
+
+export default ProfileMenu;
