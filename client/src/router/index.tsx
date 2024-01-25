@@ -10,6 +10,7 @@ import fundraiserOwnerRouter from "../features/fundraiserOwner/routes/fundraiser
 import donationRouter from "../features/donation/routes/donation.routes";
 import notFoundRouter from "../features/notFound/routes/notFound.routes";
 import settingsRouter from "../features/settings/routes/settings.routes";
+import fundraiserAdminRouter from "../features/fundraiserAdmin/routes/fundraiserAdmin.routes";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       ...authRouter,
       ...donationRouter,
       ...fundraiserRouter,
+      ...fundraiserAdminRouter,
       ...fundraiserOwnerRouter,
       ...homeRouter,
       ...infoRouter,
