@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 import Seo from "../../../common/Seo";
 import { useQuery } from "@tanstack/react-query";
 import { getDonationsByCurrentUser } from "../../service/donation.service";
+import DonationCard from "../../components/DonationCard";
 
 export default function UserDonationsPage(): ReactElement {
   const { isPending, error, data } = useQuery({
@@ -18,11 +19,7 @@ export default function UserDonationsPage(): ReactElement {
       <Seo title="My Donations" description="" />
 
       {data.data.data.map((donation) => {
-        return (
-          <div key={donation.id}>
-            <p>{donation.message}</p>
-          </div>
-        );
+        return <DonationCard key={donation.id} donation={donation} />;
       })}
     </>
   );
