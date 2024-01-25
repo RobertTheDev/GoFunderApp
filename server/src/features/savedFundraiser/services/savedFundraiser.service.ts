@@ -23,6 +23,9 @@ export async function findSavedFundraisers(params: {
     cursor,
     where,
     orderBy,
+    include: {
+      fundraiser: true,
+    },
   })
 }
 
