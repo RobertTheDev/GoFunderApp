@@ -11,13 +11,18 @@ export async function createDonationHandler(
   res: Response<ResponseBody>,
   next: NextFunction,
 ): Promise<void> {
-  const { body, session } = req
+  const { body, params, session } = req
   const { user } = session
+  const { fundraiserId } = params
 
   try {
     // If no user is in session return an error.
     if (user == null || user === undefined) {
       throw new Error('You must be signed in to perform this action.')
+    }
+
+    if (fundraiserId == null || fundraiserId === undefined) {
+      throw new Error('No fundraiser ID was provided.')
     }
 
     // Validate the request body using the validation schema.
@@ -32,7 +37,7 @@ export async function createDonationHandler(
     const createdFundraiser = await prismaClient.donation.create({
       data: {
         ...validation.data,
-        fundraiserId: validation.data.fundraiserId,
+        fundraiserId,
         userId: user.id,
       },
     })
