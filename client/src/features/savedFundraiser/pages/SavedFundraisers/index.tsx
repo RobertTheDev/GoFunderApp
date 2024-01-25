@@ -25,7 +25,7 @@ export default function SavedFundraisersPage(): ReactElement {
             return (
               <FundraiserCard
                 key={savedFundraiser.id}
-                {...savedFundraiser.fundraiser}
+                fundraiser={savedFundraiser.fundraiser}
               />
             );
           })}

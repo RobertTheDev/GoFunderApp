@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 import { format } from "date-fns";
 
-export default function FundraiserCard(fundraiser: IFundraiser): ReactElement {
+export default function FundraiserCard({
+  fundraiser,
+}: {
+  fundraiser: IFundraiser;
+}): ReactElement {
   return (
     <Link
       className={styles.cardContainer}

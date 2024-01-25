@@ -24,8 +24,8 @@ export default function OwnedFundraisersPage(): ReactElement {
           {data.data.data.map((ownedFundraiser) => {
             return (
               <FundraiserCard
-                {...ownedFundraiser.fundraiser}
                 key={ownedFundraiser.id}
+                fundraiser={ownedFundraiser.fundraiser}
               />
             );
           })}

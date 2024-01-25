@@ -23,7 +23,7 @@ export default function CategoryFundraiserSection({
       <h3>{category}</h3>
       <div className={styles.sectionCardsContainer}>
         {data.data.data.map((fundraiser) => {
-          return <FundraiserCard key={fundraiser.id} {...fundraiser} />;
+          return <FundraiserCard key={fundraiser.id} fundraiser={fundraiser} />;
         })}
       </div>
     </div>
