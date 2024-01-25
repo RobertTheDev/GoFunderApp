@@ -1,8 +1,8 @@
-import CreateFundraiserPage from "../pages/CreateFundraiser";
-import DeleteFundraiserPage from "../pages/DeleteFundraiser";
-import FundraiserPage from "../pages/Fundraiser";
-import FundraisersPage from "../pages/Fundraisers";
-import UpdateFundraiserPage from "../pages/UpdateFundraiser";
+import CreateFundraiserPage from "../pages/CreateFundraiserPage";
+import DeleteFundraiserPage from "../pages/DeleteFundraiserPage";
+import FundraiserPage from "../pages/FundraiserPage";
+import FundraisersPage from "../pages/FundraisersPage";
+import UpdateFundraiserPage from "../pages/UpdateFundraiserPage";
 
 const fundraiserRouter = [
   { path: "/fundraisers", element: <FundraisersPage /> },
