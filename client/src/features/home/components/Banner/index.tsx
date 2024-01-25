@@ -1,7 +1,10 @@
 import { ReactElement } from "react";
 import styles from "./styles.module.scss";
+import { useNavigate } from "react-router-dom";
 
 export default function Banner(): ReactElement {
+  const navigation = useNavigate();
+
   return (
     <div className={styles.bannerContainer}>
       <div className={styles.bannerContentContainer}>
@@ -10,8 +13,15 @@ export default function Banner(): ReactElement {
         </h2>
         <p>Help and Support Local Charities with GoFunder.</p>
         <div>
-          <button>Find Fundraisers</button>
-          <button>Start Fundraising</button>
+          <button type="button" onClick={() => navigation("/fundraisers")}>
+            Find Fundraisers
+          </button>
+          <button
+            type="button"
+            onClick={() => navigation("/start-fundraising")}
+          >
+            Start Fundraising
+          </button>
         </div>
       </div>
 
