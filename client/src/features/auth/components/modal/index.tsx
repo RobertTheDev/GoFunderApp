@@ -2,7 +2,7 @@ import { ReactElement, useContext, useRef } from "react";
 import styles from "./styles.module.scss";
 import { AuthContext } from "../../contexts/AuthContext/context";
 import { useOnClickOutside } from "usehooks-ts";
-import PasswordSignInForm from "../password/PasswordSignIn";
+import PasswordSignInForm from "../password/PasswordSignInForm";
 import PasswordSignUpForm from "../password/PasswordSignUpForm";
 import TotpSetupForm from "../totp/TotpSetupForm";
 import PasswordSendResetForm from "../password/PasswordSendResetForm";
