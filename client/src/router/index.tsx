@@ -9,6 +9,7 @@ import profileRouter from "../features/profile/routes/profile.routes";
 import fundraiserOwnerRouter from "../features/fundraiserOwner/routes/fundraiserOwner.routes";
 import donationRouter from "../features/donation/routes/donation.routes";
 import notFoundRouter from "../features/notFound/routes/notFound.routes";
+import settingsRouter from "../features/settings/routes/settings.routes";
 
 const router = createBrowserRouter([
   {
@@ -21,9 +22,10 @@ const router = createBrowserRouter([
       ...fundraiserOwnerRouter,
       ...homeRouter,
       ...infoRouter,
+      ...notFoundRouter,
       ...profileRouter,
       ...savedFundraiserRouter,
-      ...notFoundRouter,
+      ...settingsRouter,
     ],
   },
 ]);
