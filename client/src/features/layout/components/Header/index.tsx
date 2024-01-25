@@ -1,18 +1,26 @@
-import { ReactElement, useContext } from "react";
+import { ReactElement, useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 import { AuthContext } from "../../../auth/contexts/AuthContext/context";
-import {
-  FaRegHeart,
-  FaRegMoon,
-  FaRegSun,
-  
-} from "react-icons/fa6";
+import { FaRegHeart, FaRegMoon, FaRegSun } from "react-icons/fa6";
 import { PiHandHeartBold } from "react-icons/pi";
 import ProfileMenu from "../ProfileMenu";
+import { useDarkMode, useOnClickOutside } from "usehooks-ts";
 
 export default function Header(): ReactElement {
+  const profileMenuRef = useRef(null);
+
   const { authModal, toggleAuthModal, user } = useContext(AuthContext);
+
+  const { isDarkMode, toggle } = useDarkMode();
+
+  const [profileMenuActive, setProfileMenuActive] = useState(false);
+
+  function closeProfileMenu() {
+    setProfileMenuActive(false);
+  }
+
+  useOnClickOutside(profileMenuRef, closeProfileMenu);
 
   return (
     <div className={styles.headerContainer}>
@@ -27,34 +35,44 @@ export default function Header(): ReactElement {
       </div>
       <div className={styles.headerRight}>
         {user ? (
-          <div>
-            <FaRegHeart />
-            <FaRegSun /> 
-            <FaRegMoon />
-            <PiHandHeartBold />
-            <Link to={"/profile"}>
-              <div className={styles.headerAvatarContainer}>
-                {user.image ? (
-                  <img
-                    className={styles.headerAvatarImage}
-                    src={user.image}
-                    alt="Avatar"
-                  />
-                ) : (
-                  <img
-                    className={styles.headerAvatarImage}
-                    src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
-                    alt="Avatar"
-                  />
-                )}
-              </div>
+          <div className={styles.headerUserContainer}>
+            <Link to={"/saved-fundraisers"}>
+              <FaRegHeart className={styles.headerIcon} />
             </Link>
-            <ProfileMenu />
+            {isDarkMode ? (
+              <FaRegSun className={styles.headerIcon} onClick={toggle} />
+            ) : (
+              <FaRegMoon className={styles.headerIcon} onClick={toggle} />
+            )}
+            <Link to={"/donations"}>
+              <PiHandHeartBold className={styles.headerIcon} />
+            </Link>
+            <div
+              className={styles.headerAvatarContainer}
+              onClick={() => setProfileMenuActive(!profileMenuActive)}
+            >
+              {user.image ? (
+                <img
+                  className={styles.headerAvatarImage}
+                  src={user.image}
+                  alt="Avatar"
+                />
+              ) : (
+                <img
+                  className={styles.headerAvatarImage}
+                  src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+                  alt="Avatar"
+                />
+              )}
+            </div>
+
+            {profileMenuActive && <ProfileMenu ref={profileMenuRef} />}
           </div>
         ) : (
           <div>
             <button
               type="button"
+              className={styles.headerAuthButton}
               onClick={() => toggleAuthModal(!authModal.active, "signIn")}
             >
               Sign In
