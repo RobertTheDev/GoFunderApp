@@ -1,19 +1,9 @@
-import DeleteProfilePage from "../pages/DeleteProfile";
-import ProfilePage from "../pages/Profile";
-import SessionsPage from "../pages/Sessions";
+import ProfilePage from "../pages/ProfilePage";
 
 const profileRouter = [
   {
     path: "/profile",
     element: <ProfilePage />,
-  },
-  {
-    path: "/profile/sessions",
-    element: <SessionsPage />,
-  },
-  {
-    path: "profile/close-account",
-    element: <DeleteProfilePage />,
   },
 ];
 
