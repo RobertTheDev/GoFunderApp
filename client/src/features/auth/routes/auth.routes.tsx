@@ -1,12 +1,12 @@
-import ChangePasswordPage from "../pages/ChangePasswordPage";
+import ResetPasswordPage from "../pages/ResetPasswordPage";
 
 const authRouter: {
   path: string;
   element: JSX.Element;
 }[] = [
   {
-    path: "/change-password",
-    element: <ChangePasswordPage />,
+    path: "/reset-password",
+    element: <ResetPasswordPage />,
   },
 ];
 
