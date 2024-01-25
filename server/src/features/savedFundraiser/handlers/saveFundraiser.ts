@@ -7,6 +7,7 @@ import {
   deleteSavedFundraiser,
   findSavedFundraiser,
 } from '../services/savedFundraiser.service.js'
+import { deleteCachedFundraisersSavedByUserId } from '../services/savedFundraiserCache.service.js'
 
 // This handler searches for a saved fundraiser and either
 // creates or deletes one by user and fundraiser id.
@@ -51,6 +52,8 @@ export async function saveFundraiserHandler(
         userId,
       })
 
+      await deleteCachedFundraisersSavedByUserId(user.id)
+
       // Return the saved fundraiser and return success message.
       res.status(StatusCodes.CREATED).json({
         success: true,
@@ -66,6 +69,8 @@ export async function saveFundraiserHandler(
     await deleteSavedFundraiser({
       id: savedFundraiser.id,
     })
+
+    await deleteCachedFundraisersSavedByUserId(user.id)
 
     // Return success message.
     res.status(StatusCodes.OK).json({

@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
-import { findDonations } from '../services/donation.service.js'
+import { findDonationsByUser } from '../services/donation.service.js'
 
 export async function getDonationsByCurrentUserHandler(
   req: Request,
@@ -16,11 +16,7 @@ export async function getDonationsByCurrentUserHandler(
       throw new Error('You must be signed in to perform this action.')
     }
 
-    const donations = await findDonations({
-      where: {
-        userId: user.id,
-      },
-    })
+    const donations = await findDonationsByUser(user.id)
 
     // Return the created fundraiser and success message.
     res.status(StatusCodes.OK).json({

@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
-import { findDonations } from '../services/donation.service.js'
+import { findDonationsByUser } from '../services/donation.service.js'
 
 export async function getDonationsByUserIdHandler(
   req: Request,
@@ -16,11 +16,7 @@ export async function getDonationsByUserIdHandler(
       throw new Error('No user ID was provided.')
     }
 
-    const donations = await findDonations({
-      where: {
-        userId,
-      },
-    })
+    const donations = await findDonationsByUser(userId)
 
     res.status(StatusCodes.OK).json({
       success: true,
