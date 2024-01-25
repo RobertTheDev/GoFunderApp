@@ -2,6 +2,7 @@ import { ForwardedRef, forwardRef } from "react";
 import styles from "./styles.module.scss";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ProfileMenu = forwardRef((_props, ref: ForwardedRef<HTMLDivElement>) => {
   async function signOut(): Promise<void> {
@@ -32,9 +33,40 @@ const ProfileMenu = forwardRef((_props, ref: ForwardedRef<HTMLDivElement>) => {
     },
   });
 
+  const profileMenuLinks = [
+    {
+      name: "Edit Profile",
+      path: "/edit-profile",
+    },
+    {
+      name: "Settings",
+      path: "/settings",
+    },
+    {
+      name: "Saved Fundraisers",
+      path: "/saved-fundraisers",
+    },
+    {
+      name: "My Donations",
+      path: "/donations",
+    },
+    {
+      name: "My Fundraisers",
+      path: "/owned-fundraisers",
+    },
+  ];
+
   return (
     <div className={styles.profileMenuContainer} ref={ref}>
-      <p>Profile</p>
+      <p>Profile Menu</p>
+      {profileMenuLinks.map((profileMenuLink) => {
+        return (
+          <Link key={profileMenuLink.path} to={profileMenuLink.path}>
+            {profileMenuLink.name}
+          </Link>
+        );
+      })}
+
       <button type="button" onClick={() => mutation.mutate()}>
         Sign Out
       </button>
