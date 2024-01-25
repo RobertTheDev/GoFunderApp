@@ -1,5 +1,5 @@
 // These are the available allowed category options for a charity.
-const categoryOptions = [
+const categoryOptions: string[] = [
   "Animals and pets",
   "Art and culture",
   "Disability",
