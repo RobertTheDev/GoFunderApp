@@ -12,12 +12,6 @@ export const createDonationSchema = z.object({
       invalid_type_error: 'Annonymous must be of type boolean.',
     })
     .optional(),
-  fundraiserId: z
-    .string({
-      invalid_type_error: 'Fundraiser ID must be of type string.',
-      required_error: 'Fundraiser ID is required',
-    })
-    .min(1, 'Fundraiser ID cannot be empty.'),
   message: z
     .string({
       invalid_type_error: 'Message must be of type string.',
