@@ -10,33 +10,27 @@ export default function FundraiserCard(fundraiser: IFundraiser): ReactElement {
       className={styles.cardContainer}
       to={`/fundraisers/${fundraiser.slug}`}
     >
-      <img
-        className={styles.cardImageContainer}
-        src={fundraiser.image}
-        alt="ddd"
-      />
-      <p>{fundraiser.name}</p>
+      <div className={styles.cardImageContainer}>
+        <img className={styles.cardImage} src={fundraiser.image} alt="ddd" />
+      </div>
+      <div className={styles.cardContentContainer}>
+        <p className={styles.cardTitleText}>{fundraiser.name}</p>
 
-      {fundraiser.deadlineDate && (
-        <p>
-          Closes at
-          {format(new Date(fundraiser.deadlineDate).getDate(), "d MMMM yyyy")}
-        </p>
-      )}
+        {fundraiser.deadlineDate && (
+          <p>
+            Closes at
+            {format(new Date(fundraiser.deadlineDate).getDate(), "d MMMM yyyy")}
+          </p>
+        )}
 
-      <p>
-        Created on{" "}
-        {format(new Date(fundraiser.createdAt).getDate(), "d MMMM yyyy")}
-      </p>
-      <p>£{fundraiser.target.toLocaleString()}</p>
-      <p>{fundraiser.category}</p>
+        {/* <p>£{fundraiser.target.toLocaleString()}</p> */}
+        <p>{fundraiser.category}</p>
 
-      <p>{fundraiser.headline}</p>
-
-      <p>
-        £{fundraiser.totalRaised.toLocaleString()} raised from{" "}
-        {fundraiser.totalDonations} donations.
-      </p>
+        {/* <p>
+          £{fundraiser.totalRaised.toLocaleString()} raised from{" "}
+          {fundraiser.totalDonations} donations.
+        </p> */}
+      </div>
     </Link>
   );
 }
