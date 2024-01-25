@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getFundraisers } from "../../service/fundraiser.service";
 import FundraiserCard from "../../components/FundraiserCard";
 import styles from "./styles.module.scss";
+import FundraiserFilterMenu from "../../components/FundraiserFilterMenu";
 
 export default function FundraisersPage(): ReactElement {
   const { isPending, error, data } = useQuery({
@@ -18,10 +19,10 @@ export default function FundraisersPage(): ReactElement {
   return (
     <>
       <Seo title="Fundraisers" description="" />
-
+      <FundraiserFilterMenu />
       <div className={styles.fundraiserCardsContainer}>
         {data.data.data.map((fundraiser) => {
-          return <FundraiserCard {...fundraiser} key={fundraiser.id} />;
+          return <FundraiserCard fundraiser={fundraiser} key={fundraiser.id} />;
         })}
       </div>
     </>
