@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import ChangePasswordForm from "../../components/password/ChangePasswordForm";
+import ChangePasswordForm from "../../../settings/components/ChangePasswordForm";
 
 export default function ChangePasswordPage(): ReactElement {
   return (
