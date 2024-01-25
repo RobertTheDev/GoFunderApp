@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 import { AuthContext } from "../../../auth/contexts/AuthContext/context";
 import { FaRegHeart, FaRegMoon, FaRegSun } from "react-icons/fa6";
 import { PiHandHeartBold } from "react-icons/pi";
-import ProfileMenu from "../ProfileMenu";
+import ProfileMenu from "../../../profile/components/ProfileMenu";
 import { useDarkMode, useOnClickOutside } from "usehooks-ts";
 
 export default function Header(): ReactElement {
