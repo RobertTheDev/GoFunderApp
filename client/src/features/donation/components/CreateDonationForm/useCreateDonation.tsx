@@ -6,7 +6,7 @@ import createDonationSchema, {
 } from "../../validators/createDonation.schema";
 import { createdonation } from "../../service/donation.service";
 
-const useCreateDonation = () => {
+const useCreateDonation = (fundraiserId: string | undefined) => {
   const {
     register,
     handleSubmit,
@@ -22,7 +22,11 @@ const useCreateDonation = () => {
 
   const createDonation = async (data: CreateDonationSchemaType) => {
     try {
-      const createDsonation = await createdonation(data);
+      if (fundraiserId === undefined) {
+        return;
+      }
+
+      const createDsonation = await createdonation(fundraiserId, data);
 
       setMessage({ type: "success", content: createDsonation.message });
 
