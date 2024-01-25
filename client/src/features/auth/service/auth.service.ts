@@ -9,45 +9,36 @@ interface UserApiResponse extends ApiResponse {
   data: IUser;
 }
 
+const authUrl: string = `${process.env.REACT_APP_API_URL}/auth`;
+
 export async function signUpWithPassword(
   data: PasswordSignUpSchemaType
 ): Promise<AxiosResponse<UserApiResponse>> {
-  return await axios.post(
-    `${process.env.REACT_APP_API_URL}/auth/sign-up`,
-    data,
-    {
-      withCredentials: true,
-    }
-  );
+  return await axios.post(`${authUrl}/sign-up`, data, {
+    withCredentials: true,
+  });
 }
 
 export async function signInWithPassword(
   data: PasswordSignInSchemaType
 ): Promise<AxiosResponse<UserApiResponse>> {
-  return await axios.post(
-    `${process.env.REACT_APP_API_URL}/auth/sign-in`,
-    data,
-    {
-      withCredentials: true,
-    }
-  );
-}
-
-export async function getAuthenticatedUser() {
-  const user = await axios.get(`${process.env.REACT_APP_API_URL}/auth/user`, {
+  return await axios.post(`${authUrl}/sign-in`, data, {
     withCredentials: true,
   });
-  return user.data.data;
+}
+
+export async function getAuthenticatedUser(): Promise<
+  AxiosResponse<UserApiResponse>
+> {
+  return await axios.get(`${authUrl}/user`, {
+    withCredentials: true,
+  });
 }
 
 export async function changePassword(
   data: ChangePasswordSchemaType
 ): Promise<AxiosResponse<ApiResponse>> {
-  return await axios.put(
-    `${process.env.REACT_APP_API_URL}/auth/change-password`,
-    data,
-    {
-      withCredentials: true,
-    }
-  );
+  return await axios.put(`${authUrl}/change-password`, data, {
+    withCredentials: true,
+  });
 }
