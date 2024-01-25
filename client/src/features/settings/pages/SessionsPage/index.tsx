@@ -4,6 +4,7 @@ import { ReactElement } from "react";
 import ISession from "../../../../interfaces/Session";
 import SessionCard from "../../components/SessionCard";
 import Seo from "../../../common/Seo";
+import SettingsPageLayout from "../../layouts/SettingsPageLayout";
 
 export default function SessionsPage(): ReactElement {
   const { isPending, error, data } = useQuery<ISession[] | null>({
@@ -29,11 +30,13 @@ export default function SessionsPage(): ReactElement {
   return (
     <>
       <Seo title="Sessions" description="" />
-      <div>
-        {data.map((session) => {
-          return <SessionCard key={session.id} session={session} />;
-        })}
-      </div>
+      <SettingsPageLayout>
+        <div>
+          {data.map((session) => {
+            return <SessionCard key={session.id} session={session} />;
+          })}
+        </div>
+      </SettingsPageLayout>
     </>
   );
 }
