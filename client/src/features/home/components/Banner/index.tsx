@@ -5,7 +5,9 @@ export default function Banner(): ReactElement {
   return (
     <div className={styles.bannerContainer}>
       <div className={styles.bannerContentContainer}>
-        <h2> Help and Support Local Charities with GoFunder.</h2>
+        <h2 className={styles.bannerText}>
+          Help and Support Local Charities with GoFunder.
+        </h2>
         <p>Help and Support Local Charities with GoFunder.</p>
         <div>
           <button>Find Fundraisers</button>
