@@ -7,11 +7,7 @@ const createDonationSchema = z.object({
       required_error: "Amount is required.",
     })
     .min(1, "Amount is required."),
-  annonymous: z
-    .boolean({
-      invalid_type_error: "Annonymous must be of type boolean.",
-    })
-    .optional(),
+
   message: z
     .string({
       invalid_type_error: "Message must be of type string.",
