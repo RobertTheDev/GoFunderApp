@@ -1,5 +1,4 @@
 import { CreateDonationSchemaType } from "../validators/createDonation.schema";
-import { UpdateDonationSchemaType } from "../validators/updateDonation.schema";
 import IDonation, { DonationApiResponse } from "../../../interfaces/Donation";
 import axios, { AxiosResponse } from "axios";
 import ApiResponse from "../../../interfaces/ApiResponse";
@@ -39,11 +38,4 @@ export async function getDonationById(
   donationId: string
 ): Promise<DonationApiResponse> {
   return await axios.get(`${donationApiUrl}/${donationId}`);
-}
-
-export async function updateDonationById(
-  donationId: string,
-  data: UpdateDonationSchemaType
-): Promise<DonationApiResponse> {
-  return await axios.put(`${donationApiUrl}/${donationId}`, data);
 }
