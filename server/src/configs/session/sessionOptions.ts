@@ -33,7 +33,7 @@ const sessionConfig: SessionOptions = {
     secure: false,
     httpOnly: true,
     sameSite: true,
-    maxAge: 604800,
+    maxAge: 60 * 60 * 24 * 30,
     // domain: '',
     path: '/',
   },
