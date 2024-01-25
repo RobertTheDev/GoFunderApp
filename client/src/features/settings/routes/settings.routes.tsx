@@ -4,12 +4,17 @@ import CloseAccountPage from "../pages/CloseAccountPage";
 import SendEmailVerificationPage from "../pages/SendEmailVerificationPage";
 import SessionsPage from "../pages/SessionsPage";
 import SetUpTotpPage from "../pages/SetUpTotpPage";
+import SettingsPage from "../pages/SettingsPage";
 import VerifyEmailPage from "../pages/VerifyEmailPage";
 
 const settingsRouter: {
   path: string;
   element: JSX.Element;
 }[] = [
+  {
+    path: "/settings",
+    element: <SettingsPage />,
+  },
   {
     path: "/settings/change-email",
     element: <ChangeEmailPage />,
