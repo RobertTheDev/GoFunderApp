@@ -7,9 +7,12 @@ import PasswordSignUpForm from "../password/PasswordSignUpForm";
 import TotpSetupForm from "../totp/TotpSetupForm";
 import PasswordSendResetForm from "../password/PasswordSendResetForm";
 import { FaTimes } from "react-icons/fa";
+import { AuthContextType } from "../../contexts/AuthContext/AuthContextType";
+import { motion } from "framer-motion";
 
 export default function AuthModal(): ReactElement {
-  const { authModal, toggleAuthModal } = useContext(AuthContext);
+  const { authModal, toggleAuthModal } =
+    useContext<AuthContextType>(AuthContext);
 
   const authModalRef = useRef<HTMLDivElement>(null);
 
@@ -22,7 +25,13 @@ export default function AuthModal(): ReactElement {
   return (
     <div className={styles.modalWrapper}>
       <div>
-        <div ref={authModalRef} className={styles.modalContainer}>
+        <motion.div
+          animate={{ y: 0 }}
+          initial={{ y: 150 }}
+          transition={{ ease: "easeInOut", duration: 0.3 }}
+          ref={authModalRef}
+          className={styles.modalContainer}
+        >
           <div className={styles.modalHeader}>
             <div className={styles.modalHeaderTextContainer}>
               <p className={styles.modalHeaderText}>Sign In</p>
@@ -39,7 +48,7 @@ export default function AuthModal(): ReactElement {
           {authModal.formType === "signUp" && <PasswordSignUpForm />}
           {authModal.formType === "setUpTotp" && <TotpSetupForm />}
           {authModal.formType === "forgotPassword" && <PasswordSendResetForm />}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
