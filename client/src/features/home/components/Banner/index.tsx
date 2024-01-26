@@ -9,9 +9,9 @@ export default function Banner(): ReactElement {
     <div className={styles.bannerContainer}>
       <div className={styles.bannerContentContainer}>
         <h2 className={styles.bannerText}>
-          Help and Support Local Charities with GoFunder.
+          Raise funds for causes you care about.
         </h2>
-        <p>Help and Support Local Charities with GoFunder.</p>
+
         <div>
           <button type="button" onClick={() => navigation("/fundraisers")}>
             Find Fundraisers
