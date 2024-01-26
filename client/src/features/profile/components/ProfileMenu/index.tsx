@@ -58,15 +58,15 @@ const ProfileMenu = forwardRef((_props, ref: ForwardedRef<HTMLDivElement>) => {
 
   return (
     <div className={styles.profileMenuContainer} ref={ref}>
-      <p>Profile Menu</p>
-      {profileMenuLinks.map((profileMenuLink) => {
-        return (
-          <Link key={profileMenuLink.path} to={profileMenuLink.path}>
-            {profileMenuLink.name}
-          </Link>
-        );
-      })}
-
+      <div className={styles.profileMenuLinksContainer}>
+        {profileMenuLinks.map((profileMenuLink) => {
+          return (
+            <Link key={profileMenuLink.path} to={profileMenuLink.path}>
+              {profileMenuLink.name}
+            </Link>
+          );
+        })}
+      </div>
       <button type="button" onClick={() => mutation.mutate()}>
         Sign Out
       </button>

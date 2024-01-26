@@ -27,3 +27,17 @@
   object-fit: cover;
   width: 100%;
 }
+
+.cardProgressBarContainer {
+  width: 100%;
+  position: relative;
+  height: 5px;
+  background-color: lightgray;
+  border-radius: 2.5px;
+  overflow: hidden;
+}
+
+.cardProgressBar {
+  background-color: purple;
+  position: absolute;
+}
