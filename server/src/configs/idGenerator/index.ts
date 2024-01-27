@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
 
 // Generates a unique ID using nanoid.
-export default function genereateId(): string {
+export default function generateId(): string {
   return nanoid()
 }
