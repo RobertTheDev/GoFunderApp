@@ -10,6 +10,7 @@ const redisSessionStore: RedisStore = new RedisStore({
 
 declare module 'express-session' {
   interface SessionData {
+    mfaVerified: Date | null
     user: {
       id: string
       createdAt: Date
@@ -18,6 +19,7 @@ declare module 'express-session' {
       emailVerified: Date | null
       name: string | null
       image: string | null
+      mfaType: string | null
     }
   }
 }
