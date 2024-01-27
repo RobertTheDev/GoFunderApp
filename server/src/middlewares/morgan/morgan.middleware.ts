@@ -12,7 +12,7 @@ import winstonLogger from '../../utils/winston/winstonLogger.js'
 
 const stream = {
   // Use the http severity
-  write: message => winstonLogger.http(message),
+  write: (message: string) => winstonLogger.http(message),
 }
 function skip(): boolean {
   const env =
