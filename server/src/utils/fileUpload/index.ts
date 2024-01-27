@@ -8,6 +8,6 @@ const storage = multer.diskStorage({
     cb(null, file.originalname)
   },
 })
-const uploadImage = multer({ storage })
+const fileUpload = multer({ storage })
 
-export default uploadImage
+export default fileUpload
