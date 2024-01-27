@@ -6,13 +6,13 @@ import savedFundraiserRouter from '../features/savedFundraiser/routes/savedFundr
 import fundraiserOwnerRouter from 'src/features/fundraiserOwner/routes/fundraiserOwner.routes.js'
 
 // Sets up the apps routers with the modulised routers.
-const appRouter: Router = Router()
+const router: Router = Router()
 
 // Defines app routes.
-appRouter.use('/auth', authRouter)
-appRouter.use('/donations', donationRouter)
-appRouter.use('/fundraisers', fundraiserRouter)
-appRouter.use('/fundraiser-owners', fundraiserOwnerRouter)
-appRouter.use('/saved-fundraisers', savedFundraiserRouter)
+router.use('/auth', authRouter)
+router.use('/donations', donationRouter)
+router.use('/fundraisers', fundraiserRouter)
+router.use('/fundraiser-owners', fundraiserOwnerRouter)
+router.use('/saved-fundraisers', savedFundraiserRouter)
 
-export default appRouter
+export default router

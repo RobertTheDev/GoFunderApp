@@ -2,7 +2,7 @@ import 'dotenv/config'
 import 'express-async-errors'
 import express, { type Express, type RequestHandler } from 'express'
 import cors from 'cors'
-import appRouter from '../../routes/index.js'
+import router from '../../router/index.js'
 import helmet from 'helmet'
 import compression from 'compression'
 import winstonLogger from '../../utils/winston/winstonLogger.js'
@@ -13,6 +13,7 @@ import session from 'express-session'
 import path from 'path'
 import sessionConfig from '../session/sessionOptions.js'
 import errorHandler from '../../middlewares/errorHandler/errorHandler.middleware.js'
+
 // import rateLimiter from '../../utils/limiter/rateLimiter.js'
 
 // This handler runs the express server when called.
@@ -71,7 +72,7 @@ app.get('/api/status', (_req, res) => {
 const serverPort: number = Number(process.env.SERVER_PORT)
 
 // Sets up the app router.
-app.use('/api', appRouter as RequestHandler)
+app.use('/api', router as RequestHandler)
 
 app.use(errorHandler)
 
