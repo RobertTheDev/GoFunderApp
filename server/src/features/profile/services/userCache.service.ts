@@ -1,5 +1,5 @@
 import type { User } from '@prisma/client'
-import redisClient from '../../../../../utils/redis/redisClient'
+import redisClient from '../../../utils/redis/redisClient'
 
 export async function deleteCachedUserByUsername(
   username: string,

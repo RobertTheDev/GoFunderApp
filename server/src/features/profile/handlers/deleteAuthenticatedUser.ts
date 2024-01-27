@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from 'express'
-import type ResponseBody from '../../../../../interfaces/ResponseBody.js'
+import type ResponseBody from '../../../interfaces/ResponseBody.js'
 import { StatusCodes, ReasonPhrases } from 'http-status-codes'
 import deleteAuthenticatedUserSchema from '../validators/deleteAuthenticatedUser.schema.js'
 import { deleteUser, findUserById } from '../services/user.service.js'
-import { deleteSession } from '../../session/services/session.service.js'
+import { deleteSession } from '../../auth/features/session/services/session.service.js'
 import { deleteCachedUserByUsername } from '../services/userCache.service.js'
 
 export async function deleteAuthenticatedUserHandler(
