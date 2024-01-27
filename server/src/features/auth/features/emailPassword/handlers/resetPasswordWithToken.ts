@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from 'express'
 import { StatusCodes, ReasonPhrases } from 'http-status-codes'
 import prismaClient from '../../../../../utils/prisma/prismaClient.js'
-import { hashPassword } from '../../../../../configs/passwordManagement/index.js'
+import { hashPassword } from '../../../../../utils/passwordManagement/index.js'
 import resetPasswordSchema from '../validators/resetPassword.schema.js'
 import type ResponseBody from '../../../../../interfaces/ResponseBody.js'
 import { isPast } from 'date-fns'

@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express'
 import { StatusCodes, ReasonPhrases } from 'http-status-codes'
-import { hashPassword } from '../../../../../configs/passwordManagement/index.js'
+import { hashPassword } from '../../../../../utils/passwordManagement/index.js'
 import prismaClient from '../../../../../utils/prisma/prismaClient.js'
 import type ResponseBody from '../../../../../interfaces/ResponseBody.js'
 import signUpWithEmailAndPasswordSchema from '../validators/signUp.schema.js'
