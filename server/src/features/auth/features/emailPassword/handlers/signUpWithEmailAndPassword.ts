@@ -61,6 +61,7 @@ export default async function signUpWithEmailAndPasswordHandler(
     const { password: _, ...userWithoutPassword } = signedUpUser
 
     req.session.user = userWithoutPassword
+    req.session.mfaVerified = null
 
     await createSession({
       sessionId: req.sessionID,
