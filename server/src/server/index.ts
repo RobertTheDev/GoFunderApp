@@ -1,7 +1,6 @@
 import 'dotenv/config'
 import 'express-async-errors'
 import express, { type Express, type RequestHandler } from 'express'
-import cors from 'cors'
 import router from '../router/index.js'
 import helmet from 'helmet'
 import compression from 'compression'
@@ -13,6 +12,7 @@ import session from 'express-session'
 import path from 'path'
 import sessionConfig from '../utils/session/sessionOptions.js'
 import errorHandler from '../middlewares/errorHandler/errorHandler.middleware.js'
+import corsConfig from '../utils/cors/corsConfig.js'
 
 // import rateLimiter from '../../utils/limiter/rateLimiter.js'
 
@@ -20,6 +20,8 @@ import errorHandler from '../middlewares/errorHandler/errorHandler.middleware.js
 
 // Set up express.
 const app: Express = express()
+
+// Set up JSON.
 app.use(express.json())
 
 // Set up helmet.
@@ -32,13 +34,7 @@ app.use(compression())
 app.use(cookieParser())
 
 // Set up cors.
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'DELETE', 'POST', 'PUT'],
-    credentials: true,
-  }),
-)
+app.use(corsConfig)
 
 const filename: string = new URL(import.meta.url).pathname
 const dirname: string = path.dirname(filename)
@@ -56,14 +52,6 @@ if (app.get('env') === 'production') {
 app.use(session(sessionConfig))
 
 app.use(morganMiddleware)
-
-app.get('/api/status', (_req, res) => {
-  winstonLogger.info('Checking the API status: Everything is OK')
-  res.status(200).send({
-    status: 'UP',
-    message: 'The API is up and running!',
-  })
-})
 
 // Sets up rate limiting.
 // app.use(rateLimiter)
