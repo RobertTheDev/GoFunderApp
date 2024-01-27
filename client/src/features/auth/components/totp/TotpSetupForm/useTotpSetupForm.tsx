@@ -21,7 +21,7 @@ const useTotpSetupForm = () => {
   const handleTotpVerification = async (data: VerifyTotpCodeSchemaType) => {
     try {
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/auth/totp/verify-code`,
+        `${process.env.REACT_APP_API_URL}/auth/totp/verify-code`,
         data,
         {
           withCredentials: true,
