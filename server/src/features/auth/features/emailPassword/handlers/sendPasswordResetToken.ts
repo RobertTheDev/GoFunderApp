@@ -4,7 +4,7 @@ import prismaClient from '../../../../../utils/prisma/prismaClient.js'
 import sendPasswordResetSchema from '../validators/sendPasswordReset.schema.js'
 import type ResponseBody from '../../../../../interfaces/ResponseBody.js'
 import sendPasswordResetTokenWithSendgrid from 'src/utils/sendgrid/sendPasswordResetToken.js'
-import generateId from 'src/configs/idGenerator/index.js'
+import generateId from 'src/utils/idGenerator/index.js'
 import { tenMinuteExpiryDateTime } from 'src/configs/expiryManagement/dateExpiryManagement.js'
 
 export async function sendPasswordResetToken(
