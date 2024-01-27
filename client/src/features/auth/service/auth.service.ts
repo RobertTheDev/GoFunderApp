@@ -4,12 +4,31 @@ import IUser from "../../../interfaces/User";
 import { PasswordSignUpSchemaType } from "../validators/passwordSignUp.schema";
 import { PasswordSignInSchemaType } from "../validators/passwordSignIn.schema";
 import { ChangePasswordSchemaType } from "../validators/changePassword.schema";
+import { SendPasswordResetSchemaType } from "../validators/sendPasswordReset.schema";
+import { ResetPasswordSchemaType } from "../validators/resetPassword.schema";
 
 interface UserApiResponse extends ApiResponse {
   data: IUser;
 }
 
 const authUrl: string = `${process.env.REACT_APP_API_URL}/auth`;
+
+export async function resetPassword(
+  code: string,
+  data: ResetPasswordSchemaType
+): Promise<AxiosResponse<UserApiResponse>> {
+  return await axios.put(`${authUrl}/reset-password/${code}`, data, {
+    withCredentials: true,
+  });
+}
+
+export async function sendPasswordReset(
+  data: SendPasswordResetSchemaType
+): Promise<AxiosResponse<UserApiResponse>> {
+  return await axios.post(`${authUrl}/send-password-reset`, data, {
+    withCredentials: true,
+  });
+}
 
 export async function signUpWithPassword(
   data: PasswordSignUpSchemaType
