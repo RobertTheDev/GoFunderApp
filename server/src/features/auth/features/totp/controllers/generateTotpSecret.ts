@@ -2,33 +2,21 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import twoFactor from 'node-2fa'
 import type { NextFunction, Request, Response } from 'express'
 import type ResponseBody from '../../../../../interfaces/ResponseBody'
-// import { UserService } from 'src/modules/user/user.service'
 import QRCode from 'qrcode'
-import winstonLogger from 'src/utils/winston/winstonLogger'
+import prismaClient from 'src/utils/prisma/prismaClient'
 
 export async function generateTotpSecret(
-  _req: Request,
+  req: Request,
   res: Response<ResponseBody>,
   next: NextFunction,
 ): Promise<void> {
-  // const { session } = req
-  // const { user } = session
-  // const userService = new UserService()
+  const { session } = req
+  const { user } = session
 
   try {
-    // if (user == null || user === undefined) {
-    //   throw new Error('You are not signed in to perform this action.')
-    // }
-
-    // const findUser = await userService.findUser({ id: user.id })
-
-    // if (findUser == null) {
-    //   throw new Error('')
-    // }
-
-    // if (findUser.mfaType != null) {
-    //   throw new Error('')
-    // }
+    if (user == null || user === undefined) {
+      throw new Error('You must be signed in to perform this action.')
+    }
 
     const generatedSecret: {
       secret: string
@@ -36,13 +24,21 @@ export async function generateTotpSecret(
       qr: string
     } = twoFactor.generateSecret({
       name: 'GoFunderApp',
-      account: 'robert',
+      account: user.email ?? 'Account',
     })
 
     if (generatedSecret == null) {
       throw new Error('No secret was generated.')
     }
-    winstonLogger.info(generatedSecret)
+
+    await prismaClient.user.update({
+      data: {
+        mfaSecret: generatedSecret.secret,
+      },
+      where: {
+        id: user.id,
+      },
+    })
 
     const qrCode: string = await QRCode.toDataURL(generatedSecret.uri)
 
@@ -50,7 +46,7 @@ export async function generateTotpSecret(
       success: true,
       status: ReasonPhrases.OK,
       message: 'Successfully generated secret.',
-      data: { secret: generatedSecret.secret, qrCode },
+      data: { qrCode },
     })
   } catch (error) {
     next(error)
