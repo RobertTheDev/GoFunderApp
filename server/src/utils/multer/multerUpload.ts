@@ -1,5 +1,13 @@
-import multer, { type Multer } from 'multer'
+import multer from 'multer'
 
-const multerUpload: Multer = multer({ dest: 'uploads/' })
+const storage = multer.diskStorage({
+  destination: function (_req, _file, cb) {
+    cb(null, 'public/uploads')
+  },
+  filename: function (_req, file, cb) {
+    cb(null, file.originalname)
+  },
+})
+const uploadImage = multer({ storage })
 
-export default multerUpload
+export default uploadImage
