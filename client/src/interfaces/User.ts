@@ -12,6 +12,8 @@ export default interface IUser {
   defaultCurrency: string;
   donations: IDonation[];
   email: string | null;
+  emailVerificationToken: string | null;
+  emailVerificationTokenExpiry: Date | null;
   emailVerified: Date | null;
   ownedFundraisers: IFundraiserOwner[];
   image: string | null;
@@ -19,6 +21,8 @@ export default interface IUser {
   mfaType: string | null;
   name: string;
   password: string | null;
+  passwordResetToken: string | null;
+  passwordResetTokenExpiry: Date | null;
   savedFundraisers: ISavedFundraiser[];
   sessions: ISession[];
   totalCharitesOwned: number;
