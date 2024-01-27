@@ -34,7 +34,14 @@ export default function AuthModal(): ReactElement {
         >
           <div className={styles.modalHeader}>
             <div className={styles.modalHeaderTextContainer}>
-              <p className={styles.modalHeaderText}>Sign In</p>
+              <p className={styles.modalHeaderText}>
+                {authModal.formType === "signIn" && <p>Sign In</p>}
+                {authModal.formType === "signUp" && <p>Sign Up</p>}
+                {authModal.formType === "setUpTotp" && <p>Set Up MFA</p>}
+                {authModal.formType === "forgotPassword" && (
+                  <p>Forgot Password</p>
+                )}
+              </p>
             </div>
             <button
               type="button"
