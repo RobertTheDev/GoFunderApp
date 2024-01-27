@@ -11,7 +11,7 @@ import { type Server, createServer } from 'http'
 import morganMiddleware from '../middlewares/morgan/morgan.middleware.js'
 import session from 'express-session'
 import path from 'path'
-import sessionConfig from '../configs/session/sessionOptions.js'
+import sessionConfig from '../utils/session/sessionOptions.js'
 import errorHandler from '../middlewares/errorHandler/errorHandler.middleware.js'
 
 // import rateLimiter from '../../utils/limiter/rateLimiter.js'
