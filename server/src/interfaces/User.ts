@@ -19,8 +19,6 @@ export default interface IUser {
   mfaType: string | null
   name: string
   password: string | null
-  phoneNumber: string | null
-  phoneNumberVerified: string | null
   savedFundraisers: ISavedFundraiser[]
   totalCharitesOwned: number
   totalDonationsAmount: number
