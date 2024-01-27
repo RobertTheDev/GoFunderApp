@@ -86,39 +86,31 @@ model Session {
 }
 
 model User {
-  id                    String            @id @default(cuid()) // Unique identifier for the user.
-  createdAt             DateTime          @default(now()) @map("created_at") // Date and time when the user was created.
-  updatedAt             DateTime          @updatedAt @map("updated_at") // Date and time when the user was last updated.
-  annonymous            Boolean           @default(false) // Indicates whether the user is anonymous.
-  defaultCurrency       String            @default("GBP") @map("default_currency") // Default currency for the user.
-  donations             Donation[] // List of donations made by the user.
-  email                 String?           @unique // User's email address (unique).
-  emailVerified         DateTime?         @map("email_verified") // Date and time when the user's email was verified (optional).
-  image                 String? // URL to the user's profile image (optional).
-  mfaSecret             String?           @map("mfa_secret") // Secret key for TOTP or mobile verification.
-  mfaType               String?           @map("mfa_type") // MFA type chosen by the user ("TOTP" or "Mobile").
-  name                  String // User's name.
-  ownedFundraisers      FundraiserOwner[] // List of fundraisers owned by the user.
-  password              String? // Hashed password for authentication. (optional)
-  savedFundraisers      SavedFundraiser[] // List of fundraisers saved by the user.
-  sessions              Session[]
-  totalCharitesOwned    Int               @default(0) @map("total_charities_owned") // Total number of charities owned by the user.
-  totalDonationsAmount  Int               @default(0) @map("total_donations_amount") // Total amount donated by the user.
-  totalDonationsMade    Int               @default(0) @map("total_donations_made") // Total number of donations made by the user.
-  totalFundraisersOwned Int               @default(0) @map("total_fundraisers_owned") // Total number of fundraisers owned by the user.
-  username              String            @unique @default(cuid())
+  id                           String            @id @default(cuid()) // Unique identifier for the user.
+  createdAt                    DateTime          @default(now()) @map("created_at") // Date and time when the user was created.
+  updatedAt                    DateTime          @updatedAt @map("updated_at") // Date and time when the user was last updated.
+  annonymous                   Boolean           @default(false) // Indicates whether the user is anonymous.
+  defaultCurrency              String            @default("GBP") @map("default_currency") // Default currency for the user.
+  donations                    Donation[] // List of donations made by the user.
+  email                        String?           @unique // User's email address (unique).
+  emailVerificationToken       String?
+  emailVerificationTokenExpiry DateTime?
+  emailVerified                DateTime?         @map("email_verified") // Date and time when the user's email was verified (optional).
+  image                        String? // URL to the user's profile image (optional).
+  mfaSecret                    String?           @map("mfa_secret") // Secret key for TOTP or mobile verification.
+  mfaType                      String?           @map("mfa_type") // MFA type chosen by the user ("TOTP" or "Mobile").
+  name                         String // User's name.
+  ownedFundraisers             FundraiserOwner[] // List of fundraisers owned by the user.
+  password                     String? // Hashed password for authentication. (optional)
+  passwordResetToken           String?
+  passwordResetTokenExpiry     DateTime?
+  savedFundraisers             SavedFundraiser[] // List of fundraisers saved by the user.
+  sessions                     Session[]
+  totalCharitesOwned           Int               @default(0) @map("total_charities_owned") // Total number of charities owned by the user.
+  totalDonationsAmount         Int               @default(0) @map("total_donations_amount") // Total amount donated by the user.
+  totalDonationsMade           Int               @default(0) @map("total_donations_made") // Total number of donations made by the user.
+  totalFundraisersOwned        Int               @default(0) @map("total_fundraisers_owned") // Total number of fundraisers owned by the user.
+  username                     String            @unique @default(cuid())
 
   @@map("users")
-}
-
-model VerificationRequest {
-  id         String   @id @default(cuid()) // Unique identifier for the verification request.
-  createdAt  DateTime @default(now()) @map("created_at") // Date and time when the verification request was created.
-  updatedAt  DateTime @updatedAt @map("updated_at") // Date and time when the verification request was last updated.
-  expires    DateTime // Expiry date and time of the verification request.
-  identifier String // Identifier for verification (e.g., email or username).
-  token      String   @unique // Unique token for the verification request.
-
-  @@unique([identifier, token]) // Ensure uniqueness of the combination of identifier and token.
-  @@map("verification_requests")
 }
