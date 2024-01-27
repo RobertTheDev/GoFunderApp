@@ -37,7 +37,9 @@ export default function AuthModal(): ReactElement {
               <p className={styles.modalHeaderText}>
                 {authModal.formType === "signIn" && <p>Sign In</p>}
                 {authModal.formType === "signUp" && <p>Sign Up</p>}
-                {authModal.formType === "setUpTotp" && <p>Set Up MFA</p>}
+                {authModal.formType === "setUpTotp" && (
+                  <p>(Optional) Set Up MFA</p>
+                )}
                 {authModal.formType === "forgotPassword" && (
                   <p>Forgot Password</p>
                 )}
