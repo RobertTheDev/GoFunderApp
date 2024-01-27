@@ -1,5 +1,5 @@
 import { type Server, createServer } from 'http'
-import winstonLogger from '../winston/winstonLogger'
+import logger from '../logger'
 import app from '../app'
 import 'dotenv/config'
 
@@ -12,10 +12,10 @@ const server: Server = createServer(app)
 export default function startServer(): void {
   try {
     server.listen(serverPort, () => {
-      winstonLogger.info(`App is running on ${serverPort}.`)
+      logger.info(`App is running on ${serverPort}.`)
     })
   } catch (error) {
-    winstonLogger.error(error)
+    logger.error(error)
     process.exit(1)
   }
 }

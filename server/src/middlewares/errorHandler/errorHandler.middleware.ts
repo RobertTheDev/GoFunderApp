@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express'
 import { getReasonPhrase } from 'http-status-codes'
-import winstonLogger from '../../utils/winston/winstonLogger.js'
+import logger from '../../utils/logger/index.js'
 
 const errorHandler = (
   error: any,
@@ -9,7 +9,7 @@ const errorHandler = (
   _next: NextFunction,
 ): void => {
   // Error handling middleware functionality
-  winstonLogger.error(error.message) // log the error
+  logger.error(error.message) // log the error
 
   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   const status: number = error.status || 400

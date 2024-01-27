@@ -76,7 +76,7 @@ const logTransports = [
 
 // Create the logger instance that has to be exported
 // and used to log messages.
-const winstonLogger: Logger = createLogger({
+const logger: Logger = createLogger({
   exitOnError: false,
   levels: logLevels,
   level: logLevel(),
@@ -84,4 +84,4 @@ const winstonLogger: Logger = createLogger({
   transports: logTransports,
 })
 
-export default winstonLogger
+export default logger

@@ -8,11 +8,11 @@
 // )
 
 import morgan from 'morgan'
-import winstonLogger from '../../utils/winston/winstonLogger.js'
+import logger from '../../utils/logger/index.js'
 
 const stream = {
   // Use the http severity
-  write: (message: string) => winstonLogger.http(message),
+  write: (message: string) => logger.http(message),
 }
 function skip(): boolean {
   const env =
