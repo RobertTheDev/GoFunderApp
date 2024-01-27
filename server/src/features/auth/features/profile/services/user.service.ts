@@ -1,5 +1,5 @@
 import { type User, type Prisma } from '@prisma/client'
-import prismaClient from '../../../utils/prisma/prismaClient'
+import prismaClient from '../../../../../utils/prisma/prismaClient'
 
 export async function countUsersByUsername(username: string): Promise<number> {
   return await prismaClient.user.count({ where: { username } })

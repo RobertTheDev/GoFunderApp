@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from 'express'
-import type ResponseBody from '../../../interfaces/ResponseBody.js'
+import type ResponseBody from '../../../../../interfaces/ResponseBody.js'
 import { StatusCodes, ReasonPhrases } from 'http-status-codes'
-import { deleteSession } from '../features/session/services/session.service.js'
+import { deleteSession } from '../services/session.service.js'
 
 export async function signOutHandler(
   req: Request,
