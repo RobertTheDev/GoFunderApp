@@ -1,13 +1,6 @@
 import { z } from 'zod'
 
 const resetPasswordSchema = z.object({
-  email: z
-    .string({
-      invalid_type_error: 'Email must be a string.',
-      required_error: 'Email is required',
-    })
-    .email('Email must be in valid email format.'),
-  accessToken: z.string({ required_error: 'Access token is required.' }),
   password: z
     .string({
       invalid_type_error: 'Password must be a string.',
