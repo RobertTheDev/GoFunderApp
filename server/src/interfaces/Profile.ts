@@ -1,4 +1,3 @@
-import type ICharityFollower from './CharityFollower'
 import type ICharityOwner from './CharityOwner'
 import type IDonation from './Donation'
 import type ISavedFundraiser from './SavedFundraiser'
@@ -8,7 +7,6 @@ export default interface IProfile {
   createdAt: Date
   updatedAt: Date
   annonymous: boolean
-  charitiesFollowed: ICharityFollower[]
   charitiesOwned: ICharityOwner[]
   defaultCurrency: string
   donations: IDonation[]
