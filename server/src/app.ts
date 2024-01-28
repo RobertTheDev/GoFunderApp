@@ -17,9 +17,9 @@ app.use(compression())
 
 app.use(helmet())
 
-app.use('/api', router)
-
 app.use(session(sessionConfig))
+
+app.use('/api', router)
 
 app.use(errorHandler)
 
