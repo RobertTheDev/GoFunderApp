@@ -43,9 +43,20 @@ export async function findProfile(userId: string): Promise<IProfile | null> {
 export async function updateProfile(
   userId: string,
   data: UpdateProfileSchemaType,
-): Promise<IProfile | null> {
+): Promise<IProfile> {
   return await prismaClient.user.update({
     data,
+    select: profilePrismaSelectOptions,
+    where: { id: userId },
+  })
+}
+
+export async function updateProfileAvatar(
+  userId: string,
+  avatarUrl: string,
+): Promise<IProfile> {
+  return await prismaClient.user.update({
+    data: { image: `http://localhost:3001/avatar-images/${avatarUrl}` },
     select: profilePrismaSelectOptions,
     where: { id: userId },
   })
