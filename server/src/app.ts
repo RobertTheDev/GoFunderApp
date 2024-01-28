@@ -1,4 +1,4 @@
-import { json } from 'express'
+import { json, static as staticFolder } from 'express'
 import app from './utils/app'
 import startServer from './utils/server'
 import router from './router'
@@ -18,6 +18,8 @@ app.use(compression())
 app.use(helmet())
 
 app.use(session(sessionConfig))
+
+app.use(staticFolder('public'))
 
 app.use('/api', router)
 
