@@ -1,20 +1,36 @@
 import { type RequestHandler, Router } from 'express'
 import { ensureUserIsAuthenticated } from 'src/features/auth/middlewares/auth.middlewares'
-import { deleteAuthenticatedUserHandler } from '../handlers/deleteAuthenticatedUser'
-import { getAuthenticatedUserHandler } from '../handlers/getAuthenticatedUser'
+import deleteProfileHandler from '../handlers/deleteProfile'
+import getProfileHandler from '../handlers/getProfile'
+import updateProfileHandler from '../handlers/updateProfile'
+import updateProfileAvatarHandler from '../handlers/updateProfileAvatar'
+import fileUpload from '../../../utils/fileUpload'
 
 const profileRouter: Router = Router()
 
-// Defines the charity routes.
-profileRouter.post(
-  '/delete',
+profileRouter.delete(
+  '/delete-profile',
   ensureUserIsAuthenticated as RequestHandler,
-  deleteAuthenticatedUserHandler as RequestHandler,
+  deleteProfileHandler as RequestHandler,
 )
+
 profileRouter.get(
-  '/user',
+  '/',
   ensureUserIsAuthenticated as RequestHandler,
-  getAuthenticatedUserHandler as RequestHandler,
+  getProfileHandler as RequestHandler,
+)
+
+profileRouter.put(
+  '/',
+  ensureUserIsAuthenticated as RequestHandler,
+  updateProfileHandler as RequestHandler,
+)
+
+profileRouter.put(
+  '/avatar',
+  ensureUserIsAuthenticated as RequestHandler,
+  fileUpload.single('avatar'),
+  updateProfileAvatarHandler as RequestHandler,
 )
 
 export default profileRouter
