@@ -8,6 +8,8 @@ import {
 } from '../../../../../features/auth/middlewares/auth.middlewares.js'
 import { sendPasswordResetToken } from '../handlers/sendPasswordResetToken.js'
 import { resetPasswordWithToken } from '../handlers/resetPasswordWithToken.js'
+import { sendEmailVerification } from '../handlers/sendEmailVerification.js'
+import { verifyEmail } from '../handlers/verifyEmail.js'
 
 const emailPasswordRouter: Router = Router()
 
@@ -39,6 +41,18 @@ emailPasswordRouter.put(
   '/reset-password/:code',
   ensureUserIsNotAuthenticated as RequestHandler,
   resetPasswordWithToken as RequestHandler,
+)
+
+emailPasswordRouter.post(
+  '/send-email-verification',
+  sendEmailVerification as RequestHandler,
+  sendPasswordResetToken as RequestHandler,
+)
+
+emailPasswordRouter.post(
+  '/verify-email/:code',
+  verifyEmail as RequestHandler,
+  sendPasswordResetToken as RequestHandler,
 )
 
 export default emailPasswordRouter
