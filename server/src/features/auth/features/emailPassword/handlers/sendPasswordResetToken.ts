@@ -32,13 +32,13 @@ export async function sendPasswordResetToken(
     }
 
     // STEP 3: Update the user with email verification token and expiry.
-    const emailVerificationToken = generateId()
-    const emailVerificationTokenExpiry = tenMinuteExpiryDateTime
+    const passwordResetToken = generateId()
+    const passwordResetTokenExpiry = tenMinuteExpiryDateTime
 
     await prismaClient.user.update({
       data: {
-        emailVerificationToken,
-        emailVerificationTokenExpiry,
+        passwordResetToken,
+        passwordResetTokenExpiry,
       },
       where: {
         email: validation.data.email,
@@ -48,7 +48,7 @@ export async function sendPasswordResetToken(
     // STEP 4: Send verification email.
     await sendPasswordResetTokenWithSendgrid(
       validation.data.email,
-      emailVerificationToken,
+      passwordResetToken,
     )
 
     // STEP 5: Return success message.

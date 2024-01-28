@@ -27,7 +27,7 @@ export async function resetPasswordWithToken(
 
     // STEP 2: Check the verification request and if user is verfified.
     const user = await prismaClient.user.findFirst({
-      where: { emailVerificationToken: code },
+      where: { passwordResetToken: code },
     })
 
     if (user == null) {
@@ -35,13 +35,13 @@ export async function resetPasswordWithToken(
     }
 
     if (
-      user.emailVerificationToken == null ||
-      user.emailVerificationTokenExpiry == null
+      user.passwordResetToken == null ||
+      user.passwordResetTokenExpiry == null
     ) {
       throw new Error('No valid verification token was provided.')
     }
 
-    if (isPast(new Date(String(user.emailVerificationTokenExpiry)))) {
+    if (isPast(new Date(String(user.passwordResetTokenExpiry)))) {
       throw new Error(
         "You're verification token has expired. Please request for a new password reset email.",
       )
@@ -54,8 +54,8 @@ export async function resetPasswordWithToken(
     await prismaClient.user.update({
       data: {
         password: hashedPassword,
-        emailVerificationToken: null,
-        emailVerificationTokenExpiry: null,
+        passwordResetToken: null,
+        passwordResetTokenExpiry: null,
       },
       where: {
         id: user.id,

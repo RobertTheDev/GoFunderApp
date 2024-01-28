@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { findFundraiserOwners } from '../services/fundraiserOwner.service.js'
+import prismaClient from 'src/utils/prisma/prismaClient.js'
 
 // Gets all saved fundraisers by the current user from the prisma database.
 export async function getOwnersByFundraiserIdHandler(
@@ -15,9 +15,12 @@ export async function getOwnersByFundraiserIdHandler(
 
   try {
     // If no cached saved fundraisers are found then query the database.
-    const savedFundraisers = await findFundraiserOwners({
+    const savedFundraisers = await prismaClient.fundraiserOwner.findMany({
       where: {
         fundraiserId,
+      },
+      include: {
+        user: true,
       },
     })
 
@@ -25,7 +28,7 @@ export async function getOwnersByFundraiserIdHandler(
     res.status(StatusCodes.OK).json({
       success: true,
       status: ReasonPhrases.OK,
-      message: 'Successfully found saved fundraisers from the database.',
+      message: 'Successfully found fundraiser owners from the database.',
       data: savedFundraisers,
     })
   } catch (error) {
