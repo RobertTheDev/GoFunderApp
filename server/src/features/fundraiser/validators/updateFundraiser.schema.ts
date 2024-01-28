@@ -25,7 +25,7 @@ const updateFundraiserSchema = z.object({
     })
     .min(1, 'Headline cannot be empty.')
     .optional(),
-  image: z
+  imageUrl: z
     .string({
       invalid_type_error: 'Image must be of type string.',
     })
