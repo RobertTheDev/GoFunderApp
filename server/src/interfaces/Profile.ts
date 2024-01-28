@@ -1,11 +1,11 @@
 export default interface IProfile {
-  annonymous: boolean
+  id: string
   createdAt: Date
+  avatarUrl: string | null
+  annonymous: boolean
   defaultCurrency: string
   email: string | null
   emailVerified: Date | null
-  image: string | null
-  id: string
   mfaType: string | null
   name: string
   totalCharitesOwned: number

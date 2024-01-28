@@ -14,7 +14,7 @@ export default interface IFundraiser {
   description: string | null
   donations: IDonation[]
   headline: string
-  image: string
+  imageUrl: string
   name: string
   slug: string
   target: number
