@@ -25,7 +25,9 @@ export default async function updateProfileHandler(
       throw new Error(validation.error.issues[0]?.message)
     }
 
-    const updatedProfile = updateProfile(user.id, validation.data)
+    const updatedProfile = await updateProfile(user.id, validation.data)
+
+    req.session.user = updatedProfile
 
     res.status(StatusCodes.OK).json({
       success: true,
