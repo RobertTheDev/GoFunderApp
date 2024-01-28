@@ -1,6 +1,7 @@
 import type { SessionOptions } from 'express-session'
 import redisClient from '../redis/redisClient.js'
 import RedisStore from 'connect-redis'
+import type IProfile from '../../interfaces/Profile.js'
 
 const redisSessionStore: RedisStore = new RedisStore({
   client: redisClient,
@@ -11,16 +12,7 @@ const redisSessionStore: RedisStore = new RedisStore({
 declare module 'express-session' {
   interface SessionData {
     mfaVerified: Date | null
-    user: {
-      id: string
-      createdAt: Date
-      updatedAt: Date
-      email: string | null
-      emailVerified: Date | null
-      name: string | null
-      image: string | null
-      mfaType: string | null
-    }
+    user: IProfile
   }
 }
 
