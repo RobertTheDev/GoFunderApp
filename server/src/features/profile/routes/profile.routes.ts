@@ -4,7 +4,7 @@ import deleteProfileHandler from '../handlers/deleteProfile'
 import getProfileHandler from '../handlers/getProfile'
 import updateProfileHandler from '../handlers/updateProfile'
 import updateProfileAvatarHandler from '../handlers/updateProfileAvatar'
-import fileUpload from '../../../utils/fileUpload'
+import avatarUpload from '../../../utils/fileUpload/avatarUpload'
 
 const profileRouter: Router = Router()
 
@@ -21,7 +21,7 @@ profileRouter.get(
 )
 
 profileRouter.put(
-  '/',
+  '/update-profile',
   ensureUserIsAuthenticated as RequestHandler,
   updateProfileHandler as RequestHandler,
 )
@@ -29,7 +29,7 @@ profileRouter.put(
 profileRouter.put(
   '/avatar',
   ensureUserIsAuthenticated as RequestHandler,
-  fileUpload.single('avatar'),
+  avatarUpload.single('avatar'),
   updateProfileAvatarHandler as RequestHandler,
 )
 
