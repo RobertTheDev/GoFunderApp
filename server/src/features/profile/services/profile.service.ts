@@ -20,7 +20,7 @@ const profilePrismaSelectOptions = {
   defaultCurrency: true,
   email: true,
   emailVerified: true,
-  image: true,
+  avatarUrl: true,
   id: true,
   mfaType: true,
   name: true,
@@ -56,7 +56,7 @@ export async function updateProfileAvatar(
   avatarUrl: string,
 ): Promise<IProfile> {
   return await prismaClient.user.update({
-    data: { image: `http://localhost:3001/avatar-images/${avatarUrl}` },
+    data: { avatarUrl: `http://localhost:3001/avatar-images/${avatarUrl}` },
     select: profilePrismaSelectOptions,
     where: { id: userId },
   })
