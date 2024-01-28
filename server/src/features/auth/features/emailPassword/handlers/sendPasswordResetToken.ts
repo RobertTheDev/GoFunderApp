@@ -3,9 +3,9 @@ import { StatusCodes, ReasonPhrases } from 'http-status-codes'
 import prismaClient from '../../../../../utils/prisma/prismaClient.js'
 import sendPasswordResetSchema from '../validators/sendPasswordReset.schema.js'
 import type ResponseBody from '../../../../../interfaces/ResponseBody.js'
-import sendPasswordResetTokenWithSendgrid from 'src/utils/sendgrid/sendPasswordResetToken.js'
-import generateId from 'src/utils/idGenerator/index.js'
-import { tenMinuteExpiryDateTime } from 'src/utils/expiryManagement/dateExpiryManagement.js'
+import sendPasswordResetTokenWithSendgrid from '../../../../../utils/sendgrid/sendPasswordResetToken.js'
+import generateId from '../../../../../utils/idGenerator/index.js'
+import { tenMinuteExpiryDateTime } from '../../../../../utils/expiryManagement/dateExpiryManagement.js'
 
 export async function sendPasswordResetToken(
   req: Request,

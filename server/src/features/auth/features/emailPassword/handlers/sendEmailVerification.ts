@@ -2,9 +2,9 @@ import type { NextFunction, Request, Response } from 'express'
 import { StatusCodes, ReasonPhrases } from 'http-status-codes'
 import prismaClient from '../../../../../utils/prisma/prismaClient.js'
 import type ResponseBody from '../../../../../interfaces/ResponseBody.js'
-import generateId from 'src/utils/idGenerator/index.js'
-import { tenMinuteExpiryDateTime } from 'src/utils/expiryManagement/dateExpiryManagement.js'
-import sendEmailVerificationWithSendgrid from 'src/utils/sendgrid/sendEmailVerification.js'
+import generateId from '../../../../../utils/idGenerator/index.js'
+import { tenMinuteExpiryDateTime } from '../../../../../utils/expiryManagement/dateExpiryManagement.js'
+import sendEmailVerificationWithSendgrid from '../../../../../utils/sendgrid/sendEmailVerification.js'
 
 export async function sendEmailVerification(
   req: Request,

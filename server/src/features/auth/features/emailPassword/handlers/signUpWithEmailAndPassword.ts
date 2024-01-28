@@ -7,7 +7,7 @@ import signUpWithEmailAndPasswordSchema from '../validators/signUp.schema.js'
 import slugify from 'slugify'
 import { countUsersByUsername } from '../../../../profile/services/profile.service.js'
 import createSession from '../../session/services/session.service.js'
-import { slugifyUsernameSettings } from 'src/utils/slugManagement/slugifySettings.js'
+import { slugifyUsernameSettings } from '../../../../../utils/slugManagement/slugifySettings.js'
 
 export default async function signUpWithEmailAndPasswordHandler(
   req: Request,

@@ -1,5 +1,5 @@
 import type { Prisma, Session } from '@prisma/client'
-import prismaClient from 'src/utils/prisma/prismaClient'
+import prismaClient from '../../../../../utils/prisma/prismaClient'
 
 export default async function createSession(
   data: Prisma.SessionCreateManyInput,

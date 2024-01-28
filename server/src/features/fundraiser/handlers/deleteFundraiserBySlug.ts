@@ -7,7 +7,7 @@ import {
 } from '../services/fundraiser.service.js'
 import { deleteCachedFundraiserBySlug } from '../services/fundraiserCache.service.js'
 import { deleteFundraiserOwnerByFundraiserId } from '../../fundraiserOwner/services/fundraiserOwner.service.js'
-import prismaClient from 'src/utils/prisma/prismaClient.js'
+import prismaClient from '../../../utils/prisma/prismaClient.js'
 
 // This handler deletes a fundraiser with its slug.
 

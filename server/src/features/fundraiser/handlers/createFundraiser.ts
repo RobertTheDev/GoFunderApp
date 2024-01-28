@@ -9,7 +9,7 @@ import { setCachedFundraiserBySlug } from '../services/fundraiserCache.service.j
 import createFundraiserSchema from '../validators/createFundraiser.schema.js'
 import { createFundraiserOwner } from '../../fundraiserOwner/services/fundraiserOwner.service.js'
 import slugify from 'slugify'
-import { slugifySlugSettings } from 'src/utils/slugManagement/slugifySettings.js'
+import { slugifySlugSettings } from '../../../utils/slugManagement/slugifySettings.js'
 
 // This handler creates a fundraiser with a charity id.
 

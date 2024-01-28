@@ -3,7 +3,7 @@ import twoFactor from 'node-2fa'
 import type { NextFunction, Request, Response } from 'express'
 import type ResponseBody from '../../../../../interfaces/ResponseBody'
 import { verifyTotpCodeSchema } from '../validators/verifyTotp.schema'
-import prismaClient from 'src/utils/prisma/prismaClient'
+import prismaClient from '../../../../../utils/prisma/prismaClient'
 
 export async function verifyTotpCode(
   req: Request,

@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import prismaClient from 'src/utils/prisma/prismaClient.js'
+import prismaClient from '../../../utils/prisma/prismaClient.js'
 
 // Gets all saved fundraisers by the current user from the prisma database.
 export async function getOwnersByFundraiserIdHandler(
