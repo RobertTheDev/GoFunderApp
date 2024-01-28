@@ -33,12 +33,32 @@ export async function createDonationHandler(
       throw new Error(validation.error.issues[0]?.message)
     }
 
+    const findFundraiser = await prismaClient.fundraiser.findUnique({
+      where: {
+        id: fundraiserId,
+      },
+    })
+
+    if (findFundraiser == null) {
+      throw new Error('No fundraiser found.')
+    }
+
     // Create a fundraiser with validated data.
     const createdFundraiser = await prismaClient.donation.create({
       data: {
         ...validation.data,
         fundraiserId,
         userId: user.id,
+      },
+    })
+
+    await prismaClient.fundraiser.update({
+      where: {
+        id: fundraiserId,
+      },
+      data: {
+        totalDonations: { increment: 1 },
+        totalRaised: { increment: validation.data.amount },
       },
     })
 
