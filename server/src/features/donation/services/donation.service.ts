@@ -42,6 +42,25 @@ export async function findDonationsByFundraiser(
     where: {
       fundraiserId,
     },
-    include: { user: true },
+    include: {
+      user: {
+        select: {
+          annonymous: true,
+          createdAt: true,
+          defaultCurrency: true,
+          email: true,
+          emailVerified: true,
+          avatarUrl: true,
+          id: true,
+          mfaType: true,
+          name: true,
+          totalCharitesOwned: true,
+          totalDonationsAmount: true,
+          totalDonationsMade: true,
+          totalFundraisersOwned: true,
+          username: true,
+        },
+      },
+    },
   })
 }
