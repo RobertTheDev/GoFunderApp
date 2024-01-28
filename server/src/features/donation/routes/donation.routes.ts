@@ -13,11 +13,14 @@ donationRouter.get(
 )
 
 donationRouter.get(
-  '/fundraiser/:id',
+  '/fundraiser/:fundraiserId',
   getDonationsByFundraiserIdHandler as RequestHandler,
 )
 
-donationRouter.get('/user/:id', getDonationsByUserIdHandler as RequestHandler)
+donationRouter.get(
+  '/user/:userId',
+  getDonationsByUserIdHandler as RequestHandler,
+)
 
 donationRouter.post(
   '/create/:fundraiserId',
