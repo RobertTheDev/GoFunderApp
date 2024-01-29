@@ -33,7 +33,7 @@ export async function sendPasswordReset(
 export async function signUpWithPassword(
   data: PasswordSignUpSchemaType
 ): Promise<AxiosResponse<UserApiResponse>> {
-  return await axios.post(`${authUrl}/sign-up`, data, {
+  return await axios.post(`${authUrl}/password/sign-up`, data, {
     withCredentials: true,
   });
 }
@@ -41,7 +41,7 @@ export async function signUpWithPassword(
 export async function signInWithPassword(
   data: PasswordSignInSchemaType
 ): Promise<AxiosResponse<UserApiResponse>> {
-  return await axios.post(`${authUrl}/sign-in`, data, {
+  return await axios.post(`${authUrl}/password/sign-in`, data, {
     withCredentials: true,
   });
 }
@@ -49,7 +49,7 @@ export async function signInWithPassword(
 export async function getAuthenticatedUser(): Promise<
   AxiosResponse<UserApiResponse>
 > {
-  return await axios.get(`${authUrl}/user`, {
+  return await axios.get(`http://localhost:3001/api/profile`, {
     withCredentials: true,
   });
 }

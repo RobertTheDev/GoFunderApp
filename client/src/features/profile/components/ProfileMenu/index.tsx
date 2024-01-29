@@ -8,7 +8,7 @@ const ProfileMenu = forwardRef((_props, ref: ForwardedRef<HTMLDivElement>) => {
   async function signOut(): Promise<void> {
     try {
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/auth/sign-out`,
+        `${process.env.REACT_APP_API_URL}/auth/session/sign-out`,
         {},
         {
           withCredentials: true,

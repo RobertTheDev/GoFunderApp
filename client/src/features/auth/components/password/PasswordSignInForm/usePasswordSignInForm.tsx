@@ -20,7 +20,7 @@ const usePasswordSignInForm = () => {
 
   const signIn = async (data: PasswordSignInSchemaType) => {
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/auth/sign-in`, data, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/auth/password/sign-in`, data, {
         withCredentials: true,
       });
       window.location.reload();
