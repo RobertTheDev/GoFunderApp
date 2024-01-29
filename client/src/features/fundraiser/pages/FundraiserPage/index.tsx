@@ -35,7 +35,7 @@ export default function FundraiserPage(): ReactElement {
         <div className={styles.fundraiserImageContainer}>
           <img
             className={styles.fundraiserImage}
-            src={data.data.data.image}
+            src={data.data.data.imageUrl}
             alt={data.data.data.name}
           />
         </div>

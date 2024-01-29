@@ -14,7 +14,7 @@ export default function FundraiserCard({
       to={`/fundraisers/${fundraiser.slug}`}
     >
       <div className={styles.cardImageContainer}>
-        <img className={styles.cardImage} src={fundraiser.image} alt="ddd" />
+        <img className={styles.cardImage} src={fundraiser.imageUrl} alt="ddd" />
       </div>
       <div className={styles.cardContentContainer}>
         <p className={styles.cardTitleText}>{fundraiser.name}</p>

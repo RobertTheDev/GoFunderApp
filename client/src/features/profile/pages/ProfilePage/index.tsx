@@ -13,7 +13,7 @@ export default function ProfilePage(): ReactElement {
 
   if (error) return <p>No</p>;
 
-  const { email, image } = data.data.data;
+  const { email, avatarUrl } = data.data.data;
 
   return (
     <>
@@ -21,7 +21,7 @@ export default function ProfilePage(): ReactElement {
       <div>
         <p>{email}</p>
 
-        <img src={image ? image : ""} alt="Avatart" />
+        <img src={avatarUrl ? avatarUrl : ""} alt="Avatart" />
       </div>
     </>
   );

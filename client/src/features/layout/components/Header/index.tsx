@@ -51,10 +51,10 @@ export default function Header(): ReactElement {
               className={styles.headerAvatarContainer}
               onClick={() => setProfileMenuActive(!profileMenuActive)}
             >
-              {user.image ? (
+              {user.avatarUrl ? (
                 <img
                   className={styles.headerAvatarImage}
-                  src={user.image}
+                  src={user.avatarUrl}
                   alt="Avatar"
                 />
               ) : (
