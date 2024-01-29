@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom";
 import styles from "./styles.module.scss";
 import AuthModal from "../../../auth/components/modal";
 import { AuthContext } from "../../../auth/contexts/AuthContext/context";
+import TabBar from "../TabBar";
 
 export default function PageLayout(): ReactElement {
   const { authModal } = useContext(AuthContext);
@@ -16,7 +17,9 @@ export default function PageLayout(): ReactElement {
         {authModal.active && <AuthModal />}
         <Outlet />
       </main>
+
       <Footer />
+      <TabBar />
     </div>
   );
 }
