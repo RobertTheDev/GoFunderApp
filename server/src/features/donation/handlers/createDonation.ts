@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import type ResponseBody from '../../../interfaces/ResponseBody.js'
-import { createDonationSchema } from '../validators/createDonation.schema.js'
+import createDonationSchema from '../validators/createDonation.schema.js'
 import prismaClient from '../../../utils/prisma/prismaClient.js'
 
 // This handler creates a fundraiser with a charity id.
