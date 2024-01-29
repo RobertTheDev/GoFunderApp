@@ -2,6 +2,7 @@ import Seo from "../../../common/Seo";
 import { useQuery } from "@tanstack/react-query";
 import { ReactElement } from "react";
 import { getAuthenticatedUser } from "../../../auth/service/auth.service";
+import { Navigate } from "react-router-dom";
 
 export default function ProfilePage(): ReactElement {
   const { isPending, error, data } = useQuery({
@@ -11,7 +12,9 @@ export default function ProfilePage(): ReactElement {
 
   if (isPending) return <p>Loading...</p>;
 
-  if (error) return <p>No</p>;
+  if (data === null || error) {
+    return <Navigate to={"/unauthenticated"} />;
+  }
 
   const { email, avatarUrl } = data.data.data;
 
