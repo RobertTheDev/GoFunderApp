@@ -26,7 +26,11 @@ export default function CreateFundraiserForm(): ReactElement {
           name="category"
         >
           {categoryOptions.map((categoryOption) => {
-            return <option key={categoryOption}>{categoryOption}</option>;
+            return (
+              <option key={categoryOption.path} value={categoryOption.path}>
+                {categoryOption.name}
+              </option>
+            );
           })}
         </select>
         {errors.category?.message && <p>{errors.category?.message}</p>}
