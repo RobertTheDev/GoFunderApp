@@ -1,0 +1,44 @@
+.cardContainer {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.cardContentContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 12px;
+}
+
+.cardTitleText {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.cardImageContainer {
+  aspect-ratio: 4/3;
+  width: 100%;
+}
+
+.cardImage {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.cardProgressBarContainer {
+  width: 100%;
+  position: relative;
+  height: 5px;
+  background-color: lightgray;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.cardProgressBar {
+  background-color: #83c0c1;
+  position: absolute;
+}
