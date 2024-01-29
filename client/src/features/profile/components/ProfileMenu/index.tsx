@@ -61,7 +61,11 @@ const ProfileMenu = forwardRef((_props, ref: ForwardedRef<HTMLDivElement>) => {
       <div className={styles.profileMenuLinksContainer}>
         {profileMenuLinks.map((profileMenuLink) => {
           return (
-            <Link key={profileMenuLink.path} to={profileMenuLink.path}>
+            <Link
+              className={styles.profileMenuLink}
+              key={profileMenuLink.path}
+              to={profileMenuLink.path}
+            >
               {profileMenuLink.name}
             </Link>
           );
