@@ -7,39 +7,38 @@ import SessionsPage from "../pages/SessionsPage";
 import SetUpTotpPage from "../pages/SetUpTotpPage";
 import SettingsPage from "../pages/SettingsPage";
 import VerifyEmailPage from "../pages/VerifyEmailPage";
-import settingsPaths from "./settingsPaths";
 
 const settingsRouter: RouterRoute[] = [
   {
-    path: settingsPaths.changeEmail,
-    element: <ChangeEmailPage />,
-  },
-  {
-    path: settingsPaths.changePassword,
-    element: <ChangePasswordPage />,
-  },
-  {
-    path: settingsPaths.closeAccount,
-    element: <CloseAccountPage />,
-  },
-  {
-    path: settingsPaths.sendEmailVerification,
-    element: <SendEmailVerificationPage />,
-  },
-  {
-    path: settingsPaths.sessions,
-    element: <SessionsPage />,
-  },
-  {
-    path: settingsPaths.settings,
+    path: "/settings",
     element: <SettingsPage />,
   },
   {
-    path: settingsPaths.setupMfa,
+    path: "/settings/change-email",
+    element: <ChangeEmailPage />,
+  },
+  {
+    path: "/settings/change-password",
+    element: <ChangePasswordPage />,
+  },
+  {
+    path: "settings/close-account",
+    element: <CloseAccountPage />,
+  },
+  {
+    path: "/settings/send-email-verification",
+    element: <SendEmailVerificationPage />,
+  },
+  {
+    path: "/settings/sessions",
+    element: <SessionsPage />,
+  },
+  {
+    path: "/settings/setup-mfa",
     element: <SetUpTotpPage />,
   },
   {
-    path: settingsPaths.verifyEmail,
+    path: "/settings/verify-email",
     element: <VerifyEmailPage />,
   },
 ];
