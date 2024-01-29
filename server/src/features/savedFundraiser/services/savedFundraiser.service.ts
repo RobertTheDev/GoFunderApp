@@ -1,5 +1,5 @@
 import type { Prisma, SavedFundraiser } from '@prisma/client'
-import prismaClient from '../../../utils/prisma/prismaClient'
+import prismaClient from '../../../utils/prisma/prismaClient.js'
 
 export async function findSavedFundraiser(
   savedFundraiserWhereInput: Prisma.SavedFundraiserWhereInput,

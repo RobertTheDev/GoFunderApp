@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from 'express'
 import { StatusCodes, ReasonPhrases } from 'http-status-codes'
-import type ResponseBody from '../../../../../interfaces/ResponseBody'
-import { findSessions } from '../services/session.service'
+import type ResponseBody from '../../../../../interfaces/ResponseBody.js'
+import { findSessions } from '../services/session.service.js'
 
 export async function getSessionsByCurrentUser(
   req: Request,

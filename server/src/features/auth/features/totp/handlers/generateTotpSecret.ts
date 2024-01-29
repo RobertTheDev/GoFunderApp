@@ -1,9 +1,9 @@
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import twoFactor from 'node-2fa'
 import type { NextFunction, Request, Response } from 'express'
-import type ResponseBody from '../../../../../interfaces/ResponseBody'
+import type ResponseBody from '../../../../../interfaces/ResponseBody.js'
 import QRCode from 'qrcode'
-import prismaClient from '../../../../../utils/prisma/prismaClient'
+import prismaClient from '../../../../../utils/prisma/prismaClient.js'
 
 export async function generateTotpSecret(
   req: Request,

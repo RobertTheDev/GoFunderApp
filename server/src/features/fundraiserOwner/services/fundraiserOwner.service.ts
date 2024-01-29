@@ -1,5 +1,5 @@
 import type { FundraiserOwner, Prisma } from '@prisma/client'
-import prismaClient from '../../../utils/prisma/prismaClient'
+import prismaClient from '../../../utils/prisma/prismaClient.js'
 
 // Returns a fundraiser from prisma database.
 export async function findFundraiserOwner(

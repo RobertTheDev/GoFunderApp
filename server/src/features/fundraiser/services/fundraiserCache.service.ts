@@ -1,5 +1,5 @@
 import type { Fundraiser } from '@prisma/client'
-import redisClient from '../../../utils/redis/redisClient'
+import redisClient from '../../../utils/redis/redisClient.js'
 
 export async function deleteCachedFundraiserBySlug(
   slug: string,

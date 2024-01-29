@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'express'
 import { Router } from 'express'
-import { getFundraisersOwnedByUserHandler } from '../handlers/getFundraisersOwnedByUser'
-import { getOwnersByFundraiserIdHandler } from '../handlers/getOwnersByFundraiser'
+import { getFundraisersOwnedByUserHandler } from '../handlers/getFundraisersOwnedByUser.js'
+import { getOwnersByFundraiserIdHandler } from '../handlers/getOwnersByFundraiser.js'
 
 // Sets up the fundraiser owner router.
 const fundraiserOwnerRouter = Router()

@@ -1,12 +1,12 @@
 import type { RequestHandler } from 'express'
 import { Router } from 'express'
-import { deleteFundraiserBySlugHandler } from '../handlers/deleteFundraiserBySlug'
-import { getFundraisersHandler } from '../handlers/getFundraisers'
-import { getFundraiserBySlugHandler } from '../handlers/getFundraiserBySlug'
-import { getFundraiserByIdHandler } from '../handlers/getFundraiserById'
-import { createFundraiserHandler } from '../handlers/createFundraiser'
-import { updateCharityFundraiserBySlugHandler } from '../handlers/updateFundraiserBySlug'
-import { getFundraisersByCategoryHandler } from '../handlers/getFundraisersByCategory'
+import { deleteFundraiserBySlugHandler } from '../handlers/deleteFundraiserBySlug.js'
+import { getFundraisersHandler } from '../handlers/getFundraisers.js'
+import { getFundraiserBySlugHandler } from '../handlers/getFundraiserBySlug.js'
+import { getFundraiserByIdHandler } from '../handlers/getFundraiserById.js'
+import { createFundraiserHandler } from '../handlers/createFundraiser.js'
+import { updateCharityFundraiserBySlugHandler } from '../handlers/updateFundraiserBySlug.js'
+import { getFundraisersByCategoryHandler } from '../handlers/getFundraisersByCategory.js'
 
 // Sets up the fundraiser router.
 const fundraiserRouter = Router()

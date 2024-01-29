@@ -1,6 +1,6 @@
 import { type Server, createServer } from 'http'
-import logger from '../logger'
-import app from '../app'
+import logger from '../logger/index.js'
+import app from '../app/index.js'
 import 'dotenv/config'
 
 // Get the server port from dotenv.

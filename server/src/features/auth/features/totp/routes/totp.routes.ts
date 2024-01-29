@@ -1,6 +1,6 @@
 import { type RequestHandler, Router } from 'express'
-import { generateTotpSecret } from '../handlers/generateTotpSecret'
-import { verifyTotpCode } from '../handlers/verifyTotpCode'
+import { generateTotpSecret } from '../handlers/generateTotpSecret.js'
+import { verifyTotpCode } from '../handlers/verifyTotpCode.js'
 
 const totpRouter = Router()
 

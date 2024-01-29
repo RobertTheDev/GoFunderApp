@@ -1,9 +1,9 @@
 import type { RequestHandler } from 'express'
 import { Router } from 'express'
-import { getDonationsByFundraiserIdHandler } from '../handlers/getDonationsByFundraiserId'
-import { getDonationsByUserIdHandler } from '../handlers/getDonationsByUserId'
-import { getDonationsByCurrentUserHandler } from '../handlers/getDonationsByCurrentUser'
-import { createDonationHandler } from '../handlers/createDonation'
+import { getDonationsByFundraiserIdHandler } from '../handlers/getDonationsByFundraiserId.js'
+import { getDonationsByUserIdHandler } from '../handlers/getDonationsByUserId.js'
+import { getDonationsByCurrentUserHandler } from '../handlers/getDonationsByCurrentUser.js'
+import { createDonationHandler } from '../handlers/createDonation.js'
 
 const donationRouter: Router = Router()
 

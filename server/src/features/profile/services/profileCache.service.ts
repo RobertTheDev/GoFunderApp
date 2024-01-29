@@ -1,5 +1,5 @@
-import type IProfile from '../../../interfaces/Profile'
-import redisClient from '../../../utils/redis/redisClient'
+import type IProfile from '../../../interfaces/Profile.js'
+import redisClient from '../../../utils/redis/redisClient.js'
 
 export async function deleteCachedProfileByUsername(
   username: string,

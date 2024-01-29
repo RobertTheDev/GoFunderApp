@@ -1,6 +1,6 @@
-import prismaClient from '../../../utils/prisma/prismaClient'
-import { type UpdateProfileSchemaType } from '../validators/updateProfile.schema'
-import type IProfile from '../../../interfaces/Profile'
+import prismaClient from '../../../utils/prisma/prismaClient.js'
+import { type UpdateProfileSchemaType } from '../validators/updateProfile.schema.js'
+import type IProfile from '../../../interfaces/Profile.js'
 
 export async function countUsersByUsername(username: string): Promise<number> {
   return await prismaClient.user.count({ where: { username } })

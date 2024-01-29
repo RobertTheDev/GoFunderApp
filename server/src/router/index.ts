@@ -11,10 +11,10 @@ const router: Router = Router()
 
 // Defines app routes.
 router.use('/auth', authRouter)
-router.use('/donations', donationRouter)
-router.use('/fundraisers', fundraiserRouter)
-router.use('/fundraiser-owners', fundraiserOwnerRouter)
+router.use('/donation', donationRouter)
+router.use('/fundraiser', fundraiserRouter)
+router.use('/fundraiser-owner', fundraiserOwnerRouter)
 router.use('/profile', profileRouter)
-router.use('/saved-fundraisers', savedFundraiserRouter)
+router.use('/saved-fundraiser', savedFundraiserRouter)
 
 export default router

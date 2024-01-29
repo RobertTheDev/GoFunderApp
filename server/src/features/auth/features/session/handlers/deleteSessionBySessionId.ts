@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from 'express'
 import { StatusCodes, ReasonPhrases } from 'http-status-codes'
-import type ResponseBody from '../../../../../interfaces/ResponseBody'
-import { deleteSession, findSession } from '../services/session.service'
-import { deleteCachedSessionBySessionId } from '../services/sessionCache.service'
+import type ResponseBody from '../../../../../interfaces/ResponseBody.js'
+import { deleteSession, findSession } from '../services/session.service.js'
+import { deleteCachedSessionBySessionId } from '../services/sessionCache.service.js'
 
 export async function deleteSessionBySessionId(
   req: Request,

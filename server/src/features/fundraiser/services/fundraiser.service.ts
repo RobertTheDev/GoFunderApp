@@ -1,5 +1,5 @@
 import type { Fundraiser, Prisma } from '@prisma/client'
-import prismaClient from '../../../utils/prisma/prismaClient'
+import prismaClient from '../../../utils/prisma/prismaClient.js'
 
 export async function countFundraisersBySlug(slug: string): Promise<number> {
   return await prismaClient.fundraiser.count({ where: { slug } })

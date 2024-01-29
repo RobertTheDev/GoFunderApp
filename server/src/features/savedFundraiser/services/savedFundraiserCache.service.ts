@@ -1,5 +1,5 @@
 import type { SavedFundraiser } from '@prisma/client'
-import redisClient from '../../../utils/redis/redisClient'
+import redisClient from '../../../utils/redis/redisClient.js'
 
 export async function deleteCachedFundraisersSavedByUserId(
   userId: string,
