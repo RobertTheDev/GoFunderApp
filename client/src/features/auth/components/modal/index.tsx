@@ -14,7 +14,7 @@ export default function AuthModal(): ReactElement {
   const { authModal, toggleAuthModal } =
     useContext<AuthContextType>(AuthContext);
 
-  const authModalRef = useRef<HTMLDivElement>(null);
+  const authModalRef: React.RefObject<HTMLDivElement> = useRef(null);
 
   const handleToggleAuthModal: () => void = () => {
     toggleAuthModal(!authModal.active, null);
