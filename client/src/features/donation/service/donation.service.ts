@@ -7,13 +7,15 @@ interface UserDonationsApiResponse extends ApiResponse {
   data: IDonation[];
 }
 
-const donationApiUrl: string = `${process.env.REACT_APP_API_URL}/donations`;
+const donationApiUrl: string = `${process.env.REACT_APP_API_URL}/donation`;
 
 export async function createdonation(
   fundraiserId: string,
   data: CreateDonationSchemaType
 ): Promise<DonationApiResponse> {
-  return await axios.post(`${donationApiUrl}/create/${fundraiserId}`, data);
+  return await axios.post(`${donationApiUrl}/create/${fundraiserId}`, data, {
+    withCredentials: true,
+  });
 }
 
 export async function deleteDonationById(
