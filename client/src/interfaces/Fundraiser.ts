@@ -1,6 +1,7 @@
 import ApiResponse from "./ApiResponse";
 import IDonation from "./Donation";
 import IFundraiserOwner from "./FundraiserOwner";
+import IUser from "./User";
 
 export default interface IFundraiser {
   id: string;
@@ -13,12 +14,14 @@ export default interface IFundraiser {
   donations: IDonation[];
   fundraiserOwners: IFundraiserOwner[];
   headline: string;
-  image: string;
+  imageUrl: string;
   name: string;
   slug: string;
   target: number;
   totalDonations: number;
   totalRaised: number;
+  user: IUser | null;
+  userId: string | null;
 }
 
 export interface FundraiserApiResponse extends ApiResponse {

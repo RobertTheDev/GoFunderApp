@@ -1,13 +1,15 @@
 import ApiResponse from "./ApiResponse";
 import IFundraiser from "./Fundraiser";
+import IUser from "./User";
 
 export default interface IFundraiserOwner {
   id: string;
   createdAt: Date;
   updatedAt: Date;
-  fundraiserId: string;
-  userId: string;
   fundraiser: IFundraiser;
+  fundraiserId: string;
+  user: IUser;
+  userId: string;
 }
 
 export interface FundraiserOwnerApiResponse extends ApiResponse {

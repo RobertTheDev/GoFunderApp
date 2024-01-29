@@ -1,4 +1,3 @@
-import type ICharityOwner from './CharityOwner'
 import type IDonation from './Donation'
 import type ISavedFundraiser from './SavedFundraiser'
 
@@ -8,7 +7,6 @@ export default interface IUser {
   updatedAt: Date
   annonymous: boolean
   avatarUrl: string | null
-  charitiesOwned: ICharityOwner[]
   defaultCurrency: string
   donations: IDonation[]
   email: string | null
