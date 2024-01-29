@@ -1,11 +1,9 @@
+import IRouterRoute from "../../../interfaces/RouterRoute";
 import ChangeAvatarPage from "../pages/ChangeAvatarPage";
 import EditProfilePage from "../pages/EditProfilePage";
 import ProfilePage from "../pages/ProfilePage";
 
-const profileRouter: {
-  path: string;
-  element: JSX.Element;
-}[] = [
+const profileRouter: IRouterRoute[] = [
   {
     path: "/change-avatar",
     element: <ChangeAvatarPage />,

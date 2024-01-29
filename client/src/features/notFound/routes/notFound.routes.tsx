@@ -1,6 +1,6 @@
-import IRouterPath from "../../../interfaces/RouterRoute";
+import IRouterRoute from "../../../interfaces/RouterRoute";
 
-const notFoundRouter: IRouterPath[] = [
+const notFoundRouter: IRouterRoute[] = [
   {
     path: "/*",
     element: <p>Not found</p>,

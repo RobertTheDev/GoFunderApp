@@ -1,8 +1,8 @@
+import IRouterRoute from "../../../interfaces/RouterRoute";
 import OwnedFundraisersPage from "../pages/OwnedFundraisersPage";
 
-const fundraiserOwnerRouter: {
-  path: string;
-  element: JSX.Element;
-}[] = [{ path: "/owned-fundraisers", element: <OwnedFundraisersPage /> }];
+const fundraiserOwnerRouter: IRouterRoute[] = [
+  { path: "/owned-fundraisers", element: <OwnedFundraisersPage /> },
+];
 
 export default fundraiserOwnerRouter;

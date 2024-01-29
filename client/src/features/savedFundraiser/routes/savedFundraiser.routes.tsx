@@ -1,9 +1,7 @@
+import IRouterRoute from "../../../interfaces/RouterRoute";
 import SavedFundraisersPage from "../pages/SavedFundraisers";
 
-const savedFundraiserRouter: {
-  path: string;
-  element: JSX.Element;
-}[] = [
+const savedFundraiserRouter: IRouterRoute[] = [
   {
     path: "/saved-fundraisers",
     element: <SavedFundraisersPage />,

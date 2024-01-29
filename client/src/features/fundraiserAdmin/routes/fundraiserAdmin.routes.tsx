@@ -1,12 +1,10 @@
+import IRouterRoute from "../../../interfaces/RouterRoute";
 import CloseFundraiserPage from "../pages/CloseFundraiserPage";
 import FundraiserAdminPage from "../pages/FundraiserAdminPage";
 import FundraiserDonationsPage from "../pages/FundraiserDonationsPage";
 import UpdateFundraiserPage from "../pages/UpdateFundraiserPage";
 
-const fundraiserAdminRouter: {
-  path: string;
-  element: JSX.Element;
-}[] = [
+const fundraiserAdminRouter: IRouterRoute[] = [
   {
     path: "/fundraisers/:fundraiserId/admin/close-fundraiser",
     element: <CloseFundraiserPage />,
