@@ -1,18 +1,20 @@
 import sgMail from '@sendgrid/mail'
 
+const sendgridApiKey = String(process.env.SENDGRID_API_KEY)
+
 export default async function sendEmailVerificationWithSendgrid(
   email: string,
   code: string,
 ): Promise<[sgMail.ClientResponse, unknown]> {
-  sgMail.setApiKey(String(process.env.SENDGRID_API_KEY))
+  sgMail.setApiKey(sendgridApiKey)
 
-  const emailVerificationUrl = `http://localhost:3000/verify-email?code=${code}`
+  const emailVerificationUrl: string = `http://localhost:3000/verify-email?code=${code}`
 
   return await sgMail.send({
-    to: email,
     from: 'roberthawker16@gmail.com',
+    html: `<p>Hello, the link to verify your email is <a href="${emailVerificationUrl}">${emailVerificationUrl}</a></p>`,
     subject: 'Verify Email',
     text: `Hello, the link to verify your email is ${emailVerificationUrl}.`,
-    html: `<p>Hello, the link to verify your email is <a href="${emailVerificationUrl}">${emailVerificationUrl}</a></p>`,
+    to: email,
   })
 }

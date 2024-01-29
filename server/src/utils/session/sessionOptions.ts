@@ -17,20 +17,18 @@ declare module 'express-session' {
 }
 
 const sessionConfig: SessionOptions = {
-  store: redisSessionStore,
-  secret: String(process.env.SESSION_SECRET),
+  cookie: {
+    httpOnly: true,
+    maxAge: 60 * 60 * 24 * 30,
+    path: '/',
+    sameSite: true,
+    secure: false,
+  },
+  name: 'gofunder-session-token',
   resave: false,
   saveUninitialized: false,
-  name: 'gofunder-session-token',
-  cookie: {
-    // secure: true,
-    secure: false,
-    httpOnly: true,
-    sameSite: true,
-    maxAge: 60 * 60 * 24 * 30,
-    // domain: '',
-    path: '/',
-  },
+  secret: String(process.env.SESSION_SECRET),
+  store: redisSessionStore,
 }
 
 export default sessionConfig

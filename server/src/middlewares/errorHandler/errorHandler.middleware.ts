@@ -8,12 +8,11 @@ const errorHandler = (
   response: Response,
   _next: NextFunction,
 ): void => {
-  // Error handling middleware functionality
-  logger.error(error.message) // log the error
+  logger.error(error.message)
 
   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   const status: number = error.status || 400
-  // send back an easily understandable error message to the caller
+
   response.status(status).json({
     success: false,
     status: getReasonPhrase(status),
