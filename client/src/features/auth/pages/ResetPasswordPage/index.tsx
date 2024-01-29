@@ -1,11 +1,11 @@
 import { ReactElement } from "react";
-import Seo from "../../../common/Seo";
 import PasswordResetForm from "../../components/password/PasswordResetForm";
+import PageSeo from "./PageSeo";
 
 export default function ResetPasswordPage(): ReactElement {
   return (
     <>
-      <Seo title="Reset Password" description="" />
+      <PageSeo />
       <div>
         <PasswordResetForm />
       </div>
