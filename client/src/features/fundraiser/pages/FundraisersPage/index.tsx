@@ -14,17 +14,23 @@ export default function FundraisersPage(): ReactElement {
 
   if (isPending) return <p>Loading...</p>;
 
-  if (error) return <p>An error has occurred: + {error.message}</p>;
+  if (error) return <p>An error has occurred.</p>;
 
   return (
     <>
       <Seo title="Fundraisers" description="" />
       <FundraiserFilterMenu />
-      <div className={styles.fundraiserCardsContainer}>
-        {data.data.data.map((fundraiser) => {
-          return <FundraiserCard fundraiser={fundraiser} key={fundraiser.id} />;
-        })}
-      </div>
+      {data.data.data.length > 0 ? (
+        <div className={styles.fundraiserCardsContainer}>
+          {data.data.data.map((fundraiser) => {
+            return (
+              <FundraiserCard fundraiser={fundraiser} key={fundraiser.id} />
+            );
+          })}
+        </div>
+      ) : (
+        <p>No fundraisers found.</p>
+      )}
     </>
   );
 }
