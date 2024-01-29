@@ -1,8 +1,6 @@
 import { z } from "zod";
 
-export type PasswordSignInSchemaType = z.infer<typeof PasswordSignInSchema>;
-
-export const PasswordSignInSchema = z.object({
+const passwordSignInSchema = z.object({
   email: z
     .string({
       invalid_type_error: "Email must be a string.",
@@ -27,3 +25,7 @@ export const PasswordSignInSchema = z.object({
       message: "Password must contain at least one special character.",
     }),
 });
+
+export type PasswordSignInSchemaType = z.infer<typeof passwordSignInSchema>;
+
+export default passwordSignInSchema;

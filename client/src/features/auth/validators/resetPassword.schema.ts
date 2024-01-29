@@ -1,8 +1,6 @@
 import { z } from "zod";
 
-export type ResetPasswordSchemaType = z.infer<typeof resetPasswordSchema>;
-
-export const resetPasswordSchema = z.object({
+const resetPasswordSchema = z.object({
   password: z
     .string({
       invalid_type_error: "Password must be a string.",
@@ -20,5 +18,7 @@ export const resetPasswordSchema = z.object({
       message: "Password must contain at least one special character.",
     }),
 });
+
+export type ResetPasswordSchemaType = z.infer<typeof resetPasswordSchema>;
 
 export default resetPasswordSchema;
