@@ -2,8 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  PasswordSignInSchema,
+import passwordSignInSchema, {
   PasswordSignInSchemaType,
 } from "../../../validators/passwordSignIn.schema";
 
@@ -13,16 +12,20 @@ const usePasswordSignInForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<PasswordSignInSchemaType>({
-    resolver: zodResolver(PasswordSignInSchema),
+    resolver: zodResolver(passwordSignInSchema),
   });
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const signIn = async (data: PasswordSignInSchemaType) => {
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/auth/password/sign-in`, data, {
-        withCredentials: true,
-      });
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/auth/password/sign-in`,
+        data,
+        {
+          withCredentials: true,
+        }
+      );
       window.location.reload();
     } catch (error: any) {
       setErrorMessage(error.response.data.message);

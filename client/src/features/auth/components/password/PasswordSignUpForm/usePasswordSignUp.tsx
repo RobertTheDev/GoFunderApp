@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
+import passwordSignUpSchema, {
   PasswordSignUpSchemaType,
-  passwordSignUpSchema,
 } from "../../../validators/passwordSignUp.schema";
 import { signUpWithPassword } from "../../../service/auth.service";
 
