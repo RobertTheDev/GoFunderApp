@@ -15,6 +15,9 @@ export async function findDonations(params: {
     cursor,
     where,
     orderBy,
+    include: {
+      user: true,
+    },
   })
 }
 
