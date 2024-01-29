@@ -12,7 +12,7 @@ export default function ProfilePage(): ReactElement {
 
   if (isPending) return <p>Loading...</p>;
 
-  if (data === null || error) {
+  if (data === null || data?.data.data === null || error) {
     return <Navigate to={"/unauthenticated"} />;
   }
 
