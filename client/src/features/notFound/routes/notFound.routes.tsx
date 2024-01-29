@@ -1,7 +1,6 @@
-const notFoundRouter: {
-  path: string;
-  element: JSX.Element;
-}[] = [
+import IRouterPath from "../../../interfaces/RouterRoute";
+
+const notFoundRouter: IRouterPath[] = [
   {
     path: "/*",
     element: <p>Not found</p>,
