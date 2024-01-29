@@ -14,3 +14,9 @@ export const createSavedFundraiserSchema = z.object({
     })
     .min(1, 'User ID cannot be empty.'),
 })
+
+export type CreateSavedFundraiserSchemaType = z.infer<
+  typeof createSavedFundraiserSchema
+>
+
+export default createSavedFundraiserSchema

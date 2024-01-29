@@ -10,4 +10,8 @@ export const sendPasswordResetSchema = z.object({
     .min(3, 'Email must be at least three characters long.'),
 })
 
+export type SendPasswordResetSchemaType = z.infer<
+  typeof sendPasswordResetSchema
+>
+
 export default sendPasswordResetSchema

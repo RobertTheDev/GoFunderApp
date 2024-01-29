@@ -11,4 +11,6 @@ export const changeEmailSchema = z.object({
   password: z.string({ required_error: 'name is required' }),
 })
 
+export type ChangeEmailSchemaType = z.infer<typeof changeEmailSchema>
+
 export default changeEmailSchema

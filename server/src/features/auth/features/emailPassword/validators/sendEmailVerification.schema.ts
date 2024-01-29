@@ -10,4 +10,8 @@ const sendEmailVerificationSchema = z.object({
     .min(3, 'Email must be at least three characters long.'),
 })
 
+export type SendEmailVerificationSchemaType = z.infer<
+  typeof sendEmailVerificationSchema
+>
+
 export default sendEmailVerificationSchema

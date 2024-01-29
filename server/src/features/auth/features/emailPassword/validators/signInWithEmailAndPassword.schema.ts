@@ -14,4 +14,8 @@ const signInWithEmailAndPasswordSchema = z.object({
   }),
 })
 
+export type SignInWithEmailAndPasswordSchemaType = z.infer<
+  typeof signInWithEmailAndPasswordSchema
+>
+
 export default signInWithEmailAndPasswordSchema

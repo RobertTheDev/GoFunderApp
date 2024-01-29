@@ -1,6 +1,6 @@
 import z from 'zod'
 
-export const createDonationSchema = z.object({
+const createDonationSchema = z.object({
   amount: z
     .number({
       invalid_type_error: 'Amount must be of type integer.',
@@ -19,3 +19,7 @@ export const createDonationSchema = z.object({
     })
     .min(1, 'Message cannot be empty.'),
 })
+
+export type CreateDonationSchemaType = z.infer<typeof createDonationSchema>
+
+export default createDonationSchema

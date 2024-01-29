@@ -7,6 +7,12 @@ const updateFundraiserSchema = z.object({
     })
     .min(1, 'Category cannot be empty.')
     .optional(),
+  charityId: z
+    .string({
+      invalid_type_error: 'Charity ID must be of type string.',
+    })
+    .min(1, 'Charity ID cannot be empty.')
+    .optional(),
   deadlineDate: z
     .string({
       invalid_type_error: 'Deadline date must be of type string.',
@@ -45,13 +51,6 @@ const updateFundraiserSchema = z.object({
     .min(1, 'Target cannot be empty.')
     .optional(),
 
-  charityId: z
-    .string({
-      invalid_type_error: 'Charity ID must be of type string.',
-    })
-    .min(1, 'Charity ID cannot be empty.')
-    .optional(),
-
   userId: z
     .string({
       invalid_type_error: 'User ID must be of type string.',
@@ -59,5 +58,7 @@ const updateFundraiserSchema = z.object({
     .min(1, 'User ID cannot be empty.')
     .optional(),
 })
+
+export type UpdateFundraiserSchemaType = z.infer<typeof updateFundraiserSchema>
 
 export default updateFundraiserSchema

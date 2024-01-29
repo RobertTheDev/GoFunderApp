@@ -46,4 +46,6 @@ const createFundraiserSchema = z.object({
     .min(1, 'Target cannot be empty.'),
 })
 
+export type CreateFundraiserSchemaType = z.infer<typeof createFundraiserSchema>
+
 export default createFundraiserSchema
