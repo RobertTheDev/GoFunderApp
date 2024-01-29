@@ -8,7 +8,7 @@ import homeRouter from "../features/home/routes/home";
 import profileRouter from "../features/profile/routes/profile.routes";
 import fundraiserOwnerRouter from "../features/fundraiserOwner/routes/fundraiserOwner.routes";
 import donationRouter from "../features/donation/routes/donation.routes";
-import notFoundRouter from "../features/notFound/routes/notFound.routes";
+import errorRouter from "../features/error/routes/error.routes";
 import settingsRouter from "../features/settings/routes/settings.routes";
 import fundraiserAdminRouter from "../features/fundraiserAdmin/routes/fundraiserAdmin.routes";
 
@@ -19,12 +19,12 @@ const router = createBrowserRouter([
     children: [
       ...authRouter,
       ...donationRouter,
+      ...errorRouter,
       ...fundraiserRouter,
       ...fundraiserAdminRouter,
       ...fundraiserOwnerRouter,
       ...homeRouter,
       ...infoRouter,
-      ...notFoundRouter,
       ...profileRouter,
       ...savedFundraiserRouter,
       ...settingsRouter,
