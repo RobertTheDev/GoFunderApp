@@ -1,7 +1,13 @@
 .fundraiserCardsContainer {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 32px 80px;
+  grid-template-columns: repeat(1, 1fr);
+  padding: 16px;
   gap: 24px;
   width: 100%;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 48px;
+    gap: 48px;
+  }
 }

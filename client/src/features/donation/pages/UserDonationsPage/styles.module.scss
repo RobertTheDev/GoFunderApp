@@ -1,0 +1,21 @@
+.cardsGridContainer {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: repeat(1, 1fr);
+  width: 100%;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 32px 16px;
+
+  @media (min-width: 768px) {
+    padding: 32px 64px;
+  }
+}
