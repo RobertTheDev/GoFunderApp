@@ -7,7 +7,7 @@ import CategoryMenu from "../../components/CategoryMenu";
 export default function HomePage(): ReactElement {
   return (
     <>
-      <Seo title="GoFunder - Online Fundraising Platform" description="" />
+      <Seo title="Online Fundraising Platform" description="" />
       <div>
         <Banner />
         <CategoryFundraiserSection category="animals-and-pets" />
