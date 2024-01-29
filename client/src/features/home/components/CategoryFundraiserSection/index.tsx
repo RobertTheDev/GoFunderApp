@@ -3,6 +3,7 @@ import { ReactElement } from "react";
 import { getFundraisersByCategory } from "../../../fundraiser/service/fundraiser.service";
 import FundraiserCard from "../../../fundraiser/components/FundraiserCard";
 import styles from "./styles.module.scss";
+import IFundraiser from "../../../../interfaces/Fundraiser";
 
 export default function CategoryFundraiserSection({
   category,
@@ -22,7 +23,7 @@ export default function CategoryFundraiserSection({
     <div className={styles.sectionContainer}>
       <h3>{category}</h3>
       <div className={styles.sectionCardsContainer}>
-        {data.data.data.map((fundraiser) => {
+        {data.data.data.map((fundraiser: IFundraiser) => {
           return <FundraiserCard key={fundraiser.id} fundraiser={fundraiser} />;
         })}
       </div>
