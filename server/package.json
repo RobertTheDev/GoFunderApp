@@ -10,11 +10,9 @@
     "lint": "eslint --ext .ts src",
     "lint:fix": "eslint --ext .ts src --fix",
     "prepare": "husky install",
-    "build": "swc src --out-dir dist",
-    "devo": "nodemon --watch src --ext ts",
-    "devi": "nodemon --watch src --ext ts --exec 'npm run build && npm start'",
-    "start": "node dist/app.js",
-    "clean": "rm -rf dist"
+    "build": "swc build ./src -d dist",
+    "clean": "rm -rf dist",
+    "start": "npm run build && node dist/app.js"
   },
   "dependencies": {
     "@prisma/client": "^5.7.1",
