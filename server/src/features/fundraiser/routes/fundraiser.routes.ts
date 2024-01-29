@@ -9,7 +9,7 @@ import { updateCharityFundraiserBySlugHandler } from '../handlers/updateFundrais
 import { getFundraisersByCategoryHandler } from '../handlers/getFundraisersByCategory.js'
 
 // Sets up the fundraiser router.
-const fundraiserRouter = Router()
+const fundraiserRouter: Router = Router()
 
 // Defines the fundraiser routes.
 fundraiserRouter.delete(

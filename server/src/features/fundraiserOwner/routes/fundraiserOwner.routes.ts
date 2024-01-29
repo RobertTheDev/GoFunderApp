@@ -4,7 +4,7 @@ import { getFundraisersOwnedByUserHandler } from '../handlers/getFundraisersOwne
 import { getOwnersByFundraiserIdHandler } from '../handlers/getOwnersByFundraiser.js'
 
 // Sets up the fundraiser owner router.
-const fundraiserOwnerRouter = Router()
+const fundraiserOwnerRouter: Router = Router()
 
 // Defines the fundraiser owner routes.
 fundraiserOwnerRouter.get(
