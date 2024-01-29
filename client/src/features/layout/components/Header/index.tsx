@@ -1,5 +1,5 @@
 import { ReactElement, useContext, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./styles.module.scss";
 import { AuthContext } from "../../../auth/contexts/AuthContext/context";
 import { FaRegHeart, FaRegMoon, FaRegSun } from "react-icons/fa6";
@@ -22,6 +22,23 @@ export default function Header(): ReactElement {
 
   useOnClickOutside(profileMenuRef, closeProfileMenu);
 
+  const { pathname } = useLocation();
+
+  const headerLinks = [
+    {
+      name: "Home",
+      path: "/",
+    },
+    {
+      name: "Find Fundraisers",
+      path: "/fundraisers",
+    },
+    {
+      name: "Start Fundraising",
+      path: "/start-fundraising",
+    },
+  ];
+
   return (
     <div className={styles.headerContainer}>
       <div className={styles.headerLeft}>
@@ -29,9 +46,20 @@ export default function Header(): ReactElement {
           GoFunder
         </Link>
 
-        <Link to={"/"}>Home</Link>
-        <Link to={"/fundraisers"}>Find Fundraisers</Link>
-        <Link to={"/start-fundraising"}>Start Fundraising</Link>
+        {headerLinks.map((headerLink) => {
+          return (
+            <Link
+              className={
+                pathname === headerLink.path
+                  ? styles.headerLinkActive
+                  : styles.headerLink
+              }
+              to={headerLink.path}
+            >
+              {headerLink.name}
+            </Link>
+          );
+        })}
       </div>
       <div className={styles.headerRight}>
         {user ? (
