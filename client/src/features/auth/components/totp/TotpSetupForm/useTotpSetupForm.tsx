@@ -2,8 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  VerifyTotpCodeSchema,
+import verifyTotpCodeSchema, {
   VerifyTotpCodeSchemaType,
 } from "../../../validators/verifyTotpCode.schema";
 
@@ -13,7 +12,7 @@ const useTotpSetupForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<VerifyTotpCodeSchemaType>({
-    resolver: zodResolver(VerifyTotpCodeSchema),
+    resolver: zodResolver(verifyTotpCodeSchema),
   });
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
