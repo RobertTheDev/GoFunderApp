@@ -1,15 +1,3 @@
-.modalWrapper {
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 80px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 400000;
-}
-
 .modalCloseButton {
   align-items: center;
   border: none;
@@ -18,10 +6,6 @@
   height: 32px;
   justify-content: center;
   width: 32px;
-
-  :hover {
-    cursor: pointer;
-  }
 }
 
 .modalContainer {
@@ -48,6 +32,18 @@
 .modalHeaderTextContainer {
   align-items: center;
   display: flex;
-  justify-content: center;
   flex: 1;
+  justify-content: center;
+}
+
+.modalWrapper {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 80px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 400000;
 }

@@ -1,45 +1,3 @@
-.formSubmitButton {
-  background-color: royalblue;
-  width: 100%;
-  padding: 16px;
-  color: white;
-  border: none;
-  box-sizing: border-box;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.formSubmitButtonContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-
-.formInputContainer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 8px;
-}
-
-.formInput {
-  padding: 16px;
-  border-radius: 8px;
-  width: 100%;
-  border: 1px solid lightgray;
-  font-size: 16px;
-}
-
-.formInputLabel {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
 .formContainer {
   align-items: center;
   display: flex;
@@ -49,15 +7,54 @@
 }
 
 .formErrorText {
+  color: red;
   font-size: 14px;
   font-weight: 500;
-  color: red;
+}
+
+.formInput {
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 16px;
+  width: 100%;
+}
+
+.formInputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.formInputLabel {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
 }
 
 .formLink {
   color: royalblue;
-  font-weight: 600;
   font-size: 16px;
+  font-weight: 600;
   width: auto;
-  cursor: pointer;
+}
+
+.formSubmitButton {
+  background-color: royalblue;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px;
+  width: 100%;
+}
+
+.formSubmitButtonContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
 }
