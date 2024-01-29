@@ -1,6 +1,14 @@
 import type { Prisma, SavedFundraiser } from '@prisma/client'
 import prismaClient from '../../../utils/prisma/prismaClient.js'
 
+export async function findSavedFundraiser(
+  savedFundraiserWhereInput: Prisma.SavedFundraiserWhereInput,
+): Promise<SavedFundraiser | null> {
+  return await prismaClient.savedFundraiser.findFirst({
+    where: savedFundraiserWhereInput,
+  })
+}
+
 export async function findSavedFundraisers(params: {
   skip?: number
   take?: number
