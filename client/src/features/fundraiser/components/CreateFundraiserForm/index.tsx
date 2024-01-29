@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 import useCreateFundraiser from "./useCreateFundraiser";
 import styles from "./styles.module.scss";
+import categoryOptions from "../../../../utils/categoryOptions";
 
 export default function CreateFundraiserForm(): ReactElement {
   const { errors, handleCreateFundraiser, message, register } =
@@ -24,7 +25,9 @@ export default function CreateFundraiserForm(): ReactElement {
           {...register("category")}
           name="category"
         >
-          <option>Hello</option>
+          {categoryOptions.map((categoryOption) => {
+            return <option key={categoryOption}>{categoryOption}</option>;
+          })}
         </select>
         {errors.category?.message && <p>{errors.category?.message}</p>}
       </div>
@@ -60,12 +63,12 @@ export default function CreateFundraiserForm(): ReactElement {
       <div className={styles.formInputContainer}>
         <input
           className={styles.formInput}
-          {...register("image")}
+          {...register("imageUrl")}
           type="url"
-          name="image"
+          name="imageUrl"
           placeholder="Image"
         />
-        {errors.image?.message && <p>{errors.image?.message}</p>}
+        {errors.imageUrl?.message && <p>{errors.imageUrl?.message}</p>}
       </div>
       <div className={styles.formInputContainer}>
         <input
