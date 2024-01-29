@@ -12,11 +12,16 @@ export default function Banner(): ReactElement {
           Raise funds for causes you care about.
         </h2>
 
-        <div>
-          <button type="button" onClick={() => navigation("/fundraisers")}>
+        <div className={styles.bannerButtonsContainer}>
+          <button
+            className={styles.bannerPrimaryButton}
+            type="button"
+            onClick={() => navigation("/fundraisers")}
+          >
             Find Fundraisers
           </button>
           <button
+            className={styles.bannerSecondaryButton}
             type="button"
             onClick={() => navigation("/start-fundraising")}
           >
