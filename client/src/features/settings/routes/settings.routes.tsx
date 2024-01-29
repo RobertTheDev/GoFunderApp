@@ -1,3 +1,4 @@
+import RouterRoute from "../../../interfaces/RouterRoute";
 import ChangeEmailPage from "../pages/ChangeEmailPage";
 import ChangePasswordPage from "../pages/ChangePasswordPage";
 import CloseAccountPage from "../pages/CloseAccountPage";
@@ -6,41 +7,39 @@ import SessionsPage from "../pages/SessionsPage";
 import SetUpTotpPage from "../pages/SetUpTotpPage";
 import SettingsPage from "../pages/SettingsPage";
 import VerifyEmailPage from "../pages/VerifyEmailPage";
+import settingsPaths from "./settingsPaths";
 
-const settingsRouter: {
-  path: string;
-  element: JSX.Element;
-}[] = [
+const settingsRouter: RouterRoute[] = [
   {
-    path: "/settings",
-    element: <SettingsPage />,
-  },
-  {
-    path: "/settings/change-email",
+    path: settingsPaths.changeEmail,
     element: <ChangeEmailPage />,
   },
   {
-    path: "/settings/change-password",
+    path: settingsPaths.changePassword,
     element: <ChangePasswordPage />,
   },
   {
-    path: "settings/close-account",
+    path: settingsPaths.closeAccount,
     element: <CloseAccountPage />,
   },
   {
-    path: "/settings/send-email-verification",
+    path: settingsPaths.sendEmailVerification,
     element: <SendEmailVerificationPage />,
   },
   {
-    path: "/settings/sessions",
+    path: settingsPaths.sessions,
     element: <SessionsPage />,
   },
   {
-    path: "/settings/setup-mfa",
+    path: settingsPaths.settings,
+    element: <SettingsPage />,
+  },
+  {
+    path: settingsPaths.setupMfa,
     element: <SetUpTotpPage />,
   },
   {
-    path: "/settings/verify-email",
+    path: settingsPaths.verifyEmail,
     element: <VerifyEmailPage />,
   },
 ];
