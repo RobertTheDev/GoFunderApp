@@ -17,22 +17,22 @@ const tabBarLinks = [
   {
     icon: <FaRegGem style={tabBarStyle} />,
     name: "Fundraisers",
-    path: "/",
+    path: "/fundraisers",
   },
   {
     icon: <PiPlusCircleBold style={tabBarStyle} />,
     name: "Create",
-    path: "/",
+    path: "/start-fundraising",
   },
   {
     icon: <PiHeartBold style={tabBarStyle} />,
     name: "Saved",
-    path: "/",
+    path: "/saved-fundraisers",
   },
   {
     icon: <PiHandHeartBold style={tabBarStyle} />,
     name: "Donations",
-    path: "/",
+    path: "/donations",
   },
 ];
 
