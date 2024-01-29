@@ -21,16 +21,16 @@ profileRouter.get(
 )
 
 profileRouter.put(
-  '/update-profile',
-  ensureUserIsAuthenticated as RequestHandler,
-  updateProfileHandler as RequestHandler,
-)
-
-profileRouter.put(
   '/avatar',
   ensureUserIsAuthenticated as RequestHandler,
   avatarUpload.single('avatar'),
   updateProfileAvatarHandler as RequestHandler,
+)
+
+profileRouter.put(
+  '/update-profile',
+  ensureUserIsAuthenticated as RequestHandler,
+  updateProfileHandler as RequestHandler,
 )
 
 export default profileRouter

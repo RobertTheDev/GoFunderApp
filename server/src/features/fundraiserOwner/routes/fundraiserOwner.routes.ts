@@ -8,12 +8,13 @@ const fundraiserOwnerRouter: Router = Router()
 
 // Defines the fundraiser owner routes.
 fundraiserOwnerRouter.get(
-  '/user',
-  getFundraisersOwnedByUserHandler as RequestHandler,
-)
-fundraiserOwnerRouter.get(
   '/fundraiser/:fundraiserId',
   getOwnersByFundraiserIdHandler as RequestHandler,
+)
+
+fundraiserOwnerRouter.get(
+  '/user',
+  getFundraisersOwnedByUserHandler as RequestHandler,
 )
 
 export default fundraiserOwnerRouter

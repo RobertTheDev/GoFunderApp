@@ -14,6 +14,18 @@ import { verifyEmail } from '../handlers/verifyEmail.js'
 const emailPasswordRouter: Router = Router()
 
 emailPasswordRouter.post(
+  '/send-email-verification',
+  sendEmailVerification as RequestHandler,
+  sendPasswordResetToken as RequestHandler,
+)
+
+emailPasswordRouter.post(
+  '/send-password-reset',
+  ensureUserIsNotAuthenticated as RequestHandler,
+  sendPasswordResetToken as RequestHandler,
+)
+
+emailPasswordRouter.post(
   '/sign-in',
   ensureUserIsNotAuthenticated as RequestHandler,
   signInWithEmailAndPassword as RequestHandler,
@@ -25,34 +37,22 @@ emailPasswordRouter.post(
   signUpWithEmailAndPasswordHandler as RequestHandler,
 )
 
+emailPasswordRouter.post(
+  '/verify-email/:code',
+  verifyEmail as RequestHandler,
+  sendPasswordResetToken as RequestHandler,
+)
+
 emailPasswordRouter.put(
   '/change-password',
   ensureUserIsAuthenticated as RequestHandler,
   changePassword as RequestHandler,
 )
 
-emailPasswordRouter.post(
-  '/send-password-reset',
-  ensureUserIsNotAuthenticated as RequestHandler,
-  sendPasswordResetToken as RequestHandler,
-)
-
 emailPasswordRouter.put(
   '/reset-password/:code',
   ensureUserIsNotAuthenticated as RequestHandler,
   resetPasswordWithToken as RequestHandler,
-)
-
-emailPasswordRouter.post(
-  '/send-email-verification',
-  sendEmailVerification as RequestHandler,
-  sendPasswordResetToken as RequestHandler,
-)
-
-emailPasswordRouter.post(
-  '/verify-email/:code',
-  verifyEmail as RequestHandler,
-  sendPasswordResetToken as RequestHandler,
 )
 
 export default emailPasswordRouter

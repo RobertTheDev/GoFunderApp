@@ -24,9 +24,9 @@ fundraiserRouter.get(
   getFundraisersByCategoryHandler as RequestHandler,
 )
 
-fundraiserRouter.get('/:slug', getFundraiserBySlugHandler as RequestHandler)
-
 fundraiserRouter.get('/id/:id', getFundraiserByIdHandler as RequestHandler)
+
+fundraiserRouter.get('/:slug', getFundraiserBySlugHandler as RequestHandler)
 
 fundraiserRouter.post('/create', createFundraiserHandler as RequestHandler)
 
