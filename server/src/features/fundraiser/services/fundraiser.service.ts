@@ -11,6 +11,9 @@ export async function findFundraiser(
 ): Promise<Fundraiser | null> {
   return await prismaClient.fundraiser.findUnique({
     where: fundraiserWhereUniqueInput,
+    include: {
+      donations: true,
+    },
   })
 }
 
