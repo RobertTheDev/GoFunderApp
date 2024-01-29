@@ -24,13 +24,11 @@ const createFundraiserSchema = z.object({
       required_error: "Headline is required.",
     })
     .min(1, "Headline cannot be empty."),
-  image: z
-    .string({
-      invalid_type_error: "Image must be of type string.",
-      required_error: "Image is required.",
-    })
-    .url("Image must in valid URL format.")
-    .min(1, "Image cannot be empty."),
+  imageUrl: z.string({
+    invalid_type_error: "Image must be of type string.",
+    required_error: "Image is required.",
+  }),
+
   name: z
     .string({
       invalid_type_error: "Name must be of type string.",
