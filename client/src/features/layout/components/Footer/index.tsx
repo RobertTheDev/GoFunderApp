@@ -13,7 +13,11 @@ export default function Footer(): ReactElement {
       <div className={styles.footerCenter}>
         {footerLinks.map((footerLink) => {
           return (
-            <Link key={footerLink.id} to={footerLink.url}>
+            <Link
+              className={styles.footerLink}
+              key={footerLink.id}
+              to={footerLink.url}
+            >
               {footerLink.name}
             </Link>
           );
