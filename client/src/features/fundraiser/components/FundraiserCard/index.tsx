@@ -32,7 +32,10 @@ export default function FundraiserCard({
           />
         </div>
 
-        <p>{fundraiser.totalDonations} donations</p>
+        <p>
+          {fundraiser.totalDonations}{" "}
+          {fundraiser.totalDonations === 1 ? "donation" : "donations"}
+        </p>
       </div>
     </Link>
   );
