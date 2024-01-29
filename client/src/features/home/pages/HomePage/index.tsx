@@ -7,16 +7,18 @@ import CategoryMenu from "../../components/CategoryMenu";
 export default function HomePage(): ReactElement {
   return (
     <>
-      <Seo title="Home" description="" />
+      <Seo title="GoFunder - Online Fundraising Platform" description="" />
       <div>
         <Banner />
-        <CategoryFundraiserSection category="Category" />
-        <CategoryFundraiserSection category="Disability" />
-        <CategoryFundraiserSection category="Disability" />
+        <CategoryFundraiserSection category="animals-and-pets" />
+        <CategoryFundraiserSection category="art-and-culture" />
+        <CategoryFundraiserSection category="disability" />
+        <CategoryFundraiserSection category="education" />
         <CategoryMenu />
-        <CategoryFundraiserSection category="Disability" />
-        <CategoryFundraiserSection category={"Disability"} />
-        <CategoryFundraiserSection category="Disability" />
+        <CategoryFundraiserSection category={"health-and-medical"} />
+        <CategoryFundraiserSection category={"international-aid"} />
+        <CategoryFundraiserSection category={"local-community"} />
+        <CategoryFundraiserSection category="sports" />
       </div>
     </>
   );
