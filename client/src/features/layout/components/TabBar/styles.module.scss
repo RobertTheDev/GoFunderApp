@@ -1,0 +1,21 @@
+.tabBarContainer {
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  height: 80px;
+  width: 100%;
+  position: sticky;
+  display: flex;
+  align-items: center;
+  bottom: 0;
+}
+
+.tabBarButton {
+  background: none;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
