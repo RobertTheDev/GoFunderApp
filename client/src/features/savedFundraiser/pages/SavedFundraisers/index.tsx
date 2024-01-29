@@ -21,14 +21,18 @@ export default function SavedFundraisersPage(): ReactElement {
       <div className={styles.pageContainer}>
         <h2>Saved Fundraisers</h2>
         <div className={styles.savedFundraiserCardsContainer}>
-          {data.data.data.map((savedFundraiser) => {
-            return (
-              <FundraiserCard
-                key={savedFundraiser.id}
-                fundraiser={savedFundraiser.fundraiser}
-              />
-            );
-          })}
+          {data.data.data.length > 0 ? (
+            data.data.data.map((savedFundraiser) => {
+              return (
+                <FundraiserCard
+                  key={savedFundraiser.id}
+                  fundraiser={savedFundraiser.fundraiser}
+                />
+              );
+            })
+          ) : (
+            <p>You have not saved any fundraisers yet.</p>
+          )}
         </div>
       </div>
     </>
