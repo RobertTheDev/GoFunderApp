@@ -32,8 +32,8 @@ export default function UpdateFundraiserForm(): ReactElement {
       {errors.headline?.message && <p>{errors.headline?.message}</p>}
 
       <label htmlFor="image">Image</label>
-      <input {...register("image")} type="url" name="image" />
-      {errors.image?.message && <p>{errors.image?.message}</p>}
+      <input {...register("imageUrl")} type="url" name="image" />
+      {errors.imageUrl?.message && <p>{errors.imageUrl?.message}</p>}
 
       <label htmlFor="target">Target</label>
       <input
