@@ -12,9 +12,7 @@ interface FundraisersApiResponse extends ApiResponse {
   data: IFundraiser[];
 }
 
-axios.defaults.withCredentials = true;
-
-const fundraiserApiUrl: string = `${process.env.REACT_APP_API_URL}/fundraisers`;
+const fundraiserApiUrl: string = `${process.env.REACT_APP_API_URL}/fundraiser`;
 
 export async function createFundraiser(
   data: CreateFundraiserSchemaType
