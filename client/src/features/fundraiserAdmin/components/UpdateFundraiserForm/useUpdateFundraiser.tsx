@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { updateFundraiserBySlug } from '../../service/fundraiser.service'
+import { updateFundraiserBySlug } from '../../../fundraiser/service/fundraiser.service'
 import updateFundraiserSchema, {
   UpdateFundraiserSchemaType,
-} from '../../validators/updateFundraiser.schema'
+} from '../../../fundraiser/validators/updateFundraiser.schema'
 import { useParams } from 'react-router-dom'
 import { AxiosError } from 'axios'
 
