@@ -1,4 +1,5 @@
 import IRouterRoute from "../../../interfaces/RouterRoute";
+import AuthenticatedRoute from "../../auth/routes/protectedRoutes/AuthenticatedRoute";
 import ChangeAvatarPage from "../pages/ChangeAvatarPage";
 import EditProfilePage from "../pages/EditProfilePage";
 import ProfilePage from "../pages/ProfilePage";
@@ -6,11 +7,19 @@ import ProfilePage from "../pages/ProfilePage";
 const profileRouter: IRouterRoute[] = [
   {
     path: "/change-avatar",
-    element: <ChangeAvatarPage />,
+    element: (
+      <AuthenticatedRoute>
+        <ChangeAvatarPage />
+      </AuthenticatedRoute>
+    ),
   },
   {
     path: "/edit-profile",
-    element: <EditProfilePage />,
+    element: (
+      <AuthenticatedRoute>
+        <EditProfilePage />
+      </AuthenticatedRoute>
+    ),
   },
   {
     path: "/profile",
