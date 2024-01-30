@@ -1,27 +1,15 @@
-import { ReactElement, useContext, useRef } from 'react'
+import { ReactElement } from 'react'
 import styles from './styles.module.scss'
-import { AuthContext } from '../../contexts/AuthContext/context'
-import { useOnClickOutside } from 'usehooks-ts'
 import PasswordSignInForm from '../password/PasswordSignInForm'
 import PasswordSignUpForm from '../password/PasswordSignUpForm'
 import TotpSetupForm from '../totp/TotpSetupForm'
 import PasswordSendResetForm from '../password/PasswordSendResetForm'
 import { FaTimes } from 'react-icons/fa'
-import { AuthContextType } from '../../contexts/AuthContext/AuthContextType'
 import { motion } from 'framer-motion'
+import useModal from './useModal'
 
 export default function AuthModal(): ReactElement {
-  const { authModal, toggleAuthModal } =
-    useContext<AuthContextType>(AuthContext)
-
-  const authModalRef: React.RefObject<HTMLDivElement> = useRef(null)
-
-  const handleToggleAuthModal: () => void = () => {
-    toggleAuthModal(!authModal.active, null)
-  }
-
-  useOnClickOutside(authModalRef, handleToggleAuthModal)
-
+  const { authModal, authModalRef, handleToggleAuthModal } = useModal()
   return (
     <div className={styles.modalWrapper}>
       <div>
