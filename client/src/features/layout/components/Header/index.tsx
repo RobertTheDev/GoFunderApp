@@ -1,43 +1,24 @@
-import { ReactElement, useContext, useRef, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { ReactElement } from 'react'
+import { Link } from 'react-router-dom'
 import styles from './styles.module.scss'
-import { AuthContext } from '../../../auth/contexts/AuthContext/context'
 import { FaRegHeart, FaRegMoon, FaRegSun } from 'react-icons/fa6'
 import { PiHandHeartBold } from 'react-icons/pi'
 import ProfileMenu from '../../../profile/components/ProfileMenu'
-import { useDarkMode, useOnClickOutside } from 'usehooks-ts'
+import headerLinks from '../../../../utils/headerLinks'
+import useHeader from './useHeader'
 
 export default function Header(): ReactElement {
-  const profileMenuRef = useRef(null)
-
-  const { authModal, toggleAuthModal, user } = useContext(AuthContext)
-
-  const { isDarkMode, toggle } = useDarkMode()
-
-  const [profileMenuActive, setProfileMenuActive] = useState(false)
-
-  function closeProfileMenu() {
-    setProfileMenuActive(false)
-  }
-
-  useOnClickOutside(profileMenuRef, closeProfileMenu)
-
-  const { pathname } = useLocation()
-
-  const headerLinks = [
-    {
-      name: 'Home',
-      path: '/',
-    },
-    {
-      name: 'Find Fundraisers',
-      path: '/fundraisers',
-    },
-    {
-      name: 'Start Fundraising',
-      path: '/start-fundraising',
-    },
-  ]
+  const {
+    pathname,
+    user,
+    isDarkMode,
+    toggle,
+    profileMenuActive,
+    profileMenuRef,
+    setProfileMenuActive,
+    authModal,
+    toggleAuthModal,
+  } = useHeader()
 
   return (
     <div className={styles.headerContainer}>
