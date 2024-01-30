@@ -17,7 +17,14 @@ export default function FundraisersPage(): ReactElement {
 
   return (
     <>
-      <Seo title="Fundraisers" description="" />
+      <Seo
+        title="Fundraisers"
+        description={`
+        This page displays fundraisers set up on GoFunder
+         and allows users to filter and find fundraisers by 
+         category, relevance, and time of listing.
+        `}
+      />
 
       {data.data.data.length > 0 ? (
         <div className={styles.fundraiserCardsContainer}>

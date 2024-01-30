@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
-import Seo from "../../../common/Seo";
 import { useQuery } from "@tanstack/react-query";
 import { getDonationsByCurrentUser } from "../../service/donation.service";
 import DonationCard from "../../components/DonationCard";
 import styles from "./styles.module.scss";
+import Seo from "../../../common/Seo";
 
 export default function UserDonationsPage(): ReactElement {
   const { isPending, error, data } = useQuery({
@@ -17,7 +17,14 @@ export default function UserDonationsPage(): ReactElement {
 
   return (
     <>
-      <Seo title="My Donations" description="" />
+      <Seo
+        title={"My Donations"}
+        description={`
+       The donations you have made will appear here. 
+       Keep track of your kind philanthropic efforts to the fundraisers 
+       and causes you care about on GoFunder.
+       `}
+      />
       <div className={styles.pageContainer}>
         <h1>My Donations</h1>
         <div>

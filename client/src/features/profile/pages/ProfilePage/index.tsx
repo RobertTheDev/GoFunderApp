@@ -20,7 +20,15 @@ export default function ProfilePage(): ReactElement {
 
   return (
     <>
-      <Seo title={"Profile"} description="" />
+      <Seo
+        title={"Profile"}
+        description={`
+        This page displays your account profile information 
+        and data including your email address, name, 
+        and avatar image. Your private information 
+        will not be displayed.
+      `}
+      />
       <div>
         <p>{email}</p>
 

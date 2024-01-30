@@ -29,7 +29,14 @@ export default function SessionsPage(): ReactElement {
 
   return (
     <>
-      <Seo title="Sessions" description="" />
+      <Seo
+        title="Sessions"
+        description={`
+        Your active sessions will appear here on this page. 
+        You can manage and sign out of your active devices 
+        and keep your account secure from hackers and bad actors.
+      `}
+      />
       <SettingsPageLayout>
         <div>
           {data.map((session) => {

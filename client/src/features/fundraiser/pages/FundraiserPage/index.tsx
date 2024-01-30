@@ -29,7 +29,14 @@ export default function FundraiserPage(): ReactElement {
 
   return (
     <>
-      <Seo title="Fundraiser" description="" />
+      <Seo
+        title="Fundraiser"
+        description={`
+        View and support the fundraiser on GoFunder today. 
+        Sign up for an account to upload fundraiser listings 
+        and make donations to the causes you care about.
+      `}
+      />
 
       <div className={styles.pageContainer}>
         <div className={styles.fundraiserImageContainer}>

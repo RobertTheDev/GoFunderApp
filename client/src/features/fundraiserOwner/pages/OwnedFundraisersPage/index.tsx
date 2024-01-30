@@ -17,7 +17,15 @@ export default function OwnedFundraisersPage(): ReactElement {
 
   return (
     <>
-      <Seo title="Owned Fundraisers" description="" />
+      <Seo
+        title="Owned Fundraisers"
+        description={`
+      The fundraisers you own and have set up will be 
+      displayed on this page. The page links you to the 
+      fundraiser administrative pages allowing 
+      you to manage and update data.
+      `}
+      />
       <div className={styles.pageContainer}>
         <h2>Owned Fundraisers</h2>
         <div className={styles.ownedFundraiserCardsContainer}>

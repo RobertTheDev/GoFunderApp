@@ -17,7 +17,14 @@ export default function SavedFundraisersPage(): ReactElement {
 
   return (
     <>
-      <Seo title="Saved Fundraisers" description="" />
+      <Seo
+        title="Saved Fundraisers"
+        description={`
+        This page lists all the fundraisers you have saved on GoFunder. 
+        You can manage your saved fundraisers by using the provided 
+        save fundraiser button.
+      `}
+      />
       <div className={styles.pageContainer}>
         <h2>Saved Fundraisers</h2>
         <div className={styles.savedFundraiserCardsContainer}>

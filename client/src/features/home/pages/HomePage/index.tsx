@@ -7,7 +7,14 @@ import CategoryMenu from "../../components/CategoryMenu";
 export default function HomePage(): ReactElement {
   return (
     <>
-      <Seo title="Online Fundraising Platform" description="" />
+      <Seo
+        title="Online Fundraising Platform"
+        description={`
+        GoFunder is an online fundraising platform allowing 
+        users to raise funds for the causes they care about. 
+        Users can also donate and support fundraisers on GoFunder.
+      `}
+      />
       <div>
         <Banner />
         <CategoryFundraiserSection category="animals-and-pets" />
