@@ -8,7 +8,7 @@ export const changeEmailSchema = z.object({
     })
     .email('Email must be in valid email format.')
     .min(3, 'Email must be at least three characters long.'),
-  password: z.string({ required_error: 'name is required' }),
+  password: z.string({ required_error: 'Password is required' }),
 })
 
 export type ChangeEmailSchemaType = z.infer<typeof changeEmailSchema>
