@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { sendPasswordReset } from "../../../service/auth.service";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { sendPasswordReset } from '../../../service/auth.service';
 import sendPasswordResetSchema, {
-  SendPasswordResetSchemaType,
-} from "../../../validators/sendPasswordReset.schema";
+  SendPasswordResetSchemaType
+} from '../../../validators/sendPasswordReset.schema';
 
 const usePasswordSendReset = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<SendPasswordResetSchemaType>({
-    resolver: zodResolver(sendPasswordResetSchema),
+    resolver: zodResolver(sendPasswordResetSchema)
   });
 
   const [message, setMessage] = useState<{
@@ -24,11 +24,11 @@ const usePasswordSendReset = () => {
     try {
       const signUp = await sendPasswordReset(data);
 
-      setMessage({ type: "success", content: signUp.data.message });
+      setMessage({ type: 'success', content: signUp.data.message });
 
       return signUp;
     } catch (error: any) {
-      setMessage({ type: "error", content: error.response.data.message });
+      setMessage({ type: 'error', content: error.response.data.message });
     }
   };
 
@@ -38,7 +38,7 @@ const usePasswordSendReset = () => {
     errors,
     handleSendPasswordReset,
     message,
-    register,
+    register
   };
 };
 

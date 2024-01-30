@@ -1,14 +1,14 @@
-import { ReactElement } from "react";
-import Seo from "../../../common/Seo";
-import { useQuery } from "@tanstack/react-query";
-import { getSavedFundraisers } from "../../service/savedFundraiser.service";
-import FundraiserCard from "../../../fundraiser/components/FundraiserCard";
-import styles from "./styles.module.scss";
+import { ReactElement } from 'react';
+import Seo from '../../../common/Seo';
+import { useQuery } from '@tanstack/react-query';
+import { getSavedFundraisers } from '../../service/savedFundraiser.service';
+import FundraiserCard from '../../../fundraiser/components/FundraiserCard';
+import styles from './styles.module.scss';
 
 export default function SavedFundraisersPage(): ReactElement {
   const { isPending, error, data } = useQuery({
-    queryKey: ["getSavedFundraisersData"],
-    queryFn: getSavedFundraisers,
+    queryKey: ['getSavedFundraisersData'],
+    queryFn: getSavedFundraisers
   });
 
   if (isPending) return <p>Loading...</p>;
@@ -31,10 +31,7 @@ export default function SavedFundraisersPage(): ReactElement {
           {data.data.data.length > 0 ? (
             data.data.data.map((savedFundraiser) => {
               return (
-                <FundraiserCard
-                  key={savedFundraiser.id}
-                  fundraiser={savedFundraiser.fundraiser}
-                />
+                <FundraiserCard key={savedFundraiser.id} fundraiser={savedFundraiser.fundraiser} />
               );
             })
           ) : (

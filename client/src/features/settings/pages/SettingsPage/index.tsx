@@ -1,7 +1,7 @@
-import { ReactElement } from "react";
-import Seo from "../../../common/Seo";
-import { Link } from "react-router-dom";
-import settingsLinks from "../../../../utils/settingsLinks";
+import { ReactElement } from 'react';
+import Seo from '../../../common/Seo';
+import { Link } from 'react-router-dom';
+import settingsLinks from '../../../../utils/settingsLinks';
 
 export default function SettingsPage(): ReactElement {
   return (

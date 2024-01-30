@@ -1,11 +1,11 @@
-import { ReactElement, useContext, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import styles from "./styles.module.scss";
-import { AuthContext } from "../../../auth/contexts/AuthContext/context";
-import { FaRegHeart, FaRegMoon, FaRegSun } from "react-icons/fa6";
-import { PiHandHeartBold } from "react-icons/pi";
-import ProfileMenu from "../../../profile/components/ProfileMenu";
-import { useDarkMode, useOnClickOutside } from "usehooks-ts";
+import { ReactElement, useContext, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import styles from './styles.module.scss';
+import { AuthContext } from '../../../auth/contexts/AuthContext/context';
+import { FaRegHeart, FaRegMoon, FaRegSun } from 'react-icons/fa6';
+import { PiHandHeartBold } from 'react-icons/pi';
+import ProfileMenu from '../../../profile/components/ProfileMenu';
+import { useDarkMode, useOnClickOutside } from 'usehooks-ts';
 
 export default function Header(): ReactElement {
   const profileMenuRef = useRef(null);
@@ -26,34 +26,30 @@ export default function Header(): ReactElement {
 
   const headerLinks = [
     {
-      name: "Home",
-      path: "/",
+      name: 'Home',
+      path: '/'
     },
     {
-      name: "Find Fundraisers",
-      path: "/fundraisers",
+      name: 'Find Fundraisers',
+      path: '/fundraisers'
     },
     {
-      name: "Start Fundraising",
-      path: "/start-fundraising",
-    },
+      name: 'Start Fundraising',
+      path: '/start-fundraising'
+    }
   ];
 
   return (
     <div className={styles.headerContainer}>
       <div className={styles.headerLeft}>
-        <Link to={"/"} className={styles.headerLogo}>
+        <Link to={'/'} className={styles.headerLogo}>
           GoFunder
         </Link>
 
         {headerLinks.map((headerLink) => {
           return (
             <Link
-              className={
-                pathname === headerLink.path
-                  ? styles.headerLinkActive
-                  : styles.headerLink
-              }
+              className={pathname === headerLink.path ? styles.headerLinkActive : styles.headerLink}
               to={headerLink.path}
             >
               {headerLink.name}
@@ -64,7 +60,7 @@ export default function Header(): ReactElement {
       <div className={styles.headerRight}>
         {user ? (
           <div className={styles.headerUserContainer}>
-            <Link to={"/saved-fundraisers"}>
+            <Link to={'/saved-fundraisers'}>
               <FaRegHeart className={styles.headerIcon} />
             </Link>
             {isDarkMode ? (
@@ -72,7 +68,7 @@ export default function Header(): ReactElement {
             ) : (
               <FaRegMoon className={styles.headerIcon} onClick={toggle} />
             )}
-            <Link to={"/donations"}>
+            <Link to={'/donations'}>
               <PiHandHeartBold className={styles.headerIcon} />
             </Link>
             <div
@@ -80,11 +76,7 @@ export default function Header(): ReactElement {
               onClick={() => setProfileMenuActive(!profileMenuActive)}
             >
               {user.avatarUrl ? (
-                <img
-                  className={styles.headerAvatarImage}
-                  src={user.avatarUrl}
-                  alt="Avatar"
-                />
+                <img className={styles.headerAvatarImage} src={user.avatarUrl} alt="Avatar" />
               ) : (
                 <img
                   className={styles.headerAvatarImage}
@@ -101,7 +93,7 @@ export default function Header(): ReactElement {
             <button
               type="button"
               className={styles.headerAuthButton}
-              onClick={() => toggleAuthModal(!authModal.active, "signIn")}
+              onClick={() => toggleAuthModal(!authModal.active, 'signIn')}
             >
               Sign In
             </button>

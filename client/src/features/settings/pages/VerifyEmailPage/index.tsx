@@ -1,7 +1,7 @@
-import { ReactElement } from "react";
-import Seo from "../../../common/Seo";
-import VerifyEmailForm from "../../components/VerifyEmailForm";
-import SettingsPageLayout from "../../layouts/SettingsPageLayout";
+import { ReactElement } from 'react';
+import Seo from '../../../common/Seo';
+import VerifyEmailForm from '../../components/VerifyEmailForm';
+import SettingsPageLayout from '../../layouts/SettingsPageLayout';
 
 export default function VerifyEmailPage(): ReactElement {
   return (

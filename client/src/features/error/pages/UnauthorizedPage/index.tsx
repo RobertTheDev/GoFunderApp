@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
-import Seo from "../../../common/Seo";
+import { ReactElement } from 'react';
+import Seo from '../../../common/Seo';
 
 export default function UnauthorizedPage(): ReactElement {
   return (

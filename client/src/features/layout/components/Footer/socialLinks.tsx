@@ -1,32 +1,32 @@
-import { FaFacebook, FaInstagram, FaTiktok, FaXTwitter } from "react-icons/fa6";
+import { FaFacebook, FaInstagram, FaTiktok, FaXTwitter } from 'react-icons/fa6';
 
 const socialLinks = [
   {
-    id: "1",
-    url: "https://www.facebook.com",
+    id: '1',
+    url: 'https://www.facebook.com',
     icon: <FaFacebook />,
-    name: "Facebook",
+    name: 'Facebook'
   },
 
   {
-    id: "2",
-    url: "https://www.instagram.com",
+    id: '2',
+    url: 'https://www.instagram.com',
     icon: <FaInstagram />,
-    name: "Instagram",
+    name: 'Instagram'
   },
   {
-    id: "3",
-    url: "https://www.tiktok.com",
+    id: '3',
+    url: 'https://www.tiktok.com',
     icon: <FaTiktok />,
-    name: "TikTok",
+    name: 'TikTok'
   },
 
   {
-    id: "4",
-    url: "https://www.x.com",
+    id: '4',
+    url: 'https://www.x.com',
     icon: <FaXTwitter />,
-    name: "X",
-  },
+    name: 'X'
+  }
 ];
 
 export default socialLinks;

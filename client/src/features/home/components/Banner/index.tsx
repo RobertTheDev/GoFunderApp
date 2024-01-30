@@ -1,6 +1,6 @@
-import { ReactElement } from "react";
-import styles from "./styles.module.scss";
-import { useNavigate } from "react-router-dom";
+import { ReactElement } from 'react';
+import styles from './styles.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 export default function Banner(): ReactElement {
   const navigation = useNavigate();
@@ -8,22 +8,20 @@ export default function Banner(): ReactElement {
   return (
     <div className={styles.bannerContainer}>
       <div className={styles.bannerContentContainer}>
-        <h2 className={styles.bannerText}>
-          Raise funds for causes you care about.
-        </h2>
+        <h2 className={styles.bannerText}>Raise funds for causes you care about.</h2>
 
         <div className={styles.bannerButtonsContainer}>
           <button
             className={styles.bannerPrimaryButton}
             type="button"
-            onClick={() => navigation("/fundraisers")}
+            onClick={() => navigation('/fundraisers')}
           >
             Find Fundraisers
           </button>
           <button
             className={styles.bannerSecondaryButton}
             type="button"
-            onClick={() => navigation("/start-fundraising")}
+            onClick={() => navigation('/start-fundraising')}
           >
             Start Fundraising
           </button>
@@ -34,7 +32,7 @@ export default function Banner(): ReactElement {
         <img
           className={styles.bannerImage}
           src={
-            "https://images.unsplash.com/photo-1596460658047-1826d5921c56?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            'https://images.unsplash.com/photo-1596460658047-1826d5921c56?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
           }
           alt="Runners completing their marathon."
         />

@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import deleteProfileSchema, {
-  DeleteProfileSchemaType,
-} from "../../validators/deleteProfile.schema";
-import { deleteProfile } from "../../service/settings.service";
+  DeleteProfileSchemaType
+} from '../../validators/deleteProfile.schema';
+import { deleteProfile } from '../../service/settings.service';
 
 const useCloseAccountForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<DeleteProfileSchemaType>({
-    resolver: zodResolver(deleteProfileSchema),
+    resolver: zodResolver(deleteProfileSchema)
   });
 
   const [message, setMessage] = useState<{
@@ -26,11 +26,11 @@ const useCloseAccountForm = () => {
 
       window.location.reload();
 
-      setMessage({ type: "success", content: deleteProfil.data.message });
+      setMessage({ type: 'success', content: deleteProfil.data.message });
 
       return deleteProfil;
     } catch (error: any) {
-      setMessage({ type: "error", content: error.response.data.message });
+      setMessage({ type: 'error', content: error.response.data.message });
     }
   };
 
@@ -40,7 +40,7 @@ const useCloseAccountForm = () => {
     errors,
     handleCloseAccount,
     message,
-    register,
+    register
   };
 };
 

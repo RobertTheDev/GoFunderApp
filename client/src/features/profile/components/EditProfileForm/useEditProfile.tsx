@@ -1,19 +1,17 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import editProfileSchema, {
-  EditProfileSchemaType,
-} from "../../validators/editProfile.schema";
-import { updateProfile } from "../../service/profile.service";
+import editProfileSchema, { EditProfileSchemaType } from '../../validators/editProfile.schema';
+import { updateProfile } from '../../service/profile.service';
 
 const useEditProfile = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<EditProfileSchemaType>({
-    resolver: zodResolver(editProfileSchema),
+    resolver: zodResolver(editProfileSchema)
   });
 
   const [message, setMessage] = useState<{
@@ -25,11 +23,11 @@ const useEditProfile = () => {
     try {
       const editProfil = await updateProfile(data);
 
-      setMessage({ type: "success", content: editProfil.data.message });
+      setMessage({ type: 'success', content: editProfil.data.message });
 
       return editProfil;
     } catch (error: any) {
-      setMessage({ type: "error", content: error.response.data.message });
+      setMessage({ type: 'error', content: error.response.data.message });
     }
   };
 
@@ -39,7 +37,7 @@ const useEditProfile = () => {
     errors,
     handleEditProfile,
     message,
-    register,
+    register
   };
 };
 

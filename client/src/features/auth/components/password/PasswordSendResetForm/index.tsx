@@ -1,11 +1,10 @@
-import { ReactElement, useContext } from "react";
-import usePasswordSignUp from "./usePasswordSendReset";
-import styles from "./styles.module.scss";
-import { AuthContext } from "../../../contexts/AuthContext/context";
+import { ReactElement, useContext } from 'react';
+import usePasswordSignUp from './usePasswordSendReset';
+import styles from './styles.module.scss';
+import { AuthContext } from '../../../contexts/AuthContext/context';
 
 export default function PasswordSendResetForm(): ReactElement {
-  const { errors, handleSendPasswordReset, message, register } =
-    usePasswordSignUp();
+  const { errors, handleSendPasswordReset, message, register } = usePasswordSignUp();
 
   const { toggleAuthModal } = useContext(AuthContext);
 
@@ -13,19 +12,17 @@ export default function PasswordSendResetForm(): ReactElement {
     <form className={styles.formContainer} onSubmit={handleSendPasswordReset}>
       <div className={styles.formInputContainer}>
         <p>
-          Enter your email address and we will send you an email that will allow
-          you to reset your password.
+          Enter your email address and we will send you an email that will allow you to reset your
+          password.
         </p>
         <input
           className={styles.formInput}
-          {...register("email")}
+          {...register('email')}
           type="email"
           name="email"
           placeholder="Email"
         />
-        {errors.email?.message && (
-          <p className={styles.formErrorText}>{errors.email.message}</p>
-        )}
+        {errors.email?.message && <p className={styles.formErrorText}>{errors.email.message}</p>}
       </div>
 
       {message && <p>{message.content}</p>}
@@ -35,10 +32,7 @@ export default function PasswordSendResetForm(): ReactElement {
           Send Password Reset
         </button>
         <p>Already have an account?</p>
-        <p
-          className={styles.formLink}
-          onClick={() => toggleAuthModal(true, "signIn")}
-        >
+        <p className={styles.formLink} onClick={() => toggleAuthModal(true, 'signIn')}>
           Signin now
         </p>
       </div>

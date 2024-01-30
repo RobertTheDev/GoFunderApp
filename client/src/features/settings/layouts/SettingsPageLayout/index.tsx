@@ -1,11 +1,7 @@
-import { ReactElement, ReactNode } from "react";
-import SettingsMenu from "../../components/SettingsMenu";
+import { ReactElement, ReactNode } from 'react';
+import SettingsMenu from '../../components/SettingsMenu';
 
-export default function SettingsPageLayout({
-  children,
-}: {
-  children: ReactNode;
-}): ReactElement {
+export default function SettingsPageLayout({ children }: { children: ReactNode }): ReactElement {
   return (
     <div>
       <div>

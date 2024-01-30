@@ -1,7 +1,7 @@
-import ApiResponse from "./ApiResponse";
-import IDonation from "./Donation";
-import IFundraiserOwner from "./FundraiserOwner";
-import IUser from "./User";
+import ApiResponse from './ApiResponse';
+import IDonation from './Donation';
+import IFundraiserOwner from './FundraiserOwner';
+import IUser from './User';
 
 export default interface IFundraiser {
   id: string;

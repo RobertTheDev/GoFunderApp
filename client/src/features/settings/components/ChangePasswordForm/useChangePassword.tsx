@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import changePasswordSchema, {
-  ChangePasswordSchemaType,
-} from "../../../auth/validators/changePassword.schema";
-import { changePassword } from "../../../auth/service/auth.service";
+  ChangePasswordSchemaType
+} from '../../../auth/validators/changePassword.schema';
+import { changePassword } from '../../../auth/service/auth.service';
 
 const useChangePassword = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<ChangePasswordSchemaType>({
-    resolver: zodResolver(changePasswordSchema),
+    resolver: zodResolver(changePasswordSchema)
   });
 
   const [message, setMessage] = useState<{
@@ -24,11 +24,11 @@ const useChangePassword = () => {
     try {
       const deleteProfil = await changePassword(data);
 
-      setMessage({ type: "success", content: deleteProfil.data.message });
+      setMessage({ type: 'success', content: deleteProfil.data.message });
 
       return deleteProfil;
     } catch (error: any) {
-      setMessage({ type: "error", content: error.response.data.message });
+      setMessage({ type: 'error', content: error.response.data.message });
     }
   };
 
@@ -38,7 +38,7 @@ const useChangePassword = () => {
     errors,
     handleChangePassword,
     message,
-    register,
+    register
   };
 };
 

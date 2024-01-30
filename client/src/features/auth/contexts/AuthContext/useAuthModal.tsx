@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { IAuthModal } from "./AuthContextType";
+import { useState } from 'react';
+import { IAuthModal } from './AuthContextType';
 
 export default function useAuthModal() {
   const [authModal, setAuthModal] = useState<IAuthModal>({
     active: false,
-    formType: null,
+    formType: null
   });
 
   const toggleAuthModal: (active: boolean, formType: string | null) => void = (
@@ -13,7 +13,7 @@ export default function useAuthModal() {
   ) => {
     setAuthModal({
       active,
-      formType: formType || null,
+      formType: formType || null
     });
   };
 

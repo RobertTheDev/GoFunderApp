@@ -1,18 +1,17 @@
-import { ReactElement } from "react";
-import useCreateFundraiser from "./useCreateFundraiser";
-import styles from "./styles.module.scss";
-import categoryOptions from "../../../../utils/categoryOptions";
+import { ReactElement } from 'react';
+import useCreateFundraiser from './useCreateFundraiser';
+import styles from './styles.module.scss';
+import categoryOptions from '../../../../utils/categoryOptions';
 
 export default function CreateFundraiserForm(): ReactElement {
-  const { errors, handleCreateFundraiser, message, register } =
-    useCreateFundraiser();
+  const { errors, handleCreateFundraiser, message, register } = useCreateFundraiser();
 
   return (
     <form className={styles.formContainer} onSubmit={handleCreateFundraiser}>
       <div className={styles.formInputContainer}>
         <input
           className={styles.formInput}
-          {...register("name")}
+          {...register('name')}
           type="text"
           name="name"
           placeholder="Name"
@@ -20,11 +19,7 @@ export default function CreateFundraiserForm(): ReactElement {
         {errors.name?.message && <p>{errors.name?.message}</p>}
       </div>
       <div className={styles.formInputContainer}>
-        <select
-          className={styles.formInput}
-          {...register("category")}
-          name="category"
-        >
+        <select className={styles.formInput} {...register('category')} name="category">
           {categoryOptions.map((categoryOption) => {
             return (
               <option key={categoryOption.path} value={categoryOption.path}>
@@ -38,7 +33,7 @@ export default function CreateFundraiserForm(): ReactElement {
       <div className={styles.formInputContainer}>
         <input
           className={styles.formInput}
-          {...register("deadlineDate", { valueAsDate: true })}
+          {...register('deadlineDate', { valueAsDate: true })}
           type="datetime-local"
           name="deadlineDate"
           placeholder="Deadline Date"
@@ -48,7 +43,7 @@ export default function CreateFundraiserForm(): ReactElement {
       <div className={styles.formInputContainer}>
         <textarea
           className={styles.formInput}
-          {...register("description")}
+          {...register('description')}
           name="description"
           placeholder="Description"
         />
@@ -57,7 +52,7 @@ export default function CreateFundraiserForm(): ReactElement {
       <div className={styles.formInputContainer}>
         <input
           className={styles.formInput}
-          {...register("headline")}
+          {...register('headline')}
           type="text"
           name="headline"
           placeholder="Headline"
@@ -67,7 +62,7 @@ export default function CreateFundraiserForm(): ReactElement {
       <div className={styles.formInputContainer}>
         <input
           className={styles.formInput}
-          {...register("imageUrl")}
+          {...register('imageUrl')}
           type="url"
           name="imageUrl"
           placeholder="Image"
@@ -77,7 +72,7 @@ export default function CreateFundraiserForm(): ReactElement {
       <div className={styles.formInputContainer}>
         <input
           className={styles.formInput}
-          {...register("target", { valueAsNumber: true })}
+          {...register('target', { valueAsNumber: true })}
           type="number"
           name="target"
           placeholder="Target"

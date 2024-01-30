@@ -1,6 +1,6 @@
-import { ReactElement } from "react";
-import styles from "./styles.module.scss";
-import useResetPassword from "./useResetPassword";
+import { ReactElement } from 'react';
+import styles from './styles.module.scss';
+import useResetPassword from './useResetPassword';
 
 export default function PasswordResetForm(): ReactElement {
   const { register, handleResetPassword, errors, message } = useResetPassword();
@@ -12,7 +12,7 @@ export default function PasswordResetForm(): ReactElement {
         <p>Change your password using the form below.</p>
         <input
           className={styles.formInput}
-          {...register("password")}
+          {...register('password')}
           type="password"
           name="password"
           placeholder="Password"

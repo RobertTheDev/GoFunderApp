@@ -1,14 +1,14 @@
-import { ReactElement } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getDonationsByCurrentUser } from "../../service/donation.service";
-import DonationCard from "../../components/DonationCard";
-import styles from "./styles.module.scss";
-import Seo from "../../../common/Seo";
+import { ReactElement } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { getDonationsByCurrentUser } from '../../service/donation.service';
+import DonationCard from '../../components/DonationCard';
+import styles from './styles.module.scss';
+import Seo from '../../../common/Seo';
 
 export default function UserDonationsPage(): ReactElement {
   const { isPending, error, data } = useQuery({
-    queryKey: ["getDonationsByCurrentUserData"],
-    queryFn: getDonationsByCurrentUser,
+    queryKey: ['getDonationsByCurrentUserData'],
+    queryFn: getDonationsByCurrentUser
   });
 
   if (isPending) return <p>Loading...</p>;
@@ -18,7 +18,7 @@ export default function UserDonationsPage(): ReactElement {
   return (
     <>
       <Seo
-        title={"My Donations"}
+        title={'My Donations'}
         description={`
        The donations you have made will appear here. 
        Keep track of your kind philanthropic efforts to the fundraisers 

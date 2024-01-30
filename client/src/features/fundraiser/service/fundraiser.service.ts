@@ -1,8 +1,8 @@
-import axios, { AxiosResponse } from "axios";
-import ApiResponse from "../../../interfaces/ApiResponse";
-import IFundraiser from "../../../interfaces/Fundraiser";
-import { UpdateFundraiserSchemaType } from "../validators/updateFundraiser.schema";
-import { CreateFundraiserSchemaType } from "../validators/createFundraiser.schema";
+import axios, { AxiosResponse } from 'axios';
+import ApiResponse from '../../../interfaces/ApiResponse';
+import IFundraiser from '../../../interfaces/Fundraiser';
+import { UpdateFundraiserSchemaType } from '../validators/updateFundraiser.schema';
+import { CreateFundraiserSchemaType } from '../validators/createFundraiser.schema';
 
 interface FundraiserApiResponse extends ApiResponse {
   data: IFundraiser | null;
@@ -18,7 +18,7 @@ export async function createFundraiser(
   data: CreateFundraiserSchemaType
 ): Promise<AxiosResponse<FundraiserApiResponse>> {
   return await axios.post(`${fundraiserApiUrl}/create`, data, {
-    withCredentials: true,
+    withCredentials: true
   });
 }
 
@@ -28,9 +28,7 @@ export async function deleteFundraiserById(
   return await axios.delete(`${fundraiserApiUrl}/${fundraiserId}`);
 }
 
-export async function getFundraisers(): Promise<
-  AxiosResponse<FundraisersApiResponse>
-> {
+export async function getFundraisers(): Promise<AxiosResponse<FundraisersApiResponse>> {
   return await axios.get(`${fundraiserApiUrl}`);
 }
 

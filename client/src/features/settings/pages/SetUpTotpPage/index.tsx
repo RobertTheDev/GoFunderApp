@@ -1,7 +1,7 @@
-import { ReactElement } from "react";
-import Seo from "../../../common/Seo";
-import SetUpTotpForm from "../../components/SetUpTotpForm";
-import SettingsPageLayout from "../../layouts/SettingsPageLayout";
+import { ReactElement } from 'react';
+import Seo from '../../../common/Seo';
+import SetUpTotpForm from '../../components/SetUpTotpForm';
+import SettingsPageLayout from '../../layouts/SettingsPageLayout';
 
 export default function SetUpTotpPage(): ReactElement {
   return (

@@ -1,6 +1,6 @@
-import { ReactElement } from "react";
-import EditProfileForm from "../../components/EditProfileForm";
-import Seo from "../../../common/Seo";
+import { ReactElement } from 'react';
+import EditProfileForm from '../../components/EditProfileForm';
+import Seo from '../../../common/Seo';
 
 export default function EditProfilePage(): ReactElement {
   return (

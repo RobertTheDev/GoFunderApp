@@ -1,7 +1,7 @@
-import axios, { AxiosResponse } from "axios";
-import ApiResponse from "../../../interfaces/ApiResponse.js";
-import { EditProfileSchemaType } from "../validators/editProfile.schema.js";
-import IProfile from "../../../interfaces/Profile.js";
+import axios, { AxiosResponse } from 'axios';
+import ApiResponse from '../../../interfaces/ApiResponse.js';
+import { EditProfileSchemaType } from '../validators/editProfile.schema.js';
+import IProfile from '../../../interfaces/Profile.js';
 
 interface ProfileApiResponse extends ApiResponse {
   data: IProfile | null;
@@ -13,6 +13,6 @@ export async function updateProfile(
   data: EditProfileSchemaType
 ): Promise<AxiosResponse<ProfileApiResponse>> {
   return await axios.put(`${profileApiUrl}/update-profile`, data, {
-    withCredentials: true,
+    withCredentials: true
   });
 }

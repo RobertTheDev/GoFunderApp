@@ -1,6 +1,6 @@
-import axios, { AxiosResponse } from "axios";
-import ApiResponse from "../../../interfaces/ApiResponse";
-import IFundraiserOwner from "../../../interfaces/FundraiserOwner";
+import axios, { AxiosResponse } from 'axios';
+import ApiResponse from '../../../interfaces/ApiResponse';
+import IFundraiserOwner from '../../../interfaces/FundraiserOwner';
 
 interface FundraiserOwnersApiResponse extends ApiResponse {
   data: IFundraiserOwner[];
@@ -22,6 +22,6 @@ export async function checkFundraiserOwnerByFundraiserSlug(
   slug: string
 ): Promise<AxiosResponse<FundraiserOwnerApiResponse>> {
   return await axios.get(`${fundraiserApiUrl}/check-fundraiser-owner/${slug}`, {
-    withCredentials: true,
+    withCredentials: true
   });
 }

@@ -1,24 +1,24 @@
-import { ReactElement } from "react";
-import Seo from "../../../common/Seo";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { getFundraiserBySlug } from "../../service/fundraiser.service";
-import { useParams } from "react-router-dom";
-import { saveFundraiser } from "../../../savedFundraiser/service/savedFundraiser.service";
-import CreateDonationForm from "../../../donation/components/CreateDonationForm";
-import styles from "./styles.module.scss";
+import { ReactElement } from 'react';
+import Seo from '../../../common/Seo';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { getFundraiserBySlug } from '../../service/fundraiser.service';
+import { useParams } from 'react-router-dom';
+import { saveFundraiser } from '../../../savedFundraiser/service/savedFundraiser.service';
+import CreateDonationForm from '../../../donation/components/CreateDonationForm';
+import styles from './styles.module.scss';
 
 export default function FundraiserPage(): ReactElement {
   const { slug } = useParams();
 
   const { isPending, error, data } = useQuery({
-    queryKey: ["getFundraiserBySlugData"],
-    queryFn: () => getFundraiserBySlug(String(slug)),
+    queryKey: ['getFundraiserBySlugData'],
+    queryFn: () => getFundraiserBySlug(String(slug))
   });
 
   const mutation = useMutation({
     mutationFn: async (fundraiserId: string) => {
       return await saveFundraiser({ fundraiserId });
-    },
+    }
   });
 
   if (isPending) return <p>Loading...</p>;
@@ -63,9 +63,7 @@ export default function FundraiserPage(): ReactElement {
         </button>
 
         <p>{new Date(data.data.data.createdAt).getDate()}</p>
-        {data.data.data.deadlineDate && (
-          <p>{new Date(data.data.data.deadlineDate).getDate()}</p>
-        )}
+        {data.data.data.deadlineDate && <p>{new Date(data.data.data.deadlineDate).getDate()}</p>}
         <p>{data.data.data.description}</p>
         <p>{data.data.data.headline}</p>
         <p>{data.data.data.target}</p>

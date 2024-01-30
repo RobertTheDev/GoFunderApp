@@ -1,18 +1,18 @@
-import { useQuery } from "@tanstack/react-query";
-import { ReactElement } from "react";
-import { getFundraisersByCategory } from "../../../fundraiser/service/fundraiser.service";
-import FundraiserCard from "../../../fundraiser/components/FundraiserCard";
-import styles from "./styles.module.scss";
-import IFundraiser from "../../../../interfaces/Fundraiser";
+import { useQuery } from '@tanstack/react-query';
+import { ReactElement } from 'react';
+import { getFundraisersByCategory } from '../../../fundraiser/service/fundraiser.service';
+import FundraiserCard from '../../../fundraiser/components/FundraiserCard';
+import styles from './styles.module.scss';
+import IFundraiser from '../../../../interfaces/Fundraiser';
 
 export default function CategoryFundraiserSection({
-  category,
+  category
 }: {
   category: string;
 }): ReactElement {
   const { isPending, error, data } = useQuery({
-    queryKey: ["getFundraisersByCategoryData"],
-    queryFn: () => getFundraisersByCategory(category),
+    queryKey: ['getFundraisersByCategoryData'],
+    queryFn: () => getFundraisersByCategory(category)
   });
 
   if (isPending) return <p>Loading...</p>;

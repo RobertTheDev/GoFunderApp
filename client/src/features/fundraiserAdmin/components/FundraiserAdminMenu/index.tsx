@@ -1,22 +1,22 @@
-import { ReactElement } from "react";
-import { Link } from "react-router-dom";
+import { ReactElement } from 'react';
+import { Link } from 'react-router-dom';
 
 const fundraiserAdminLinks = [
   {
-    name: "Donations",
-    path: "donations",
-    description: "",
+    name: 'Donations',
+    path: 'donations',
+    description: ''
   },
   {
-    name: "Update Fundraiser",
-    path: "update",
-    description: "",
+    name: 'Update Fundraiser',
+    path: 'update',
+    description: ''
   },
   {
-    name: "Close Fundraiser",
-    path: "close-fundraiser",
-    description: "",
-  },
+    name: 'Close Fundraiser',
+    path: 'close-fundraiser',
+    description: ''
+  }
 ];
 
 export default function FundraiserAdminMenu(): ReactElement {

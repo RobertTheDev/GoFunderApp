@@ -1,20 +1,13 @@
-import { ReactElement } from "react";
-import ISession from "../../../../interfaces/Session";
-import axios from "axios";
-import { QueryClient, useMutation } from "@tanstack/react-query";
+import { ReactElement } from 'react';
+import ISession from '../../../../interfaces/Session';
+import axios from 'axios';
+import { QueryClient, useMutation } from '@tanstack/react-query';
 
-export default function SessionCard({
-  session,
-}: {
-  session: ISession;
-}): ReactElement {
+export default function SessionCard({ session }: { session: ISession }): ReactElement {
   function deleteSession() {
-    return axios.delete(
-      `${process.env.REACT_APP_API_URL}/auth/session/${session.sessionId}`,
-      {
-        withCredentials: true,
-      }
-    );
+    return axios.delete(`${process.env.REACT_APP_API_URL}/auth/session/${session.sessionId}`, {
+      withCredentials: true
+    });
   }
 
   const queryClient = new QueryClient();
@@ -23,8 +16,8 @@ export default function SessionCard({
     mutationFn: deleteSession,
     onSuccess: () => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["getProfileSessions"] });
-    },
+      queryClient.invalidateQueries({ queryKey: ['getProfileSessions'] });
+    }
   });
 
   return (

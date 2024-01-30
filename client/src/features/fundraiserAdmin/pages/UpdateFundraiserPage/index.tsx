@@ -1,6 +1,6 @@
-import { ReactElement } from "react";
-import Seo from "../../../common/Seo";
-import UpdateFundraiserForm from "../../components/UpdateFundraiserForm";
+import { ReactElement } from 'react';
+import Seo from '../../../common/Seo';
+import UpdateFundraiserForm from '../../components/UpdateFundraiserForm';
 
 export default function UpdateFundraiserPage(): ReactElement {
   return (

@@ -1,5 +1,5 @@
-import ApiResponse from "./ApiResponse";
-import IUser from "./User";
+import ApiResponse from './ApiResponse';
+import IUser from './User';
 
 export default interface ISession {
   id: string;

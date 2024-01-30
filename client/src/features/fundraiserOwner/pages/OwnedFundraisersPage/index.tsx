@@ -1,14 +1,14 @@
-import { ReactElement } from "react";
-import Seo from "../../../common/Seo";
-import { useQuery } from "@tanstack/react-query";
-import { getFundraiserOwnersByAuthenticatedUser } from "../../service/fundraiserOwner.service";
-import styles from "./styles.module.scss";
-import OwnedFundraiserCard from "../../components/OwnedFundraiserCard";
+import { ReactElement } from 'react';
+import Seo from '../../../common/Seo';
+import { useQuery } from '@tanstack/react-query';
+import { getFundraiserOwnersByAuthenticatedUser } from '../../service/fundraiserOwner.service';
+import styles from './styles.module.scss';
+import OwnedFundraiserCard from '../../components/OwnedFundraiserCard';
 
 export default function OwnedFundraisersPage(): ReactElement {
   const { isPending, error, data } = useQuery({
-    queryKey: ["getFundraisersData"],
-    queryFn: getFundraiserOwnersByAuthenticatedUser,
+    queryKey: ['getFundraisersData'],
+    queryFn: getFundraiserOwnersByAuthenticatedUser
   });
 
   if (isPending) return <p>Loading...</p>;

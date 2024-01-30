@@ -1,24 +1,21 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { ReactElement } from "react";
-import ISession from "../../../../interfaces/Session";
-import SessionCard from "../../components/SessionCard";
-import Seo from "../../../common/Seo";
-import SettingsPageLayout from "../../layouts/SettingsPageLayout";
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { ReactElement } from 'react';
+import ISession from '../../../../interfaces/Session';
+import SessionCard from '../../components/SessionCard';
+import Seo from '../../../common/Seo';
+import SettingsPageLayout from '../../layouts/SettingsPageLayout';
 
 export default function SessionsPage(): ReactElement {
   const { isPending, error, data } = useQuery<ISession[] | null>({
-    queryKey: ["getProfileSessions"],
+    queryKey: ['getProfileSessions'],
     queryFn: async () => {
-      const user = await axios.get(
-        `${process.env.REACT_APP_API_URL}/auth/session/sessions`,
-        {
-          withCredentials: true,
-        }
-      );
+      const user = await axios.get(`${process.env.REACT_APP_API_URL}/auth/session/sessions`, {
+        withCredentials: true
+      });
 
       return user.data.data;
-    },
+    }
   });
 
   if (isPending) return <p>Loading...</p>;
