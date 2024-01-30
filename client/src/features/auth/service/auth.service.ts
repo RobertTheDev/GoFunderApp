@@ -60,9 +60,13 @@ export async function sendPasswordReset(
 export async function signInWithPassword(
   data: PasswordSignInSchemaType,
 ): Promise<AxiosResponse<UserApiResponse>> {
-  return await axios.post(authApiRoutes.signInWithPassword, data, {
-    withCredentials: true,
-  })
+  return await axios.post(
+    `${process.env.REACT_APP_API_URL}/auth/password/sign-in`,
+    data,
+    {
+      withCredentials: true,
+    },
+  )
 }
 
 export async function signUpWithPassword(
