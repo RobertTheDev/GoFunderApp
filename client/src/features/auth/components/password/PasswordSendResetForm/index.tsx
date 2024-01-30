@@ -35,12 +35,12 @@ export default function PasswordSendResetForm(): ReactElement {
           Send Password Reset
         </button>
         <p>Already have an account?</p>
-        <p
+        <button
           className={styles.formLink}
           onClick={() => toggleAuthModal(true, 'signIn')}
         >
           Signin now
-        </p>
+        </button>
       </div>
     </form>
   )

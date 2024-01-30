@@ -76,23 +76,17 @@ export default function Header(): ReactElement {
             <Link to={'/donations'}>
               <PiHandHeartBold className={styles.headerIcon} />
             </Link>
-            <div
-              className={styles.headerAvatarContainer}
-              onClick={() => setProfileMenuActive(!profileMenuActive)}
-            >
-              {user.avatarUrl ? (
-                <img
-                  className={styles.headerAvatarImage}
-                  src={user.avatarUrl}
-                  alt='Avatar'
-                />
-              ) : (
-                <img
-                  className={styles.headerAvatarImage}
-                  src='https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
-                  alt='Avatar'
-                />
-              )}
+            <div className={styles.headerAvatarContainer}>
+              <input
+                type='image'
+                onClick={() => setProfileMenuActive(!profileMenuActive)}
+                src={
+                  user.avatarUrl
+                    ? user.avatarUrl
+                    : 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
+                }
+                alt='Avatar'
+              />
             </div>
 
             {profileMenuActive && <ProfileMenu ref={profileMenuRef} />}

@@ -78,7 +78,7 @@ const categoryLinks: ICategoryLink[] = [
 function CategoryLink(categoryLink: ICategoryLink): ReactElement {
   const navigate = useNavigate()
   return (
-    <div
+    <button
       className={styles.categoryLinkContainer}
       onClick={() => {
         navigate(`/fundraisers?category=${categoryLink.name}`)
@@ -93,7 +93,7 @@ function CategoryLink(categoryLink: ICategoryLink): ReactElement {
         />
       </div>
       <p>{categoryLink.name}</p>
-    </div>
+    </button>
   )
 }
 

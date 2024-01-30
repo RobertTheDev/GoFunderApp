@@ -32,12 +32,12 @@ export default function PasswordSignInForm(): ReactElement {
           placeholder='Password'
         />
 
-        <p
+        <button
           className={styles.formLink}
           onClick={() => toggleAuthModal(true, 'forgotPassword')}
         >
           Forgot password?
-        </p>
+        </button>
 
         {errors.password?.message && (
           <p className={styles.formErrorText}>{errors.password.message}</p>
@@ -50,12 +50,12 @@ export default function PasswordSignInForm(): ReactElement {
           Sign In
         </button>
         <p>Don&rsquo;t have an account?</p>
-        <p
+        <button
           className={styles.formLink}
           onClick={() => toggleAuthModal(true, 'signUp')}
         >
           Signup now
-        </p>
+        </button>
       </div>
     </form>
   )
