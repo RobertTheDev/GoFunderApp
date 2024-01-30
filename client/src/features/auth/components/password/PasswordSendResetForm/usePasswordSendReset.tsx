@@ -5,6 +5,7 @@ import { sendPasswordReset } from '../../../service/auth.service';
 import sendPasswordResetSchema, {
   SendPasswordResetSchemaType
 } from '../../../validators/sendPasswordReset.schema';
+import { AxiosError } from 'axios';
 
 const usePasswordSendReset = () => {
   const {
@@ -27,8 +28,18 @@ const usePasswordSendReset = () => {
       setMessage({ type: 'success', content: signUp.data.message });
 
       return signUp;
-    } catch (error: any) {
-      setMessage({ type: 'error', content: error.response.data.message });
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setMessage({
+          type: 'error',
+          content: error.response?.data.message
+        });
+      } else {
+        setMessage({
+          type: 'error',
+          content: 'Internal server error. Please try again.'
+        });
+      }
     }
   };
 

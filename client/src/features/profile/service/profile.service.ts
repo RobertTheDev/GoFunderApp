@@ -7,7 +7,7 @@ interface ProfileApiResponse extends ApiResponse {
   data: IProfile | null;
 }
 
-const profileApiUrl: string = `${process.env.REACT_APP_API_URL}/profile`;
+const profileApiUrl = `${process.env.REACT_APP_API_URL}/profile`;
 
 export async function updateProfile(
   data: EditProfileSchemaType

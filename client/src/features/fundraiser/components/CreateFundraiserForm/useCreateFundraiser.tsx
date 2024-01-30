@@ -5,6 +5,7 @@ import { createFundraiser } from '../../service/fundraiser.service';
 import createFundraiserSchema, {
   CreateFundraiserSchemaType
 } from '../../validators/createFundraiser.schema';
+import { AxiosError } from 'axios';
 
 const useCreateFundraiser = () => {
   const {
@@ -27,8 +28,18 @@ const useCreateFundraiser = () => {
       setMessage({ type: 'success', content: createFundraise.data.message });
 
       return createFundraise;
-    } catch (error: any) {
-      setMessage({ type: 'error', content: error.response.data.message });
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setMessage({
+          type: 'error',
+          content: error.response?.data.message
+        });
+      } else {
+        setMessage({
+          type: 'error',
+          content: 'Internal server error. Please try again.'
+        });
+      }
     }
   };
 

@@ -103,7 +103,7 @@ export default function CategoryMenu(): ReactElement {
       <p>Category Menu</p>
       <div className={styles.menuLinksContainer}>
         {categoryLinks.map((categoryLink: ICategoryLink) => {
-          return <CategoryLink {...categoryLink} />;
+          return <CategoryLink {...categoryLink} key={categoryLink.id} />;
         })}
       </div>
     </div>

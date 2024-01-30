@@ -49,6 +49,7 @@ export default function Header(): ReactElement {
         {headerLinks.map((headerLink) => {
           return (
             <Link
+              key={headerLink.path}
               className={pathname === headerLink.path ? styles.headerLinkActive : styles.headerLink}
               to={headerLink.path}
             >

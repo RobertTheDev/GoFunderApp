@@ -5,6 +5,7 @@ import deleteProfileSchema, {
   DeleteProfileSchemaType
 } from '../../validators/deleteProfile.schema';
 import { deleteProfile } from '../../service/settings.service';
+import { AxiosError } from 'axios';
 
 const useCloseAccountForm = () => {
   const {
@@ -29,8 +30,18 @@ const useCloseAccountForm = () => {
       setMessage({ type: 'success', content: deleteProfil.data.message });
 
       return deleteProfil;
-    } catch (error: any) {
-      setMessage({ type: 'error', content: error.response.data.message });
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setMessage({
+          type: 'error',
+          content: error.response?.data.message
+        });
+      } else {
+        setMessage({
+          type: 'error',
+          content: 'Internal server error. Please try again.'
+        });
+      }
     }
   };
 

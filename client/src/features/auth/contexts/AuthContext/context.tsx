@@ -6,5 +6,7 @@ export const AuthContext = createContext<AuthContextType>({
   isPending: false,
   error: null,
   authModal: { active: false, formType: null },
-  toggleAuthModal: () => {}
+  toggleAuthModal: (active: boolean, formType: string | null) => {
+    return { active, formType };
+  }
 });

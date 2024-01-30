@@ -10,7 +10,7 @@ interface FundraiserOwnerApiResponse extends ApiResponse {
   data: IFundraiserOwner | null;
 }
 
-const fundraiserApiUrl: string = `${process.env.REACT_APP_API_URL}/fundraiser-owner`;
+const fundraiserApiUrl = `${process.env.REACT_APP_API_URL}/fundraiser-owner`;
 
 export async function getFundraiserOwnersByAuthenticatedUser(): Promise<
   AxiosResponse<FundraiserOwnersApiResponse>

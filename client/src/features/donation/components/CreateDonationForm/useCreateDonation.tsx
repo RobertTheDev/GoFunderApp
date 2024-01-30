@@ -5,6 +5,7 @@ import createDonationSchema, {
   CreateDonationSchemaType
 } from '../../validators/createDonation.schema';
 import { createdonation } from '../../service/donation.service';
+import { AxiosError } from 'axios';
 
 const useCreateDonation = (fundraiserId: string | undefined) => {
   const {
@@ -31,8 +32,18 @@ const useCreateDonation = (fundraiserId: string | undefined) => {
       setMessage({ type: 'success', content: createDsonation.message });
 
       return createDsonation;
-    } catch (error: any) {
-      setMessage({ type: 'error', content: error.response.data.message });
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setMessage({
+          type: 'error',
+          content: error.response?.data.message
+        });
+      } else {
+        setMessage({
+          type: 'error',
+          content: 'Internal server error. Please try again.'
+        });
+      }
     }
   };
 

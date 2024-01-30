@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -15,7 +15,10 @@ const usePasswordSignInForm = () => {
     resolver: zodResolver(passwordSignInSchema)
   });
 
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [message, setMessage] = useState<{
+    type: string;
+    content: string;
+  } | null>(null);
 
   const signIn = async (data: PasswordSignInSchemaType) => {
     try {
@@ -23,8 +26,18 @@ const usePasswordSignInForm = () => {
         withCredentials: true
       });
       window.location.reload();
-    } catch (error: any) {
-      setErrorMessage(error.response.data.message);
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setMessage({
+          type: 'error',
+          content: error.response?.data.message
+        });
+      } else {
+        setMessage({
+          type: 'error',
+          content: 'Internal server error. Please try again.'
+        });
+      }
     }
   };
 
@@ -34,7 +47,7 @@ const usePasswordSignInForm = () => {
     register,
     handleSignIn,
     errors,
-    errorMessage
+    message
   };
 };
 

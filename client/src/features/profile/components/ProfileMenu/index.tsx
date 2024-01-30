@@ -1,10 +1,15 @@
-import { ForwardedRef, forwardRef } from 'react';
+import { ForwardedRef, forwardRef, useState } from 'react';
 import styles from './styles.module.scss';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { Link } from 'react-router-dom';
 
-const ProfileMenu = forwardRef((_props, ref: ForwardedRef<HTMLDivElement>) => {
+const ProfileMenu = forwardRef(function ProfileMenu(_props, ref: ForwardedRef<HTMLDivElement>) {
+  const [message, setMessage] = useState<{
+    type: string;
+    content: string;
+  } | null>(null);
+
   async function signOut(): Promise<void> {
     try {
       await axios.post(
@@ -16,8 +21,18 @@ const ProfileMenu = forwardRef((_props, ref: ForwardedRef<HTMLDivElement>) => {
       );
 
       window.location.reload();
-    } catch (error: any) {
-      console.error('Sign-out error:', error);
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setMessage({
+          type: 'error',
+          content: error.response?.data.message
+        });
+      } else {
+        setMessage({
+          type: 'error',
+          content: 'Internal server error. Please try again.'
+        });
+      }
     }
   }
 
@@ -74,6 +89,7 @@ const ProfileMenu = forwardRef((_props, ref: ForwardedRef<HTMLDivElement>) => {
       <button type="button" onClick={() => mutation.mutate()}>
         Sign Out
       </button>
+      {message && <p>{message.content}</p>}
     </div>
   );
 });

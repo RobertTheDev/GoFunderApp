@@ -11,9 +11,9 @@ interface UserApiResponse extends ApiResponse {
   data: IUser;
 }
 
-const apiUrl: string = String(process.env.REACT_APP_API_URL);
+const apiUrl = String(process.env.REACT_APP_API_URL);
 
-const authUrl: string = `${apiUrl}/auth`;
+const authUrl = `${apiUrl}/auth`;
 
 const authApiRoutes = {
   changePassword: `${authUrl}/change-password`,

@@ -5,6 +5,7 @@ import passwordSignUpSchema, {
   PasswordSignUpSchemaType
 } from '../../../validators/passwordSignUp.schema';
 import { signUpWithPassword } from '../../../service/auth.service';
+import { AxiosError } from 'axios';
 
 const usePasswordSignUp = () => {
   const {
@@ -29,8 +30,18 @@ const usePasswordSignUp = () => {
       window.location.reload();
 
       return signUp;
-    } catch (error: any) {
-      setMessage({ type: 'error', content: error.response.data.message });
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setMessage({
+          type: 'error',
+          content: error.response?.data.message
+        });
+      } else {
+        setMessage({
+          type: 'error',
+          content: 'Internal server error. Please try again.'
+        });
+      }
     }
   };
 

@@ -5,6 +5,7 @@ import changePasswordSchema, {
   ChangePasswordSchemaType
 } from '../../../auth/validators/changePassword.schema';
 import { changePassword } from '../../../auth/service/auth.service';
+import { AxiosError } from 'axios';
 
 const useChangePassword = () => {
   const {
@@ -27,8 +28,18 @@ const useChangePassword = () => {
       setMessage({ type: 'success', content: deleteProfil.data.message });
 
       return deleteProfil;
-    } catch (error: any) {
-      setMessage({ type: 'error', content: error.response.data.message });
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setMessage({
+          type: 'error',
+          content: error.response?.data.message
+        });
+      } else {
+        setMessage({
+          type: 'error',
+          content: 'Internal server error. Please try again.'
+        });
+      }
     }
   };
 

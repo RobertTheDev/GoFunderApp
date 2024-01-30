@@ -7,7 +7,7 @@ interface UserDonationsApiResponse extends ApiResponse {
   data: IDonation[];
 }
 
-const donationApiUrl: string = `${process.env.REACT_APP_API_URL}/donation`;
+const donationApiUrl = `${process.env.REACT_APP_API_URL}/donation`;
 
 export async function createdonation(
   fundraiserId: string,

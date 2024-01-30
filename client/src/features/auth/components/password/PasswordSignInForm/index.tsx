@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 import { AuthContext } from '../../../contexts/AuthContext/context';
 
 export default function PasswordSignInForm(): ReactElement {
-  const { register, handleSignIn, errors, errorMessage } = usePasswordSignInForm();
+  const { register, handleSignIn, errors, message } = usePasswordSignInForm();
 
   const { toggleAuthModal } = useContext(AuthContext);
 
@@ -38,13 +38,13 @@ export default function PasswordSignInForm(): ReactElement {
           <p className={styles.formErrorText}>{errors.password.message}</p>
         )}
       </div>
+      {message && <p>{message.content}</p>}
 
-      {errorMessage && <p className={styles.formErrorText}>{errorMessage}</p>}
       <div className={styles.formSubmitButtonContainer}>
         <button className={styles.formSubmitButton} type="submit">
           Sign In
         </button>
-        <p>Don't have an account?</p>
+        <p>Don&rsquo;t have an account?</p>
         <p className={styles.formLink} onClick={() => toggleAuthModal(true, 'signUp')}>
           Signup now
         </p>

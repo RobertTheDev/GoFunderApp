@@ -6,6 +6,7 @@ import updateFundraiserSchema, {
   UpdateFundraiserSchemaType
 } from '../../validators/updateFundraiser.schema';
 import { useParams } from 'react-router-dom';
+import { AxiosError } from 'axios';
 
 const useUpdateFundraiser = () => {
   const {
@@ -36,8 +37,18 @@ const useUpdateFundraiser = () => {
       setMessage({ type: 'success', content: updateFundraise.data.message });
 
       return updateFundraise;
-    } catch (error: any) {
-      setMessage({ type: 'error', content: error.response.data.message });
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setMessage({
+          type: 'error',
+          content: error.response?.data.message
+        });
+      } else {
+        setMessage({
+          type: 'error',
+          content: 'Internal server error. Please try again.'
+        });
+      }
     }
   };
 

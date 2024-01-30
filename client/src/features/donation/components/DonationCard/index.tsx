@@ -12,7 +12,7 @@ export default function DonationCard({ donation }: { donation: IDonation }): Rea
       <div>
         <p>{donation.fundraiser?.name}</p>
         <p>£{donation.amount.toLocaleString()}</p>
-        <p>"{donation.message}"</p>
+        <p>&quot;{donation.message}&quot;</p>
         <p>{format(donation.createdAt, 'dd MMMM yyyy')}</p>
       </div>
     </div>

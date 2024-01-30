@@ -11,7 +11,7 @@ interface SavedFundraisersApiResponse extends ApiResponse {
   data: ISavedFundraiser[];
 }
 
-const savedFundraiserApiUrl: string = `${process.env.REACT_APP_API_URL}/saved-fundraiser`;
+const savedFundraiserApiUrl = `${process.env.REACT_APP_API_URL}/saved-fundraiser`;
 
 export async function getSavedFundraisers(): Promise<AxiosResponse<SavedFundraisersApiResponse>> {
   return await axios.get(`${savedFundraiserApiUrl}`, { withCredentials: true });

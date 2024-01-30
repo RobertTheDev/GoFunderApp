@@ -23,7 +23,7 @@ export default function TotpSetupForm(): ReactElement {
         .then((res) => res.data.data)
   });
 
-  const { register, handleTotpSetup, errors, errorMessage } = useTotpSetupForm();
+  const { register, handleTotpSetup, errors, message } = useTotpSetupForm();
 
   if (isPending) return <p>Loading...</p>;
 
@@ -39,9 +39,9 @@ export default function TotpSetupForm(): ReactElement {
         to set up MFA.
       </p>
       <p>
-        <strong> Step 1</strong>: Search the App Store or Google Play for "TOTP Authenticator" and
-        install one of the top listed free apps. The most popular TOTP apps are Authy, 2FA
-        Authentcator, Google Authenticator and Microsoft Authenticator.
+        <strong>Step 1</strong>: Search the App Store or Google Play for &quot;TOTP
+        Authenticator&quot; and install one of the top listed free apps. The most popular TOTP apps
+        are Authy, 2FA Authenticator, Google Authenticator, and Microsoft Authenticator.
       </p>
 
       <p>
@@ -58,7 +58,7 @@ export default function TotpSetupForm(): ReactElement {
       <form onSubmit={handleTotpSetup}>
         <input {...register('code')} type="text" name="code" />
         {errors.code?.message && <p>{errors.code.message}</p>}
-        {errorMessage && <p>{errorMessage}</p>}
+        {message && <p>{message.content}</p>}
         <button type="submit">Activate 2FA</button>
       </form>
     </div>

@@ -7,6 +7,7 @@ import resetPasswordSchema, {
   ResetPasswordSchemaType
 } from '../../../validators/resetPassword.schema';
 import { useSearchParams } from 'react-router-dom';
+import { AxiosError } from 'axios';
 
 const useResetPassword = () => {
   const {
@@ -41,8 +42,18 @@ const useResetPassword = () => {
       setMessage({ type: 'success', content: resetPassworde.data.message });
 
       return resetPassworde;
-    } catch (error: any) {
-      setMessage({ type: 'error', content: error.response.data.message });
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setMessage({
+          type: 'error',
+          content: error.response?.data.message
+        });
+      } else {
+        setMessage({
+          type: 'error',
+          content: 'Internal server error. Please try again.'
+        });
+      }
     }
   };
 
