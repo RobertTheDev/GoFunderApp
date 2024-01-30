@@ -6,7 +6,7 @@ import CategoryLink from '../CategoryLink'
 export default function CategoryMenu(): ReactElement {
   return (
     <div className={styles.menuContainer}>
-      <p>Category Menu</p>
+      <h3 className={styles.menuTitle}>Categories</h3>
       <div className={styles.menuLinksContainer}>
         {categoryLinks.map((categoryLink: ICategoryLink) => {
           return <CategoryLink {...categoryLink} key={categoryLink.id} />

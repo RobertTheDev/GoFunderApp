@@ -12,12 +12,12 @@
 }
 
 .headerLink {
-  color: black;
+  color: #272044;
   font-weight: 500;
 }
 
 .headerLinkActive {
-  color: #6c22a6;
+  color: #885df1;
   font-weight: 500;
 }
 
@@ -48,9 +48,9 @@
 }
 
 .headerLogo {
-  color: #010101;
-  font-size: 22px;
-  font-weight: 600;
+  color: #272044;
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .headerAvatarContainer {
@@ -69,11 +69,12 @@
 }
 
 .headerAuthButton {
-  background-color: royalblue;
-  border: none;
+  background: none;
+  border: 1px solid #885df1;
+  font-weight: 600;
   padding: 12px 40px;
-  color: white;
-  font-weight: 500;
+  color: #885df1;
+  font-weight: 600;
   font-size: 16px;
-  border-radius: 4px;
+  border-radius: 24px;
 }

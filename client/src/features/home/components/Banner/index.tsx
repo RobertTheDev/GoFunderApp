@@ -16,13 +16,6 @@ export default function Banner(): ReactElement {
           <button
             className={styles.bannerPrimaryButton}
             type='button'
-            onClick={() => navigation('/fundraisers')}
-          >
-            Find Fundraisers
-          </button>
-          <button
-            className={styles.bannerSecondaryButton}
-            type='button'
             onClick={() => navigation('/start-fundraising')}
           >
             Start Fundraising

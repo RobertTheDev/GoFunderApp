@@ -59,6 +59,7 @@ export default function Header(): ReactElement {
             </Link>
             <div className={styles.headerAvatarContainer}>
               <input
+                className={styles.headerAvatarImage}
                 type='image'
                 onClick={() => setProfileMenuActive(!profileMenuActive)}
                 src={

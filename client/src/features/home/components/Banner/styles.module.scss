@@ -1,5 +1,5 @@
 .bannerContainer {
-  height: calc(90vh - 80px);
+  height: calc(75vh);
   position: relative;
   width: 100%;
   background-color: white;
@@ -19,21 +19,20 @@
 
 .bannerContentContainer {
   min-height: 100%;
-  padding: 64px 32px;
+  padding: 48px;
   position: absolute;
   z-index: 32;
-  max-width: 720px;
+  max-width: 768px;
   display: flex;
   flex-direction: column;
-  gap: 64px;
+  gap: 32px;
 }
 
 .bannerText {
   font-size: 64px;
-  color: white;
-  font-weight: 500;
-  line-height: 1.5;
-  margin: 0;
+  color: #272044;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
 .bannerButtonsContainer {
@@ -42,17 +41,10 @@
 }
 
 .bannerPrimaryButton {
-  background-color: #6962ad;
-  padding: 16px;
+  background-color: #885df1;
+  padding: 16px 24px;
   border-radius: 24px;
-  font-weight: bold;
+  font-size: 16px;
   color: white;
-}
-
-.bannerSecondaryButton {
-  background-color: #83c0c1;
-  padding: 16px;
-  border-radius: 24px;
-  font-weight: bold;
-  color: white;
+  font-weight: 600;
 }

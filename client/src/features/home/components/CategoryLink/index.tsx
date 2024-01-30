@@ -1,18 +1,15 @@
 import { ReactElement } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styles from './styles.module.scss'
 import { ICategoryLink } from '../../../../utils/categoryLinks'
 
 export default function CategoryLink(
   categoryLink: ICategoryLink,
 ): ReactElement {
-  const navigate = useNavigate()
   return (
-    <button
+    <Link
+      to={`/fundraisers?category=${categoryLink.name}`}
       className={styles.categoryLinkContainer}
-      onClick={() => {
-        navigate(`/fundraisers?category=${categoryLink.name}`)
-      }}
       key={categoryLink.id}
     >
       <div className={styles.categoryLinkImageContainer}>
@@ -22,7 +19,9 @@ export default function CategoryLink(
           alt={categoryLink.image.alt}
         />
       </div>
-      <p>{categoryLink.name}</p>
-    </button>
+      <div className={styles.categoryLinkContentContainer}>
+        <p>{categoryLink.name}</p>
+      </div>
+    </Link>
   )
 }
