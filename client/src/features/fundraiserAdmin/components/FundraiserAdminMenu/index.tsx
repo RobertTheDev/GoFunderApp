@@ -1,23 +1,6 @@
 import { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
-
-const fundraiserAdminLinks = [
-  {
-    name: 'Donations',
-    path: 'donations',
-    description: '',
-  },
-  {
-    name: 'Update Fundraiser',
-    path: 'update',
-    description: '',
-  },
-  {
-    name: 'Close Fundraiser',
-    path: 'close-fundraiser',
-    description: '',
-  },
-]
+import fundraiserAdminLinks from '../../../../utils/fundraiserAdminLinks'
 
 export default function FundraiserAdminMenu(): ReactElement {
   return (
