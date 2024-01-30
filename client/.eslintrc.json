@@ -8,6 +8,7 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hook-form/recommended",
+    "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended"
   ],
   "overrides": [],
@@ -16,7 +17,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "react-hook-form"],
+  "plugins": ["react", "@typescript-eslint", "react-hook-form", "jsx-a11y", "prettier"],
   "rules": {
     "react/react-in-jsx-scope": "off"
   },
