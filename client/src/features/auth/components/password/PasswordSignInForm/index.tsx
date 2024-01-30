@@ -1,12 +1,12 @@
-import { ReactElement, useContext } from 'react';
-import usePasswordSignInForm from './usePasswordSignInForm';
-import styles from './styles.module.scss';
-import { AuthContext } from '../../../contexts/AuthContext/context';
+import { ReactElement, useContext } from 'react'
+import usePasswordSignInForm from './usePasswordSignInForm'
+import styles from './styles.module.scss'
+import { AuthContext } from '../../../contexts/AuthContext/context'
 
 export default function PasswordSignInForm(): ReactElement {
-  const { register, handleSignIn, errors, message } = usePasswordSignInForm();
+  const { register, handleSignIn, errors, message } = usePasswordSignInForm()
 
-  const { toggleAuthModal } = useContext(AuthContext);
+  const { toggleAuthModal } = useContext(AuthContext)
 
   return (
     <form className={styles.formContainer} onSubmit={handleSignIn}>
@@ -14,23 +14,28 @@ export default function PasswordSignInForm(): ReactElement {
         <input
           className={styles.formInput}
           {...register('email')}
-          type="email"
-          name="email"
-          placeholder="Email"
+          type='email'
+          name='email'
+          placeholder='Email'
         />
-        {errors.email?.message && <p className={styles.formErrorText}>{errors.email.message}</p>}
+        {errors.email?.message && (
+          <p className={styles.formErrorText}>{errors.email.message}</p>
+        )}
       </div>
 
       <div className={styles.formInputContainer}>
         <input
           className={styles.formInput}
           {...register('password')}
-          type="password"
-          name="password"
-          placeholder="Password"
+          type='password'
+          name='password'
+          placeholder='Password'
         />
 
-        <p className={styles.formLink} onClick={() => toggleAuthModal(true, 'forgotPassword')}>
+        <p
+          className={styles.formLink}
+          onClick={() => toggleAuthModal(true, 'forgotPassword')}
+        >
           Forgot password?
         </p>
 
@@ -41,14 +46,17 @@ export default function PasswordSignInForm(): ReactElement {
       {message && <p>{message.content}</p>}
 
       <div className={styles.formSubmitButtonContainer}>
-        <button className={styles.formSubmitButton} type="submit">
+        <button className={styles.formSubmitButton} type='submit'>
           Sign In
         </button>
         <p>Don&rsquo;t have an account?</p>
-        <p className={styles.formLink} onClick={() => toggleAuthModal(true, 'signUp')}>
+        <p
+          className={styles.formLink}
+          onClick={() => toggleAuthModal(true, 'signUp')}
+        >
           Signup now
         </p>
       </div>
     </form>
-  );
+  )
 }

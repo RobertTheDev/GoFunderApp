@@ -1,43 +1,43 @@
-import { ReactElement, useContext, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import styles from './styles.module.scss';
-import { AuthContext } from '../../../auth/contexts/AuthContext/context';
-import { FaRegHeart, FaRegMoon, FaRegSun } from 'react-icons/fa6';
-import { PiHandHeartBold } from 'react-icons/pi';
-import ProfileMenu from '../../../profile/components/ProfileMenu';
-import { useDarkMode, useOnClickOutside } from 'usehooks-ts';
+import { ReactElement, useContext, useRef, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import styles from './styles.module.scss'
+import { AuthContext } from '../../../auth/contexts/AuthContext/context'
+import { FaRegHeart, FaRegMoon, FaRegSun } from 'react-icons/fa6'
+import { PiHandHeartBold } from 'react-icons/pi'
+import ProfileMenu from '../../../profile/components/ProfileMenu'
+import { useDarkMode, useOnClickOutside } from 'usehooks-ts'
 
 export default function Header(): ReactElement {
-  const profileMenuRef = useRef(null);
+  const profileMenuRef = useRef(null)
 
-  const { authModal, toggleAuthModal, user } = useContext(AuthContext);
+  const { authModal, toggleAuthModal, user } = useContext(AuthContext)
 
-  const { isDarkMode, toggle } = useDarkMode();
+  const { isDarkMode, toggle } = useDarkMode()
 
-  const [profileMenuActive, setProfileMenuActive] = useState(false);
+  const [profileMenuActive, setProfileMenuActive] = useState(false)
 
   function closeProfileMenu() {
-    setProfileMenuActive(false);
+    setProfileMenuActive(false)
   }
 
-  useOnClickOutside(profileMenuRef, closeProfileMenu);
+  useOnClickOutside(profileMenuRef, closeProfileMenu)
 
-  const { pathname } = useLocation();
+  const { pathname } = useLocation()
 
   const headerLinks = [
     {
       name: 'Home',
-      path: '/'
+      path: '/',
     },
     {
       name: 'Find Fundraisers',
-      path: '/fundraisers'
+      path: '/fundraisers',
     },
     {
       name: 'Start Fundraising',
-      path: '/start-fundraising'
-    }
-  ];
+      path: '/start-fundraising',
+    },
+  ]
 
   return (
     <div className={styles.headerContainer}>
@@ -50,12 +50,16 @@ export default function Header(): ReactElement {
           return (
             <Link
               key={headerLink.path}
-              className={pathname === headerLink.path ? styles.headerLinkActive : styles.headerLink}
+              className={
+                pathname === headerLink.path
+                  ? styles.headerLinkActive
+                  : styles.headerLink
+              }
               to={headerLink.path}
             >
               {headerLink.name}
             </Link>
-          );
+          )
         })}
       </div>
       <div className={styles.headerRight}>
@@ -77,12 +81,16 @@ export default function Header(): ReactElement {
               onClick={() => setProfileMenuActive(!profileMenuActive)}
             >
               {user.avatarUrl ? (
-                <img className={styles.headerAvatarImage} src={user.avatarUrl} alt="Avatar" />
+                <img
+                  className={styles.headerAvatarImage}
+                  src={user.avatarUrl}
+                  alt='Avatar'
+                />
               ) : (
                 <img
                   className={styles.headerAvatarImage}
-                  src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
-                  alt="Avatar"
+                  src='https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
+                  alt='Avatar'
                 />
               )}
             </div>
@@ -92,7 +100,7 @@ export default function Header(): ReactElement {
         ) : (
           <div>
             <button
-              type="button"
+              type='button'
               className={styles.headerAuthButton}
               onClick={() => toggleAuthModal(!authModal.active, 'signIn')}
             >
@@ -102,5 +110,5 @@ export default function Header(): ReactElement {
         )}
       </div>
     </div>
-  );
+  )
 }

@@ -1,11 +1,11 @@
-import { ReactElement } from 'react';
-import Seo from '../../../common/Seo';
+import { ReactElement } from 'react'
+import Seo from '../../../common/Seo'
 
 export default function FundraiserDonationsPage(): ReactElement {
   return (
     <>
       <Seo
-        title="Fundraiser Donations"
+        title='Fundraiser Donations'
         description={`
         The page displays a list of donations made and the 
         statistical data of your fundraiser on GoFunder. 
@@ -16,5 +16,5 @@ export default function FundraiserDonationsPage(): ReactElement {
         <p>Fundraiser Donations Page</p>
       </div>
     </>
-  );
+  )
 }

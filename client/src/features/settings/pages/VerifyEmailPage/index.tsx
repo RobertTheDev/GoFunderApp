@@ -1,13 +1,13 @@
-import { ReactElement } from 'react';
-import Seo from '../../../common/Seo';
-import VerifyEmailForm from '../../components/VerifyEmailForm';
-import SettingsPageLayout from '../../layouts/SettingsPageLayout';
+import { ReactElement } from 'react'
+import Seo from '../../../common/Seo'
+import VerifyEmailForm from '../../components/VerifyEmailForm'
+import SettingsPageLayout from '../../layouts/SettingsPageLayout'
 
 export default function VerifyEmailPage(): ReactElement {
   return (
     <>
       <Seo
-        title="Verify Email"
+        title='Verify Email'
         description={`
         This page verifies your account email address with 
         the valid access code provided in the email we sent
@@ -18,5 +18,5 @@ export default function VerifyEmailPage(): ReactElement {
         <VerifyEmailForm />
       </SettingsPageLayout>
     </>
-  );
+  )
 }

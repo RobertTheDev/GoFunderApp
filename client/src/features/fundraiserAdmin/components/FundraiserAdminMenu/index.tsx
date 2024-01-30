@@ -1,23 +1,23 @@
-import { ReactElement } from 'react';
-import { Link } from 'react-router-dom';
+import { ReactElement } from 'react'
+import { Link } from 'react-router-dom'
 
 const fundraiserAdminLinks = [
   {
     name: 'Donations',
     path: 'donations',
-    description: ''
+    description: '',
   },
   {
     name: 'Update Fundraiser',
     path: 'update',
-    description: ''
+    description: '',
   },
   {
     name: 'Close Fundraiser',
     path: 'close-fundraiser',
-    description: ''
-  }
-];
+    description: '',
+  },
+]
 
 export default function FundraiserAdminMenu(): ReactElement {
   return (
@@ -28,8 +28,8 @@ export default function FundraiserAdminMenu(): ReactElement {
           <Link to={fundraiserAdminLink.path} key={fundraiserAdminLink.path}>
             {fundraiserAdminLink.name}
           </Link>
-        );
+        )
       })}
     </div>
-  );
+  )
 }

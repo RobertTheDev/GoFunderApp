@@ -1,13 +1,13 @@
-import { ReactElement } from 'react';
-import Seo from '../../../common/Seo';
-import { Link } from 'react-router-dom';
-import settingsLinks from '../../../../utils/settingsLinks';
+import { ReactElement } from 'react'
+import Seo from '../../../common/Seo'
+import { Link } from 'react-router-dom'
+import settingsLinks from '../../../../utils/settingsLinks'
 
 export default function SettingsPage(): ReactElement {
   return (
     <>
       <Seo
-        title="Settings"
+        title='Settings'
         description={`
         This page displays a menu with links to manage and 
         update your settings in order to manage the security 
@@ -24,9 +24,9 @@ export default function SettingsPage(): ReactElement {
                 <p>{settingsLink.description}</p>
               </div>
             </Link>
-          );
+          )
         })}
       </div>
     </>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import { createContext } from 'react';
-import { AuthContextType } from './AuthContextType';
+import { createContext } from 'react'
+import { AuthContextType } from './AuthContextType'
 
 export const AuthContext = createContext<AuthContextType>({
   user: null,
@@ -7,6 +7,6 @@ export const AuthContext = createContext<AuthContextType>({
   error: null,
   authModal: { active: false, formType: null },
   toggleAuthModal: (active: boolean, formType: string | null) => {
-    return { active, formType };
-  }
-});
+    return { active, formType }
+  },
+})

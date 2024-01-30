@@ -1,19 +1,19 @@
-import { ReactElement } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { getDonationsByCurrentUser } from '../../service/donation.service';
-import DonationCard from '../../components/DonationCard';
-import styles from './styles.module.scss';
-import Seo from '../../../common/Seo';
+import { ReactElement } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { getDonationsByCurrentUser } from '../../service/donation.service'
+import DonationCard from '../../components/DonationCard'
+import styles from './styles.module.scss'
+import Seo from '../../../common/Seo'
 
 export default function UserDonationsPage(): ReactElement {
   const { isPending, error, data } = useQuery({
     queryKey: ['getDonationsByCurrentUserData'],
-    queryFn: getDonationsByCurrentUser
-  });
+    queryFn: getDonationsByCurrentUser,
+  })
 
-  if (isPending) return <p>Loading...</p>;
+  if (isPending) return <p>Loading...</p>
 
-  if (error) return <p>An error has occurred: + {error.message}</p>;
+  if (error) return <p>An error has occurred: + {error.message}</p>
 
   return (
     <>
@@ -31,7 +31,7 @@ export default function UserDonationsPage(): ReactElement {
           {data.data.data.length > 0 ? (
             <div className={styles.cardsGridContainer}>
               {data.data.data.map((donation) => {
-                return <DonationCard key={donation.id} donation={donation} />;
+                return <DonationCard key={donation.id} donation={donation} />
               })}
             </div>
           ) : (
@@ -40,5 +40,5 @@ export default function UserDonationsPage(): ReactElement {
         </div>
       </div>
     </>
-  );
+  )
 }

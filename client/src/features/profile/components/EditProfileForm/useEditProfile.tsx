@@ -1,55 +1,57 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 
-import editProfileSchema, { EditProfileSchemaType } from '../../validators/editProfile.schema';
-import { updateProfile } from '../../service/profile.service';
-import { AxiosError } from 'axios';
+import editProfileSchema, {
+  EditProfileSchemaType,
+} from '../../validators/editProfile.schema'
+import { updateProfile } from '../../service/profile.service'
+import { AxiosError } from 'axios'
 
 const useEditProfile = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm<EditProfileSchemaType>({
-    resolver: zodResolver(editProfileSchema)
-  });
+    resolver: zodResolver(editProfileSchema),
+  })
 
   const [message, setMessage] = useState<{
-    type: string;
-    content: string;
-  } | null>(null);
+    type: string
+    content: string
+  } | null>(null)
 
   const editProfile = async (data: EditProfileSchemaType) => {
     try {
-      const editProfil = await updateProfile(data);
+      const editProfil = await updateProfile(data)
 
-      setMessage({ type: 'success', content: editProfil.data.message });
+      setMessage({ type: 'success', content: editProfil.data.message })
 
-      return editProfil;
+      return editProfil
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         setMessage({
           type: 'error',
-          content: error.response?.data.message
-        });
+          content: error.response?.data.message,
+        })
       } else {
         setMessage({
           type: 'error',
-          content: 'Internal server error. Please try again.'
-        });
+          content: 'Internal server error. Please try again.',
+        })
       }
     }
-  };
+  }
 
-  const handleEditProfile = handleSubmit(editProfile);
+  const handleEditProfile = handleSubmit(editProfile)
 
   return {
     errors,
     handleEditProfile,
     message,
-    register
-  };
-};
+    register,
+  }
+}
 
-export default useEditProfile;
+export default useEditProfile

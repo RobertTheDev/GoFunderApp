@@ -1,6 +1,6 @@
-import { ReactElement } from 'react';
-import PasswordResetForm from '../../components/password/PasswordResetForm';
-import Seo from '../../../common/Seo';
+import { ReactElement } from 'react'
+import PasswordResetForm from '../../components/password/PasswordResetForm'
+import Seo from '../../../common/Seo'
 
 export default function ResetPasswordPage(): ReactElement {
   return (
@@ -17,5 +17,5 @@ export default function ResetPasswordPage(): ReactElement {
         <PasswordResetForm />
       </div>
     </>
-  );
+  )
 }

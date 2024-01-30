@@ -1,14 +1,14 @@
-import { ReactElement, useContext } from 'react';
-import Footer from '../Footer';
-import Header from '../Header';
-import { Outlet } from 'react-router-dom';
-import styles from './styles.module.scss';
-import AuthModal from '../../../auth/components/modal';
-import { AuthContext } from '../../../auth/contexts/AuthContext/context';
-import TabBar from '../TabBar';
+import { ReactElement, useContext } from 'react'
+import Footer from '../Footer'
+import Header from '../Header'
+import { Outlet } from 'react-router-dom'
+import styles from './styles.module.scss'
+import AuthModal from '../../../auth/components/modal'
+import { AuthContext } from '../../../auth/contexts/AuthContext/context'
+import TabBar from '../TabBar'
 
 export default function PageLayout(): ReactElement {
-  const { authModal } = useContext(AuthContext);
+  const { authModal } = useContext(AuthContext)
 
   return (
     <div className={styles.pageLayoutContainer}>
@@ -21,5 +21,5 @@ export default function PageLayout(): ReactElement {
       <Footer />
       <TabBar />
     </div>
-  );
+  )
 }

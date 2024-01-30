@@ -1,26 +1,26 @@
-import IRouterRoute from '../../../interfaces/RouterRoute';
-import AboutPage from '../pages/AboutPage';
-import AccessibilityStatementPage from '../pages/AccessibilityStatementPage';
-import PrivacyPolicyPage from '../pages/PrivacyPolicyPage';
-import TermsAndConditionsPage from '../pages/TermsAndConditionsPage';
+import IRouterRoute from '../../../interfaces/RouterRoute'
+import AboutPage from '../pages/AboutPage'
+import AccessibilityStatementPage from '../pages/AccessibilityStatementPage'
+import PrivacyPolicyPage from '../pages/PrivacyPolicyPage'
+import TermsAndConditionsPage from '../pages/TermsAndConditionsPage'
 
 const infoRouter: IRouterRoute[] = [
   {
     path: '/about',
-    element: <AboutPage />
+    element: <AboutPage />,
   },
   {
     path: '/accessibility-statement',
-    element: <AccessibilityStatementPage />
+    element: <AccessibilityStatementPage />,
   },
   {
     path: '/privacy-policy',
-    element: <PrivacyPolicyPage />
+    element: <PrivacyPolicyPage />,
   },
   {
     path: '/terms-and-conditions',
-    element: <TermsAndConditionsPage />
-  }
-];
+    element: <TermsAndConditionsPage />,
+  },
+]
 
-export default infoRouter;
+export default infoRouter

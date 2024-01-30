@@ -1,13 +1,13 @@
-import { ReactElement } from 'react';
-import Seo from '../../../common/Seo';
-import SendEmailVerificationForm from '../../components/SendEmailVerificationForm';
-import SettingsPageLayout from '../../layouts/SettingsPageLayout';
+import { ReactElement } from 'react'
+import Seo from '../../../common/Seo'
+import SendEmailVerificationForm from '../../components/SendEmailVerificationForm'
+import SettingsPageLayout from '../../layouts/SettingsPageLayout'
 
 export default function SendEmailVerificationPage(): ReactElement {
   return (
     <>
       <Seo
-        title="Send Email Verification"
+        title='Send Email Verification'
         description={`
         You can send an email verification request here on this page. 
         Press the confirmation button and we will send an email 
@@ -18,5 +18,5 @@ export default function SendEmailVerificationPage(): ReactElement {
         <SendEmailVerificationForm />
       </SettingsPageLayout>
     </>
-  );
+  )
 }

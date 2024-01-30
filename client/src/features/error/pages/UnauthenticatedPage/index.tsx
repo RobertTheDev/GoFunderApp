@@ -1,11 +1,11 @@
-import { ReactElement } from 'react';
-import Seo from '../../../common/Seo';
+import { ReactElement } from 'react'
+import Seo from '../../../common/Seo'
 
 export default function UnauthenticatedPage(): ReactElement {
   return (
     <>
       <Seo
-        title="Unauthenticated"
+        title='Unauthenticated'
         description={`
         The page you tried to access returned a 401 error 
         meaning that you are not authenticated. 
@@ -18,5 +18,5 @@ export default function UnauthenticatedPage(): ReactElement {
         <p>Unauthenticated.</p>
       </div>
     </>
-  );
+  )
 }

@@ -1,12 +1,12 @@
-import { ReactElement } from 'react';
-import Seo from '../../../common/Seo';
-import ChangeAvatarForm from '../../components/ChangeAvatarForm';
+import { ReactElement } from 'react'
+import Seo from '../../../common/Seo'
+import ChangeAvatarForm from '../../components/ChangeAvatarForm'
 
 export default function ChangeAvatarPage(): ReactElement {
   return (
     <>
       <Seo
-        title="Change Avatar"
+        title='Change Avatar'
         description={`
         This page allows you to change your avatar 
         image for your account. Use the form below to 
@@ -18,5 +18,5 @@ export default function ChangeAvatarPage(): ReactElement {
         <ChangeAvatarForm />
       </div>
     </>
-  );
+  )
 }

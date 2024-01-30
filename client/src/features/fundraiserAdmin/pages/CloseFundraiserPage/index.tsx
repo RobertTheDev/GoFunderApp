@@ -1,12 +1,12 @@
-import { ReactElement } from 'react';
-import Seo from '../../../common/Seo';
-import CloseFundraiserForm from '../../components/CloseFundraiserForm';
+import { ReactElement } from 'react'
+import Seo from '../../../common/Seo'
+import CloseFundraiserForm from '../../components/CloseFundraiserForm'
 
 export default function CloseFundraiserPage(): ReactElement {
   return (
     <>
       <Seo
-        title="Close Fundraiser"
+        title='Close Fundraiser'
         description={`
         This page allows you to delete your owned fundraiser using 
         the form and typing confirm. Please note some 
@@ -18,5 +18,5 @@ export default function CloseFundraiserPage(): ReactElement {
         <CloseFundraiserForm />
       </div>
     </>
-  );
+  )
 }

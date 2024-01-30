@@ -1,12 +1,12 @@
-import { ReactElement } from 'react';
-import EditProfileForm from '../../components/EditProfileForm';
-import Seo from '../../../common/Seo';
+import { ReactElement } from 'react'
+import EditProfileForm from '../../components/EditProfileForm'
+import Seo from '../../../common/Seo'
 
 export default function EditProfilePage(): ReactElement {
   return (
     <>
       <Seo
-        title="Edit Profile"
+        title='Edit Profile'
         description={`
         This page allows you to update your profile 
         information for your account. You can 
@@ -18,5 +18,5 @@ export default function EditProfilePage(): ReactElement {
         <EditProfileForm />
       </div>
     </>
-  );
+  )
 }

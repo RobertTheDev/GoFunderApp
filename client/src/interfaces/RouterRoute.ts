@@ -1,4 +1,4 @@
 export default interface IRouterRoute {
-  element: JSX.Element;
-  path: string;
+  element: JSX.Element
+  path: string
 }

@@ -1,45 +1,45 @@
 const settingsLinks: {
-  name: string;
-  path: string;
-  description: string;
-  icon: string;
+  name: string
+  path: string
+  description: string
+  icon: string
 }[] = [
   {
     name: 'Change Email Address',
     path: '/settings/change-email',
     description: 'Description',
-    icon: ''
+    icon: '',
   },
   {
     name: 'Change Password',
     path: '/settings/change-password',
     description: 'Description',
-    icon: ''
+    icon: '',
   },
   {
     name: 'Close Account',
     path: '/settings/close-account',
     description: 'Description',
-    icon: ''
+    icon: '',
   },
   {
     name: 'Send Email Verification',
     path: '/settings/send-email-verification',
     description: 'Description',
-    icon: ''
+    icon: '',
   },
   {
     name: 'Setup MFA',
     path: '/settings/setup-mfa',
     description: 'Description',
-    icon: ''
+    icon: '',
   },
   {
     name: 'Sessions',
     path: '/settings/sessions',
     description: 'Description',
-    icon: ''
-  }
-];
+    icon: '',
+  },
+]
 
-export default settingsLinks;
+export default settingsLinks

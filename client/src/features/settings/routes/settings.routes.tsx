@@ -1,46 +1,46 @@
-import RouterRoute from '../../../interfaces/RouterRoute';
-import ChangeEmailPage from '../pages/ChangeEmailPage';
-import ChangePasswordPage from '../pages/ChangePasswordPage';
-import CloseAccountPage from '../pages/CloseAccountPage';
-import SendEmailVerificationPage from '../pages/SendEmailVerificationPage';
-import SessionsPage from '../pages/SessionsPage';
-import SetUpTotpPage from '../pages/SetUpTotpPage';
-import SettingsPage from '../pages/SettingsPage';
-import VerifyEmailPage from '../pages/VerifyEmailPage';
+import RouterRoute from '../../../interfaces/RouterRoute'
+import ChangeEmailPage from '../pages/ChangeEmailPage'
+import ChangePasswordPage from '../pages/ChangePasswordPage'
+import CloseAccountPage from '../pages/CloseAccountPage'
+import SendEmailVerificationPage from '../pages/SendEmailVerificationPage'
+import SessionsPage from '../pages/SessionsPage'
+import SetUpTotpPage from '../pages/SetUpTotpPage'
+import SettingsPage from '../pages/SettingsPage'
+import VerifyEmailPage from '../pages/VerifyEmailPage'
 
 const settingsRouter: RouterRoute[] = [
   {
     path: '/settings',
-    element: <SettingsPage />
+    element: <SettingsPage />,
   },
   {
     path: '/settings/change-email',
-    element: <ChangeEmailPage />
+    element: <ChangeEmailPage />,
   },
   {
     path: '/settings/change-password',
-    element: <ChangePasswordPage />
+    element: <ChangePasswordPage />,
   },
   {
     path: 'settings/close-account',
-    element: <CloseAccountPage />
+    element: <CloseAccountPage />,
   },
   {
     path: '/settings/send-email-verification',
-    element: <SendEmailVerificationPage />
+    element: <SendEmailVerificationPage />,
   },
   {
     path: '/settings/sessions',
-    element: <SessionsPage />
+    element: <SessionsPage />,
   },
   {
     path: '/settings/setup-mfa',
-    element: <SetUpTotpPage />
+    element: <SetUpTotpPage />,
   },
   {
     path: '/settings/verify-email',
-    element: <VerifyEmailPage />
-  }
-];
+    element: <VerifyEmailPage />,
+  },
+]
 
-export default settingsRouter;
+export default settingsRouter

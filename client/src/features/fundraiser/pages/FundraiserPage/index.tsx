@@ -1,36 +1,36 @@
-import { ReactElement } from 'react';
-import Seo from '../../../common/Seo';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { getFundraiserBySlug } from '../../service/fundraiser.service';
-import { useParams } from 'react-router-dom';
-import { saveFundraiser } from '../../../savedFundraiser/service/savedFundraiser.service';
-import CreateDonationForm from '../../../donation/components/CreateDonationForm';
-import styles from './styles.module.scss';
+import { ReactElement } from 'react'
+import Seo from '../../../common/Seo'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { getFundraiserBySlug } from '../../service/fundraiser.service'
+import { useParams } from 'react-router-dom'
+import { saveFundraiser } from '../../../savedFundraiser/service/savedFundraiser.service'
+import CreateDonationForm from '../../../donation/components/CreateDonationForm'
+import styles from './styles.module.scss'
 
 export default function FundraiserPage(): ReactElement {
-  const { slug } = useParams();
+  const { slug } = useParams()
 
   const { isPending, error, data } = useQuery({
     queryKey: ['getFundraiserBySlugData'],
-    queryFn: () => getFundraiserBySlug(String(slug))
-  });
+    queryFn: () => getFundraiserBySlug(String(slug)),
+  })
 
   const mutation = useMutation({
     mutationFn: async (fundraiserId: string) => {
-      return await saveFundraiser({ fundraiserId });
-    }
-  });
+      return await saveFundraiser({ fundraiserId })
+    },
+  })
 
-  if (isPending) return <p>Loading...</p>;
+  if (isPending) return <p>Loading...</p>
 
-  if (error) return <p>An error has occurred: + {error.message}</p>;
+  if (error) return <p>An error has occurred: + {error.message}</p>
 
-  if (data.data.data === null) return <p>Not found.</p>;
+  if (data.data.data === null) return <p>Not found.</p>
 
   return (
     <>
       <Seo
-        title="Fundraiser"
+        title='Fundraiser'
         description={`
         View and support the fundraiser on GoFunder today. 
         Sign up for an account to upload fundraiser listings 
@@ -52,10 +52,10 @@ export default function FundraiserPage(): ReactElement {
         <CreateDonationForm fundraiserId={data.data.data.id} />
 
         <button
-          type="button"
+          type='button'
           onClick={() => {
             if (data.data.data) {
-              mutation.mutate(data.data.data.id);
+              mutation.mutate(data.data.data.id)
             }
           }}
         >
@@ -63,7 +63,9 @@ export default function FundraiserPage(): ReactElement {
         </button>
 
         <p>{new Date(data.data.data.createdAt).getDate()}</p>
-        {data.data.data.deadlineDate && <p>{new Date(data.data.data.deadlineDate).getDate()}</p>}
+        {data.data.data.deadlineDate && (
+          <p>{new Date(data.data.data.deadlineDate).getDate()}</p>
+        )}
         <p>{data.data.data.description}</p>
         <p>{data.data.data.headline}</p>
         <p>{data.data.data.target}</p>
@@ -72,5 +74,5 @@ export default function FundraiserPage(): ReactElement {
         <h3>Donations</h3>
       </div>
     </>
-  );
+  )
 }

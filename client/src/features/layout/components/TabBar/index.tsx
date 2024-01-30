@@ -1,13 +1,13 @@
-import { ReactElement } from 'react';
-import styles from './styles.module.scss';
-import tabBarLinks from './tabBarLinks';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { ReactElement } from 'react'
+import styles from './styles.module.scss'
+import tabBarLinks from './tabBarLinks'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 export default function TabBar(): ReactElement {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const { pathname } = useLocation();
+  const { pathname } = useLocation()
 
   return (
     <div className={styles.tabBarContainer}>
@@ -19,14 +19,16 @@ export default function TabBar(): ReactElement {
             key={tabBarLink.name}
             onClick={() => navigate(tabBarLink.path)}
             className={
-              tabBarLink.path === pathname ? styles.tabBarButtonActive : styles.tabBarButton
+              tabBarLink.path === pathname
+                ? styles.tabBarButtonActive
+                : styles.tabBarButton
             }
           >
             {tabBarLink.icon}
             <p>{tabBarLink.name}</p>
           </motion.button>
-        );
+        )
       })}
     </div>
-  );
+  )
 }

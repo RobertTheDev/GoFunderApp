@@ -1,9 +1,9 @@
-import IRouterRoute from '../../../interfaces/RouterRoute';
-import CloseFundraiserPage from '../pages/CloseFundraiserPage';
-import FundraiserAdminPage from '../pages/FundraiserAdminPage';
-import FundraiserDonationsPage from '../pages/FundraiserDonationsPage';
-import UpdateFundraiserPage from '../pages/UpdateFundraiserPage';
-import AuthorizedFundraiserOwnerRoute from './AuthorizedFundraiserOwnerRoute';
+import IRouterRoute from '../../../interfaces/RouterRoute'
+import CloseFundraiserPage from '../pages/CloseFundraiserPage'
+import FundraiserAdminPage from '../pages/FundraiserAdminPage'
+import FundraiserDonationsPage from '../pages/FundraiserDonationsPage'
+import UpdateFundraiserPage from '../pages/UpdateFundraiserPage'
+import AuthorizedFundraiserOwnerRoute from './AuthorizedFundraiserOwnerRoute'
 
 const fundraiserAdminRouter: IRouterRoute[] = [
   {
@@ -12,7 +12,7 @@ const fundraiserAdminRouter: IRouterRoute[] = [
       <AuthorizedFundraiserOwnerRoute>
         <CloseFundraiserPage />
       </AuthorizedFundraiserOwnerRoute>
-    )
+    ),
   },
   {
     path: '/fundraisers/:fundraiserId/admin',
@@ -20,7 +20,7 @@ const fundraiserAdminRouter: IRouterRoute[] = [
       <AuthorizedFundraiserOwnerRoute>
         <FundraiserAdminPage />
       </AuthorizedFundraiserOwnerRoute>
-    )
+    ),
   },
   {
     path: '/fundraisers/:fundraiserId/admin/donations',
@@ -28,7 +28,7 @@ const fundraiserAdminRouter: IRouterRoute[] = [
       <AuthorizedFundraiserOwnerRoute>
         <FundraiserDonationsPage />
       </AuthorizedFundraiserOwnerRoute>
-    )
+    ),
   },
   {
     path: '/fundraisers/:fundraiserId/admin/update',
@@ -36,8 +36,8 @@ const fundraiserAdminRouter: IRouterRoute[] = [
       <AuthorizedFundraiserOwnerRoute>
         <UpdateFundraiserPage />
       </AuthorizedFundraiserOwnerRoute>
-    )
-  }
-];
+    ),
+  },
+]
 
-export default fundraiserAdminRouter;
+export default fundraiserAdminRouter

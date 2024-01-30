@@ -1,9 +1,9 @@
-import { ReactElement } from 'react';
-import styles from './styles.module.scss';
-import useResetPassword from './useResetPassword';
+import { ReactElement } from 'react'
+import styles from './styles.module.scss'
+import useResetPassword from './useResetPassword'
 
 export default function PasswordResetForm(): ReactElement {
-  const { register, handleResetPassword, errors, message } = useResetPassword();
+  const { register, handleResetPassword, errors, message } = useResetPassword()
 
   return (
     <form className={styles.formContainer} onSubmit={handleResetPassword}>
@@ -13,9 +13,9 @@ export default function PasswordResetForm(): ReactElement {
         <input
           className={styles.formInput}
           {...register('password')}
-          type="password"
-          name="password"
-          placeholder="Password"
+          type='password'
+          name='password'
+          placeholder='Password'
         />
         {errors.password?.message && (
           <p className={styles.formErrorText}>{errors.password.message}</p>
@@ -25,10 +25,10 @@ export default function PasswordResetForm(): ReactElement {
       {message && <p>{message.content}</p>}
 
       <div className={styles.formSubmitButtonContainer}>
-        <button className={styles.formSubmitButton} type="submit">
+        <button className={styles.formSubmitButton} type='submit'>
           Reset Password
         </button>
       </div>
     </form>
-  );
+  )
 }

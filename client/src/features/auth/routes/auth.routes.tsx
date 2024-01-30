@@ -1,11 +1,11 @@
-import IRouterRoute from '../../../interfaces/RouterRoute';
-import ResetPasswordPage from '../pages/ResetPasswordPage';
+import IRouterRoute from '../../../interfaces/RouterRoute'
+import ResetPasswordPage from '../pages/ResetPasswordPage'
 
 const authRouter: IRouterRoute[] = [
   {
     path: '/reset-password',
-    element: <ResetPasswordPage />
-  }
-];
+    element: <ResetPasswordPage />,
+  },
+]
 
-export default authRouter;
+export default authRouter

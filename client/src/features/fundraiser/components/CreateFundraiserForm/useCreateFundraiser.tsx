@@ -1,56 +1,56 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { createFundraiser } from '../../service/fundraiser.service';
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { createFundraiser } from '../../service/fundraiser.service'
 import createFundraiserSchema, {
-  CreateFundraiserSchemaType
-} from '../../validators/createFundraiser.schema';
-import { AxiosError } from 'axios';
+  CreateFundraiserSchemaType,
+} from '../../validators/createFundraiser.schema'
+import { AxiosError } from 'axios'
 
 const useCreateFundraiser = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm<CreateFundraiserSchemaType>({
-    resolver: zodResolver(createFundraiserSchema)
-  });
+    resolver: zodResolver(createFundraiserSchema),
+  })
 
   const [message, setMessage] = useState<{
-    type: string;
-    content: string;
-  } | null>(null);
+    type: string
+    content: string
+  } | null>(null)
 
   const createFundraiserHandler = async (data: CreateFundraiserSchemaType) => {
     try {
-      const createFundraise = await createFundraiser(data);
+      const createFundraise = await createFundraiser(data)
 
-      setMessage({ type: 'success', content: createFundraise.data.message });
+      setMessage({ type: 'success', content: createFundraise.data.message })
 
-      return createFundraise;
+      return createFundraise
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         setMessage({
           type: 'error',
-          content: error.response?.data.message
-        });
+          content: error.response?.data.message,
+        })
       } else {
         setMessage({
           type: 'error',
-          content: 'Internal server error. Please try again.'
-        });
+          content: 'Internal server error. Please try again.',
+        })
       }
     }
-  };
+  }
 
-  const handleCreateFundraiser = handleSubmit(createFundraiserHandler);
+  const handleCreateFundraiser = handleSubmit(createFundraiserHandler)
 
   return {
     errors,
     handleCreateFundraiser,
     message,
-    register
-  };
-};
+    register,
+  }
+}
 
-export default useCreateFundraiser;
+export default useCreateFundraiser

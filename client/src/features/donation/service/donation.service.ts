@@ -1,39 +1,43 @@
-import { CreateDonationSchemaType } from '../validators/createDonation.schema';
-import IDonation, { DonationApiResponse } from '../../../interfaces/Donation';
-import axios, { AxiosResponse } from 'axios';
-import ApiResponse from '../../../interfaces/ApiResponse';
+import { CreateDonationSchemaType } from '../validators/createDonation.schema'
+import IDonation, { DonationApiResponse } from '../../../interfaces/Donation'
+import axios, { AxiosResponse } from 'axios'
+import ApiResponse from '../../../interfaces/ApiResponse'
 
 interface UserDonationsApiResponse extends ApiResponse {
-  data: IDonation[];
+  data: IDonation[]
 }
 
-const donationApiUrl = `${process.env.REACT_APP_API_URL}/donation`;
+const donationApiUrl = `${process.env.REACT_APP_API_URL}/donation`
 
 export async function createdonation(
   fundraiserId: string,
-  data: CreateDonationSchemaType
+  data: CreateDonationSchemaType,
 ): Promise<DonationApiResponse> {
   return await axios.post(`${donationApiUrl}/create/${fundraiserId}`, data, {
-    withCredentials: true
-  });
+    withCredentials: true,
+  })
 }
 
-export async function deleteDonationById(donationId: string): Promise<DonationApiResponse> {
-  return await axios.delete(`${donationApiUrl}/${donationId}`);
+export async function deleteDonationById(
+  donationId: string,
+): Promise<DonationApiResponse> {
+  return await axios.delete(`${donationApiUrl}/${donationId}`)
 }
 
 export async function getDonations(): Promise<UserDonationsApiResponse> {
-  return await axios.get(`${donationApiUrl}`);
+  return await axios.get(`${donationApiUrl}`)
 }
 
 export async function getDonationsByCurrentUser(): Promise<
   AxiosResponse<UserDonationsApiResponse>
 > {
   return await axios.get(`${donationApiUrl}/current-user`, {
-    withCredentials: true
-  });
+    withCredentials: true,
+  })
 }
 
-export async function getDonationById(donationId: string): Promise<DonationApiResponse> {
-  return await axios.get(`${donationApiUrl}/${donationId}`);
+export async function getDonationById(
+  donationId: string,
+): Promise<DonationApiResponse> {
+  return await axios.get(`${donationApiUrl}/${donationId}`)
 }

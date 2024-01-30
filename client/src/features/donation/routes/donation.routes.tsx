@@ -1,6 +1,8 @@
-import IRouterRoute from '../../../interfaces/RouterRoute';
-import UserDonationsPage from '../pages/UserDonationsPage';
+import IRouterRoute from '../../../interfaces/RouterRoute'
+import UserDonationsPage from '../pages/UserDonationsPage'
 
-const donationRouter: IRouterRoute[] = [{ path: '/donations', element: <UserDonationsPage /> }];
+const donationRouter: IRouterRoute[] = [
+  { path: '/donations', element: <UserDonationsPage /> },
+]
 
-export default donationRouter;
+export default donationRouter
